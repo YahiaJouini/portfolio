@@ -2,6 +2,7 @@ import { inter } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
 import type { Metadata } from "next"
 import "./globals.css"
+import Navbar from "@/components/layout/navbar"
 
 export const metadata: Metadata = {
    title: "Create Next App",
@@ -17,10 +18,11 @@ export default function RootLayout({
       <html lang="en">
          <body
             className={cn(
-               `dark text-t-primary bg-primary relative flex min-h-screen flex-col overflow-x-hidden antialiased`,
+               `dark text-primary-t bg-primary relative flex min-h-screen flex-col overflow-x-hidden tracking-[0.01em] antialiased`,
                inter.className,
             )}
          >
+            <Navbar />
             {children}
          </body>
       </html>

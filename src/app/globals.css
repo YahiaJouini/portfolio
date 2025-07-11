@@ -14,9 +14,10 @@
    --color-extra: #d1d5da80;
 
    /* for text */
-   --color-t-primary: #1f2328;
-   --color-t-secondary: #6b747e;
-   --color-t-link: #4493f8;
+   --color-primary-t: #1f2328;
+   --color-secondary-t: #6b747e;
+   --color-link-t: #4493f8;
+   --color-borders: #d1d9e0;
 }
 
 .dark {
@@ -28,11 +29,12 @@
    --color-hover: #15191f;
    --color-hover-2: #262c36;
    --color-extra: #57606a;
+   --color-borders: #2f353d;
 
    /* for text */
-   --color-t-primary: #f0f6fc;
-   --color-t-secondary: #858c95;
-   --color-t-link: #4493f8;
+   --color-primary-t: #f0f6fc;
+   --color-secondary-t: #858c95;
+   --color-link-t: #4493f8;
 
    /* shadcn vars */
    --background: oklch(0.145 0 0);
@@ -144,5 +146,11 @@
 
    body {
       @apply bg-background text-foreground;
+   }
+}
+
+@layer utilities {
+   .center {
+      @apply flex items-center justify-center;
    }
 }
