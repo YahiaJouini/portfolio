@@ -1,14 +1,14 @@
-import { Locale, Translation } from "@/messages/types/common"
-import { getSection } from "@/messages/utils"
+import { Translation } from "@/messages/types/common"
+import { useLocale } from "@/providers/Locale"
+import { getTranslation } from "@/utils/get-translation"
 import { useLayoutEffect, useState } from "react"
 
-export const useTranslation = <T>(
-   locale: Locale,
-   translation: Translation,
-): T | null => {
+export const useTranslation = <T>(translation: Translation): T | null => {
+   const { locale } = useLocale()
    const [section, setSection] = useState<T | null>(null)
    useLayoutEffect(() => {
-      getSection<T>(locale, translation).then((data) => {
+      if (!locale) return
+      getTranslation<T>(locale, translation).then((data) => {
          setSection(data)
       })
    }, [locale, translation])

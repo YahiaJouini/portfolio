@@ -1,4 +1,5 @@
-export type Locale = "en" | "fr" | "ar"
+export const SUPPORTED_LOCALES = ["en", "fr", "ar"] as const
+export type Locale = (typeof SUPPORTED_LOCALES)[number]
 export type Language = { title: string; id: Locale }
 export type Theme = {
    id: "light" | "dark"

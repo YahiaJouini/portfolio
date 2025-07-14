@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils"
 import type { Metadata } from "next"
 import "./globals.css"
 import Navbar from "@/components/layout/navbar"
+import LocaleProvider from "@/providers/Locale"
 
 export const metadata: Metadata = {
    title: "Create Next App",
@@ -22,8 +23,10 @@ export default function RootLayout({
                inter.className,
             )}
          >
-            <Navbar />
-            {children}
+            <LocaleProvider>
+               <Navbar />
+               {children}
+            </LocaleProvider>
          </body>
       </html>
    )
