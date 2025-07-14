@@ -2,7 +2,7 @@ import { inter } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
 import type { Metadata } from "next"
 import "./globals.css"
-import Navbar from "@/components/layout/navbar"
+import Navbar from "@/components/layout/navbar/navbar"
 import LocaleProvider from "@/providers/Locale"
 
 export const metadata: Metadata = {
@@ -19,7 +19,7 @@ export default function RootLayout({
       <html lang="en">
          <body
             className={cn(
-               `dark text-primary-t bg-primary relative flex min-h-screen flex-col overflow-x-hidden tracking-[0.01em] antialiased`,
+               `dark text-text-primary bg-primary relative flex min-h-screen flex-col overflow-x-hidden tracking-[0.01em] antialiased`,
                inter.className,
             )}
          >
