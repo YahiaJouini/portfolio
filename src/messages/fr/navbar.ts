@@ -3,19 +3,19 @@ import { NavBar } from "../types/navbar"
 export default {
    title: "Yahia Jouini",
    search: {
-      placeholder: "Type / to search",
+      placeholder: "Tapez / pour rechercher",
       sections: [],
    },
    themes: [
       {
          id: "dark",
-         title: "Dark",
-         label: "Switch to dark mode",
+         title: "Sombre",
+         label: "Passer en mode sombre",
       },
       {
          id: "light",
-         title: "Light",
-         label: "Switch to light mode",
+         title: "Clair",
+         label: "Passer en mode clair",
       },
    ],
    languages: [
@@ -34,17 +34,17 @@ export default {
    ],
    items: [
       {
-         title: "Home",
+         title: "Accueil",
          href: "/",
          id: "home",
       },
       {
-         title: "Projects",
+         title: "Projets",
          href: "/projects",
          id: "projects",
       },
       {
-         title: "Education",
+         title: "Éducation",
          href: "/education",
          id: "education",
       },
