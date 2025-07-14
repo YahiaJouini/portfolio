@@ -1,5 +1,7 @@
 import { Locale, Translation } from "@/messages/types/common"
 
+// no need for null or failed import check because this is a static import
+// and the file will always exist in the build process
 export async function getSection<T>(
    locale: Locale,
    translation: Translation,
