@@ -18,7 +18,10 @@ export default function Navbar() {
                   </div>
                   <p className="text-sm font-medium">{data.title}</p>
                </Link>
-               <Search data={data.search} />
+               <div className="flex items-center gap-4">
+                  <Search data={data.search} />
+                  
+               </div>
             </div>
          </div>
       </div>

@@ -1,9 +1,9 @@
+import Navbar from "@/components/layout/navbar/navbar"
 import { inter } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
+import LocaleProvider from "@/providers/Locale"
 import type { Metadata } from "next"
 import "./globals.css"
-import Navbar from "@/components/layout/navbar/navbar"
-import LocaleProvider from "@/providers/Locale"
 
 export const metadata: Metadata = {
    title: "Create Next App",
