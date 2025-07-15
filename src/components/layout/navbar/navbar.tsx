@@ -3,6 +3,7 @@ import { useTranslation } from "@/hooks/useTranslation"
 import { NavBar } from "@/messages/types/navbar"
 import Link from "next/link"
 import Search from "./search"
+import Theme from "./theme"
 
 export default function Navbar() {
    const data = useTranslation<NavBar>("navbar")
@@ -20,7 +21,7 @@ export default function Navbar() {
                </Link>
                <div className="flex items-center gap-4">
                   <Search data={data.search} />
-                  
+                  <Theme data={data.themes} />
                </div>
             </div>
          </div>
