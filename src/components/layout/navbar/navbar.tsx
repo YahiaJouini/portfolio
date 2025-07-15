@@ -4,6 +4,7 @@ import { NavBar } from "@/messages/types/navbar"
 import Link from "next/link"
 import Search from "./search"
 import Theme from "./theme"
+import Language from "./language"
 
 export default function Navbar() {
    const data = useTranslation<NavBar>("navbar")
@@ -22,6 +23,7 @@ export default function Navbar() {
                <div className="flex items-center gap-4">
                   <Search data={data.search} />
                   <Theme />
+                  <Language />
                </div>
             </div>
          </div>

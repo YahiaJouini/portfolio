@@ -40,9 +40,9 @@ export default function LocaleProvider({
 }
 
 export const useLocale = () => {
-   const usedContext = useContext(context)
-   if (!usedContext) {
+   const ctx = useContext(context)
+   if (!ctx) {
       throw new Error("useLocale must be used within a LocaleProvider")
    }
-   return usedContext
+   return ctx
 }
