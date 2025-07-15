@@ -6,18 +6,6 @@ export default {
       placeholder: "Tapez / pour rechercher",
       sections: [],
    },
-   themes: [
-      {
-         id: "dark",
-         title: "Sombre",
-         label: "Passer en mode sombre",
-      },
-      {
-         id: "light",
-         title: "Clair",
-         label: "Passer en mode clair",
-      },
-   ],
    languages: [
       {
          id: "en",

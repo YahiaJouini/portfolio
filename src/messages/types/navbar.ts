@@ -1,4 +1,4 @@
-import { Language, Page, Theme } from "./common"
+import { Language, Page } from "./common"
 
 export type NavBar = {
    title: string
@@ -10,7 +10,6 @@ export type NavBar = {
          href: string
       }>
    }
-   themes: Array<Theme>
    languages: Array<Language>
    items: Array<{
       title: string

@@ -6,18 +6,6 @@ export default {
       placeholder: "Type / to search",
       sections: [],
    },
-   themes: [
-      {
-         id: "dark",
-         title: "Dark",
-         label: "Switch to dark mode",
-      },
-      {
-         id: "light",
-         title: "Light",
-         label: "Switch to light mode",
-      },
-   ],
    languages: [
       {
          id: "en",

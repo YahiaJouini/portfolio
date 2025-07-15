@@ -1,9 +1,8 @@
 import { cn } from "@/lib/utils"
-import { NavBar } from "@/messages/types/navbar"
 import { Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
 
-export default function Theme({ data }: { data: NavBar["themes"] }) {
+export default function Theme() {
    const { theme, setTheme } = useTheme()
    return (
       <div

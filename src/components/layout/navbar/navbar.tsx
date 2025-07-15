@@ -21,7 +21,7 @@ export default function Navbar() {
                </Link>
                <div className="flex items-center gap-4">
                   <Search data={data.search} />
-                  <Theme data={data.themes} />
+                  <Theme />
                </div>
             </div>
          </div>
