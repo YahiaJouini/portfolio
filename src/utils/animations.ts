@@ -4,7 +4,7 @@ export const popupVariants: Variants = {
    initial: {
       opacity: 0,
       y: 10,
-      transition: { duration: 0.2, ease: "easeOut" },
+      transition: { duration: 0.1, ease: "easeOut" },
    },
    animate: {
       opacity: 1,

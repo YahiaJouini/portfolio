@@ -23,7 +23,7 @@ export default function Navbar() {
                <div className="flex items-center gap-4">
                   <Search data={data.search} />
                   <Theme />
-                  <Language />
+                  <Language data={data.languages} />
                </div>
             </div>
          </div>

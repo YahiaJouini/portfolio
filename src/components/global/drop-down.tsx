@@ -46,21 +46,31 @@ function useDropDown() {
 Dropdown.Trigger = function Trigger({ children, className }: BaseProps) {
    const { setVisible, visible } = useDropDown()
    return (
-      <div className={className} onClick={() => setVisible(!visible)}>
+      <button
+         className={cn("cursor-pointer", className)}
+         onClick={() => setVisible(!visible)}
+      >
          {children}
-      </div>
+      </button>
    )
 }
 
-Dropdown.Content = function Content({ children, className }: BaseProps) {
-   const { visible } = useDropDown()
+Dropdown.Content = function Content({
+   children,
+   className,
+   keep = false,
+}: BaseProps & { keep?: boolean }) {
+   const { visible, setVisible } = useDropDown()
    return (
       <AnimatePresence>
          {visible && (
             <motion.div
-               onClick={(e) => e.stopPropagation()}
+               onClick={(e) => {
+                  if (!keep) setVisible(false)
+                  e.stopPropagation()
+               }}
                className={cn(
-                  "absolute top-0 left-1/2 w-auto -translate-x-1/2",
+                  "bg-primary border-border-default absolute top-0 left-1/2 z-50 w-auto -translate-x-1/2 rounded border p-3 shadow-lg",
                   className,
                )}
                variants={popupVariants}
