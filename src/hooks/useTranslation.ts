@@ -1,4 +1,4 @@
-import { Translation } from "@/messages/types/common"
+import { Locale, Translation } from "@/messages/types/common"
 import { useLocale } from "@/providers/Locale"
 import { getTranslation } from "@/utils/get-translation"
 import { useLayoutEffect, useState } from "react"
@@ -10,14 +10,14 @@ type Props = {
 export const useTranslation = <T>({
    translation,
    show = true,
-}: Props): T | null => {
+}: Props): { data: T | null; locale: Locale | null } => {
    const { locale } = useLocale()
-   const [section, setSection] = useState<T | null>(null)
+   const [data, setData] = useState<T | null>(null)
    useLayoutEffect(() => {
       if (!locale || !show) return
       getTranslation<T>(locale, translation).then((data) => {
-         setSection(data)
+         setData(data)
       })
    }, [locale, translation, show])
-   return section
+   return { data, locale }
 }

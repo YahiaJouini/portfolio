@@ -8,7 +8,7 @@ import Language from "./language"
 import Sidebar from "./sidebar"
 
 export default function Navbar() {
-   const data = useTranslation<NavBar>({ translation: "navbar" })
+   const { data } = useTranslation<NavBar>({ translation: "navbar" })
    // TODO! show a skeleton while null to not layout shift
    if (!data) return null
    return (
@@ -27,7 +27,7 @@ export default function Navbar() {
                   <Theme />
                   <Language data={data.languages} />
                   <div className="bg-accent-border h-5 w-px" />
-                  <Sidebar />
+                  <Sidebar pages={data.items} />
                </div>
             </div>
          </div>
