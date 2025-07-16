@@ -3,14 +3,21 @@ import { useLocale } from "@/providers/Locale"
 import { getTranslation } from "@/utils/get-translation"
 import { useLayoutEffect, useState } from "react"
 
-export const useTranslation = <T>(translation: Translation): T | null => {
+type Props = {
+   show?: boolean
+   translation: Translation
+}
+export const useTranslation = <T>({
+   translation,
+   show = true,
+}: Props): T | null => {
    const { locale } = useLocale()
    const [section, setSection] = useState<T | null>(null)
    useLayoutEffect(() => {
-      if (!locale) return
+      if (!locale || !show) return
       getTranslation<T>(locale, translation).then((data) => {
          setSection(data)
       })
-   }, [locale, translation])
+   }, [locale, translation, show])
    return section
 }

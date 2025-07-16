@@ -20,7 +20,7 @@ export default function Language({ data }: { data: NavBar["languages"] }) {
          <Dropdown.Trigger className="border-border-default hover:bg-hover-2 center h-8 w-8 cursor-pointer rounded border text-sm">
             {data.find((lang) => lang.id === selectedLanguage)!.abbreviation}
          </Dropdown.Trigger>
-         <Dropdown.Content className="top-8 flex flex-col gap-1 p-1">
+         <Dropdown.Content className="top-10 flex flex-col gap-1 p-1">
             {data.map((lang) => (
                <button
                   key={lang.id}

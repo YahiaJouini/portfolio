@@ -1,3 +1,5 @@
+import { LucideIcon } from "lucide-react"
+
 export const SUPPORTED_LOCALES = ["en", "fr", "ar"] as const
 export type Locale = (typeof SUPPORTED_LOCALES)[number]
 export type Language = {
@@ -18,4 +20,10 @@ export type Item = {
    href: string
    id: Page
 }
-export type Translation = Page | "navbar" | "footer"
+export type Translation = Page | "navbar" | "footer" | "profile"
+
+export type Contact = Array<{
+   title: string
+   href: string
+   icon: React.ComponentType<React.SVGProps<SVGSVGElement>> | LucideIcon
+}>

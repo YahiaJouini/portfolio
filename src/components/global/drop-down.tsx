@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils"
-import { popupVariants } from "@/utils/animations"
+import { popup } from "@/utils/animations"
 import { AnimatePresence, motion } from "framer-motion"
 import { createContext, useContext, useEffect, useRef, useState } from "react"
 
@@ -73,7 +73,7 @@ Dropdown.Content = function Content({
                   "bg-primary border-border-default absolute top-0 left-1/2 z-50 w-auto -translate-x-1/2 rounded border p-3 shadow-lg",
                   className,
                )}
-               variants={popupVariants}
+               variants={popup}
                initial="initial"
                animate="animate"
                exit="exit"

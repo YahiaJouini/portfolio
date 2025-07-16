@@ -26,3 +26,18 @@ export const languages: Language[] = [
       abbreviation: "ع",
    },
 ]
+
+export const layout = {
+   settings: {
+      title: {
+         en: "Settings",
+         fr: "Paramètres",
+         ar: "الإعدادات",
+      },
+      description: {
+         en: "Customize your experience",
+         fr: "Personnalisez votre expérience",
+         ar: "خصص تجربتك",
+      },
+   },
+}
