@@ -22,6 +22,7 @@ export default function Navbar() {
                </Link>
                <div className="flex items-center gap-4">
                   <Search data={data.search} />
+                  <div className="bg-accent-border h-5 w-px" />
                   <Theme />
                   <Language data={data.languages} />
                </div>

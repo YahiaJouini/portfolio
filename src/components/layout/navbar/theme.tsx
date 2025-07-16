@@ -9,7 +9,7 @@ export default function Theme() {
          onClick={() =>
             setTheme((prev) => (prev === "dark" ? "light" : "dark"))
          }
-         className="border-border-default relative flex h-[22px] w-10 cursor-pointer rounded-full border px-0.5"
+         className="border-border-default hover:bg-hover-2 relative flex h-[22px] w-10 cursor-pointer rounded-full border px-0.5"
       >
          <div
             className={cn(

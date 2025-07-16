@@ -1,3 +1,4 @@
+import { languages } from "../global"
 import { NavBar } from "../types/navbar"
 
 export default {
@@ -6,20 +7,7 @@ export default {
       placeholder: "Tapez / pour rechercher",
       sections: [],
    },
-   languages: [
-      {
-         id: "en",
-         title: "English",
-      },
-      {
-         id: "fr",
-         title: "Français",
-      },
-      {
-         id: "ar",
-         title: "العربية",
-      },
-   ],
+   languages,
    items: [
       {
          title: "Accueil",

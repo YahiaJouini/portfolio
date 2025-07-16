@@ -2,41 +2,40 @@ import { languages } from "../global"
 import { NavBar } from "../types/navbar"
 
 export default {
-   title: "Yahia Jouini",
+   title: "يحيى الجويني",
    search: {
-      placeholder: "Type / to search",
+      placeholder: "اكتب / للبحث",
       sections: [],
    },
    languages,
    items: [
       {
-         title: "Home",
+         title: "الرئيسية",
          href: "/",
          id: "home",
       },
       {
-         title: "Projects",
+         title: "المشاريع",
          href: "/projects",
          id: "projects",
       },
       {
-         title: "Education",
+         title: "المسار الدراسي",
          href: "/education",
          id: "education",
       },
       {
-         title: "Blog",
+         title: "المدونة",
          href: "/blog",
          id: "blog",
       },
       {
-         title: "Discussions",
+         title: "النقاشات",
          href: "/discussions",
          id: "discussions",
       },
-
       {
-         title: "Contact",
+         title: "تواصل معي",
          href: "/contact",
          id: "contact",
       },
