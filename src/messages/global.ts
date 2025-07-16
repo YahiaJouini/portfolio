@@ -1,7 +1,7 @@
 import { Language, Locale } from "./types/common"
 
 export const profileImage = {
-   src: "/images/profile.jpg",
+   src: "/me.webp",
    alt: {
       en: "Yahia Jouini's profile picture",
       fr: "Photo de profil de Yahia Jouini",

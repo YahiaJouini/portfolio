@@ -9,11 +9,15 @@ export const popupVariants: Variants = {
    animate: {
       opacity: 1,
       y: 0,
-      transition: { type: "spring", stiffness: 300, damping: 20 },
+      transition: {
+         type: "spring",
+         stiffness: 400,
+         damping: 20,
+      },
    },
    exit: {
       opacity: 0,
       y: 10,
-      transition: { duration: 0.15, ease: "easeIn" },
+      transition: { duration: 0.1, ease: "easeIn" },
    },
 }

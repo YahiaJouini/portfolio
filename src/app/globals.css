@@ -189,3 +189,47 @@
       @apply flex items-center justify-center;
    }
 }
+
+/* Set the base direction for the entire page to right-to-left when 'dir="rtl"' is applied */
+html[dir="rtl"] {
+   direction: rtl;
+}
+
+/* Ensure all child elements inherit the right-to-left direction */
+html[dir="rtl"] * {
+   direction: rtl;
+   text-align: right;
+   /* Default text alignment is right for RTL */
+}
+
+/* Maintain center alignment for elements explicitly styled as 'center' to avoid conflicts */
+html[dir="rtl"] *[style*="text-align: center"],
+html[dir="rtl"] *[class*="text-center"],
+html[dir="rtl"] *[class*="align-center"] {
+   text-align: center;
+}
+
+/* disable image selection */
+img {
+   user-select: none;
+   -moz-user-select: none;
+   -webkit-user-drag: none;
+   -webkit-user-select: none;
+   -ms-user-select: none;
+}
+
+::-webkit-scrollbar {
+   width: 8px;
+}
+
+::-webkit-scrollbar-track {
+   background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+   background: #aaa8a8;
+}
+
+::-webkit-scrollbar-thumb:hover {
+   background: #555;
+}

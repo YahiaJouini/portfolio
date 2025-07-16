@@ -1,6 +1,7 @@
 "use client"
 import { Locale } from "@/messages/types/common"
 import { validLocale } from "@/utils/validate-locale"
+import { useRouter } from "next/navigation"
 import { createContext, useContext, useEffect, useState } from "react"
 
 type Context = {
@@ -15,7 +16,7 @@ export default function LocaleProvider({
    children: React.ReactNode
 }) {
    const [locale, setLocaleState] = useState<Locale | null>(null)
-
+   const router = useRouter()
    useEffect(() => {
       const match = document.cookie.match(/(^| )locale=([^;]+)/)
       const cookieLocale = match?.[2]
@@ -31,6 +32,7 @@ export default function LocaleProvider({
    const setLocale = (newLocale: Locale) => {
       document.cookie = `locale=${newLocale}; path=/`
       setLocaleState(newLocale)
+      router.refresh()
    }
    return (
       <context.Provider value={{ locale, setLocale }}>

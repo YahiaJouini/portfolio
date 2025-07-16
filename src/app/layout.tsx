@@ -19,7 +19,12 @@ export default async function RootLayout({
 }>) {
    const locale = await getServerLocale()
    return (
-      <html lang={locale} suppressHydrationWarning>
+      <html
+         lang={locale}
+         dir={locale === "ar" ? "rtl" : "ltr"}
+         key={locale}
+         suppressHydrationWarning
+      >
          <body
             className={cn(
                `text-text-primary bg-primary relative flex min-h-screen flex-col overflow-x-hidden tracking-[0.01em] antialiased`,

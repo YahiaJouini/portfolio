@@ -5,6 +5,7 @@ import Link from "next/link"
 import Search from "./search"
 import Theme from "./theme"
 import Language from "./language"
+import Sidebar from "./sidebar"
 
 export default function Navbar() {
    const data = useTranslation<NavBar>("navbar")
@@ -25,6 +26,8 @@ export default function Navbar() {
                   <div className="bg-accent-border h-5 w-px" />
                   <Theme />
                   <Language data={data.languages} />
+                  <div className="bg-accent-border h-5 w-px" />
+                  <Sidebar />
                </div>
             </div>
          </div>
