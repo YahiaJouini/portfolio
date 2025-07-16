@@ -9,14 +9,14 @@ import {
 } from "@/components/ui/sheet"
 import { useTranslation } from "@/hooks/useTranslation"
 import { cn } from "@/lib/utils"
-import { iconMap, layout, profileImage } from "@/messages/global"
+import { connects, iconMap, layout, profileImage } from "@/messages/global"
 import { NavBar } from "@/messages/types/navbar"
 import { Profile } from "@/messages/types/profile"
 import { fade } from "@/utils/animations"
 import { AnimatePresence, motion } from "framer-motion"
 import { Slant as Hamburger } from "hamburger-react"
 import Link from "next/link"
-import { useState } from "react"
+import React, { useState } from "react"
 
 export default function Sidebar({ pages }: { pages: NavBar["items"] }) {
    const [open, setOpen] = useState(false)
@@ -44,7 +44,12 @@ export default function Sidebar({ pages }: { pages: NavBar["items"] }) {
                   alt={profileImage.alt.en}
                />
             </div>
-            <Hamburger size={22} onToggle={setOpen} toggled={open} />
+            <Hamburger
+               duration={0.2}
+               size={20}
+               onToggle={setOpen}
+               toggled={open}
+            />
          </SheetTrigger>
          <SheetContent className="flex flex-col gap-4 p-6">
             <SheetHeader className="hidden">
@@ -70,7 +75,7 @@ export default function Sidebar({ pages }: { pages: NavBar["items"] }) {
                            />
                         </div>
                         <h2 className="text-xl font-medium">{data.fullName}</h2>
-                        <h4 className="text-text-secondary text-[15px]">
+                        <h4 className="text-text-trinary text-[15px]">
                            {data.job}
                         </h4>
                         <p className="text-text-secondary mt-3 text-[13px]">
@@ -78,22 +83,24 @@ export default function Sidebar({ pages }: { pages: NavBar["items"] }) {
                         </p>
                      </div>
                      <Divider title={layout[locale].explore} />
-                     <div className="flex flex-col gap-4">
-                        {pages.map((page) => {
-                           const Icon = iconMap[page.id]
-                           return (
-                              <Link
-                                 key={page.href}
-                                 href={page.href}
-                                 className="hover:text-text-primary flex items-center gap-1 text-sm"
-                              >
-                                 <Icon />
-                                 {page.title}
-                              </Link>
-                           )
-                        })}
+                     <div className="flex flex-col gap-1">
+                        {pages.map((page) => (
+                           <Item
+                              {...page}
+                              key={page.href}
+                              icon={iconMap[page.id]}
+                           />
+                        ))}
                      </div>
                      <Divider title={layout[locale].connect} />
+                     <div className="flex flex-col gap-1">
+                        {connects.map((connect) => (
+                           <Item
+                              {...connect}
+                              key={connect.href ?? connect.title}
+                           />
+                        ))}
+                     </div>
                   </motion.div>
                )}
             </AnimatePresence>
@@ -105,9 +112,36 @@ export default function Sidebar({ pages }: { pages: NavBar["items"] }) {
 const Divider = ({ title }: { title: string }) => {
    return (
       <div className="border-border-default flex items-center justify-between gap-1 border-b pb-1">
-         <h3 className="text-text-secondary text-[13px] font-extralight">
+         <h3 className="text-text-trinary text-[13px]">{title}</h3>
+      </div>
+   )
+}
+
+const Item = ({
+   href,
+   title,
+   icon,
+}: {
+   href?: string
+   title: string
+   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>
+}) => {
+   const Icon = icon
+   if (href) {
+      return (
+         <Link
+            href={href}
+            className="hover:text-text-primary hover:bg-hover-2 flex w-full items-center gap-1.5 rounded-md px-3 py-2 text-sm"
+         >
+            <Icon />
             {title}
-         </h3>
+         </Link>
+      )
+   }
+   return (
+      <div className="flex w-full items-center gap-1.5 rounded-md px-3 py-2 text-sm">
+         <Icon />
+         {title}
       </div>
    )
 }

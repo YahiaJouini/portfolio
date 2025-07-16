@@ -1,4 +1,5 @@
 import Blog from "@/components/icons/blog"
+import { Email, Github, Linkedin } from "@/components/icons/connect"
 import Contact from "@/components/icons/contact"
 import Discussions from "@/components/icons/discussions"
 import Education from "@/components/icons/education"
@@ -85,3 +86,29 @@ export const layout = {
       pages: "صفحات",
    },
 }
+
+export const connects: Array<{
+   title: string
+   href?: string
+   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>
+}> = [
+   {
+      title: "Tunis, Tunisia",
+      icon: Home,
+   },
+   {
+      href: "https://www.linkedin.com/in/yahiajouini",
+      title: "yahiajouini",
+      icon: Linkedin,
+   },
+   {
+      href: "https://github.com/YahiaJouini",
+      title: "YahiaJouini",
+      icon: Github,
+   },
+   {
+      href: "mailto:jouiniyahya117@gmail.com",
+      title: "jouiniyahya117@gmail.com",
+      icon: Email,
+   },
+]
