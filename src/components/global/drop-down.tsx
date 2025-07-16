@@ -1,13 +1,7 @@
-// components/Dropdown.tsx
 import { cn } from "@/lib/utils"
+import { popupVariants } from "@/utils/animations"
 import { AnimatePresence, motion } from "framer-motion"
-import React, {
-   createContext,
-   useContext,
-   useEffect,
-   useRef,
-   useState,
-} from "react"
+import { createContext, useContext, useEffect, useRef, useState } from "react"
 
 type BaseProps = {
    children: React.ReactNode
@@ -69,9 +63,10 @@ Dropdown.Content = function Content({ children, className }: BaseProps) {
                   "absolute top-0 left-1/2 w-auto -translate-x-1/2",
                   className,
                )}
-               initial={{ opacity: 0 }}
-               animate={{ opacity: 1 }}
-               exit={{ opacity: 0 }}
+               variants={popupVariants}
+               initial="initial"
+               animate="animate"
+               exit="exit"
             >
                {children}
             </motion.div>
