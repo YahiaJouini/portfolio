@@ -1,4 +1,3 @@
-import { languages } from "../global"
 import { NavBar } from "../types/navbar"
 
 export default {
@@ -7,7 +6,6 @@ export default {
       placeholder: "اكتب / للبحث",
       sections: [],
    },
-   languages,
    items: [
       {
          title: "الرئيسية",

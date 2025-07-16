@@ -30,7 +30,7 @@ export default function Dropdown({ children }: BaseProps) {
 
    return (
       <DropdownContext.Provider value={{ visible, setVisible, ref }}>
-         <div ref={ref} className="relative">
+         <div ref={ref} className="relative inline-block">
             {children}
          </div>
       </DropdownContext.Provider>
@@ -70,7 +70,7 @@ Dropdown.Content = function Content({
                   e.stopPropagation()
                }}
                className={cn(
-                  "bg-primary border-border-default absolute top-0 left-1/2 z-50 w-auto -translate-x-1/2 rounded border p-3 shadow-lg",
+                  "bg-primary border-border-default absolute top-full left-1/2 z-50 mt-2 w-auto -translate-x-1/2 rounded border p-3 shadow-lg",
                   className,
                )}
                variants={popup}

@@ -231,17 +231,17 @@ img {
 }
 
 ::-webkit-scrollbar {
-   width: 8px;
+   width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-   background: #f1f1f1;
+   background: var(--color-hover-2);
 }
 
 ::-webkit-scrollbar-thumb {
-   background: #aaa8a8;
+   background: var(--color-text-secondary);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-   background: #555;
+   background: var(--color-accent-icon);
 }

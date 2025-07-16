@@ -25,7 +25,7 @@ export default function Navbar() {
                   <Search data={data.search} />
                   <div className="bg-accent-border h-5 w-px" />
                   <Theme />
-                  <Language data={data.languages} />
+                  <Language />
                   <div className="bg-accent-border h-5 w-px" />
                   <Sidebar pages={data.items} />
                </div>

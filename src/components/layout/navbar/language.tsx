@@ -1,11 +1,11 @@
 import Dropdown from "@/components/global/drop-down"
 import { cn } from "@/lib/utils"
+import { languages as data } from "@/messages/global"
 import { Locale } from "@/messages/types/common"
-import { NavBar } from "@/messages/types/navbar"
 import { useLocale } from "@/providers/Locale"
 import { useState } from "react"
 
-export default function Language({ data }: { data: NavBar["languages"] }) {
+export default function Language() {
    const { locale, setLocale } = useLocale()
    const [selectedLanguage, setSelectedLanguage] = useState<Locale>(
       locale ?? data[0].id,
@@ -20,7 +20,7 @@ export default function Language({ data }: { data: NavBar["languages"] }) {
          <Dropdown.Trigger className="border-border-default hover:bg-hover-2 center h-8 w-8 cursor-pointer rounded border text-sm">
             {data.find((lang) => lang.id === selectedLanguage)!.abbreviation}
          </Dropdown.Trigger>
-         <Dropdown.Content className="top-10 flex flex-col gap-1 p-1">
+         <Dropdown.Content className="flex flex-col gap-1 p-1">
             {data.map((lang) => (
                <button
                   key={lang.id}

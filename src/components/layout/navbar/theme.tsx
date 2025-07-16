@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils"
 import { Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
 
-export default function Theme() {
+export default function Theme({ withIcons = true }) {
    const { theme, setTheme } = useTheme()
    return (
       <div
@@ -19,24 +19,26 @@ export default function Theme() {
                },
             )}
          >
-            <div className="relative h-full w-full">
-               <Moon
-                  className={cn(
-                     "pointer-events-none absolute inset-0 m-auto h-[13px] w-[13px] opacity-0 transition-opacity duration-200 ease-in-out",
-                     {
-                        "opacity-100": theme === "dark",
-                     },
-                  )}
-               />
-               <Sun
-                  className={cn(
-                     "pointer-events-none absolute inset-0 m-auto h-3 w-3 opacity-0 transition-opacity duration-200 ease-in-out",
-                     {
-                        "opacity-100": theme === "light",
-                     },
-                  )}
-               />
-            </div>
+            {withIcons && (
+               <div className="relative h-full w-full">
+                  <Moon
+                     className={cn(
+                        "pointer-events-none absolute inset-0 m-auto h-[13px] w-[13px] opacity-0 transition-opacity duration-200 ease-in-out",
+                        {
+                           "opacity-100": theme === "dark",
+                        },
+                     )}
+                  />
+                  <Sun
+                     className={cn(
+                        "pointer-events-none absolute inset-0 m-auto h-3 w-3 opacity-0 transition-opacity duration-200 ease-in-out",
+                        {
+                           "opacity-100": theme === "light",
+                        },
+                     )}
+                  />
+               </div>
+            )}
          </div>
       </div>
    )

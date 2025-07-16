@@ -10,13 +10,17 @@ import {
 import { useTranslation } from "@/hooks/useTranslation"
 import { cn } from "@/lib/utils"
 import { connects, iconMap, layout, profileImage } from "@/messages/global"
+import { Contact } from "@/messages/types/common"
 import { NavBar } from "@/messages/types/navbar"
 import { Profile } from "@/messages/types/profile"
 import { fade } from "@/utils/animations"
 import { AnimatePresence, motion } from "framer-motion"
 import { Slant as Hamburger } from "hamburger-react"
+import { Moon, Sun } from "lucide-react"
 import Link from "next/link"
-import React, { useState } from "react"
+import { useState } from "react"
+import Language from "./language"
+import Theme from "./theme"
 
 export default function Sidebar({ pages }: { pages: NavBar["items"] }) {
    const [open, setOpen] = useState(false)
@@ -51,7 +55,7 @@ export default function Sidebar({ pages }: { pages: NavBar["items"] }) {
                toggled={open}
             />
          </SheetTrigger>
-         <SheetContent className="flex flex-col gap-4 p-6">
+         <SheetContent className="flex flex-col gap-4 overflow-auto p-6">
             <SheetHeader className="hidden">
                <SheetTitle></SheetTitle>
                <SheetDescription></SheetDescription>
@@ -82,13 +86,31 @@ export default function Sidebar({ pages }: { pages: NavBar["items"] }) {
                            {data.description}
                         </p>
                      </div>
+
+                     <Divider title={layout[locale].settings} />
+                     <div className="flex flex-col gap-1">
+                        <div className="flex items-center gap-2 text-sm">
+                           <div className="text-text-secondary flex items-center gap-1">
+                              <Sun className="h-4 w-4" />
+                              Light
+                           </div>
+                           <Theme withIcons={false} />
+                           <div className="text-text-secondary flex items-center gap-1">
+                              <Moon className="h-4 w-4" />
+                              Dark
+                           </div>
+                        </div>
+                        <div>
+                           <Language />
+                        </div>
+                     </div>
                      <Divider title={layout[locale].explore} />
                      <div className="flex flex-col gap-1">
                         {pages.map((page) => (
                            <Item
                               {...page}
                               key={page.href}
-                              icon={iconMap[page.id]}
+                              Icon={iconMap[page.id]}
                            />
                         ))}
                      </div>
@@ -117,16 +139,7 @@ const Divider = ({ title }: { title: string }) => {
    )
 }
 
-const Item = ({
-   href,
-   title,
-   icon,
-}: {
-   href?: string
-   title: string
-   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>
-}) => {
-   const Icon = icon
+const Item = ({ href, title, Icon }: Contact) => {
    if (href) {
       return (
          <Link

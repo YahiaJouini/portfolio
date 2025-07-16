@@ -6,7 +6,8 @@ import Education from "@/components/icons/education"
 import Home from "@/components/icons/home"
 import Projects from "@/components/icons/projects"
 import React from "react"
-import { Language, Locale, Page } from "./types/common"
+import { Contact as ContactType, Language, Locale, Page } from "./types/common"
+import { Ar, En, Fr } from "@/components/icons/flags"
 
 export const profileImage = {
    src: "/me.webp",
@@ -22,16 +23,19 @@ export const languages: Language[] = [
       id: "en",
       title: "English",
       abbreviation: "EN",
+      Flag: En,
    },
    {
       id: "fr",
       title: "Français",
       abbreviation: "FR",
+      Flag: Fr,
    },
    {
       id: "ar",
       title: "العربية",
       abbreviation: "ع",
+      Flag: Ar,
    },
 ]
 
@@ -87,28 +91,24 @@ export const layout = {
    },
 }
 
-export const connects: Array<{
-   title: string
-   href?: string
-   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>
-}> = [
+export const connects: Array<ContactType> = [
    {
       title: "Tunis, Tunisia",
-      icon: Home,
+      Icon: Home,
    },
    {
       href: "https://www.linkedin.com/in/yahiajouini",
       title: "yahiajouini",
-      icon: Linkedin,
+      Icon: Linkedin,
    },
    {
       href: "https://github.com/YahiaJouini",
       title: "YahiaJouini",
-      icon: Github,
+      Icon: Github,
    },
    {
       href: "mailto:jouiniyahya117@gmail.com",
       title: "jouiniyahya117@gmail.com",
-      icon: Email,
+      Icon: Email,
    },
 ]
