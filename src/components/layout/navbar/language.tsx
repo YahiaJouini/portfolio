@@ -5,7 +5,7 @@ import { Locale } from "@/messages/types/common"
 import { useLocale } from "@/providers/Locale"
 import { useState } from "react"
 
-export default function Language() {
+export default function Language({ dropDown = true }) {
    const { locale, setLocale } = useLocale()
    const [selectedLanguage, setSelectedLanguage] = useState<Locale>(
       locale ?? data[0].id,
@@ -15,27 +15,53 @@ export default function Language() {
       setSelectedLanguage(lang)
       setLocale(lang)
    }
+
+   if (dropDown) {
+      return (
+         <Dropdown>
+            <Dropdown.Trigger className="border-border-default hover:bg-hover-2 center h-8 w-8 cursor-pointer rounded border text-sm">
+               {data.find((lang) => lang.id === selectedLanguage)!.abbreviation}
+            </Dropdown.Trigger>
+            <Dropdown.Content className="flex flex-col gap-1 p-1">
+               {data.map((lang) => (
+                  <button
+                     key={lang.id}
+                     onClick={() => handleLanguageChange(lang.id)}
+                     className={cn(
+                        "hover:bg-hover-2 cursor-pointer rounded-sm px-3 py-1 text-sm",
+                        {
+                           "bg-hover-2": selectedLanguage === lang.id,
+                        },
+                     )}
+                  >
+                     {lang.title}
+                  </button>
+               ))}
+            </Dropdown.Content>
+         </Dropdown>
+      )
+   }
    return (
-      <Dropdown>
-         <Dropdown.Trigger className="border-border-default hover:bg-hover-2 center h-8 w-8 cursor-pointer rounded border text-sm">
-            {data.find((lang) => lang.id === selectedLanguage)!.abbreviation}
-         </Dropdown.Trigger>
-         <Dropdown.Content className="flex flex-col gap-1 p-1">
-            {data.map((lang) => (
-               <button
-                  key={lang.id}
-                  onClick={() => handleLanguageChange(lang.id)}
-                  className={cn(
-                     "hover:bg-hover-2 cursor-pointer rounded-sm px-3 py-1 text-sm",
-                     {
-                        "bg-hover-2": selectedLanguage === lang.id,
-                     },
-                  )}
-               >
-                  {lang.title}
-               </button>
-            ))}
-         </Dropdown.Content>
-      </Dropdown>
+      <div className="grid grid-cols-3 gap-2">
+         {data.map((lang) => (
+            <button
+               key={lang.id}
+               onClick={() => handleLanguageChange(lang.id)}
+               className={cn(
+                  "border-border-default hover:bg-hover-2 center flex cursor-pointer items-center gap-2 rounded border px-2 py-1 text-sm",
+                  {
+                     "bg-hover-2": selectedLanguage === lang.id,
+                  },
+               )}
+            >
+               {
+                  <div className="h-5 w-5">
+                     <lang.Flag />
+                  </div>
+               }
+               {lang.title}
+            </button>
+         ))}
+      </div>
    )
 }

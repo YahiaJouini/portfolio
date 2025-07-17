@@ -88,7 +88,7 @@ export default function Sidebar({ pages }: { pages: NavBar["items"] }) {
                      </div>
 
                      <Divider title={layout[locale].settings} />
-                     <div className="flex flex-col gap-1">
+                     <div className="flex flex-col gap-3">
                         <div className="flex items-center gap-2 text-sm">
                            <div className="text-text-secondary flex items-center gap-1">
                               <Sun className="h-4 w-4" />
@@ -100,9 +100,7 @@ export default function Sidebar({ pages }: { pages: NavBar["items"] }) {
                               Dark
                            </div>
                         </div>
-                        <div>
-                           <Language />
-                        </div>
+                        <Language dropDown={false} />
                      </div>
                      <Divider title={layout[locale].explore} />
                      <div className="flex flex-col gap-1">
@@ -144,7 +142,7 @@ const Item = ({ href, title, Icon }: Contact) => {
       return (
          <Link
             href={href}
-            className="hover:text-text-primary hover:bg-hover-2 flex w-full items-center gap-1.5 rounded-md px-3 py-2 text-sm"
+            className="hover:text-text-primary hover:bg-hover-2 flex w-full items-center gap-1.5 rounded-md px-1.5 py-[7px] text-sm"
          >
             <Icon />
             {title}
@@ -152,7 +150,7 @@ const Item = ({ href, title, Icon }: Contact) => {
       )
    }
    return (
-      <div className="flex w-full items-center gap-1.5 rounded-md px-3 py-2 text-sm">
+      <div className="flex w-full items-center gap-1.5 rounded-md px-1.5 py-[7px] text-sm">
          <Icon />
          {title}
       </div>
