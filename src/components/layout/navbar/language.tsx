@@ -1,6 +1,6 @@
 import Dropdown from "@/components/global/drop-down"
 import { cn } from "@/lib/utils"
-import { languages as data } from "@/messages/global"
+import { languages as data } from "@/messages/seperate/languages"
 import { Locale } from "@/messages/types/common"
 import { useLocale } from "@/providers/Locale"
 

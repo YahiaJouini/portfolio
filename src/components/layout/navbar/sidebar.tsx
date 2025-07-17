@@ -1,3 +1,5 @@
+import Contacts from "@/components/global/contacts"
+import { Divider } from "@/components/global/divider"
 import ImageLoader from "@/components/global/image-loader"
 import {
    Sheet,
@@ -11,8 +13,9 @@ import {
 import useActivePath from "@/hooks/useActivePath"
 import { useTranslation } from "@/hooks/useTranslation"
 import { cn } from "@/lib/utils"
-import { connects, iconMap, layout, profileImage } from "@/messages/global"
-import { Contact } from "@/messages/types/common"
+import { profileImage } from "@/messages/global"
+import { layout } from "@/messages/seperate/layout"
+import { iconMap } from "@/messages/seperate/page-icons"
 import { NavBar } from "@/messages/types/navbar"
 import { Profile } from "@/messages/types/profile"
 import { fade } from "@/utils/animations"
@@ -70,7 +73,7 @@ export default function Sidebar({ pages }: { pages: NavBar["items"] }) {
                      animate="animate"
                      initial="initial"
                      exit="exit"
-                     className="flex flex-col gap-5"
+                     className="flex flex-col gap-6"
                   >
                      <div>
                         <div className="flex items-start justify-between">
@@ -96,103 +99,52 @@ export default function Sidebar({ pages }: { pages: NavBar["items"] }) {
                         </p>
                      </div>
 
-                     <Divider title={layout[locale].settings} />
-                     <div className="flex flex-col gap-3">
-                        <div className="flex items-center gap-2 text-sm">
-                           <div className="text-text-secondary flex items-center gap-1">
-                              <Sun className="h-4 w-4" />
-                              {layout[locale].light}
+                     <div className="space-y-3">
+                        <Divider title={layout[locale].settings}>
+                           <div className="mb-4 flex items-center gap-2 pt-2 text-sm">
+                              <div className="text-text-secondary flex items-center gap-1">
+                                 <Sun className="h-4 w-4" />
+                                 {layout[locale].light}
+                              </div>
+                              <Theme withIcons={false} />
+                              <div className="text-text-secondary flex items-center gap-1">
+                                 <Moon className="h-4 w-4" />
+                                 {layout[locale].dark}
+                              </div>
                            </div>
-                           <Theme withIcons={false} />
-                           <div className="text-text-secondary flex items-center gap-1">
-                              <Moon className="h-4 w-4" />
-                              {layout[locale].dark}
-                           </div>
+                           <Language dropDown={false} />
+                        </Divider>
+                     </div>
+                     <Divider title={layout[locale].explore}>
+                        <div className="flex flex-col gap-1">
+                           {pages.map(({ href, title, id }) => {
+                              const Icon = iconMap[id]
+                              return (
+                                 <Link
+                                    key={id}
+                                    href={href!}
+                                    className={
+                                       "hover:text-text-primary hover:bg-hover-2 flex w-full items-center gap-1.5 rounded-md px-1.5 py-[7px] text-sm"
+                                    }
+                                 >
+                                    <Icon />
+                                    {title}
+                                    {isActive(href) && (
+                                       <div className="bg-accent-active ml-2 h-[6px] w-[6px] rounded-full" />
+                                    )}
+                                 </Link>
+                              )
+                           })}
                         </div>
-                        <Language dropDown={false} />
-                     </div>
-                     <Divider title={layout[locale].explore} />
-                     <div className="flex flex-col gap-1">
-                        {pages.map((page) => (
-                           <PageItem
-                              {...page}
-                              active={isActive(page.href)}
-                              key={page.href}
-                              Icon={iconMap[page.id]}
-                           />
-                        ))}
-                     </div>
-                     <Divider title={layout[locale].connect} />
-                     <div className="flex flex-col gap-1">
-                        {connects.map((connect) => (
-                           <Item
-                              {...connect}
-                              key={connect.href ?? connect.title}
-                           />
-                        ))}
-                     </div>
+                     </Divider>
+
+                     <Divider title={layout[locale].connect}>
+                        <Contacts />
+                     </Divider>
                   </motion.div>
                )}
             </AnimatePresence>
          </SheetContent>
       </Sheet>
-   )
-}
-
-const Divider = ({ title }: { title: string }) => {
-   return (
-      <div className="border-border-default flex items-center justify-between gap-1 border-b pb-1">
-         <h3 className="text-text-trinary text-[13px]">{title}</h3>
-      </div>
-   )
-}
-
-const baseItemClassName =
-   "flex w-full items-center gap-1.5 rounded-md px-1.5 py-[7px] text-sm"
-const Item = ({ href, title, Icon }: Contact) => {
-   if (href) {
-      return (
-         <Link
-            href={href}
-            className={cn(
-               baseItemClassName,
-               "hover:text-text-primary hover:bg-hover-2",
-            )}
-         >
-            <Icon />
-            {title}
-         </Link>
-      )
-   }
-   return (
-      <div className={baseItemClassName}>
-         <Icon />
-         {title}
-      </div>
-   )
-}
-
-const PageItem = ({
-   href,
-   title,
-   Icon,
-   active,
-}: Contact & {
-   active: boolean
-}) => {
-   return (
-      <Link
-         href={href!}
-         className={cn(
-            baseItemClassName,
-            "hover:text-text-primary hover:bg-hover-2",
-         )}
-      >
-         <Icon />
-         {title}
-         {active && (
-            <div className="bg-accent-active ml-2 h-[6px] w-[6px] rounded-full" />
-         )}
-      </Link>
    )
 }

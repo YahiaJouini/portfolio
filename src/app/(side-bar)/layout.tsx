@@ -1,7 +1,11 @@
+import Contacts from "@/components/global/contacts"
+import { Divider } from "@/components/global/divider"
+import ImageLoader from "@/components/global/image-loader"
+import { profileImage } from "@/messages/global"
+import { layout as layoutMessages } from "@/messages/seperate/layout"
 import { Profile } from "@/messages/types/profile"
 import { getTranslation } from "@/utils/get-translation"
 import { getServerLocale } from "@/utils/server-locale"
-import React from "react"
 
 export default function layout({
    children,
@@ -21,9 +25,24 @@ async function SideBar() {
    const data = await getTranslation<Profile>(locale, "profile")
 
    return (
-      <div className="flex w-[292px] flex-col items-center justify-center">
-         <h1 className="mt-4 text-xl font-bold">{data.fullName}</h1>
-         <p className="text-gray-600">{data.description}</p>
+      <div className="flex w-[320px] flex-col justify-center gap-6">
+         <div>
+            <div className="border-accent-border relative z-10 -mr-1 mb-3 aspect-square w-[80%] overflow-hidden rounded-full border object-cover object-center">
+               <ImageLoader
+                  fill
+                  className="h-full w-full object-cover object-center"
+                  src={profileImage.src}
+                  priority
+                  alt={profileImage.alt[locale]}
+               />
+            </div>
+            <h2 className="text-2xl font-medium">{data.fullName}</h2>
+            <h4 className="text-text-trinary text-lg">{data.job}</h4>
+            <p className="mt-2">{data.description}</p>
+         </div>
+         <Divider title={layoutMessages[locale].connect}>
+            <Contacts />
+         </Divider>
       </div>
    )
 }
