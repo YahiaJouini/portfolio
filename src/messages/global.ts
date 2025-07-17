@@ -64,6 +64,8 @@ export const layout = {
       blogPosts: "Blog Posts",
       academicPapers: "Academic Papers",
       pages: "Pages",
+      dark: "Dark",
+      light: "Light",
    },
    fr: {
       settings: "Paramètres",
@@ -76,6 +78,8 @@ export const layout = {
       blogPosts: "Articles de blog",
       academicPapers: "Papiers académiques",
       pages: "Pages",
+      dark: "Sombre",
+      light: "Clair",
    },
    ar: {
       settings: "الإعدادات",
@@ -88,6 +92,8 @@ export const layout = {
       blogPosts: "مقالات المدونة",
       academicPapers: "أوراق أكاديمية",
       pages: "صفحات",
+      dark: "داكن",
+      light: "فاتح",
    },
 }
 
