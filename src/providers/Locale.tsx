@@ -32,13 +32,8 @@ export default function LocaleProvider({
 
    const setLocale = (newLocale: Locale) => {
       document.cookie = `locale=${newLocale}; path=/`
-      const oldLocale = locale
       setLocaleState(newLocale)
-
-      // to only refresh the page if the locale causes a layout change
-      if (newLocale === "ar" || oldLocale === "ar") {
-         router.refresh()
-      }
+      router.refresh()
    }
    if (!locale) {
       return <LayoutLoader />
