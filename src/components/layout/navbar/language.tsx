@@ -55,7 +55,7 @@ export default function Language({ dropDown = true }) {
                )}
             >
                {
-                  <div className="h-5 w-5">
+                  <div className="h-[18px] w-[18px]">
                      <lang.Flag />
                   </div>
                }

@@ -1,12 +1,14 @@
 import ImageLoader from "@/components/global/image-loader"
 import {
    Sheet,
+   SheetClose,
    SheetContent,
    SheetDescription,
    SheetHeader,
    SheetTitle,
    SheetTrigger,
 } from "@/components/ui/sheet"
+import useActivePath from "@/hooks/useActivePath"
 import { useTranslation } from "@/hooks/useTranslation"
 import { cn } from "@/lib/utils"
 import { connects, iconMap, layout, profileImage } from "@/messages/global"
@@ -16,7 +18,7 @@ import { Profile } from "@/messages/types/profile"
 import { fade } from "@/utils/animations"
 import { AnimatePresence, motion } from "framer-motion"
 import { Slant as Hamburger } from "hamburger-react"
-import { Moon, Sun } from "lucide-react"
+import { Moon, Sun, X } from "lucide-react"
 import Link from "next/link"
 import { useState } from "react"
 import Language from "./language"
@@ -24,6 +26,7 @@ import Theme from "./theme"
 
 export default function Sidebar({ pages }: { pages: NavBar["items"] }) {
    const [open, setOpen] = useState(false)
+   const isActive = useActivePath()
    const { data, locale } = useTranslation<Profile>({
       translation: "profile",
       show: open,
@@ -70,13 +73,19 @@ export default function Sidebar({ pages }: { pages: NavBar["items"] }) {
                      className="flex flex-col gap-5"
                   >
                      <div>
-                        <div className="border-accent-border relative z-10 -mr-1 mb-3 aspect-square w-1/3 overflow-hidden rounded-full border object-cover object-center">
-                           <ImageLoader
-                              fill
-                              className="h-full w-full object-cover object-center"
-                              src={profileImage.src}
-                              alt={profileImage.alt.en}
-                           />
+                        <div className="flex items-start justify-between">
+                           <div className="border-accent-border relative z-10 -mr-1 mb-3 aspect-square w-1/3 overflow-hidden rounded-full border object-cover object-center">
+                              <ImageLoader
+                                 fill
+                                 className="h-full w-full object-cover object-center"
+                                 src={profileImage.src}
+                                 alt={profileImage.alt.en}
+                              />
+                           </div>
+
+                           <SheetClose>
+                              <X className="text-text-secondary hover:text-text-primary h-5 w-5" />
+                           </SheetClose>
                         </div>
                         <h2 className="text-xl font-medium">{data.fullName}</h2>
                         <h4 className="text-text-trinary text-[15px]">
@@ -105,8 +114,9 @@ export default function Sidebar({ pages }: { pages: NavBar["items"] }) {
                      <Divider title={layout[locale].explore} />
                      <div className="flex flex-col gap-1">
                         {pages.map((page) => (
-                           <Item
+                           <PageItem
                               {...page}
+                              active={isActive(page.href)}
                               key={page.href}
                               Icon={iconMap[page.id]}
                            />
@@ -137,12 +147,17 @@ const Divider = ({ title }: { title: string }) => {
    )
 }
 
+const baseItemClassName =
+   "flex w-full items-center gap-1.5 rounded-md px-1.5 py-[7px] text-sm"
 const Item = ({ href, title, Icon }: Contact) => {
    if (href) {
       return (
          <Link
             href={href}
-            className="hover:text-text-primary hover:bg-hover-2 flex w-full items-center gap-1.5 rounded-md px-1.5 py-[7px] text-sm"
+            className={cn(
+               baseItemClassName,
+               "hover:text-text-primary hover:bg-hover-2",
+            )}
          >
             <Icon />
             {title}
@@ -150,9 +165,34 @@ const Item = ({ href, title, Icon }: Contact) => {
       )
    }
    return (
-      <div className="flex w-full items-center gap-1.5 rounded-md px-1.5 py-[7px] text-sm">
+      <div className={baseItemClassName}>
          <Icon />
          {title}
       </div>
+   )
+}
+
+const PageItem = ({
+   href,
+   title,
+   Icon,
+   active,
+}: Contact & {
+   active: boolean
+}) => {
+   return (
+      <Link
+         href={href!}
+         className={cn(
+            baseItemClassName,
+            "hover:text-text-primary hover:bg-hover-2",
+         )}
+      >
+         <Icon />
+         {title}
+         {active && (
+            <div className="bg-accent-active ml-2 h-[6px] w-[6px] rounded-full" />
+         )}
+      </Link>
    )
 }

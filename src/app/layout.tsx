@@ -27,7 +27,7 @@ export default async function RootLayout({
       >
          <body
             className={cn(
-               `text-text-primary bg-primary relative flex min-h-screen flex-col overflow-x-hidden tracking-[0.01em] antialiased`,
+               `text-text-primary bg-primary relative flex min-h-screen flex-col overflow-x-hidden antialiased`,
                inter.className,
             )}
          >
