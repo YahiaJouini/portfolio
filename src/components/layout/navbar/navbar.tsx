@@ -1,9 +1,10 @@
 "use client"
+import Logo from "@/components/global/Logo"
 import useActivePath from "@/hooks/useActivePath"
-import { useTranslation } from "@/hooks/useTranslation"
 import { cn } from "@/lib/utils"
 import { iconMap } from "@/messages/global"
-import { NavBar } from "@/messages/types/navbar"
+import navbar from "@/messages/instant/navbar"
+import { useLocale } from "@/providers/Locale"
 import Link from "next/link"
 import Language from "./language"
 import Search from "./search"
@@ -11,20 +12,15 @@ import Sidebar from "./sidebar"
 import Theme from "./theme"
 
 export default function Navbar() {
-   const { data } = useTranslation<NavBar>({ translation: "navbar" })
+   const { locale } = useLocale()
+   // instant load to prevent layout shifts
+   const data = navbar[locale]
    const isActive = useActivePath()
-   // TODO! show a skeleton while null to not layout shift
-   if (!data) return null
    return (
-      <nav className="bg-secondary border-border-default w-full border-b pt-3">
+      <nav className="bg-secondary border-border-default mb-8 w-full border-b pt-3">
          <div className="px-8">
             <div className="flex items-center justify-between">
-               <Link href="/" className="flex items-center gap-3">
-                  <div className="border-text-primary center aspect-square h-8 w-8 border text-lg font-medium">
-                     Y
-                  </div>
-                  <p className="text-sm font-medium">{data.title}</p>
-               </Link>
+               <Logo />
                <div className="flex items-center gap-4">
                   <Search data={data.search} />
                   <div className="bg-accent-border h-5 w-px" />

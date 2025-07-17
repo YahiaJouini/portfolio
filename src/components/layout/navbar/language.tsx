@@ -3,16 +3,11 @@ import { cn } from "@/lib/utils"
 import { languages as data } from "@/messages/global"
 import { Locale } from "@/messages/types/common"
 import { useLocale } from "@/providers/Locale"
-import { useState } from "react"
 
 export default function Language({ dropDown = true }) {
    const { locale, setLocale } = useLocale()
-   const [selectedLanguage, setSelectedLanguage] = useState<Locale>(
-      locale ?? data[0].id,
-   )
 
    const handleLanguageChange = (lang: Locale) => {
-      setSelectedLanguage(lang)
       setLocale(lang)
    }
 
@@ -20,7 +15,7 @@ export default function Language({ dropDown = true }) {
       return (
          <Dropdown>
             <Dropdown.Trigger className="border-border-default hover:bg-hover-2 center h-8 w-8 cursor-pointer rounded border text-sm">
-               {data.find((lang) => lang.id === selectedLanguage)!.abbreviation}
+               {data.find((lang) => lang.id === locale)!.abbreviation}
             </Dropdown.Trigger>
             <Dropdown.Content className="flex flex-col gap-1 p-1">
                {data.map((lang) => (
@@ -30,7 +25,7 @@ export default function Language({ dropDown = true }) {
                      className={cn(
                         "hover:bg-hover-2 cursor-pointer rounded-sm px-3 py-1 text-sm",
                         {
-                           "bg-hover-2": selectedLanguage === lang.id,
+                           "bg-hover-2": locale === lang.id,
                         },
                      )}
                   >
@@ -50,7 +45,7 @@ export default function Language({ dropDown = true }) {
                className={cn(
                   "border-border-default hover:bg-hover-2 center flex cursor-pointer items-center gap-2 rounded border px-2 py-1 text-sm",
                   {
-                     "bg-hover-2": selectedLanguage === lang.id,
+                     "bg-hover-2": locale === lang.id,
                   },
                )}
             >

@@ -9,6 +9,7 @@ import React from "react"
 import { Contact as ContactType, Language, Locale, Page } from "./types/common"
 import { Ar, En, Fr } from "@/components/icons/flags"
 
+export const fullName = "Yahia Jouini"
 export const profileImage = {
    src: "/me.webp",
    alt: {

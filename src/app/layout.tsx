@@ -31,14 +31,14 @@ export default async function RootLayout({
                inter.className,
             )}
          >
-            <LocaleProvider>
-               <ThemeProvider attribute="class" defaultTheme="dark">
+            <ThemeProvider attribute="class" defaultTheme="dark">
+               <LocaleProvider>
                   <Navbar />
                   <main className="w-full flex-1 flex-grow overflow-x-hidden">
                      {children}
                   </main>
-               </ThemeProvider>
-            </LocaleProvider>
+               </LocaleProvider>
+            </ThemeProvider>
          </body>
       </html>
    )

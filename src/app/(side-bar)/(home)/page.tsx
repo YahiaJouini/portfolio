@@ -1,5 +1,5 @@
 "use client"
 
 export default function Page() {
-   return <div className="mt-10"></div>
+   return <div className="">home</div>
 }

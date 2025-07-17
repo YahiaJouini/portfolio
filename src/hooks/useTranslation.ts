@@ -14,7 +14,7 @@ export const useTranslation = <T>({
    const { locale } = useLocale()
    const [data, setData] = useState<T | null>(null)
    useLayoutEffect(() => {
-      if (!locale || !show) return
+      if (!show) return
       getTranslation<T>(locale, translation).then((data) => {
          setData(data)
       })

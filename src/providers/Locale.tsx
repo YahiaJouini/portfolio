@@ -1,11 +1,12 @@
 "use client"
+import { LayoutLoader } from "@/components/layout/layout-loader"
 import { Locale } from "@/messages/types/common"
 import { validLocale } from "@/utils/validate-locale"
 import { useRouter } from "next/navigation"
 import { createContext, useContext, useEffect, useState } from "react"
 
 type Context = {
-   locale: Locale | null
+   locale: Locale
    setLocale: (locale: Locale) => void
 }
 const context = createContext<Context | null>(null)
@@ -31,8 +32,16 @@ export default function LocaleProvider({
 
    const setLocale = (newLocale: Locale) => {
       document.cookie = `locale=${newLocale}; path=/`
+      const oldLocale = locale
       setLocaleState(newLocale)
-      router.refresh()
+
+      // to only refresh the page if the locale causes a layout change
+      if (newLocale === "ar" || oldLocale === "ar") {
+         router.refresh()
+      }
+   }
+   if (!locale) {
+      return <LayoutLoader />
    }
    return (
       <context.Provider value={{ locale, setLocale }}>
