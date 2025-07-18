@@ -1,5 +1,5 @@
 import { contacts } from "@/messages/seperate/contact"
-import { Contact } from "@/messages/types/common"
+import { Contact } from "@/messages/types/shared"
 import Link from "next/link"
 
 export default function Contacts() {

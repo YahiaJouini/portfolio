@@ -1,4 +1,4 @@
-import { Locale } from "./types/common"
+import { Locale } from "./types/shared"
 
 export const fullName = {
    en: "Yahia Jouini",

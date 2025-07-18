@@ -1,4 +1,4 @@
-import { Locale, Translation } from "@/messages/types/common"
+import { Locale, Translation } from "@/messages/types/shared"
 
 // no need for null or failed import check because this is a static import
 // and the file will always exist in the build process

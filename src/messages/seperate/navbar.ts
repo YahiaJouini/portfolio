@@ -1,5 +1,5 @@
-import { Locale } from "../types/common"
-import { NavBar } from "../types/navbar"
+import { Locale } from "../types/shared"
+import { NavBar } from "../types"
 
 // drop all translations into one object to load instantly to prevent layout shifts
 export default {

@@ -16,8 +16,7 @@ import { cn } from "@/lib/utils"
 import { profileImage } from "@/messages/global"
 import { layout } from "@/messages/seperate/layout"
 import { iconMap } from "@/messages/seperate/page-icons"
-import { NavBar } from "@/messages/types/navbar"
-import { Profile } from "@/messages/types/profile"
+import { NavBar, Profile } from "@/messages/types"
 import { fade } from "@/utils/animations"
 import { AnimatePresence, motion } from "framer-motion"
 import { Slant as Hamburger } from "hamburger-react"
@@ -102,13 +101,13 @@ export default function Sidebar({ pages }: { pages: NavBar["items"] }) {
                      <Divider title={layout[locale].settings}>
                         <div className="mb-4 flex items-center gap-2 pt-2 text-sm">
                            <div className="text-text-secondary flex items-center gap-1">
-                              <Sun className="h-4 w-4" />
-                              {layout[locale].light}
+                              <Moon className="h-4 w-4" />
+                              {layout[locale].dark}
                            </div>
                            <Theme withIcons={false} />
                            <div className="text-text-secondary flex items-center gap-1">
-                              <Moon className="h-4 w-4" />
-                              {layout[locale].dark}
+                              <Sun className="h-4 w-4" />
+                              {layout[locale].light}
                            </div>
                         </div>
                         <Language dropDown={false} />

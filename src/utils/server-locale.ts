@@ -1,4 +1,4 @@
-import { Locale } from "@/messages/types/common"
+import { Locale } from "@/messages/types/shared"
 import { validLocale } from "@/utils/validate-locale"
 import { cookies } from "next/headers"
 

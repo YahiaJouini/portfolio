@@ -1,4 +1,4 @@
-import { NavBar } from "@/messages/types/navbar"
+import { NavBar } from "@/messages/types"
 import { SearchIcon } from "lucide-react"
 import React from "react"
 

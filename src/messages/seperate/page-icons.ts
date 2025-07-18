@@ -4,7 +4,7 @@ import Discussions from "@/components/icons/discussions"
 import Education from "@/components/icons/education"
 import Home from "@/components/icons/home"
 import Projects from "@/components/icons/projects"
-import { Page } from "../types/common"
+import { Page } from "../types/shared"
 
 //maps page to its corresponding icon component
 export const iconMap: Record<

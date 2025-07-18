@@ -1,6 +1,6 @@
 import { fullName } from "@/messages/global"
-import type { About } from "@/messages/types/about"
-import { Locale } from "@/messages/types/common"
+import type { About } from "@/messages/types"
+import { Locale } from "@/messages/types/shared"
 import { getTranslation } from "@/utils/get-translation"
 import Link from "next/link"
 
@@ -28,7 +28,7 @@ export default async function About({ locale }: { locale: Locale }) {
 
          <Link
             href="/contact"
-            className="bg-[#238636] px-3 py-1 font-medium text-white w-fit rounded-sm"
+            className="w-fit rounded-sm bg-[#238636] px-3 py-1 font-medium text-white"
          >
             Get in touch
          </Link>

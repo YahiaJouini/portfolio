@@ -3,7 +3,7 @@ import { Divider } from "@/components/global/divider"
 import ImageLoader from "@/components/global/image-loader"
 import { profileImage } from "@/messages/global"
 import { layout as layoutMessages } from "@/messages/seperate/layout"
-import { Profile } from "@/messages/types/profile"
+import { Profile } from "@/messages/types"
 import { getTranslation } from "@/utils/get-translation"
 import { getServerLocale } from "@/utils/server-locale"
 

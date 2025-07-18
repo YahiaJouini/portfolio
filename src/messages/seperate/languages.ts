@@ -1,5 +1,5 @@
 import { Ar, En, Fr } from "@/components/icons/flags"
-import { Language } from "../types/common"
+import { Language } from "../types/shared"
 
 export const languages: Language[] = [
    {

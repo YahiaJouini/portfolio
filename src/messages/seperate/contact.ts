@@ -1,6 +1,6 @@
 import { Email, Github, Linkedin } from "@/components/icons/connect"
 import Home from "@/components/icons/home"
-import { Contact as ContactType } from "../types/common"
+import { Contact as ContactType } from "../types/shared"
 
 export const contacts: Array<ContactType> = [
    {
