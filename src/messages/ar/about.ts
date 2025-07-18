@@ -1,4 +1,4 @@
-import { About } from "../types/about"
+import { About } from "../types"
 
 export default {
    description: `

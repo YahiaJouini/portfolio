@@ -1,5 +1,5 @@
 import { fullName } from "../global"
-import { Profile } from "../types/profile"
+import { Profile } from "../types"
 
 export default {
    fullName: fullName.fr,

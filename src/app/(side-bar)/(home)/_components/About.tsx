@@ -23,7 +23,7 @@ export default async function About({ locale }: { locale: Locale }) {
             {data.title}
          </div>
          <div
-            className="flex flex-col gap-2 text-[17px] leading-7 font-medium tracking-wide"
+            className="flex flex-col gap-2 text-[17px] leading-[26px] font-medium tracking-wide"
             dangerouslySetInnerHTML={{ __html: data.description }}
          />
 
@@ -45,7 +45,7 @@ export default async function About({ locale }: { locale: Locale }) {
                   style={{
                      backgroundColor: tech.background,
                   }}
-                  className="bg-accent-border flex border border-border-default items-center gap-1 rounded-sm px-2 py-1"
+                  className="bg-accent-border border-border-default flex items-center gap-1 rounded-sm border px-2 py-1"
                >
                   {<tech.Icon className="h-5 w-5" />}
                   {tech.name}
