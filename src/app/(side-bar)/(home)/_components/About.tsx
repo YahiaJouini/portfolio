@@ -1,4 +1,5 @@
 import { fullName } from "@/messages/global"
+import { technologies } from "@/messages/seperate/technologies"
 import type { About } from "@/messages/types"
 import { Locale } from "@/messages/types/shared"
 import { getTranslation } from "@/utils/get-translation"
@@ -32,6 +33,25 @@ export default async function About({ locale }: { locale: Locale }) {
          >
             Get in touch
          </Link>
+
+         <div className="border-border-default border-b pb-3 text-xl font-medium">
+            {data.technologies}
+         </div>
+
+         <div className="flex flex-wrap items-center gap-2 text-white">
+            {technologies.map((tech) => (
+               <div
+                  key={tech.name}
+                  style={{
+                     backgroundColor: tech.background,
+                  }}
+                  className="bg-accent-border flex border border-border-default items-center gap-1 rounded-sm px-2 py-1"
+               >
+                  {<tech.Icon className="h-5 w-5" />}
+                  {tech.name}
+               </div>
+            ))}
+         </div>
       </div>
    )
 }

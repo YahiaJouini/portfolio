@@ -34,6 +34,6 @@ export type Profile = {
 
 export type Technology = {
    name: string
-   color: string
-   Icon: React.ComponentType
+   background: string
+   Icon: React.ComponentType<{ className?: string }>
 }
