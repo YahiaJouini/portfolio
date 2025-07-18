@@ -179,11 +179,12 @@
 
 @theme {
    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+   --font-mono: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
 }
 
 @layer base {
    * {
-      font-family: var(--font-sans);
+      font-family: inherit;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       border-color: var(--border);
@@ -191,7 +192,7 @@
    }
 
    body {
-      @apply bg-background text-foreground;
+      @apply bg-background text-foreground !font-sans;
    }
 }
 

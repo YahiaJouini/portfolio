@@ -99,22 +99,20 @@ export default function Sidebar({ pages }: { pages: NavBar["items"] }) {
                         </p>
                      </div>
 
-                     <div className="space-y-3">
-                        <Divider title={layout[locale].settings}>
-                           <div className="mb-4 flex items-center gap-2 pt-2 text-sm">
-                              <div className="text-text-secondary flex items-center gap-1">
-                                 <Sun className="h-4 w-4" />
-                                 {layout[locale].light}
-                              </div>
-                              <Theme withIcons={false} />
-                              <div className="text-text-secondary flex items-center gap-1">
-                                 <Moon className="h-4 w-4" />
-                                 {layout[locale].dark}
-                              </div>
+                     <Divider title={layout[locale].settings}>
+                        <div className="mb-4 flex items-center gap-2 pt-2 text-sm">
+                           <div className="text-text-secondary flex items-center gap-1">
+                              <Sun className="h-4 w-4" />
+                              {layout[locale].light}
                            </div>
-                           <Language dropDown={false} />
-                        </Divider>
-                     </div>
+                           <Theme withIcons={false} />
+                           <div className="text-text-secondary flex items-center gap-1">
+                              <Moon className="h-4 w-4" />
+                              {layout[locale].dark}
+                           </div>
+                        </div>
+                        <Language dropDown={false} />
+                     </Divider>
                      <Divider title={layout[locale].explore}>
                         <div className="flex flex-col gap-1">
                            {pages.map(({ href, title, id }) => {

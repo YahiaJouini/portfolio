@@ -22,7 +22,7 @@ export type Item = {
    href: string
    id: Page
 }
-export type Translation = Page | "navbar" | "footer" | "profile"
+export type Translation = Page | "navbar" | "profile" | "about"
 
 export type Contact = {
    title: string

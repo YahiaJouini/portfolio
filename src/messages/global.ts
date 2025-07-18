@@ -1,6 +1,10 @@
 import { Locale } from "./types/common"
 
-export const fullName = "Yahia Jouini"
+export const fullName = {
+   en: "Yahia Jouini",
+   fr: "Yahia Jouini",
+   ar: "يحيى الجوني",
+} satisfies Record<Locale, string>
 export const profileImage = {
    src: "/me.webp",
    alt: {

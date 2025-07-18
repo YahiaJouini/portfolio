@@ -6,18 +6,18 @@ export default function Logo({ loader = false }) {
       return (
          <div className="flex items-center gap-3">
             <div className="border-text-primary center aspect-square h-10 w-10 border text-xl font-medium">
-               {fullName[0].toUpperCase()}
+               {fullName.en[0].toUpperCase()}
             </div>
-            <p className="text-lg font-medium">{fullName}</p>
+            <p className="text-lg font-medium">{fullName.en}</p>
          </div>
       )
    }
    return (
       <Link href="/" className="flex items-center gap-3">
          <div className="border-text-primary center aspect-square h-8 w-8 border text-lg font-medium">
-            {fullName[0].toUpperCase()}
+            {fullName.en[0].toUpperCase()}
          </div>
-         <p className="text-sm font-medium">{fullName}</p>
+         <p className="text-sm font-medium">{fullName.en}</p>
       </Link>
    )
 }
