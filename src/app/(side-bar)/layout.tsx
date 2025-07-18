@@ -25,7 +25,7 @@ async function SideBar() {
    const data = await getTranslation<Profile>(locale, "profile")
 
    return (
-      <div className="flex w-[320px] flex-col justify-center gap-6">
+      <div className="flex w-[320px] shrink-0 flex-col justify-center gap-6">
          <div>
             <div className="border-accent-border relative z-10 -mr-1 mb-3 aspect-square w-[80%] overflow-hidden rounded-full border object-cover object-center">
                <ImageLoader
