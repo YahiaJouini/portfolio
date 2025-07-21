@@ -19,7 +19,7 @@ export default async function About({ locale }: { locale: Locale }) {
             <span className="text-text-primary"></span>
          </p>
 
-         <div className="border-border-default border-b pb-3 text-center text-[33px] font-medium">
+         <div className="border-border-default border-b pb-3 text-center text-[33px] font-semibold">
             {data.title}
          </div>
          <div
@@ -34,7 +34,7 @@ export default async function About({ locale }: { locale: Locale }) {
             Get in touch
          </Link>
 
-         <div className="border-border-default border-b pb-3 text-xl font-medium">
+         <div className="border-border-default border-b pb-3 text-2xl font-semibold">
             {data.technologies}
          </div>
 

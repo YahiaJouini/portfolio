@@ -37,3 +37,37 @@ export type Technology = {
    background: string
    Icon: React.ComponentType<{ className?: string }>
 }
+
+export type ProjectName =
+   | "educonnect"
+   | "mariagetn"
+   | "mariagetn-api"
+   | "meelice"
+   | "alpha"
+   | "edufinance"
+   | "nuit-blanche"
+
+type Summary =
+   | "Databases & Backend Services"
+   | "CMS & APIs"
+   | "Developer Tools & Misc"
+   | "Frameworks & Libraries"
+   | "Styling & UI"
+
+export type BaseProject = {
+   github: `https://github.com/YahiaJouini/${ProjectName}`
+   website?: string
+   // can show source code
+   public: boolean
+   images: Array<string>
+   summary?: Array<{
+      key: Summary
+      value: Array<string>
+   }>
+}
+
+export type ProjectTranslation = {
+   title: string
+   description: string
+   markDown: string
+}
