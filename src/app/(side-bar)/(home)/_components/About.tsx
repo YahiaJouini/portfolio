@@ -45,9 +45,9 @@ export default async function About({ locale }: { locale: Locale }) {
                   style={{
                      backgroundColor: tech.background,
                   }}
-                  className="bg-accent-border border-border-default flex items-center gap-1 rounded-sm border px-2 py-1"
+                  className="bg-accent-border border-border-default flex items-center gap-1 rounded-sm border px-[9px] py-[5px] text-[15px]"
                >
-                  {<tech.Icon className="h-5 w-5" />}
+                  {<tech.Icon className="h-[19px] w-[19px]" />}
                   {tech.name}
                </div>
             ))}

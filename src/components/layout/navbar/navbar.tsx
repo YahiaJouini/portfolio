@@ -31,7 +31,7 @@ export default function Navbar() {
                </div>
             </div>
 
-            <div className="mt-3 flex items-center gap-9">
+            <div className="text-text-primary mt-3 flex items-center gap-9 font-medium">
                {data.items.map((item) => {
                   const Icon = iconMap[item.id]
                   const active = isActive(item.href)
@@ -39,7 +39,7 @@ export default function Navbar() {
                      <Link
                         key={item.href}
                         href={item.href}
-                        className="text-text-primary group relative flex items-center gap-1.5 pb-3 text-sm"
+                        className="group relative flex items-center gap-1.5 pb-3 text-sm"
                      >
                         <Icon />
                         {item.title}
