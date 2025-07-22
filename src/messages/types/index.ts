@@ -56,11 +56,14 @@ type Summary =
    | "Styling & UI"
 
 export type BaseProject = {
+   id: ProjectName
    github: `https://github.com/YahiaJouini/${ProjectName}`
    website?: string
    // can show source code
    public: boolean
    pinned: boolean
+   type: "personal" | "work"
+   mainLanguage: string
    images?: Array<string>
    summary?: Array<{
       key: Summary
@@ -68,8 +71,8 @@ export type BaseProject = {
    }>
 }
 
+// for translation purposes
 export type Project = BaseProject & {
    title: string
    description: string
-   markDown: string
 }

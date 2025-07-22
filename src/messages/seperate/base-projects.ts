@@ -2,10 +2,13 @@ import { BaseProject, ProjectName } from "../types"
 
 export const baseProjects: Partial<Record<ProjectName, BaseProject>> = {
    aftercode: {
+      id: "aftercode",
       github: "https://github.com/YahiaJouini/aftercode",
       website: "https://aftercode.tn",
       public: false,
       pinned: true,
+      type: "work",
+      mainLanguage: "TypeScript",
       summary: [
          {
             key: "Frameworks & Libraries",
@@ -26,9 +29,12 @@ export const baseProjects: Partial<Record<ProjectName, BaseProject>> = {
       ],
    },
    "mariagetn-api": {
+      id: "mariagetn-api",
       github: "https://github.com/YahiaJouini/mariagetn-api",
       public: false,
       pinned: true,
+      type: "work",
+      mainLanguage: "TypeScript",
       summary: [
          {
             key: "Databases & Backend Services",
@@ -43,10 +49,13 @@ export const baseProjects: Partial<Record<ProjectName, BaseProject>> = {
       ],
    },
    mariagetn: {
+      id: "mariagetn",
       github: "https://github.com/YahiaJouini/mariagetn",
       website: "https://www.mariage.com.tn",
       public: false,
       pinned: true,
+      type: "work",
+      mainLanguage: "TypeScript",
       images: [],
       summary: [
          {
@@ -65,9 +74,12 @@ export const baseProjects: Partial<Record<ProjectName, BaseProject>> = {
    },
 
    educonnect: {
+      id: "educonnect",
       github: "https://github.com/YahiaJouini/educonnect",
       pinned: true,
       public: true,
+      type: "personal",
+      mainLanguage: "TypeScript",
       images: [],
       summary: [
          {
@@ -93,5 +105,4 @@ export const baseProjects: Partial<Record<ProjectName, BaseProject>> = {
          },
       ],
    },
-   
 }
