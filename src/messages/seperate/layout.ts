@@ -12,6 +12,8 @@ export const layout = {
       pages: "Pages",
       dark: "Dark",
       light: "Light",
+      list: "List",
+      grid: "Grid",
    },
    fr: {
       settings: "Paramètres",
@@ -26,6 +28,8 @@ export const layout = {
       pages: "Pages",
       dark: "Sombre",
       light: "Clair",
+      list: "Liste",
+      grid: "Grille",
    },
    ar: {
       settings: "الإعدادات",
@@ -40,5 +44,7 @@ export const layout = {
       pages: "صفحات",
       dark: "داكن",
       light: "فاتح",
+      list: "قائمة",
+      grid: "شبكة",
    },
 }
