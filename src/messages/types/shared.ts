@@ -26,6 +26,6 @@ export type Translation = Page | "navbar" | "profile" | "about"
 
 export type Contact = {
    title: string
-   href?: string
+   href?: `https://${string}` | `mailto:${string}`
    Icon: React.ComponentType<React.SVGProps<SVGSVGElement>> | LucideIcon
 }

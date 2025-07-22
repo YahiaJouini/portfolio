@@ -39,6 +39,7 @@ export type Technology = {
 }
 
 export type ProjectName =
+   | "aftercode"
    | "educonnect"
    | "mariagetn"
    | "mariagetn-api"
@@ -59,14 +60,15 @@ export type BaseProject = {
    website?: string
    // can show source code
    public: boolean
-   images: Array<string>
+   pinned: boolean
+   images?: Array<string>
    summary?: Array<{
       key: Summary
       value: Array<string>
    }>
 }
 
-export type ProjectTranslation = {
+export type Project = BaseProject & {
    title: string
    description: string
    markDown: string

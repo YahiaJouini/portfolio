@@ -16,7 +16,6 @@ export default async function About({ locale }: { locale: Locale }) {
             <span className="text-accent-icon mx-[2px]">/</span>
             <span className="text-text-primary">README</span>
             <span className="text-accent-icon false">.md</span>
-            <span className="text-text-primary"></span>
          </p>
 
          <div className="border-border-default border-b pb-3 text-center text-[33px] font-semibold">
@@ -45,7 +44,7 @@ export default async function About({ locale }: { locale: Locale }) {
                   style={{
                      backgroundColor: tech.background,
                   }}
-                  className="bg-accent-border border-border-default flex items-center gap-1 rounded-sm border px-[9px] py-[5px] text-[15px]"
+                  className="bg-accent-border border-border-default flex items-center gap-1 rounded-sm border px-[9px] py-[5px] text-[15px] font-medium"
                >
                   {<tech.Icon className="h-[19px] w-[19px]" />}
                   {tech.name}

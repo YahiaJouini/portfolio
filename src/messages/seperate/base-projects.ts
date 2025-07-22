@@ -1,10 +1,34 @@
 import { BaseProject, ProjectName } from "../types"
 
 export const baseProjects: Partial<Record<ProjectName, BaseProject>> = {
+   aftercode: {
+      github: "https://github.com/YahiaJouini/aftercode",
+      website: "https://aftercode.tn",
+      public: false,
+      pinned: true,
+      summary: [
+         {
+            key: "Frameworks & Libraries",
+            value: ["Next.js", "i18n", "React Hook Form"],
+         },
+         {
+            key: "Databases & Backend Services",
+            value: ["SQLite"],
+         },
+         {
+            key: "CMS & APIs",
+            value: ["Strapi (REST)", "Tanstack Query"],
+         },
+         {
+            key: "Styling & UI",
+            value: ["Tailwind CSS", "Framer motion"],
+         },
+      ],
+   },
    "mariagetn-api": {
       github: "https://github.com/YahiaJouini/mariagetn-api",
       public: false,
-      images: [""],
+      pinned: true,
       summary: [
          {
             key: "Databases & Backend Services",
@@ -18,4 +42,56 @@ export const baseProjects: Partial<Record<ProjectName, BaseProject>> = {
          },
       ],
    },
+   mariagetn: {
+      github: "https://github.com/YahiaJouini/mariagetn",
+      website: "https://www.mariage.com.tn",
+      public: false,
+      pinned: true,
+      images: [],
+      summary: [
+         {
+            key: "Frameworks & Libraries",
+            value: ["Next.js", "Supabase Auth", "React Hook Form", "i18n"],
+         },
+         {
+            key: "CMS & APIs",
+            value: ["Google Maps API", "Tanstack Query"],
+         },
+         {
+            key: "Styling & UI",
+            value: ["Tailwind CSS", "Framer motion"],
+         },
+      ],
+   },
+
+   educonnect: {
+      github: "https://github.com/YahiaJouini/educonnect",
+      pinned: true,
+      public: true,
+      images: [],
+      summary: [
+         {
+            key: "Frameworks & Libraries",
+            value: ["Next.js", "Supabase Auth", "React Hook Form"],
+         },
+         {
+            key: "Databases & Backend Services",
+            value: [
+               "PostgreSQL",
+               "Drizzle ORM",
+               "Supabase storage",
+               "In-memory cache",
+            ],
+         },
+         {
+            key: "CMS & APIs",
+            value: ["Tanstack Query", "Hugging Face API"],
+         },
+         {
+            key: "Styling & UI",
+            value: ["Tailwind CSS", "Framer motion"],
+         },
+      ],
+   },
+   
 }
