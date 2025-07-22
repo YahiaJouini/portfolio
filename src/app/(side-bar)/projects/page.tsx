@@ -5,6 +5,7 @@ import { loadSearchParams } from "@/utils/project-filters"
 import { getServerLocale } from "@/utils/server-locale"
 import type { SearchParams } from "nuqs/server"
 import Filter from "./_components/Filter"
+import GridShowcase from "./_components/GridShowcase"
 import ListShowcase from "./_components/ListShowcase"
 
 type Props = {
@@ -26,22 +27,32 @@ export default async function Page({ searchParams }: Props) {
    }
    return (
       <div className="w-full">
-         <Filter />
-         {layout === "list" && (
-            <div className="flex flex-col">
-               {projects.map((project) => (
-                  <ListShowcase key={project.id} project={project} />
-               ))}
-            </div>
-         )}
+         <Filter locale={locale} />
+         <div className="mt-6">
+            {layout === "list" && (
+               <div className="flex flex-col">
+                  {projects.map((project) => (
+                     <ListShowcase
+                        key={project.id}
+                        project={project}
+                        locale={locale}
+                     />
+                  ))}
+               </div>
+            )}
 
-         {layout === "grid" && (
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-               {projects.map((project) => (
-                  <ListShowcase key={project.id} project={project} />
-               ))}
-            </div>
-         )}
+            {layout === "grid" && (
+               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  {projects.map((project) => (
+                     <GridShowcase
+                        key={project.id}
+                        project={project}
+                        locale={locale}
+                     />
+                  ))}
+               </div>
+            )}
+         </div>
       </div>
    )
 }

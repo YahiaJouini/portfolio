@@ -1,15 +1,11 @@
-import Code from "@/components/icons/code"
-import Eye from "@/components/icons/eye"
-import { ProjectWithLang } from "@/graphql/github-repo"
+import { Skeleton } from "@/components/ui/skeleton"
 import Link from "next/link"
+import { Props } from "../types"
+import Bottom from "./Bottom"
 
-export default function ListShowcase({
-   project,
-}: {
-   project: ProjectWithLang
-}) {
+export default function ListShowcase({ project, locale }: Props) {
    return (
-      <div className="border-accent-border mt-6 flex w-full justify-between border-b pb-4 max-[430px]:px-4 max-md:px-6 md:pb-5">
+      <div className="border-accent-border flex w-full justify-between border-b pb-4 max-[430px]:px-4 max-md:px-6 md:pb-5">
          <div className="flex-1">
             <h4 className="flex flex-wrap items-center gap-2">
                <span>
@@ -24,41 +20,31 @@ export default function ListShowcase({
                   {project.public ? "Public" : "Private"}
                </span>
             </h4>
-            <p className="text-text-secondary mt-1 mb-2 pr-6 text-sm">
+            <p className="text-text-secondary mt-1 w-[95%] text-sm">
                {project.description}
             </p>
-            <div className="mt-4 flex flex-wrap items-center gap-1">
-               <div
-                  className="h-[12px] w-[12px] rounded-full"
-                  style={{
-                     backgroundColor: project.primaryLanguage.color ?? "#000",
-                  }}
-               ></div>
-               <p className="text-text-secondary text-xs">
-                  {project.primaryLanguage.name ?? "Unknown"}
-               </p>
-               {project.website && (
-                  <Link
-                     target="_blank"
-                     rel="noopener noreferrer"
-                     className="text-text-secondary hover:text-text-link ml-4 flex items-center gap-1 text-xs hover:underline max-[265px]:hidden"
-                     href={project.website}
-                  >
-                     <Eye />
-                     Demo
-                  </Link>
-               )}
-               {project.public && (
-                  <Link
-                     target="_blank"
-                     rel="noopener noreferrer"
-                     className="text-text-secondary hover:text-text-link ml-4 flex items-center gap-1 text-xs hover:underline max-[265px]:hidden"
-                     href={project.github}
-                  >
-                     <Code />
-                     Code
-                  </Link>
-               )}
+            <Bottom project={project} locale={locale} />
+         </div>
+      </div>
+   )
+}
+
+export function ListShowcaseSkeleton() {
+   return (
+      <div className="border-accent-border flex w-full justify-between border-b pb-4 max-[430px]:px-4 max-md:px-6 md:pb-5">
+         <div className="flex-1">
+            <div className="flex flex-wrap items-center gap-3">
+               <Skeleton className="h-5 w-56 md:h-6 md:w-64" />
+               <Skeleton className="mt-1 h-5 w-12 rounded-full max-md:hidden" />
+            </div>
+            <div className="mt-2 w-[95%]">
+               <Skeleton className="h-4 w-full" />
+               <Skeleton className="mt-1 h-4 w-3/4" />
+            </div>
+            <div className="mt-3 flex items-center gap-4">
+               <Skeleton className="h-4 w-16" />
+               <Skeleton className="h-4 w-20" />
+               <Skeleton className="h-4 w-12" />
             </div>
          </div>
       </div>

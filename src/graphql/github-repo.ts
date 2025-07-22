@@ -1,6 +1,5 @@
 import { Project } from "@/messages/types"
 import { GITHUB_TOKEN } from "@/utils/constants"
-import axios from "axios"
 
 const GITHUB_API = "https://api.github.com/graphql"
 
@@ -10,6 +9,7 @@ export type ProjectWithLang = Project & {
       color: string | null
    }
 }
+
 export async function projectsWithLang(
    projects: Array<Project>,
 ): Promise<Array<ProjectWithLang>> {
@@ -31,17 +31,20 @@ export async function projectsWithLang(
  `
 
    try {
-      const { data } = await axios.post(
-         GITHUB_API,
-         { query },
-         {
-            headers: {
-               Authorization: `Bearer ${GITHUB_TOKEN}`,
-               "Content-Type": "application/json",
-            },
-            timeout: 10000,
+      const response = await fetch(GITHUB_API, {
+         method: "POST",
+         headers: {
+            Authorization: `Bearer ${GITHUB_TOKEN}`,
+            "Content-Type": "application/json",
          },
-      )
+         body: JSON.stringify({ query }),
+         next: {
+            revalidate: 3600,
+            tags: ["github-repos"],
+         },
+      })
+
+      const data = await response.json()
 
       if (data.errors) {
          return projects.map((project) => ({
@@ -75,6 +78,7 @@ export async function projectsWithLang(
       }))
    }
 }
+
 export async function getRepoMeta(name: string) {
    const query = `
     query GetRepoMeta($name: String!) {
@@ -100,19 +104,23 @@ export async function getRepoMeta(name: string) {
     }
   `
 
-   const { data } = await axios.post(
-      GITHUB_API,
-      {
+   const response = await fetch(GITHUB_API, {
+      method: "POST",
+      headers: {
+         Authorization: `Bearer ${GITHUB_TOKEN}`,
+         "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
          query,
          variables: { name },
+      }),
+      next: {
+         revalidate: 3600,
+         tags: ["github-repo", `repo-${name}`],
       },
-      {
-         headers: {
-            Authorization: `Bearer ${GITHUB_TOKEN}`,
-            "Content-Type": "application/json",
-         },
-      },
-   )
+   })
+
+   const data = await response.json()
 
    if (data.errors) {
       throw new Error(JSON.stringify(data.errors))

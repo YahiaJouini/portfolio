@@ -15,6 +15,7 @@ export const layout = {
       list: "List",
       grid: "Grid",
       layout: "Layout",
+      visit: "Visit",
    },
    fr: {
       settings: "Paramètres",
@@ -32,6 +33,7 @@ export const layout = {
       list: "Liste",
       grid: "Grille",
       layout: "Disposition",
+      visit: "Visiter",
    },
    ar: {
       settings: "الإعدادات",
@@ -49,5 +51,6 @@ export const layout = {
       list: "قائمة",
       grid: "شبكة",
       layout: "تخطيط",
+      visit: "زيارة",
    },
 } as const

@@ -1,8 +1,9 @@
 import { Locale } from "@/messages/types/shared"
 import { validLocale } from "@/utils/validate-locale"
 import { cookies } from "next/headers"
+import { cache } from "react"
 
-export async function getServerLocale(): Promise<Locale> {
+export const getServerLocale = cache(async (): Promise<Locale> => {
    const cookieStore = await cookies()
    const locale = cookieStore.get("locale")?.value
 
@@ -11,4 +12,4 @@ export async function getServerLocale(): Promise<Locale> {
    }
 
    return "en"
-}
+})

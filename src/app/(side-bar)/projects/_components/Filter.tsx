@@ -1,13 +1,12 @@
 "use client"
 import { cn } from "@/lib/utils"
 import { layout as layoutText } from "@/messages/seperate/layout"
-import { useLocale } from "@/providers/Locale"
+import { Locale } from "@/messages/types/shared"
 import { displayModes, filters } from "@/utils/project-filters"
 import { Grid2x2, Rows2 } from "lucide-react"
 import { useQueryStates } from "nuqs"
 
-export default function Filter() {
-   const { locale } = useLocale()
+export default function Filter({ locale }: { locale: Locale }) {
    const [{ layout, tags }, setFilters] = useQueryStates(filters, {
       shallow: false,
       clearOnDefault: false,
