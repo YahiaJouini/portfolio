@@ -2,7 +2,7 @@ import { BaseProject, ProjectName } from "../types"
 
 export const baseProjects: Partial<Record<ProjectName, BaseProject>> = {
    aftercode: {
-      id: "aftercode",
+      id: "educonnect",
       github: "https://github.com/YahiaJouini/aftercode",
       website: "https://aftercode.tn",
       public: false,
