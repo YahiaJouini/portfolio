@@ -2,6 +2,7 @@ import Navbar from "@/components/layout/navbar/navbar"
 import { inter } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
 import LocaleProvider from "@/providers/Locale"
+import { NuqsAdapter } from "nuqs/adapters/next/app"
 import type { Metadata } from "next"
 import "./globals.css"
 import ThemeProvider from "@/providers/Theme"
@@ -34,11 +35,13 @@ export default async function RootLayout({
          >
             <ThemeProvider attribute="class" defaultTheme="dark">
                <LocaleProvider>
-                  <Navbar />
-                  <main className="w-full flex-1 flex-grow overflow-x-hidden">
-                     {children}
-                  </main>
-                  <Footer />
+                  <NuqsAdapter>
+                     <Navbar />
+                     <main className="w-full flex-1 flex-grow overflow-x-hidden">
+                        {children}
+                     </main>
+                     <Footer />
+                  </NuqsAdapter>
                </LocaleProvider>
             </ThemeProvider>
          </body>

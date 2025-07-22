@@ -1,19 +1,49 @@
+"use client"
+import { cn } from "@/lib/utils"
+import { layout as layoutText } from "@/messages/seperate/layout"
+import { useLocale } from "@/providers/Locale"
+import { displayModes, filters } from "@/utils/project-filters"
 import { Grid2x2, Rows2 } from "lucide-react"
+import { useQueryStates } from "nuqs"
 
 export default function Filter() {
+   const { locale } = useLocale()
+   const [{ layout, tags }, setFilters] = useQueryStates(filters, {
+      shallow: false,
+      clearOnDefault: false,
+   })
+
+   const handleLayoutChange = (newLayout: (typeof displayModes)[number]) => {
+      if (newLayout !== layout) {
+         setFilters({
+            layout: newLayout,
+         })
+      }
+   }
    return (
       <div>
          <div className="flex items-center gap-2">
-            <p className="font-medium">Layout</p>
+            <p className="font-medium">{layoutText[locale].layout}</p>
             <div className="grid grid-cols-2 gap-1">
-               <button className="bg-hover-2 border-border-default flex items-center gap-1 rounded-md border px-2 py-1">
-                  <Rows2 className="h-4 w-4" />
-                  List
-               </button>
-               <button className="bg-hover-2 border-border-default flex items-center gap-1 rounded-md border px-2 py-1">
-                  <Grid2x2 className="h-4 w-4" />
-                  Grid
-               </button>
+               {displayModes.map((value) => (
+                  <button
+                     key={value}
+                     onClick={() => handleLayoutChange(value)}
+                     className={cn(
+                        "border-border-default flex items-center gap-1 rounded-md border px-2 py-1",
+                        {
+                           "bg-hover-2": layout === value,
+                        },
+                     )}
+                  >
+                     {value === "grid" ? (
+                        <Grid2x2 className="h-4 w-4" />
+                     ) : (
+                        <Rows2 className="h-4 w-4" />
+                     )}
+                     {layoutText[locale][value]}
+                  </button>
+               ))}
             </div>
          </div>
       </div>
