@@ -1,4 +1,3 @@
-"use server"
 import Repo from "@/components/icons/repo"
 import { cn } from "@/lib/utils"
 import { Project } from "@/messages/types"

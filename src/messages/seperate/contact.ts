@@ -2,13 +2,14 @@ import { Email, Github, Linkedin } from "@/components/icons/connect"
 import Home from "@/components/icons/home"
 import { Contact as ContactType } from "../types/shared"
 
+export const linkedin = "https://www.linkedin.com/in/yahiajouini"
 export const contacts: Array<ContactType> = [
    {
       title: "Tunis, Tunisia",
       Icon: Home,
    },
    {
-      href: "https://www.linkedin.com/in/yahiajouini",
+      href: linkedin,
       title: "yahiajouini",
       Icon: Linkedin,
    },

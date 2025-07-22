@@ -6,6 +6,7 @@ import type { Metadata } from "next"
 import "./globals.css"
 import ThemeProvider from "@/providers/Theme"
 import { getServerLocale } from "@/utils/server-locale"
+import Footer from "@/components/layout/Footer"
 
 export const metadata: Metadata = {
    title: "Create Next App",
@@ -37,6 +38,7 @@ export default async function RootLayout({
                   <main className="w-full flex-1 flex-grow overflow-x-hidden">
                      {children}
                   </main>
+                  <Footer />
                </LocaleProvider>
             </ThemeProvider>
          </body>

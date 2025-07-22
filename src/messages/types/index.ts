@@ -26,6 +26,10 @@ export type NavBar = {
    }>
 }
 
+export type Footer = {
+   contact: string
+}
+
 export type Profile = {
    fullName: string
    job: string
