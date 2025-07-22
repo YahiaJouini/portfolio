@@ -67,7 +67,6 @@ export type BaseProject = {
    public: boolean
    pinned: boolean
    type: "personal" | "work"
-   mainLanguage: string
    images?: Array<string>
    summary?: Array<{
       key: Summary

@@ -27,7 +27,7 @@ export default async function Pinned({ locale }: { locale: Locale }) {
                            {project.title}
                         </Link>
                         <div className="border-accent-border text-accent-icon ml-3 rounded-full border p-1 text-[11.9px] leading-none font-semibold">
-                           Public
+                           {project.public ? "Public" : "Private"}
                         </div>
                      </div>
 

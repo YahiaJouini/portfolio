@@ -4,7 +4,15 @@ import axios from "axios"
 
 const GITHUB_API = "https://api.github.com/graphql"
 
-export async function projectsWithLang(projects: Array<Project>) {
+export type ProjectWithLang = Project & {
+   primaryLanguage: {
+      name: string | null
+      color: string | null
+   }
+}
+export async function projectsWithLang(
+   projects: Array<Project>,
+): Promise<Array<ProjectWithLang>> {
    const query = `
       query {
          ${projects

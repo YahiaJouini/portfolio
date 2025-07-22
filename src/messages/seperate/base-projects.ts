@@ -8,7 +8,6 @@ export const baseProjects: Partial<Record<ProjectName, BaseProject>> = {
       public: false,
       pinned: true,
       type: "work",
-      mainLanguage: "TypeScript",
       summary: [
          {
             key: "Frameworks & Libraries",
@@ -34,7 +33,6 @@ export const baseProjects: Partial<Record<ProjectName, BaseProject>> = {
       public: false,
       pinned: true,
       type: "work",
-      mainLanguage: "TypeScript",
       summary: [
          {
             key: "Databases & Backend Services",
@@ -55,7 +53,6 @@ export const baseProjects: Partial<Record<ProjectName, BaseProject>> = {
       public: false,
       pinned: true,
       type: "work",
-      mainLanguage: "TypeScript",
       images: [],
       summary: [
          {
@@ -79,7 +76,6 @@ export const baseProjects: Partial<Record<ProjectName, BaseProject>> = {
       pinned: true,
       public: true,
       type: "personal",
-      mainLanguage: "TypeScript",
       images: [],
       summary: [
          {
