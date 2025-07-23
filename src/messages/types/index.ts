@@ -1,5 +1,6 @@
 import React from "react"
 import { Page } from "./shared"
+import { summaryKeys } from "../seperate/project-related"
 
 export type About = {
    title: string
@@ -52,13 +53,6 @@ export type ProjectName =
    | "edufinance"
    | "nuit-blanche"
 
-type Summary =
-   | "Databases & Backend Services"
-   | "CMS & APIs"
-   | "Developer Tools & Misc"
-   | "Frameworks & Libraries"
-   | "Styling & UI"
-
 export type BaseProject = {
    id: ProjectName
    github: `https://github.com/YahiaJouini/${ProjectName}`
@@ -69,7 +63,7 @@ export type BaseProject = {
    type: "personal" | "work"
    images?: Array<string>
    summary?: Array<{
-      key: Summary
+      key: keyof typeof summaryKeys
       value: Array<string>
    }>
 }

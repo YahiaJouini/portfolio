@@ -1,22 +1,26 @@
 import { projectsWithLang } from "@/graphql/github-repo"
 import { Project } from "@/messages/types"
 import { getTranslation } from "@/utils/get-translation"
+import { getPaginatedData } from "@/utils/pagination"
 import { loadSearchParams } from "@/utils/project-filters"
 import { getServerLocale } from "@/utils/server-locale"
 import type { SearchParams } from "nuqs/server"
 import Filter from "./_components/Filter"
 import GridShowcase from "./_components/GridShowcase"
 import ListShowcase from "./_components/ListShowcase"
+import Pagination from "../../../components/global/Pagination"
 
 type Props = {
    searchParams: Promise<SearchParams>
 }
 
 export default async function Page({ searchParams }: Props) {
-   const { layout, tags } = await loadSearchParams(searchParams)
+   const { layout, page } = await loadSearchParams(searchParams)
    const locale = await getServerLocale()
    const data = await getTranslation<Array<Project>>(locale, "projects")
-   const projects = await projectsWithLang(data)
+
+   const { items, ...paginationProps } = getPaginatedData(data, page)
+   const projects = await projectsWithLang(items)
 
    if (projects.length === 0) {
       return (
@@ -30,7 +34,7 @@ export default async function Page({ searchParams }: Props) {
          <Filter locale={locale} />
          <div className="mt-6">
             {layout === "list" && (
-               <div className="flex flex-col">
+               <div className="flex flex-col gap-4">
                   {projects.map((project) => (
                      <ListShowcase
                         key={project.id}
@@ -52,6 +56,8 @@ export default async function Page({ searchParams }: Props) {
                   ))}
                </div>
             )}
+
+            <Pagination {...paginationProps} />
          </div>
       </div>
    )

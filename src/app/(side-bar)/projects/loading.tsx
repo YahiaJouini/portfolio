@@ -6,7 +6,7 @@ export default function Loading() {
       <div className="w-full">
          <Skeleton className="h-7 w-[50%]" />
          <div className="mt-6">
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-4">
                {Array.from({ length: 6 }, (_, i) => (
                   <ListShowcaseSkeleton key={i} />
                ))}
