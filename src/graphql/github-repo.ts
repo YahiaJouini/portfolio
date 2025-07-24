@@ -79,7 +79,26 @@ export async function projectsWithLang(
    }
 }
 
-export async function getRepoMeta(name: string) {
+type RepoMeta = {
+   name: string
+   createdAt: string
+   updatedAt: string
+   isPrivate: boolean
+   primaryLanguage: {
+      name: string | null
+      color: string | null
+   }
+   languages: {
+      edges: Array<{
+         size: number
+         node: {
+            name: string
+            color: string | null
+         }
+      }>
+   }
+}
+export async function getRepoMeta(name: string): Promise<RepoMeta> {
    const query = `
     query GetRepoMeta($name: String!) {
       repository(owner: "YahiaJouini", name: $name) {

@@ -1,8 +1,10 @@
 import ImageLoader from "@/components/global/ImageLoader"
+import { getRepoMeta } from "@/graphql/github-repo"
 import { profileImage } from "@/messages/global"
 import { Project } from "@/messages/types"
 import { Locale } from "@/messages/types/shared"
 import { getProject } from "@/utils/get-translation"
+import { readableISO } from "@/utils/readable-iso"
 import RenderMarkdown from "@/utils/render-markdown"
 import { getServerLocale } from "@/utils/server-locale"
 import fs from "fs"
@@ -20,12 +22,11 @@ export default async function page({
    if (!project) {
       return <div className="w-full">Project does not exist</div>
    }
-
-   const readMe = getReadMe(project.id, locale)
+   const repoMeta = await getRepoMeta(slug)
 
    return (
       <div className="mx-auto w-full px-6 py-8">
-         <div className="border-default-border mb-4 border-b pb-3">
+         <div className="border-default-border mb-4 flex items-center justify-between border-b pb-3">
             <div className="flex items-center gap-3">
                <div className="relative h-8 w-8 rounded-full">
                   <ImageLoader
@@ -37,9 +38,10 @@ export default async function page({
                </div>
                <h3 className="text-lg font-bold">{project.title}</h3>
             </div>
+            <p>{readableISO(repoMeta.createdAt)}</p>
          </div>
          <div className="max-w-4xl">
-            <RenderMarkdown content={readMe} />
+            <RenderMarkdown content={getReadMe(project.id, locale)} />
          </div>
       </div>
    )

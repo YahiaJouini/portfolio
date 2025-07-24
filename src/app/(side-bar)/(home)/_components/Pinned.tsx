@@ -1,3 +1,4 @@
+import ProjectVisibility from "@/components/global/ProjectVisibility"
 import Repo from "@/components/icons/Repo"
 import { cn } from "@/lib/utils"
 import { Project } from "@/messages/types"
@@ -21,14 +22,12 @@ export default async function Pinned({ locale }: { locale: Locale }) {
                      <div className="flex items-center justify-start">
                         <Repo />
                         <Link
-                           className="w-auto overflow-hidden text-sm font-semibold text-nowrap hover:underline"
+                           className="w-auto overflow-hidden text-sm font-semibold text-nowrap hover:underline mr-2"
                            href={`/projects/${project.id}`}
                         >
                            {project.title}
                         </Link>
-                        <div className="border-accent-border text-accent-icon ml-3 rounded-full border p-1 text-[11.9px] leading-none font-semibold">
-                           {project.public ? "Public" : "Private"}
-                        </div>
+                        <ProjectVisibility isPublic={project.public} />
                      </div>
 
                      <p className="text-text-secondary my-2.5 line-clamp-3 text-sm">
