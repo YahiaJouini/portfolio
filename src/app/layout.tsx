@@ -1,4 +1,4 @@
-import Navbar from "@/components/layout/navbar/navbar"
+import Navbar from "@/components/layout/navbar/Navbar"
 import { inter } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
 import LocaleProvider from "@/providers/Locale"
@@ -37,7 +37,7 @@ export default async function RootLayout({
                <LocaleProvider>
                   <NuqsAdapter>
                      <Navbar />
-                     <main className="w-full flex-1 flex-grow overflow-x-hidden">
+                     <main className="mx-auto w-full flex-1 flex-grow overflow-x-hidden md:max-w-7xl">
                         {children}
                      </main>
                      <Footer />

@@ -22,7 +22,7 @@ export default async function About({ locale }: { locale: Locale }) {
             {data.title}
          </div>
          <div
-            className="flex flex-col gap-2 text-[17px] leading-[26px] font-medium tracking-wide"
+            className="text-text-primary flex flex-col gap-2 text-[17px] leading-[26px] font-medium tracking-[0.01em]"
             dangerouslySetInnerHTML={{ __html: data.description }}
          />
 

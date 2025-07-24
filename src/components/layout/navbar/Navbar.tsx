@@ -6,10 +6,10 @@ import { iconMap } from "@/messages/seperate/page-icons"
 import navbar from "@/messages/seperate/navbar"
 import { useLocale } from "@/providers/Locale"
 import Link from "next/link"
-import Language from "./language"
-import Search from "./search"
-import Sidebar from "./sidebar"
-import Theme from "./theme"
+import Language from "./Language"
+import Search from "./Search"
+import Sidebar from "./Sidebar"
+import Theme from "./Theme"
 
 export default function Navbar() {
    const { locale } = useLocale()

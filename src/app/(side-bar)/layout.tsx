@@ -1,6 +1,6 @@
-import Contacts from "@/components/global/contacts"
-import { Divider } from "@/components/global/divider"
-import ImageLoader from "@/components/global/image-loader"
+import Contacts from "@/components/global/Contacts"
+import { Divider } from "@/components/global/Divider"
+import ImageLoader from "@/components/global/ImageLoader"
 import { profileImage } from "@/messages/global"
 import { layout as layoutMessages } from "@/messages/seperate/layout"
 import { Profile } from "@/messages/types"
@@ -13,7 +13,7 @@ export default function layout({
    children: React.ReactNode
 }>) {
    return (
-      <div className="mx-auto flex max-w-7xl items-start justify-between gap-12">
+      <div className="mx-auto flex items-start justify-between gap-12">
          <SideBar />
          {children}
       </div>

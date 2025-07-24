@@ -1,6 +1,6 @@
-import Contacts from "@/components/global/contacts"
-import { Divider } from "@/components/global/divider"
-import ImageLoader from "@/components/global/image-loader"
+import Contacts from "@/components/global/Contacts"
+import { Divider } from "@/components/global/Divider"
+import ImageLoader from "@/components/global/ImageLoader"
 import {
    Sheet,
    SheetClose,
@@ -23,8 +23,8 @@ import { Slant as Hamburger } from "hamburger-react"
 import { Moon, Sun, X } from "lucide-react"
 import Link from "next/link"
 import { useState } from "react"
-import Language from "./language"
-import Theme from "./theme"
+import Language from "./Language"
+import Theme from "./Theme"
 
 export default function Sidebar({ pages }: { pages: NavBar["items"] }) {
    const [open, setOpen] = useState(false)

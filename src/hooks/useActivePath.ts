@@ -3,23 +3,24 @@ import { usePathname } from "next/navigation"
 const useActivePath = () => {
    const pathname = usePathname()
 
-   const isActive = (targetPath: string, exact = true) => {
+   const isActive = (targetPath: string, exact = false) => {
+      if (targetPath === "/") {
+         return pathname === "/"
+      }
+
       if (exact) {
          return pathname === targetPath
       }
-
-      const normalizedTarget = targetPath.endsWith("/")
-         ? targetPath
-         : targetPath + "/"
 
       const normalizedPathname = pathname.endsWith("/")
          ? pathname
          : pathname + "/"
 
-      return normalizedPathname.startsWith(normalizedTarget)
+      return normalizedPathname.startsWith(
+         targetPath.endsWith("/") ? targetPath : targetPath + "/",
+      )
    }
 
    return isActive
 }
-
 export default useActivePath

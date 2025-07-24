@@ -1,4 +1,4 @@
-import Repo from "@/components/icons/repo"
+import Repo from "@/components/icons/Repo"
 import { cn } from "@/lib/utils"
 import { Project } from "@/messages/types"
 import { Locale } from "@/messages/types/shared"

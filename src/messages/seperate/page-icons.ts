@@ -1,9 +1,9 @@
-import Blog from "@/components/icons/blog"
-import Contact from "@/components/icons/contact"
-import Discussions from "@/components/icons/discussions"
-import Education from "@/components/icons/education"
-import Home from "@/components/icons/home"
-import Projects from "@/components/icons/projects"
+import Blog from "@/components/icons/Blog"
+import Contact from "@/components/icons/Contact"
+import Discussions from "@/components/icons/Discussions"
+import Education from "@/components/icons/Education"
+import Home from "@/components/icons/Home"
+import Projects from "@/components/icons/Projects"
 import { Page } from "../types/shared"
 
 //maps page to its corresponding icon component

@@ -1,5 +1,5 @@
-import Code from "@/components/icons/code"
-import Eye from "@/components/icons/eye"
+import Code from "@/components/icons/Code"
+import Eye from "@/components/icons/Eye"
 import { layout } from "@/messages/seperate/layout"
 import Link from "next/link"
 import { Props } from "../types"
@@ -12,7 +12,7 @@ export default function Bottom({ project, locale }: Props) {
             style={{
                backgroundColor: project.primaryLanguage.color ?? "#000",
             }}
-         ></div>
+         />
          <p className="text-text-secondary text-xs">
             {project.primaryLanguage.name ?? "Unknown"}
          </p>

@@ -1,5 +1,5 @@
-import { Email, Github, Linkedin } from "@/components/icons/connect"
-import Home from "@/components/icons/home"
+import { Email, Github, Linkedin } from "@/components/icons/Connect"
+import Home from "@/components/icons/Home"
 import { Contact as ContactType } from "../types/shared"
 
 export const linkedin = "https://www.linkedin.com/in/yahiajouini"

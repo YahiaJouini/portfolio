@@ -16,9 +16,7 @@ export default function ListShowcase({ project, locale }: Props) {
                      {project.title}
                   </Link>
                </span>
-               <span className="border-accent-border text-accent-icon rounded-full border px-[5px] py-[3px] text-[11.9px] leading-none font-semibold max-md:hidden">
-                  {project.public ? "Public" : "Private"}
-               </span>
+              
             </h4>
             <p className="text-text-secondary mt-1 w-[95%] text-sm">
                {project.description}

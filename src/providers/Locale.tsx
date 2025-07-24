@@ -1,5 +1,5 @@
 "use client"
-import { LayoutLoader } from "@/components/layout/layout-loader"
+import { LayoutLoader } from "@/components/layout/LayoutLoader"
 import { Locale } from "@/messages/types/shared"
 import { validLocale } from "@/utils/validate-locale"
 import { useRouter } from "next/navigation"
