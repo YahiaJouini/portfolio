@@ -7,7 +7,7 @@ import { Grid2x2, Rows2 } from "lucide-react"
 import { useQueryStates } from "nuqs"
 
 export default function Filter({ locale }: { locale: Locale }) {
-   const [{ layout, tags }, setFilters] = useQueryStates(filters, {
+   const [{ layout }, setFilters] = useQueryStates(filters, {
       shallow: false,
       clearOnDefault: false,
    })

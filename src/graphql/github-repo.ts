@@ -79,8 +79,7 @@ export async function projectsWithLang(
    }
 }
 
-type RepoMeta = {
-   name: string
+export type RepoMeta = {
    createdAt: string
    updatedAt: string
    isPrivate: boolean
@@ -102,7 +101,6 @@ export async function getRepoMeta(name: string): Promise<RepoMeta> {
    const query = `
     query GetRepoMeta($name: String!) {
       repository(owner: "YahiaJouini", name: $name) {
-        name
         createdAt
         updatedAt
         isPrivate
