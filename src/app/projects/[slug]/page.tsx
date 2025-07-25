@@ -2,15 +2,12 @@ import ImageLoader from "@/components/global/ImageLoader"
 import Eye from "@/components/icons/Eye"
 import { profileImage } from "@/messages/global"
 import { layout } from "@/messages/seperate/layout"
-import { Project } from "@/messages/types"
-import { Locale } from "@/messages/types/shared"
 import { ProjectService } from "@/services/project"
 import { readableISO } from "@/utils/readable-iso"
 import RenderMarkdown from "@/utils/render-markdown"
 import { getServerLocale } from "@/utils/server-locale"
-import fs from "fs"
 import Link from "next/link"
-import path from "path"
+import DisplaySection from "./_components/DisplaySection"
 
 export default async function page({
    params,
@@ -51,26 +48,19 @@ export default async function page({
             <Link
                target="_blank"
                rel="noopener noreferrer"
-               className="bg-text-link flex w-fit items-center gap-1 rounded-md px-3 py-1.5 font-medium"
+               className="bg-text-link flex w-fit items-center gap-1 rounded-md px-3 py-1.5 font-medium text-white"
                href={project.website}
             >
                <Eye />
                {layout[locale].visit}
             </Link>
          )}
-         <div className="mt-6 max-w-4xl">
-            <RenderMarkdown content={getReadMe(project.id, locale)} />
+         <div className="border-border-default mt-6 w-[60%] rounded-md border">
+            <DisplaySection locale={locale} />
+            <div className="p-4">
+               <RenderMarkdown content={project.readme} />
+            </div>
          </div>
       </div>
    )
-}
-
-const getReadMe = (name: Project["id"], locale: Locale): string => {
-   const filePath = path.join(
-      process.cwd(),
-      "src/messages/markdown",
-      name,
-      `${locale}.md`,
-   )
-   return fs.readFileSync(filePath, "utf-8")
 }

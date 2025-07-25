@@ -1,3 +1,5 @@
+import { Locale } from "../types/shared"
+
 export const layout = {
    en: {
       settings: "Settings",
@@ -53,4 +55,4 @@ export const layout = {
       layout: "تخطيط",
       visit: "زيارة",
    },
-} as const
+} satisfies Record<Locale, Record<string, string>>
