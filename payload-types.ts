@@ -206,16 +206,17 @@ export interface Project {
   /**
    * Key-value pairs summarizing important project details
    */
-  summary?:
-    | {
-        key: string;
-        values: {
-          value: string;
-          id?: string | null;
-        }[];
-        id?: string | null;
-      }[]
-    | null;
+  summary: {
+    /**
+     * Select the category for this summary item
+     */
+    keyName: 'frameworks' | 'databases' | 'cms' | 'tools' | 'styling';
+    values: {
+      value: string;
+      id?: string | null;
+    }[];
+    id?: string | null;
+  }[];
   /**
    * Mark this project as featured to highlight it in your portfolio
    */
@@ -227,7 +228,6 @@ export interface Project {
   images?:
     | {
         image: number | Media;
-        alt: string;
         id?: string | null;
       }[]
     | null;
@@ -350,7 +350,7 @@ export interface ProjectsSelect<T extends boolean = true> {
   summary?:
     | T
     | {
-        key?: T;
+        keyName?: T;
         values?:
           | T
           | {
@@ -365,7 +365,6 @@ export interface ProjectsSelect<T extends boolean = true> {
     | T
     | {
         image?: T;
-        alt?: T;
         id?: T;
       };
   updatedAt?: T;

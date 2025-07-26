@@ -1,3 +1,4 @@
+import { payloadAccess } from "@/utils/payload-access"
 import type { CollectionConfig } from "payload"
 
 export const Users: CollectionConfig = {
@@ -9,25 +10,7 @@ export const Users: CollectionConfig = {
    admin: {
       useAsTitle: "email",
    },
-   access: {
-      create: ({ req: { user } }) => {
-         return user?.role === "admin"
-      },
-      read: ({ req: { user } }) => {
-         if (user?.role === "admin") return true
-         return {
-            id: {
-               equals: user?.id,
-            },
-         }
-      },
-      update: ({ req: { user } }) => {
-         return user?.role === "admin"
-      },
-      delete: ({ req: { user } }) => {
-         return user?.role === "admin"
-      },
-   },
+   access: payloadAccess({ public: false }),
    fields: [
       {
          name: "role",

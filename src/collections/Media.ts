@@ -1,13 +1,15 @@
+import { payloadAccess } from "@/utils/payload-access"
 import type { CollectionConfig } from "payload"
 
 export const Media: CollectionConfig = {
    slug: "media",
+   access: payloadAccess({ public: false }),
    upload: {
       staticDir: "media",
       formatOptions: {
          format: "webp",
          options: {
-            quality: 80,
+            quality: 70,
          },
       },
       mimeTypes: ["image/*"],

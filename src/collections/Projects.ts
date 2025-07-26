@@ -1,3 +1,5 @@
+import { summaryKeys } from "@/messages/seperate/project-related"
+import { payloadAccess } from "@/utils/payload-access"
 import { CollectionConfig } from "payload"
 
 export const Projects: CollectionConfig = {
@@ -10,12 +12,7 @@ export const Projects: CollectionConfig = {
       defaultColumns: ["title", "slug", "createdAt"],
       useAsTitle: "title",
    },
-   access: {
-      read: () => true,
-      create: ({ req: { user } }) => Boolean(user),
-      update: ({ req: { user } }) => Boolean(user),
-      delete: ({ req: { user } }) => Boolean(user),
-   },
+   access: payloadAccess(),
    fields: [
       {
          name: "title",
@@ -30,6 +27,7 @@ export const Projects: CollectionConfig = {
          required: true,
          unique: true,
          label: "URL Slug",
+         minLength: 3,
          admin: {
             description: "This will be used in the URL for this project",
          },
@@ -52,6 +50,8 @@ export const Projects: CollectionConfig = {
          type: "textarea",
          localized: true,
          required: true,
+         maxLength: 300,
+         minLength: 100,
          label: "Short Description",
          admin: {
             description: "A brief description of the project for preview cards",
@@ -99,19 +99,23 @@ export const Projects: CollectionConfig = {
          name: "summary",
          type: "array",
          label: "Project Summary",
-         localized: true,
+         required: true,
          admin: {
             description:
                "Key-value pairs summarizing important project details",
          },
          fields: [
             {
-               name: "key",
-               type: "text",
+               name: "keyName",
+               type: "select",
                required: true,
-               label: "Key",
+               label: "Summary Category",
+               options: Object.keys(summaryKeys).map((key) => ({
+                  label: key,
+                  value: key,
+               })),
                admin: {
-                  placeholder: "e.g., Technologies, Duration, Team Size",
+                  description: "Select the category for this summary item",
                },
             },
             {
@@ -176,12 +180,6 @@ export const Projects: CollectionConfig = {
                type: "upload",
                relationTo: "media",
                required: true,
-            },
-            {
-               name: "alt",
-               type: "text",
-               required: true,
-               label: "Alt Text",
             },
          ],
       },

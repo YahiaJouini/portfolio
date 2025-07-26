@@ -62,7 +62,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	\`_order\` integer NOT NULL,
   	\`_parent_id\` integer NOT NULL,
   	\`id\` text PRIMARY KEY NOT NULL,
-  	\`key\` text NOT NULL,
+  	\`key_name\` text NOT NULL,
   	FOREIGN KEY (\`_parent_id\`) REFERENCES \`projects\`(\`id\`) ON UPDATE no action ON DELETE cascade
   );
   `)
@@ -73,7 +73,6 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	\`_parent_id\` integer NOT NULL,
   	\`id\` text PRIMARY KEY NOT NULL,
   	\`image_id\` integer NOT NULL,
-  	\`alt\` text NOT NULL,
   	FOREIGN KEY (\`image_id\`) REFERENCES \`media\`(\`id\`) ON UPDATE no action ON DELETE set null,
   	FOREIGN KEY (\`_parent_id\`) REFERENCES \`projects\`(\`id\`) ON UPDATE no action ON DELETE cascade
   );
@@ -83,13 +82,9 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   await db.run(sql`CREATE INDEX \`projects_images_image_idx\` ON \`projects_images\` (\`image_id\`);`)
   await db.run(sql`CREATE TABLE \`projects\` (
   	\`id\` integer PRIMARY KEY NOT NULL,
-  	\`title\` text NOT NULL,
   	\`slug\` text NOT NULL,
-  	\`description\` text NOT NULL,
-  	\`markdown\` text NOT NULL,
   	\`github_url\` text,
   	\`demo_url\` text,
-  	\`featured\` integer DEFAULT false,
   	\`status\` text DEFAULT 'published' NOT NULL,
   	\`updated_at\` text DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')) NOT NULL,
   	\`created_at\` text DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')) NOT NULL
@@ -98,6 +93,18 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   await db.run(sql`CREATE UNIQUE INDEX \`projects_slug_idx\` ON \`projects\` (\`slug\`);`)
   await db.run(sql`CREATE INDEX \`projects_updated_at_idx\` ON \`projects\` (\`updated_at\`);`)
   await db.run(sql`CREATE INDEX \`projects_created_at_idx\` ON \`projects\` (\`created_at\`);`)
+  await db.run(sql`CREATE TABLE \`projects_locales\` (
+  	\`title\` text NOT NULL,
+  	\`description\` text NOT NULL,
+  	\`markdown\` text NOT NULL,
+  	\`featured\` integer DEFAULT false,
+  	\`id\` integer PRIMARY KEY NOT NULL,
+  	\`_locale\` text NOT NULL,
+  	\`_parent_id\` integer NOT NULL,
+  	FOREIGN KEY (\`_parent_id\`) REFERENCES \`projects\`(\`id\`) ON UPDATE no action ON DELETE cascade
+  );
+  `)
+  await db.run(sql`CREATE UNIQUE INDEX \`projects_locales_locale_parent_id_unique\` ON \`projects_locales\` (\`_locale\`,\`_parent_id\`);`)
   await db.run(sql`CREATE TABLE \`payload_locked_documents\` (
   	\`id\` integer PRIMARY KEY NOT NULL,
   	\`global_slug\` text,
@@ -173,6 +180,7 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   await db.run(sql`DROP TABLE \`projects_summary\`;`)
   await db.run(sql`DROP TABLE \`projects_images\`;`)
   await db.run(sql`DROP TABLE \`projects\`;`)
+  await db.run(sql`DROP TABLE \`projects_locales\`;`)
   await db.run(sql`DROP TABLE \`payload_locked_documents\`;`)
   await db.run(sql`DROP TABLE \`payload_locked_documents_rels\`;`)
   await db.run(sql`DROP TABLE \`payload_preferences\`;`)
