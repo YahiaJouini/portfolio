@@ -44,24 +44,26 @@ export default async function page({
                <h3 className="text-lg font-bold">{project.title}</h3>
                <ProjectVisibility locale={locale} isPublic={project.public} />
             </div>
-            {project.repoMeta && (
+            {!project.public ? (
+               <p>{readableISO(project.createdAt)}</p>
+            ) : project.repoMeta ? (
                <p>{readableISO(project.repoMeta.createdAt)}</p>
-            )}
+            ) : null}
          </div>
 
          {project.website && (
             <Link
                target="_blank"
                rel="noopener noreferrer"
-               className="bg-text-link flex w-fit items-center gap-1 rounded-md px-3 py-1.5 font-medium text-white"
+               className="flex w-fit items-center gap-1 rounded-md bg-[#0969da] px-3 py-1.5 font-medium text-white"
                href={project.website}
             >
                <Eye />
                {layout[locale].visit}
             </Link>
          )}
-         <div className="flex items-start justify-between gap-14">
-            <div className="border-border-default mt-6 w-[65%] rounded-md border">
+         <div className="flex items-start justify-between gap-10">
+            <div className="border-border-default mt-6 rounded-md border xl:w-[70%]">
                <DisplaySection locale={locale} />
                <div className="p-4">
                   <RenderMarkdown content={project.readme} />

@@ -96,27 +96,35 @@ export type RepoMeta = {
          }
       }>
    }
+   tags: Array<{ name: string }>
 }
 export async function getRepoMeta(name: string): Promise<RepoMeta> {
    const query = `
     query GetRepoMeta($name: String!) {
       repository(owner: "YahiaJouini", name: $name) {
-        createdAt
-        updatedAt
-        isPrivate
-        primaryLanguage {
-          name
-          color
-        }
-        languages(first: 10, orderBy: { field: SIZE, direction: DESC }) {
-          edges {
+         createdAt
+         updatedAt
+         isPrivate
+         primaryLanguage {
+            name
+            color
+         }
+         languages(first: 10, orderBy: {field: SIZE, direction: DESC}) {
+            edges {
             size
             node {
-              name
-              color
+               name
+               color
             }
-          }
-        }
+            }
+         }
+         topics: repositoryTopics(first: 10) {
+            nodes {
+               topic {
+                  name
+               }
+            }
+         }
       }
     }
   `

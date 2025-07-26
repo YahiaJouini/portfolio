@@ -62,10 +62,15 @@ export class ProjectService {
       slug: string,
    ): Promise<DetailedProject | null> {
       try {
-         const [project, repoMeta] = await Promise.all([
+         const [projectResult, repoMetaResult] = await Promise.allSettled([
             this.getProject(locale, slug),
             getRepoMeta(slug),
          ])
+
+         const project =
+            projectResult.status === "fulfilled" ? projectResult.value : null
+         const repoMeta =
+            repoMetaResult.status === "fulfilled" ? repoMetaResult.value : null
 
          if (!project) return null
 
@@ -76,6 +81,7 @@ export class ProjectService {
             readme,
          }
          if (repoMeta) {
+            console.log(repoMeta)
             result.repoMeta = repoMeta
          }
          return result

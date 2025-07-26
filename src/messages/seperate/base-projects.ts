@@ -2,12 +2,13 @@ import { BaseProject, ProjectName } from "../types"
 
 export const baseProjects: Partial<Record<ProjectName, BaseProject>> = {
    aftercode: {
-      id: "educonnect",
+      id: "aftercode",
       github: "https://github.com/YahiaJouini/aftercode",
       website: "https://aftercode.tn",
       public: false,
       pinned: true,
       type: "work",
+      createdAt: "2024-12-27",
       summary: [
          {
             key: "frameworks",
@@ -33,6 +34,7 @@ export const baseProjects: Partial<Record<ProjectName, BaseProject>> = {
       public: false,
       pinned: true,
       type: "work",
+      createdAt: "2025-01-12",
       summary: [
          {
             key: "databases",
@@ -54,6 +56,7 @@ export const baseProjects: Partial<Record<ProjectName, BaseProject>> = {
       pinned: true,
       type: "work",
       images: [],
+      createdAt: "2025-01-12",
       summary: [
          {
             key: "frameworks",

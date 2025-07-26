@@ -53,12 +53,10 @@ export type ProjectName =
    | "edufinance"
    | "nuit-blanche"
 
-export type BaseProject = {
+type BaseProjectCommon = {
    id: ProjectName
    github: `https://github.com/YahiaJouini/${ProjectName}`
    website?: string
-   // can show source code
-   public: boolean
    pinned: boolean
    type: "personal" | "work"
    images?: Array<string>
@@ -67,6 +65,18 @@ export type BaseProject = {
       value: Array<string>
    }>
 }
+
+type PublicProject = BaseProjectCommon & {
+   public: true
+   createdAt?: string
+}
+
+type PrivateProject = BaseProjectCommon & {
+   public: false
+   createdAt: string
+}
+
+export type BaseProject = PublicProject | PrivateProject
 
 // for translation purposes
 export type Project = BaseProject & {

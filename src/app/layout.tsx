@@ -37,7 +37,7 @@ export default async function RootLayout({
                <LocaleProvider>
                   <NuqsAdapter>
                      <Navbar />
-                     <main className="mx-auto w-full flex-1 flex-grow overflow-x-hidden md:max-w-7xl">
+                     <main className="mx-auto w-[90%] flex-1 flex-grow overflow-x-hidden xl:max-w-7xl">
                         {children}
                      </main>
                      <Footer />

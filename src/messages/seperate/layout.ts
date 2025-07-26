@@ -39,6 +39,7 @@ export const layout = {
       grid: "Grille",
       layout: "Disposition",
       visit: "Visiter",
+      about: "À propos",
    },
    ar: {
       settings: "الإعدادات",
@@ -58,5 +59,6 @@ export const layout = {
       grid: "شبكة",
       layout: "تخطيط",
       visit: "زيارة",
+      about: "عن",
    },
 } satisfies Record<Locale, Record<string, string>>
