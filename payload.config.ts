@@ -2,18 +2,18 @@ import { sqliteAdapter } from "@payloadcms/db-sqlite"
 import { lexicalEditor } from "@payloadcms/richtext-lexical"
 import path from "path"
 import { buildConfig } from "payload"
-import { fileURLToPath } from "url"
 import sharp from "sharp"
+import { fileURLToPath } from "url"
 
-import { Media } from "./collections/Media"
-import { Users } from "./collections/Users"
 import {
    ADMIN_EMAIL,
    ADMIN_PASSWORD,
    DATABASE_URI,
    PAYLOAD_SECRET,
 } from "@/utils/constants"
-import { SUPPORTED_LOCALES } from "@/messages/types/shared"
+import { Media } from "./src/collections/Media"
+import { Users } from "./src/collections/Users"
+import { Projects } from "./src/collections/Projects"
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -47,7 +47,7 @@ export default buildConfig({
       },
       user: Users.slug,
    },
-   collections: [Media, Users],
+   collections: [Media, Users, Projects],
    editor: lexicalEditor(),
    secret: PAYLOAD_SECRET,
    typescript: {

@@ -2,6 +2,7 @@
    "name": "portfolio",
    "version": "0.1.0",
    "private": true,
+   "type": "module",
    "scripts": {
       "dev": "next dev --turbopack",
       "build": "next build",
@@ -19,6 +20,7 @@
       "@radix-ui/react-slot": "^1.2.3",
       "class-variance-authority": "^0.7.1",
       "clsx": "^2.1.1",
+      "dotenv": "^17.2.1",
       "framer-motion": "^12.23.6",
       "graphql": "^16.11.0",
       "hamburger-react": "^2.5.2",
