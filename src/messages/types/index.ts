@@ -71,9 +71,9 @@ type BaseProjectCommon = {
       key: ProjectRole
       value: boolean
    }>
-   summary?: Array<{
+   summary: Array<{
       key: keyof typeof summaryKeys
-      value: Array<string>
+      values: Array<string>
    }>
 }
 

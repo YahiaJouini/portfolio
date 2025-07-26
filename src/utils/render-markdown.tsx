@@ -6,7 +6,7 @@ export default function RenderMarkdown({ content }: { content: string }) {
       <ReactMarkdown
          components={{
             h1: ({ children }) => (
-               <h1 className="mb-3 text-4xl leading-11 font-bold">
+               <h1 className="mb-3 text-[34px] leading-11 font-bold">
                   {children}
                </h1>
             ),

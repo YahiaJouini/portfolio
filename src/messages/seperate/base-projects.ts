@@ -22,19 +22,19 @@ export const baseProjects: Partial<Record<ProjectName, BaseProject>> = {
       summary: [
          {
             key: "frameworks",
-            value: ["Next.js", "i18n", "React Hook Form"],
+            values: ["Next.js", "i18n", "React Hook Form"],
          },
          {
             key: "databases",
-            value: ["SQLite"],
+            values: ["SQLite"],
          },
          {
             key: "cms",
-            value: ["Strapi (REST)", "Tanstack Query"],
+            values: ["Strapi (REST)", "Tanstack Query"],
          },
          {
             key: "styling",
-            value: ["Tailwind CSS", "Framer motion"],
+            values: ["Tailwind CSS", "Framer motion"],
          },
       ],
    },
@@ -58,7 +58,7 @@ export const baseProjects: Partial<Record<ProjectName, BaseProject>> = {
       summary: [
          {
             key: "databases",
-            value: [
+            values: [
                "PostgreSQL",
                "Drizzle ORM",
                "Minio Storage",
@@ -90,15 +90,15 @@ export const baseProjects: Partial<Record<ProjectName, BaseProject>> = {
       summary: [
          {
             key: "frameworks",
-            value: ["Next.js", "Supabase Auth", "React Hook Form", "i18n"],
+            values: ["Next.js", "Supabase Auth", "React Hook Form", "i18n"],
          },
          {
             key: "cms",
-            value: ["Google Maps API", "Tanstack Query"],
+            values: ["Google Maps API", "Tanstack Query"],
          },
          {
             key: "styling",
-            value: ["Tailwind CSS", "Framer motion"],
+            values: ["Tailwind CSS", "Framer motion"],
          },
       ],
    },
@@ -135,11 +135,11 @@ export const baseProjects: Partial<Record<ProjectName, BaseProject>> = {
       summary: [
          {
             key: "frameworks",
-            value: ["Next.js", "Supabase Auth", "React Hook Form"],
+            values: ["Next.js", "Supabase Auth", "React Hook Form"],
          },
          {
             key: "databases",
-            value: [
+            values: [
                "PostgreSQL",
                "Drizzle ORM",
                "Supabase storage",
@@ -148,11 +148,11 @@ export const baseProjects: Partial<Record<ProjectName, BaseProject>> = {
          },
          {
             key: "cms",
-            value: ["Tanstack Query", "Hugging Face API"],
+            values: ["Tanstack Query", "Hugging Face API"],
          },
          {
             key: "styling",
-            value: ["Tailwind CSS", "Framer motion"],
+            values: ["Tailwind CSS", "Framer motion"],
          },
       ],
    },

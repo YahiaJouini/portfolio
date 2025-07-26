@@ -38,21 +38,10 @@ export default function Sidebar({ pages }: { pages: NavBar["items"] }) {
    return (
       <Sheet open={open} onOpenChange={setOpen}>
          <SheetTrigger
-            className={cn(
-               "text-accent-icon hover:text-text-primary flex cursor-pointer items-center",
-               {
-                  "text-text-primary": open,
-               },
-            )}
+            className={cn("text-accent-icon hover:text-text-primaryr", {
+               "text-text-primary": open,
+            })}
          >
-            <div className="border-accent-border relative z-10 -mr-1 h-[36px] w-[36px] overflow-hidden rounded-full border object-cover object-center">
-               <ImageLoader
-                  fill
-                  className="h-full w-full object-cover object-center"
-                  src={profileImage.src}
-                  alt={profileImage.alt.en}
-               />
-            </div>
             <Hamburger
                duration={0.2}
                size={20}

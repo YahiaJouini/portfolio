@@ -81,7 +81,6 @@ export class ProjectService {
             readme,
          }
          if (repoMeta) {
-            console.log(repoMeta)
             result.repoMeta = repoMeta
          }
          return result

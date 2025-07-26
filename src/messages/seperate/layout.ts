@@ -21,6 +21,7 @@ export const layout = {
       visit: "Visit",
       about: "About",
       summary: "Development Summary",
+      languages: "Languages",
    },
    fr: {
       settings: "Paramètres",
@@ -41,7 +42,8 @@ export const layout = {
       layout: "Disposition",
       visit: "Visiter",
       about: "À propos",
-      summary: "Development Summary",
+      summary: "Résumé du développement",
+      languages: "Langues",
    },
    ar: {
       settings: "الإعدادات",
@@ -62,6 +64,7 @@ export const layout = {
       layout: "تخطيط",
       visit: "زيارة",
       about: "عن",
-      summary: "Development Summary",
+      summary: "ملخص التطوير",
+      languages: "اللغات",
    },
 } satisfies Record<Locale, Record<string, string>>

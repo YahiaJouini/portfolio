@@ -18,7 +18,7 @@ export default function Navbar() {
    const isActive = useActivePath()
    return (
       <nav className="bg-secondary border-border-default mb-8 w-full border-b pt-3">
-         <div className="px-8">
+         <div className="px-12">
             <div className="flex items-center justify-between">
                <Logo />
                <div className="flex items-center gap-4">

@@ -1,8 +1,11 @@
 import Tick from "@/components/global/Tick"
 import X from "@/components/global/X"
+import Summary from "@/components/icons/Summary"
 import { layout } from "@/messages/seperate/layout"
+import { summaryKeys } from "@/messages/seperate/project-related"
 import { Locale } from "@/messages/types/shared"
 import { DetailedProject } from "@/services/project"
+import { LanguageBar } from "./LanguageBar"
 
 type Props = {
    project: DetailedProject
@@ -10,12 +13,14 @@ type Props = {
 }
 export default function RightSection({ project, locale }: Props) {
    const { repoMeta, ...rest } = project
+
+   console.log(repoMeta)
    return (
       <div className="flex flex-1 flex-col gap-6">
          <div className="flex flex-col gap-3">
             <div>
-               <h3 className="text-xl font-bold">{layout[locale].about}</h3>
-               <p className="mt-2">{project.description}</p>
+               <SectionTitle title={layout[locale].about} />
+               <p>{project.description}</p>
             </div>
 
             {repoMeta && repoMeta.topics.nodes.length > 0 && (
@@ -23,7 +28,7 @@ export default function RightSection({ project, locale }: Props) {
                   {repoMeta.topics.nodes.map(({ topic }) => (
                      <span
                         key={topic.name}
-                        className="bg-tag-bg text-tag-color hover:bg-tag-hover-bg hover:text-tag-hover-text rounded-md px-2 py-1 text-xs font-semibold transition-colors"
+                        className="bg-tag-bg text-tag-color hover:bg-tag-hover-bg hover:text-tag-hover-text rounded-md px-2 py-1 text-[13px] font-semibold transition-colors"
                      >
                         {topic.name}
                      </span>
@@ -42,7 +47,50 @@ export default function RightSection({ project, locale }: Props) {
                ))}
             </div>
          </div>
-         <div className="bg-border-default h-px w-full" />
+         <Seperator />
+         <div>
+            <SectionTitle title={layout[locale].summary} />
+            <div className="flex flex-col items-start gap-2">
+               {rest.summary.map(({ key, values }) => {
+                  const size = values.length
+                  return (
+                     <div key={key} className="flex items-start gap-2">
+                        <Summary />
+                        <div>
+                           <p className="text-sm font-medium">
+                              {summaryKeys[key][locale]}
+                           </p>
+                           <div className="mt-1 flex flex-wrap gap-1">
+                              {values.map((val, index) => (
+                                 <p
+                                    key={`${val}-${index}`}
+                                    className="text-text-secondary hover:text-text-link cursor-default text-sm hover:underline"
+                                 >
+                                    {val}
+                                    {index < size - 1 ? "," : ""}
+                                 </p>
+                              ))}
+                           </div>
+                        </div>
+                     </div>
+                  )
+               })}
+            </div>
+         </div>
+         <Seperator />
+
+         {repoMeta?.languages && (
+            <div>
+               <SectionTitle title={layout[locale].languages} />
+               <LanguageBar languages={repoMeta.languages} />
+            </div>
+         )}
       </div>
    )
 }
+
+const SectionTitle = ({ title }: { title: string }) => (
+   <h4 className="mb-2 text-[17px] font-semibold">{title}</h4>
+)
+
+const Seperator = () => <div className="bg-border-default h-px w-full" />
