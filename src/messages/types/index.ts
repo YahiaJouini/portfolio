@@ -53,6 +53,13 @@ export type ProjectName =
    | "edufinance"
    | "nuit-blanche"
 
+export type ProjectRole =
+   | "designed"
+   | "developed"
+   | "maintained"
+   | "deployed"
+   | "architected"
+
 type BaseProjectCommon = {
    id: ProjectName
    github: `https://github.com/YahiaJouini/${ProjectName}`
@@ -60,6 +67,10 @@ type BaseProjectCommon = {
    pinned: boolean
    type: "personal" | "work"
    images?: Array<string>
+   roles: Array<{
+      key: ProjectRole
+      value: boolean
+   }>
    summary?: Array<{
       key: keyof typeof summaryKeys
       value: Array<string>

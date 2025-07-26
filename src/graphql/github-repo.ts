@@ -96,7 +96,13 @@ export type RepoMeta = {
          }
       }>
    }
-   tags: Array<{ name: string }>
+   topics: {
+      nodes: Array<{
+         topic: {
+            name: string
+         }
+      }>
+   }
 }
 export async function getRepoMeta(name: string): Promise<RepoMeta> {
    const query = `

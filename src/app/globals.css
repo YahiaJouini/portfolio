@@ -28,6 +28,12 @@
       --accent-active: #fd8c73;
       --accent-icon: #59636e;
 
+      /* tags */
+      --tag-color: #0969da;
+      --tag-bg: #ddf4ff;
+      --tag-hover-bg: #0969da;
+      --tag-hover-text: #fff;
+
       /* === shadcn Base (Leave Intact) === */
       --background: oklch(1 0 0);
       --foreground: oklch(0.145 0 0);
@@ -85,6 +91,11 @@
       --accent-active: #fd8c73;
       --accent-icon: #9198a1;
 
+      /* tags */
+      --tag-color: #4493f8;
+      --tag-bg: #388bfd1a;
+      --tag-hover-bg: #1f6feb;
+      --tag-hover-text: #fff;
 
       /* === shadcn Overrides === */
       --background: oklch(0.145 0 0);
@@ -143,6 +154,12 @@
    --color-accent-border: var(--accent-border);
    --color-accent-active: var(--accent-active);
    --color-accent-icon: var(--accent-icon);
+
+   /* tags */
+   --color-tag-color: var(--tag-color);
+   --color-tag-bg: var(--tag-bg);
+   --color-tag-hover-bg: var(--tag-hover-bg);
+   --color-tag-hover-text: var(--tag-hover-text);
 
 
    /* shadcn tokens */

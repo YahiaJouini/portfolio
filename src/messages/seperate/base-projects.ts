@@ -8,6 +8,16 @@ export const baseProjects: Partial<Record<ProjectName, BaseProject>> = {
       public: false,
       pinned: true,
       type: "work",
+      roles: [
+         {
+            key: "developed",
+            value: true,
+         },
+         {
+            key: "designed",
+            value: false,
+         },
+      ],
       createdAt: "2024-12-27",
       summary: [
          {
@@ -35,6 +45,16 @@ export const baseProjects: Partial<Record<ProjectName, BaseProject>> = {
       pinned: true,
       type: "work",
       createdAt: "2025-01-12",
+      roles: [
+         {
+            key: "architected",
+            value: true,
+         },
+         {
+            key: "developed",
+            value: true,
+         },
+      ],
       summary: [
          {
             key: "databases",
@@ -56,6 +76,16 @@ export const baseProjects: Partial<Record<ProjectName, BaseProject>> = {
       pinned: true,
       type: "work",
       images: [],
+      roles: [
+         {
+            key: "designed",
+            value: false,
+         },
+         {
+            key: "developed",
+            value: true,
+         },
+      ],
       createdAt: "2025-01-12",
       summary: [
          {
@@ -80,6 +110,28 @@ export const baseProjects: Partial<Record<ProjectName, BaseProject>> = {
       public: true,
       type: "personal",
       images: [],
+      roles: [
+         {
+            key: "architected",
+            value: true,
+         },
+         {
+            key: "developed",
+            value: true,
+         },
+         {
+            key: "designed",
+            value: true,
+         },
+         {
+            key: "deployed",
+            value: true,
+         },
+         {
+            key: "maintained",
+            value: true,
+         },
+      ],
       summary: [
          {
             key: "frameworks",

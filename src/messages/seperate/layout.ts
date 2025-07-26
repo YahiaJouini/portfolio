@@ -1,3 +1,4 @@
+import { ProjectRole } from "../types"
 import { Locale } from "../types/shared"
 
 export const layout = {
@@ -62,3 +63,31 @@ export const layout = {
       about: "عن",
    },
 } satisfies Record<Locale, Record<string, string>>
+
+export const projectRoles = {
+   architected: {
+      en: "Architected",
+      ar: "صمّم البنية",
+      fr: "Conçu l'architecture",
+   },
+   deployed: {
+      en: "Deployed",
+      ar: "نُشِر",
+      fr: "Déployé",
+   },
+   designed: {
+      en: "Designed",
+      ar: "صمّم",
+      fr: "Conçu",
+   },
+   developed: {
+      en: "Developed",
+      ar: "طوّر",
+      fr: "Développé",
+   },
+   maintained: {
+      en: "Maintained",
+      ar: "تمّت صيانته",
+      fr: "Maintenu",
+   },
+} satisfies Record<ProjectRole, Record<Locale, string>>
