@@ -44,7 +44,7 @@ export default async function page({
                <h3 className="text-lg font-bold">{project.title}</h3>
                <ProjectVisibility locale={locale} isPublic={project.public} />
             </div>
-            {!project.public ? (
+            {!project ? (
                <p>{readableISO(project.createdAt)}</p>
             ) : project.repoMeta ? (
                <p>{readableISO(project.repoMeta.createdAt)}</p>

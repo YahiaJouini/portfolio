@@ -1,7 +1,12 @@
 import { sqliteAdapter } from "@payloadcms/db-sqlite"
-import { lexicalEditor } from "@payloadcms/richtext-lexical"
+
+import {
+   defaultEditorFeatures,
+   FixedToolbarFeature,
+   lexicalEditor,
+} from "@payloadcms/richtext-lexical"
 import path from "path"
-import { buildConfig } from "payload"
+import { buildConfig, getPayload } from "payload"
 import sharp from "sharp"
 import { fileURLToPath } from "url"
 
@@ -12,13 +17,13 @@ import {
    PAYLOAD_SECRET,
 } from "@/utils/constants"
 import { Media } from "./src/collections/Media"
-import { Users } from "./src/collections/Users"
 import { Projects } from "./src/collections/Projects"
+import { Users } from "./src/collections/Users"
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
-export default buildConfig({
+const config = buildConfig({
    localization: {
       defaultLocale: "en",
       locales: [
@@ -48,7 +53,9 @@ export default buildConfig({
       user: Users.slug,
    },
    collections: [Media, Users, Projects],
-   editor: lexicalEditor(),
+   editor: lexicalEditor({
+      features: [...defaultEditorFeatures, FixedToolbarFeature()],
+   }),
    secret: PAYLOAD_SECRET,
    typescript: {
       outputFile: path.resolve(dirname, "payload-types.ts"),
@@ -79,3 +86,6 @@ export default buildConfig({
       }
    },
 })
+
+export default config
+export const payload = await getPayload({ config })
