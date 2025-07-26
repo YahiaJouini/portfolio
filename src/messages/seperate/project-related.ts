@@ -1,3 +1,6 @@
+import { ProjectRole } from "../types"
+import { Locale } from "../types/shared"
+
 export const summaryKeys = {
    frameworks: {
       en: "Frameworks & Libraries",
@@ -24,4 +27,32 @@ export const summaryKeys = {
       ar: "التصميم وواجهة المستخدم",
       fr: "Styling et UI",
    },
-}
+} satisfies Record<string, Record<Locale, string>>
+
+export const projectRoles = {
+   architected: {
+      en: "Architected",
+      ar: "صمّم البنية",
+      fr: "Conçu l'architecture",
+   },
+   deployed: {
+      en: "Deployed",
+      ar: "نُشِر",
+      fr: "Déployé",
+   },
+   designed: {
+      en: "Designed",
+      ar: "صمّم",
+      fr: "Conçu",
+   },
+   developed: {
+      en: "Developed",
+      ar: "طوّر",
+      fr: "Développé",
+   },
+   maintained: {
+      en: "Maintained",
+      ar: "تمّت صيانته",
+      fr: "Maintenu",
+   },
+} satisfies Record<ProjectRole, Record<Locale, string>>

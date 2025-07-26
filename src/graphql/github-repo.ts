@@ -109,8 +109,6 @@ export async function getRepoMeta(name: string): Promise<RepoMeta> {
     query GetRepoMeta($name: String!) {
       repository(owner: "YahiaJouini", name: $name) {
          createdAt
-         updatedAt
-         isPrivate
          primaryLanguage {
             name
             color

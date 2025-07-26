@@ -1,4 +1,3 @@
-import { ProjectRole } from "../types"
 import { Locale } from "../types/shared"
 
 export const layout = {
@@ -21,6 +20,7 @@ export const layout = {
       layout: "Layout",
       visit: "Visit",
       about: "About",
+      summary: "Development Summary",
    },
    fr: {
       settings: "Paramètres",
@@ -41,6 +41,7 @@ export const layout = {
       layout: "Disposition",
       visit: "Visiter",
       about: "À propos",
+      summary: "Development Summary",
    },
    ar: {
       settings: "الإعدادات",
@@ -61,33 +62,6 @@ export const layout = {
       layout: "تخطيط",
       visit: "زيارة",
       about: "عن",
+      summary: "Development Summary",
    },
 } satisfies Record<Locale, Record<string, string>>
-
-export const projectRoles = {
-   architected: {
-      en: "Architected",
-      ar: "صمّم البنية",
-      fr: "Conçu l'architecture",
-   },
-   deployed: {
-      en: "Deployed",
-      ar: "نُشِر",
-      fr: "Déployé",
-   },
-   designed: {
-      en: "Designed",
-      ar: "صمّم",
-      fr: "Conçu",
-   },
-   developed: {
-      en: "Developed",
-      ar: "طوّر",
-      fr: "Développé",
-   },
-   maintained: {
-      en: "Maintained",
-      ar: "تمّت صيانته",
-      fr: "Maintenu",
-   },
-} satisfies Record<ProjectRole, Record<Locale, string>>
