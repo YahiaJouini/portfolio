@@ -71,11 +71,21 @@ export class ProjectService {
 
          const readme = await this.getReadMe(project.id, locale)
 
-         return { ...project, ...repoMeta, readme }
+         const result: DetailedProject = {
+            ...project,
+            readme,
+         }
+         if (repoMeta) {
+            result.repoMeta = repoMeta
+         }
+         return result
       } catch {
          return null
       }
    }
 }
 
-export type DetailedProject = Project & RepoMeta & { readme: string }
+export type DetailedProject = Project & {
+   readme: string
+   repoMeta?: RepoMeta
+}

@@ -44,7 +44,14 @@ export default function Navbar() {
                         <Icon />
                         {item.title}
 
-                       
+                        <div
+                           className={cn(
+                              "bg-accent-active absolute bottom-0 left-1/2 h-[2px] w-0 -translate-x-1/2 transition-all group-hover:w-[120%]",
+                              {
+                                 "w-[120%]": active,
+                              },
+                           )}
+                        />
                      </Link>
                   )
                })}

@@ -1,4 +1,5 @@
 import ImageLoader from "@/components/global/ImageLoader"
+import ProjectVisibility from "@/components/global/ProjectVisibility"
 import Eye from "@/components/icons/Eye"
 import { profileImage } from "@/messages/global"
 import { layout } from "@/messages/seperate/layout"
@@ -8,6 +9,7 @@ import RenderMarkdown from "@/utils/render-markdown"
 import { getServerLocale } from "@/utils/server-locale"
 import Link from "next/link"
 import DisplaySection from "./_components/DisplaySection"
+import RightSection from "./_components/RightSection"
 
 export default async function page({
    params,
@@ -40,8 +42,11 @@ export default async function page({
                   />
                </div>
                <h3 className="text-lg font-bold">{project.title}</h3>
+               <ProjectVisibility locale={locale} isPublic={project.public} />
             </div>
-            <p>{readableISO(project.createdAt)}</p>
+            {project.repoMeta && (
+               <p>{readableISO(project.repoMeta.createdAt)}</p>
+            )}
          </div>
 
          {project.website && (
@@ -55,11 +60,14 @@ export default async function page({
                {layout[locale].visit}
             </Link>
          )}
-         <div className="border-border-default mt-6 w-[60%] rounded-md border">
-            <DisplaySection locale={locale} />
-            <div className="p-4">
-               <RenderMarkdown content={project.readme} />
+         <div className="flex items-start justify-between gap-14">
+            <div className="border-border-default mt-6 w-[65%] rounded-md border">
+               <DisplaySection locale={locale} />
+               <div className="p-4">
+                  <RenderMarkdown content={project.readme} />
+               </div>
             </div>
+            <RightSection locale={locale} project={project} />
          </div>
       </div>
    )

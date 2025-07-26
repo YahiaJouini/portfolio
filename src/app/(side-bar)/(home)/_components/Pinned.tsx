@@ -22,12 +22,15 @@ export default async function Pinned({ locale }: { locale: Locale }) {
                      <div className="flex items-center justify-start">
                         <Repo />
                         <Link
-                           className="w-auto overflow-hidden text-sm font-semibold text-nowrap hover:underline mr-2"
+                           className="mr-2 w-auto overflow-hidden text-sm font-semibold text-nowrap hover:underline"
                            href={`/projects/${project.id}`}
                         >
                            {project.title}
                         </Link>
-                        <ProjectVisibility isPublic={project.public} />
+                        <ProjectVisibility
+                           locale={locale}
+                           isPublic={project.public}
+                        />
                      </div>
 
                      <p className="text-text-secondary my-2.5 line-clamp-3 text-sm">
