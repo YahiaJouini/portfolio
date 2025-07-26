@@ -8,7 +8,7 @@ import type { SearchParams } from "nuqs/server"
 import Filter from "./_components/Filter"
 import GridShowcase from "./_components/GridShowcase"
 import ListShowcase from "./_components/ListShowcase"
-import Pagination from "../../../components/global/Pagination"
+import Pagination from "../../../../components/global/Pagination"
 
 type Props = {
    searchParams: Promise<SearchParams>
