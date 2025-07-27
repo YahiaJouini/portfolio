@@ -12,17 +12,19 @@ import Link from "next/link"
 import { SearchParams } from "nuqs"
 import DisplaySection from "./_components/DisplaySection"
 import RightSection from "./_components/RightSection"
-import { loadSearchParams } from "./project-filters"
 import ScreenShots from "./_components/ScreenShots"
+import { loadSearchParams } from "./project-filters"
 
 type Props = {
    params: Promise<{ slug: string }>
    searchParams: Promise<SearchParams>
 }
 export default async function page({ params, searchParams }: Props) {
-   const slug = (await params).slug
-   const { display } = await loadSearchParams(searchParams)
-   const locale = await getServerLocale()
+   const [slug, display, locale] = await Promise.all([
+      params.then((p) => p.slug),
+      loadSearchParams(searchParams).then((sp) => sp.display),
+      getServerLocale(),
+   ])
    const project = await ProjectService.getProject({ locale, slug })
 
    if (!project) {

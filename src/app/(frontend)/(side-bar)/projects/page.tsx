@@ -1,21 +1,23 @@
+import Pagination from "@/components/global/Pagination"
 import { projectsWithLang } from "@/graphql/github-repo"
 import { ProjectService } from "@/services/project"
 import { getPaginatedData } from "@/utils/pagination"
-import { loadSearchParams } from "./project-filters"
 import { getServerLocale } from "@/utils/server-locale"
 import type { SearchParams } from "nuqs/server"
-import Pagination from "@/components/global/Pagination"
 import Filter from "./_components/Filter"
 import GridShowcase from "./_components/GridShowcase"
 import ListShowcase from "./_components/ListShowcase"
+import { loadSearchParams } from "./project-filters"
 
 type Props = {
    searchParams: Promise<SearchParams>
 }
 
 export default async function Page({ searchParams }: Props) {
-   const { layout, page } = await loadSearchParams(searchParams)
-   const locale = await getServerLocale()
+   const [{ layout, page }, locale] = await Promise.all([
+      loadSearchParams(searchParams),
+      getServerLocale(),
+   ])
    const data = await ProjectService.getProjects({
       locale,
       page,
