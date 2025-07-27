@@ -1,5 +1,4 @@
 import { Project } from "../payload-types"
-import { RepoMeta } from "./graphql/github-repo"
 
 // for details page
 export type ProjectDetail = Project & {
@@ -24,5 +23,29 @@ export type ProjectListWithLang = ProjectList & {
    primaryLanguage: {
       name: string | null
       color: string | null
+   }
+}
+
+export type RepoMeta = {
+   createdAt: string
+   primaryLanguage: {
+      name: string | null
+      color: string | null
+   }
+   languages: {
+      edges: Array<{
+         size: number
+         node: {
+            name: string
+            color: string | null
+         }
+      }>
+   }
+   topics: {
+      nodes: Array<{
+         topic: {
+            name: string
+         }
+      }>
    }
 }

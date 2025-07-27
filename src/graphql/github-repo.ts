@@ -1,12 +1,16 @@
 import { LRUCache } from "@/services/cache"
-import { ProjectList, ProjectListWithLang } from "@/types"
-import { GITHUB_TOKEN } from "@/utils/constants"
-
-const GITHUB_API = "https://api.github.com/graphql"
+import { ProjectList, ProjectListWithLang, RepoMeta } from "@/types"
+import { GITHUB_API, GITHUB_TOKEN } from "@/utils/constants"
 
 export async function projectsWithLang(
    projects: Array<ProjectList>,
 ): Promise<Array<ProjectListWithLang>> {
+   // sort so if the order changes the cache is still valid
+   const cacheKey = projects
+      .map((project) => project.slug)
+      .sort()
+      .join("-")
+
    const query = `
       query {
          ${projects
@@ -34,7 +38,7 @@ export async function projectsWithLang(
          body: JSON.stringify({ query }),
          next: {
             revalidate: LRUCache.CACHE_TTL / 1000, // divide by 1000 to convert to seconds
-            tags: ["github-repos"],
+            tags: ["github-repos", `projects-${cacheKey}`],
          },
       })
 
@@ -73,31 +77,6 @@ export async function projectsWithLang(
    }
 }
 
-export type RepoMeta = {
-   createdAt: string
-   updatedAt: string
-   isPrivate: boolean
-   primaryLanguage: {
-      name: string | null
-      color: string | null
-   }
-   languages: {
-      edges: Array<{
-         size: number
-         node: {
-            name: string
-            color: string | null
-         }
-      }>
-   }
-   topics: {
-      nodes: Array<{
-         topic: {
-            name: string
-         }
-      }>
-   }
-}
 export async function getRepoMeta(name: string): Promise<RepoMeta> {
    const query = `
     query GetRepoMeta($name: String!) {
@@ -139,7 +118,7 @@ export async function getRepoMeta(name: string): Promise<RepoMeta> {
       }),
       next: {
          revalidate: 3600,
-         tags: ["github-repo", `repo-${name}`],
+         tags: ["github-repos", `repo-${name}`],
       },
    })
 
@@ -147,6 +126,10 @@ export async function getRepoMeta(name: string): Promise<RepoMeta> {
 
    if (data.errors) {
       throw new Error(JSON.stringify(data.errors))
+   }
+
+   if (!data.data?.repository) {
+      throw new Error(`Repository "${name}" not found`)
    }
 
    return data.data.repository

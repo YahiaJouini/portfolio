@@ -72,6 +72,7 @@ const config = buildConfig({
       const existingUsers = await payload.find({
          collection: "users",
          limit: 1,
+         depth: 1,
       })
 
       if (existingUsers.docs.length === 0) {

@@ -1,6 +1,6 @@
-import { getRepoMeta, RepoMeta } from "@/graphql/github-repo"
+import { getRepoMeta } from "@/graphql/github-repo"
 import { Locale } from "@/messages/types/shared"
-import { ProjectList } from "@/types"
+import { ProjectList, RepoMeta } from "@/types"
 import config from "@payload-config"
 import { getPayload, Payload } from "payload"
 import { Project } from "../../payload-types"

@@ -15,3 +15,5 @@ export const {
    ADMIN_EMAIL,
    ADMIN_PASSWORD,
 } = envSchema.parse(process.env)
+
+export const GITHUB_API = "https://api.github.com/graphql"
