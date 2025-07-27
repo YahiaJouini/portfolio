@@ -1,6 +1,5 @@
 import { summaryKeys } from "@/messages/seperate/project-related"
-import { ProjectService } from "@/services/project"
-import { payloadAccess } from "@/utils/payload-access"
+import { projectPayloadAccess } from "@/utils/payload-access"
 import { CollectionConfig } from "payload"
 
 export const Projects: CollectionConfig = {
@@ -14,11 +13,7 @@ export const Projects: CollectionConfig = {
       useAsTitle: "title",
       description: "Manage your projects, including details and media.",
    },
-   access: payloadAccess({
-      public: true,
-      clearCacheFn: ({ locale, slug }) =>
-         ProjectService.clearSpecificCache({ locale, slug }),
-   }),
+   access: projectPayloadAccess(),
    fields: [
       {
          name: "slug",

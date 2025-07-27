@@ -10,7 +10,7 @@ export const Users: CollectionConfig = {
    admin: {
       useAsTitle: "email",
    },
-   access: payloadAccess({ public: false }),
+   access: payloadAccess({ isPublic: false }),
    fields: [
       {
          name: "role",

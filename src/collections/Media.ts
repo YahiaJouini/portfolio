@@ -3,7 +3,7 @@ import type { CollectionConfig } from "payload"
 
 export const Media: CollectionConfig = {
    slug: "media",
-   access: payloadAccess({ public: false }),
+   access: payloadAccess({ isPublic: false }),
    upload: {
       staticDir: "media",
       formatOptions: {

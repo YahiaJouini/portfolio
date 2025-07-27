@@ -1,61 +1,65 @@
 import { getRepoMeta, RepoMeta } from "@/graphql/github-repo"
 import { Locale } from "@/messages/types/shared"
-import { Project } from "../../payload-types"
 import config from "@payload-config"
-import { getPayload } from "payload"
+import { getPayload, Payload } from "payload"
+import { Project } from "../../payload-types"
+import { LRUCache } from "./cache"
 
-type CacheEntry<T> = {
-   data: T
-   timestamp: number
+export type DetailedProject = Project & {
+   repoMeta?: RepoMeta
+}
+
+export type CacheFn = {
+   locale?: Locale
+   slug: string
+}
+
+type ProjectsOptions = {
+   pinned: boolean
+   locale: Locale
+   page: number
 }
 
 export class ProjectService {
-   private static projectCache = new Map<string, CacheEntry<DetailedProject>>()
-
    // 24 hours in milliseconds
    private static readonly CACHE_TTL = 24 * 60 * 60 * 1000
+   // 20 projects
+   private static projectCache = new LRUCache<string, DetailedProject>(
+      20,
+      this.CACHE_TTL,
+   )
+   // 30 projects (5 pages of 6 projects each)
+   private static projectsListCache = new LRUCache<string, Project[]>(
+      5,
+      this.CACHE_TTL,
+   )
 
-   private static isCacheValid<T>(entry: CacheEntry<T>): boolean {
-      return Date.now() - entry.timestamp < this.CACHE_TTL
+   private static payloadInstance: Payload | null = null
+
+   private static async getPayloadInstance(): Promise<Payload> {
+      if (!this.payloadInstance) {
+         this.payloadInstance = await getPayload({ config })
+      }
+      return this.payloadInstance
    }
 
-   private static getCachedProject(
-      locale: Locale,
-      slug: string,
-   ): DetailedProject | undefined {
-      const key = `${locale}/${slug}`
-      const entry = this.projectCache.get(key)
-
-      if (entry && this.isCacheValid(entry)) {
-         return entry.data
-      }
-
-      // Remove expired entry
-      if (entry) {
-         this.projectCache.delete(key)
-      }
-
-      return undefined
+   private static generateProjectKey(slug: string, locale: Locale): string {
+      return `${locale}:${slug}`
    }
 
-   private static setCachedProject(
+   private static generateProjectsListKey(
+      page: number,
+      pinned: boolean,
       locale: Locale,
-      slug: string,
-      project: DetailedProject,
-   ): DetailedProject {
-      const key = `${locale}/${slug}`
-      this.projectCache.set(key, {
-         data: project,
-         timestamp: Date.now(),
-      })
-      return project
+   ): string {
+      return `${locale}:${pinned ? "pinned" : "all"}:${page}`
    }
 
    private static async fetchProject(
-      locale: Locale,
       slug: string,
+      locale: Locale,
    ): Promise<Project | undefined> {
-      const payload = await getPayload({ config })
+      const payload = await this.getPayloadInstance()
       const {
          docs: [project],
       } = await payload.find({
@@ -72,12 +76,16 @@ export class ProjectService {
       return project
    }
 
-   static async getProject(
-      locale: Locale,
-      slug: string,
-   ): Promise<DetailedProject | undefined> {
-      // Check cache first
-      const cachedProject = this.getCachedProject(locale, slug)
+   static async getProject({
+      locale,
+      slug,
+   }: {
+      locale: Locale
+      slug: string
+   }): Promise<DetailedProject | undefined> {
+      const cacheKey = this.generateProjectKey(slug, locale)
+      // check cache first
+      const cachedProject = this.projectCache.get(cacheKey)
       if (cachedProject) {
          console.log("cache hit for", slug)
          return cachedProject
@@ -85,7 +93,7 @@ export class ProjectService {
 
       try {
          const [projectResult, repoMetaResult] = await Promise.allSettled([
-            this.fetchProject(locale, slug),
+            this.fetchProject(slug, locale),
             getRepoMeta(slug),
          ])
          const project =
@@ -95,60 +103,79 @@ export class ProjectService {
 
          if (!project) return undefined
 
-         const result: DetailedProject = project
+         const detailedProject: DetailedProject = { ...project }
          if (repoMeta) {
-            result.repoMeta = repoMeta
+            detailedProject.repoMeta = repoMeta
          }
 
-         return this.setCachedProject(locale, slug, result)
+         this.projectCache.set(cacheKey, detailedProject)
+         return detailedProject
       } catch (err) {
          console.error("Error fetching project:", err)
          return undefined
       }
    }
 
-   static clearExpiredCache(): void {
-      const now = Date.now()
-      for (const [key, entry] of this.projectCache.entries()) {
-         if (now - entry.timestamp >= this.CACHE_TTL) {
-            this.projectCache.delete(key)
-         }
-      }
+   private static async fetchProjects(
+      page: number,
+      pinned = false,
+      locale: Locale,
+   ): Promise<Project[]> {
+      const payload = await this.getPayloadInstance()
+      const { docs: projects } = await payload.find({
+         collection: "projects",
+         limit: 6,
+         page,
+         locale: locale,
+         where: pinned ? { pinned: { equals: true } } : {},
+         sort: "-createdAt",
+      })
+      return projects
    }
 
-   static clearCacheBySlug(slug: string): void {
-      for (const key of this.projectCache.keys()) {
-         if (key.endsWith(`/${slug}`)) {
-            this.projectCache.delete(key)
-         }
-      }
-   }
-   static clearCacheBySlugAndLocale(locale: Locale, slug: string): void {
-      const key = `${locale}/${slug}`
-      this.projectCache.delete(key)
-   }
-
-   static clearSpecificCache({
+   static async getProjects({
+      page = 1,
+      pinned = false,
       locale,
-      slug,
-   }: {
-      locale?: Locale
-      slug: string
-   }): void {
-      console.log("cache cleared for", slug, "locale:", locale)
-      if (locale) {
-         this.clearCacheBySlugAndLocale(locale, slug)
-      } else {
-         this.clearCacheBySlug(slug)
+   }: ProjectsOptions): Promise<Project[]> {
+      const cacheKey = this.generateProjectsListKey(page, pinned, locale)
+
+      // check cache first
+      const cachedProjects = this.projectsListCache.get(cacheKey)
+      if (cachedProjects) {
+         console.log(`Cache hit for projects list: ${cacheKey}`)
+         return cachedProjects
+      }
+
+      try {
+         const projects = await this.fetchProjects(page, pinned, locale)
+         this.projectsListCache.set(cacheKey, projects)
+         return projects
+      } catch (err) {
+         console.error("Error fetching projects:", err)
+         return []
       }
    }
-}
 
-export type DetailedProject = Project & {
-   repoMeta?: RepoMeta
-}
+   // cache clearing
+   static clearProjectCache({ slug, locale }: CacheFn): void {
+      if (locale) {
+         const key = this.generateProjectKey(slug, locale)
+         this.projectCache.delete(key)
+         console.log(`Cleared cache for project: ${key}`)
+      } else {
+         this.projectCache.clear()
+         console.log(`Cleared all project cache`)
+      }
+   }
 
-export type CacheFn = {
-   locale?: Locale
-   slug: string
+   static clearProjectsListCache(): void {
+      this.projectsListCache.clear()
+   }
+
+   static clearAllCache(): void {
+      this.projectCache.clear()
+      this.projectsListCache.clear()
+      console.log("Cleared all cache")
+   }
 }
