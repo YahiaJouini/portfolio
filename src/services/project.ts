@@ -3,7 +3,7 @@ import { Locale } from "@/messages/types/shared"
 import { ProjectDetail, ProjectList } from "@/types"
 import config from "@payload-config"
 import { getPayload, Payload } from "payload"
-import { Project } from "../../payload-types"
+import { Project } from "../payload-types"
 import { LRUCache } from "./cache"
 
 export type CacheFn = {

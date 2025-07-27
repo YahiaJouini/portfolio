@@ -243,6 +243,11 @@ export interface Project {
    */
   images: {
     image: number | Media;
+    title: string;
+    /**
+     * Optional description for the image, used for accessibility
+     */
+    description?: string | null;
     id?: string | null;
   }[];
   updatedAt: string;
@@ -388,6 +393,8 @@ export interface ProjectsSelect<T extends boolean = true> {
     | T
     | {
         image?: T;
+        title?: T;
+        description?: T;
         id?: T;
       };
   updatedAt?: T;

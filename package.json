@@ -10,7 +10,7 @@
       "payload": "PAYLOAD_CONFIG_PATH=./payload.config.ts payload",
       "db:generate": "payload migrate:create",
       "db:migrate": "payload migrate",
-      "db:reset": "rm -f data.db",
+      "db:reset": "rm -rf data.db media migrations",
       "generate:types": "payload generate:types",
       "lint": "next lint"
    },

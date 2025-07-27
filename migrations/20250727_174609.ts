@@ -90,6 +90,16 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   await db.run(sql`CREATE INDEX \`projects_images_order_idx\` ON \`projects_images\` (\`_order\`);`)
   await db.run(sql`CREATE INDEX \`projects_images_parent_id_idx\` ON \`projects_images\` (\`_parent_id\`);`)
   await db.run(sql`CREATE INDEX \`projects_images_image_idx\` ON \`projects_images\` (\`image_id\`);`)
+  await db.run(sql`CREATE TABLE \`projects_images_locales\` (
+  	\`title\` text NOT NULL,
+  	\`description\` text,
+  	\`id\` integer PRIMARY KEY NOT NULL,
+  	\`_locale\` text NOT NULL,
+  	\`_parent_id\` text NOT NULL,
+  	FOREIGN KEY (\`_parent_id\`) REFERENCES \`projects_images\`(\`id\`) ON UPDATE no action ON DELETE cascade
+  );
+  `)
+  await db.run(sql`CREATE UNIQUE INDEX \`projects_images_locales_locale_parent_id_unique\` ON \`projects_images_locales\` (\`_locale\`,\`_parent_id\`);`)
   await db.run(sql`CREATE TABLE \`projects\` (
   	\`id\` integer PRIMARY KEY NOT NULL,
   	\`slug\` text NOT NULL,
@@ -97,8 +107,8 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	\`demo_url\` text,
   	\`type\` text NOT NULL,
   	\`created_at\` text DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')) NOT NULL,
-  	\`public\` integer DEFAULT true,
-  	\`open_source\` integer DEFAULT true,
+  	\`public\` integer DEFAULT true NOT NULL,
+  	\`open_source\` integer DEFAULT true NOT NULL,
   	\`status\` text DEFAULT 'published' NOT NULL,
   	\`updated_at\` text DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')) NOT NULL
   );
@@ -109,7 +119,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	\`title\` text NOT NULL,
   	\`description\` text NOT NULL,
   	\`rich_text\` text NOT NULL,
-  	\`pinned\` integer DEFAULT false,
+  	\`pinned\` integer DEFAULT false NOT NULL,
   	\`id\` integer PRIMARY KEY NOT NULL,
   	\`_locale\` text NOT NULL,
   	\`_parent_id\` integer NOT NULL,
@@ -192,6 +202,7 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   await db.run(sql`DROP TABLE \`projects_summary_values\`;`)
   await db.run(sql`DROP TABLE \`projects_summary\`;`)
   await db.run(sql`DROP TABLE \`projects_images\`;`)
+  await db.run(sql`DROP TABLE \`projects_images_locales\`;`)
   await db.run(sql`DROP TABLE \`projects\`;`)
   await db.run(sql`DROP TABLE \`projects_locales\`;`)
   await db.run(sql`DROP TABLE \`payload_locked_documents\`;`)

@@ -58,7 +58,7 @@ const config = buildConfig({
    }),
    secret: PAYLOAD_SECRET,
    typescript: {
-      outputFile: path.resolve(dirname, "payload-types.ts"),
+      outputFile: path.resolve(dirname, "src/payload-types.ts"),
    },
    db: sqliteAdapter({
       client: {

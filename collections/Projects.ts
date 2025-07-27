@@ -264,6 +264,23 @@ export const Projects: CollectionConfig = {
                relationTo: "media",
                required: true,
             },
+            {
+               name: "title",
+               type: "text",
+               required: true,
+               localized: true,
+               label: "Image Title",
+            },
+            {
+               name: "description",
+               type: "textarea",
+               localized: true,
+               label: "Image Description",
+               admin: {
+                  description:
+                     "Optional description for the image, used for accessibility",
+               },
+            },
          ],
       },
    ],

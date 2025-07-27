@@ -1,6 +1,6 @@
 import { layout } from "@/messages/seperate/layout"
-import { Project } from "@/messages/types"
 import { Locale } from "@/messages/types/shared"
+import { Project } from "@/payload-types"
 
 type Props = {
    isPublic: Project["public"]

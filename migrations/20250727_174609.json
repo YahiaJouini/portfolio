@@ -602,6 +602,74 @@
       "uniqueConstraints": {},
       "checkConstraints": {}
     },
+    "projects_images_locales": {
+      "name": "projects_images_locales",
+      "columns": {
+        "title": {
+          "name": "title",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "_locale": {
+          "name": "_locale",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "_parent_id": {
+          "name": "_parent_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "projects_images_locales_locale_parent_id_unique": {
+          "name": "projects_images_locales_locale_parent_id_unique",
+          "columns": [
+            "_locale",
+            "_parent_id"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "projects_images_locales_parent_id_fk": {
+          "name": "projects_images_locales_parent_id_fk",
+          "tableFrom": "projects_images_locales",
+          "tableTo": "projects_images",
+          "columnsFrom": [
+            "_parent_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
     "projects": {
       "name": "projects",
       "columns": {
@@ -652,7 +720,7 @@
           "name": "public",
           "type": "integer",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "autoincrement": false,
           "default": true
         },
@@ -660,7 +728,7 @@
           "name": "open_source",
           "type": "integer",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "autoincrement": false,
           "default": true
         },
@@ -730,7 +798,7 @@
           "name": "pinned",
           "type": "integer",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "autoincrement": false,
           "default": false
         },
@@ -1244,6 +1312,6 @@
   "internal": {
     "indexes": {}
   },
-  "id": "cd4fa09c-c2b2-4160-8869-416137d1c682",
+  "id": "02d93c58-8879-438d-814d-6dd50dfd0a65",
   "prevId": "00000000-0000-0000-0000-000000000000"
 }

@@ -3,11 +3,11 @@ import Summary from "@/components/icons/Summary"
 import { layout } from "@/messages/seperate/layout"
 import { summaryKeys } from "@/messages/seperate/project-related"
 import { Locale } from "@/messages/types/shared"
-import { DetailedProject } from "@/services/project"
 import { LanguageBar } from "./LanguageBar"
+import { ProjectDetail } from "@/types"
 
 type Props = {
-   project: DetailedProject
+   project: ProjectDetail
    locale: Locale
 }
 export default function RightSection({ project, locale }: Props) {

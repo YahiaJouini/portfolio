@@ -1,4 +1,4 @@
-import { Project } from "../payload-types"
+import { Project } from "./payload-types"
 
 // for details page
 export type ProjectDetail = Project & {

@@ -1,4 +1,4 @@
-import { RepoMeta } from "@/graphql/github-repo"
+import { RepoMeta } from "@/types"
 
 export function LanguageBar({
    languages,
