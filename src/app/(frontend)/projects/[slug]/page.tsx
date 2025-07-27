@@ -36,7 +36,6 @@ export default async function page({ params, searchParams }: Props) {
       )
    }
 
-   console.log(project.images)
    return (
       <div className="mx-auto w-full">
          <div className="border-default-border mb-4 flex items-center justify-between border-b pb-3">

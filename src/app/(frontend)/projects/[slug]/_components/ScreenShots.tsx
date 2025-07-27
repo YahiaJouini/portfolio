@@ -1,4 +1,3 @@
-"use client"
 import ImageLoader from "@/components/global/ImageLoader"
 import {
    Dialog,
@@ -8,7 +7,6 @@ import {
    DialogTitle,
    DialogTrigger,
 } from "@/components/ui/dialog"
-import { Media } from "@/payload-types"
 import { ProjectDetail } from "@/types"
 
 export default function ScreenShots({
@@ -21,44 +19,43 @@ export default function ScreenShots({
    }
    return (
       <div className="w-full space-y-6">
-         {images.map(({ image: media }) => {
-            if (typeof media === "number" || !media.url) {
-               return null
-            }
-            return <Popup media={media} key={media.id} />
-         })}
+         {images.map((image) => (
+            <Popup media={image} key={image.id} />
+         ))}
       </div>
    )
 }
 
-export function Popup({ media }: { media: Media }) {
+export function Popup({ media }: { media: ProjectDetail["images"][number] }) {
+   const { image, title, description } = media
+   if (typeof image === "number" || !image.url) {
+      return null
+   }
+   const renderedImage = (
+      <ImageLoader
+         src={image.url}
+         alt={image.alt}
+         fill
+         className="object-cover"
+         sizes="100vw"
+      />
+   )
    return (
       <Dialog>
          <DialogTrigger className="relative aspect-video w-full overflow-hidden rounded-lg">
-            <ImageLoader
-               src={media.url}
-               alt={media.alt}
-               fill
-               className="object-cover"
-               sizes="100vw"
-            />
+            {renderedImage}
          </DialogTrigger>
-         <DialogContent className="w-auto !max-w-none">
+         <DialogContent className="w-[50%] !max-w-none">
             <DialogHeader>
-               <DialogTitle>Are you absolutely sure?</DialogTitle>
-               <DialogDescription>
-                  This action cannot be undone. This will permanently delete
-                  your account and remove your data from our servers.
-               </DialogDescription>
+               <DialogTitle>{title}</DialogTitle>
+               {description && (
+                  <DialogDescription className="text-text-secondary">
+                     {description}
+                  </DialogDescription>
+               )}
             </DialogHeader>
             <div className="relative aspect-video w-full overflow-hidden rounded-lg">
-               <ImageLoader
-                  src={media.url}
-                  alt={media.alt}
-                  fill
-                  className="object-cover"
-                  sizes="100vw"
-               />
+               {renderedImage}
             </div>
          </DialogContent>
       </Dialog>
