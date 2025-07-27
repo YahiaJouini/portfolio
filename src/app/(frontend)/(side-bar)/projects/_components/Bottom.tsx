@@ -16,12 +16,12 @@ export default function Bottom({ project, locale }: Props) {
          <p className="text-text-secondary text-xs">
             {project.primaryLanguage.name ?? "Unknown"}
          </p>
-         {project.website && (
+         {project.demoUrl && (
             <Link
                target="_blank"
                rel="noopener noreferrer"
                className="text-text-secondary hover:text-text-link ml-4 flex items-center gap-1 text-xs hover:underline max-[265px]:hidden"
-               href={project.website}
+               href={project.demoUrl}
             >
                <Eye />
                {layout[locale].visit}
@@ -32,7 +32,7 @@ export default function Bottom({ project, locale }: Props) {
                target="_blank"
                rel="noopener noreferrer"
                className="text-text-secondary hover:text-text-link ml-4 flex items-center gap-1 text-xs hover:underline max-[265px]:hidden"
-               href={project.github}
+               href={project.githubUrl}
             >
                <Code />
                Code

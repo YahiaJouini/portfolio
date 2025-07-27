@@ -1,6 +1,5 @@
 import React from "react"
 import { Page } from "./shared"
-import { summaryKeys } from "../seperate/project-related"
 
 export type About = {
    title: string
@@ -43,54 +42,9 @@ export type Technology = {
    Icon: React.ComponentType<{ className?: string }>
 }
 
-export type ProjectName =
-   | "aftercode"
-   | "educonnect"
-   | "mariagetn"
-   | "mariagetn-api"
-   | "meelice"
-   | "alpha"
-   | "edufinance"
-   | "nuit-blanche"
-
 export type ProjectRole =
    | "designed"
    | "developed"
    | "maintained"
    | "deployed"
    | "architected"
-
-type BaseProjectCommon = {
-   id: ProjectName
-   github: `https://github.com/YahiaJouini/${ProjectName}`
-   website?: string
-   pinned: boolean
-   type: "personal" | "work"
-   images?: Array<string>
-   roles: Array<{
-      key: ProjectRole
-      value: boolean
-   }>
-   summary: Array<{
-      key: keyof typeof summaryKeys
-      values: Array<string>
-   }>
-}
-
-type PublicProject = BaseProjectCommon & {
-   public: true
-   createdAt?: string
-}
-
-type PrivateProject = BaseProjectCommon & {
-   public: false
-   createdAt: string
-}
-
-export type BaseProject = PublicProject | PrivateProject
-
-// for translation purposes
-export type Project = BaseProject & {
-   title: string
-   description: string
-}

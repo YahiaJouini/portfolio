@@ -1,14 +1,16 @@
 import ProjectVisibility from "@/components/global/ProjectVisibility"
 import Repo from "@/components/icons/Repo"
 import { cn } from "@/lib/utils"
-import { Project } from "@/messages/types"
 import { Locale } from "@/messages/types/shared"
-import { getTranslation } from "@/utils/get-translation"
+import { ProjectService } from "@/services/project"
 import Link from "next/link"
 
 export default async function Pinned({ locale }: { locale: Locale }) {
-   const data = await getTranslation<Array<Project>>(locale, "projects")
-   const pinned = data.filter((project) => project.pinned)
+   const pinned = await ProjectService.getProjects({
+      pinned: true,
+      locale,
+      page: 1,
+   })
    return (
       <div>
          <h2 className="mt-8 mb-1">Pinned</h2>
@@ -16,14 +18,14 @@ export default async function Pinned({ locale }: { locale: Locale }) {
             {pinned.map((project) => {
                return (
                   <div
-                     key={project.github}
+                     key={project.slug}
                      className="border-border-default flex min-h-[125px] flex-col justify-between rounded-md border p-4"
                   >
                      <div className="flex items-center justify-start">
                         <Repo />
                         <Link
                            className="mr-2 w-auto overflow-hidden text-sm font-semibold text-nowrap hover:underline"
-                           href={`/projects/${project.id}`}
+                           href={`/projects/${project.slug}`}
                         >
                            {project.title}
                         </Link>

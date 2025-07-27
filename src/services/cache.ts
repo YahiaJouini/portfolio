@@ -28,6 +28,7 @@ export class LRUCache<K, V> {
 
       this.accessOrder.set(key, ++this.accessCounter)
 
+      console.log("cache hit for", key)
       return entry.data
    }
 
@@ -47,11 +48,13 @@ export class LRUCache<K, V> {
          timestamp: Date.now(),
       }
 
+      console.log("cache set for", key)
       this.cache.set(key, entry)
       this.accessOrder.set(key, ++this.accessCounter)
    }
 
    delete(key: K): boolean {
+      console.log("cache delete for", key)
       this.accessOrder.delete(key)
       return this.cache.delete(key)
    }

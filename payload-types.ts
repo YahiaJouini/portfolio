@@ -231,22 +231,20 @@ export interface Project {
    * Date when the project was created (used for sorting and display)
    */
   createdAt: string;
-  public?: boolean | null;
-  'open-source'?: boolean | null;
+  public: boolean;
+  'open-source': boolean;
   /**
    * Mark this project as featured to highlight it in your portfolio
    */
-  pinned?: boolean | null;
+  pinned: boolean;
   status: 'draft' | 'published' | 'archived';
   /**
    * Screenshots or images showcasing the project
    */
-  images?:
-    | {
-        image: number | Media;
-        id?: string | null;
-      }[]
-    | null;
+  images: {
+    image: number | Media;
+    id?: string | null;
+  }[];
   updatedAt: string;
 }
 /**

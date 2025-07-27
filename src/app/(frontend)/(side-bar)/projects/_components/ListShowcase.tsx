@@ -11,12 +11,11 @@ export default function ListShowcase({ project, locale }: Props) {
                <span>
                   <Link
                      className="text-text-link text-lg font-semibold hover:underline md:text-xl"
-                     href={`/projects/${project.id}`}
+                     href={`/projects/${project.slug}`}
                   >
                      {project.title}
                   </Link>
                </span>
-              
             </h4>
             <p className="text-text-secondary mt-1 w-[95%] text-sm">
                {project.description}

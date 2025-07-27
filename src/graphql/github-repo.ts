@@ -1,24 +1,17 @@
-import { Project } from "@/messages/types"
+import { ProjectList, ProjectListWithLang } from "@/types"
 import { GITHUB_TOKEN } from "@/utils/constants"
 
 const GITHUB_API = "https://api.github.com/graphql"
 
-export type ProjectWithLang = Project & {
-   primaryLanguage: {
-      name: string | null
-      color: string | null
-   }
-}
-
 export async function projectsWithLang(
-   projects: Array<Project>,
-): Promise<Array<ProjectWithLang>> {
+   projects: Array<ProjectList>,
+): Promise<Array<ProjectListWithLang>> {
    const query = `
       query {
          ${projects
             .map(
                (project, index) => `
-            repo${index}: repository(owner: "YahiaJouini", name: "${project.id}") {
+            repo${index}: repository(owner: "YahiaJouini", name: "${project.slug}") {
                primaryLanguage {
                   name
                   color
@@ -39,7 +32,7 @@ export async function projectsWithLang(
          },
          body: JSON.stringify({ query }),
          next: {
-            revalidate: 3600,
+            revalidate: 60 * 60 * 24, // 24 days
             tags: ["github-repos"],
          },
       })

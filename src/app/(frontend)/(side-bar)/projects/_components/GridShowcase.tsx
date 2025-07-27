@@ -9,7 +9,7 @@ export default function GridShowcase({ locale, project }: Props) {
             <div className="mx-auto aspect-video w-full bg-slate-300"></div>
             <Link
                className="text-text-link text-lg font-semibold hover:underline md:text-xl"
-               href={`/projects/${project.id}`}
+               href={`/projects/${project.slug}`}
             >
                {project.title}
             </Link>

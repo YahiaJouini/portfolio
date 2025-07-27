@@ -1,5 +1,6 @@
 import { getRepoMeta, RepoMeta } from "@/graphql/github-repo"
 import { Locale } from "@/messages/types/shared"
+import { ProjectList } from "@/types"
 import config from "@payload-config"
 import { getPayload, Payload } from "payload"
 import { Project } from "../../payload-types"
@@ -29,7 +30,7 @@ export class ProjectService {
       this.CACHE_TTL,
    )
    // 30 projects (5 pages of 6 projects each)
-   private static projectsListCache = new LRUCache<string, Project[]>(
+   private static projectsListCache = new LRUCache<string, ProjectList[]>(
       5,
       this.CACHE_TTL,
    )
@@ -86,11 +87,7 @@ export class ProjectService {
       const cacheKey = this.generateProjectKey(slug, locale)
       // check cache first
       const cachedProject = this.projectCache.get(cacheKey)
-      if (cachedProject) {
-         console.log("cache hit for", slug)
-         return cachedProject
-      }
-
+      if (cachedProject) return cachedProject
       try {
          const [projectResult, repoMetaResult] = await Promise.allSettled([
             this.fetchProject(slug, locale),
@@ -116,18 +113,31 @@ export class ProjectService {
       }
    }
 
+   // depth 1 to speed up queries since we don't need nested data
    private static async fetchProjects(
       page: number,
       pinned = false,
       locale: Locale,
-   ): Promise<Project[]> {
+   ): Promise<ProjectList[]> {
       const payload = await this.getPayloadInstance()
       const { docs: projects } = await payload.find({
          collection: "projects",
          limit: 6,
          page,
-         locale: locale,
+         locale,
          where: pinned ? { pinned: { equals: true } } : {},
+         select: {
+            id: true,
+            title: true,
+            slug: true,
+            description: true,
+            demoUrl: true,
+            githubUrl: true,
+            pinned: true,
+            public: true,
+            type: true,
+         },
+         depth: 1,
          sort: "-createdAt",
       })
       return projects
@@ -137,15 +147,12 @@ export class ProjectService {
       page = 1,
       pinned = false,
       locale,
-   }: ProjectsOptions): Promise<Project[]> {
+   }: ProjectsOptions): Promise<ProjectList[]> {
       const cacheKey = this.generateProjectsListKey(page, pinned, locale)
 
       // check cache first
       const cachedProjects = this.projectsListCache.get(cacheKey)
-      if (cachedProjects) {
-         console.log(`Cache hit for projects list: ${cacheKey}`)
-         return cachedProjects
-      }
+      if (cachedProjects) return cachedProjects
 
       try {
          const projects = await this.fetchProjects(page, pinned, locale)
@@ -162,7 +169,6 @@ export class ProjectService {
       if (locale) {
          const key = this.generateProjectKey(slug, locale)
          this.projectCache.delete(key)
-         console.log(`Cleared cache for project: ${key}`)
       } else {
          this.projectCache.clear()
          console.log(`Cleared all project cache`)

@@ -19,7 +19,7 @@ export default async function page({
 }) {
    const slug = (await params).slug
    const locale = await getServerLocale()
-   const project = await ProjectService.getProject(locale, slug)
+   const project = await ProjectService.getProject({ locale, slug })
    if (!project) {
       return (
          <div className="mx-auto w-full max-w-4xl">

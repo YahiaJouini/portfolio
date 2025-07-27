@@ -206,18 +206,21 @@ export const Projects: CollectionConfig = {
          name: "public",
          type: "checkbox",
          label: "Public Project",
+         required: true,
          defaultValue: true,
       },
       {
          name: "open-source",
          type: "checkbox",
          label: "Open Source",
+         required: true,
          defaultValue: true,
       },
       {
          name: "pinned",
          type: "checkbox",
          localized: true,
+         required: true,
          label: "Pinned Project",
          admin: {
             description:
@@ -250,6 +253,7 @@ export const Projects: CollectionConfig = {
          name: "images",
          type: "array",
          label: "Project Images",
+         required: true,
          admin: {
             description: "Screenshots or images showcasing the project",
          },
