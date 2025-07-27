@@ -16,9 +16,9 @@ import {
    DATABASE_URI,
    PAYLOAD_SECRET,
 } from "@/utils/constants"
-import { Media } from "./src/collections/Media"
-import { Projects } from "./src/collections/Projects"
-import { Users } from "./src/collections/Users"
+import { Media } from "./collections/Media"
+import { Projects } from "./collections/Projects"
+import { Users } from "./collections/Users"
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -64,6 +64,7 @@ const config = buildConfig({
       client: {
          url: DATABASE_URI || path.resolve(dirname, "data.db"),
       },
+      migrationDir: path.resolve(dirname, "migrations"),
    }),
    sharp,
    plugins: [],

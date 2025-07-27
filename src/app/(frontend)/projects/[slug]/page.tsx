@@ -9,17 +9,22 @@ import { customConverters } from "@/utils/richtext"
 import { getServerLocale } from "@/utils/server-locale"
 import { RichText } from "@payloadcms/richtext-lexical/react"
 import Link from "next/link"
+import { SearchParams } from "nuqs"
 import DisplaySection from "./_components/DisplaySection"
 import RightSection from "./_components/RightSection"
+import { loadSearchParams } from "./project-filters"
+import ScreenShots from "./_components/ScreenShots"
 
-export default async function page({
-   params,
-}: {
+type Props = {
    params: Promise<{ slug: string }>
-}) {
+   searchParams: Promise<SearchParams>
+}
+export default async function page({ params, searchParams }: Props) {
    const slug = (await params).slug
+   const { display } = await loadSearchParams(searchParams)
    const locale = await getServerLocale()
    const project = await ProjectService.getProject({ locale, slug })
+
    if (!project) {
       return (
          <div className="mx-auto w-full max-w-4xl">
@@ -30,6 +35,8 @@ export default async function page({
          </div>
       )
    }
+
+   console.log(project.images)
    return (
       <div className="mx-auto w-full">
          <div className="border-default-border mb-4 flex items-center justify-between border-b pb-3">
@@ -69,12 +76,16 @@ export default async function page({
          <div className="flex items-start justify-between gap-10">
             <div className="border-border-default mt-6 rounded-md border xl:w-[70%]">
                <DisplaySection locale={locale} />
-               <div className="p-[18px]">
-                  <RichText
-                     disableContainer
-                     data={project.richText}
-                     converters={customConverters}
-                  />
+               <div className="p-6">
+                  {display === "readme" ? (
+                     <RichText
+                        disableContainer
+                        data={project.richText}
+                        converters={customConverters}
+                     />
+                  ) : (
+                     <ScreenShots images={project.images} />
+                  )}
                </div>
             </div>
             <RightSection locale={locale} project={project} />

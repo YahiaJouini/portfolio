@@ -1,14 +1,10 @@
 import { getRepoMeta } from "@/graphql/github-repo"
 import { Locale } from "@/messages/types/shared"
-import { ProjectList, RepoMeta } from "@/types"
+import { ProjectDetail, ProjectList } from "@/types"
 import config from "@payload-config"
 import { getPayload, Payload } from "payload"
 import { Project } from "../../payload-types"
 import { LRUCache } from "./cache"
-
-export type DetailedProject = Project & {
-   repoMeta?: RepoMeta
-}
 
 export type CacheFn = {
    locale?: Locale
@@ -23,7 +19,7 @@ type ProjectsOptions = {
 
 export class ProjectService {
    // 20 projects
-   private static projectCache = new LRUCache<string, DetailedProject>(
+   private static projectCache = new LRUCache<string, ProjectDetail>(
       20,
       LRUCache.CACHE_TTL,
    )
@@ -81,7 +77,7 @@ export class ProjectService {
    }: {
       locale: Locale
       slug: string
-   }): Promise<DetailedProject | undefined> {
+   }): Promise<ProjectDetail | undefined> {
       const cacheKey = this.generateProjectKey(slug, locale)
       // check cache first
       const cachedProject = this.projectCache.get(cacheKey)
@@ -98,7 +94,7 @@ export class ProjectService {
 
          if (!project) return undefined
 
-         const detailedProject: DetailedProject = { ...project }
+         const detailedProject: ProjectDetail = { ...project }
          if (repoMeta) {
             detailedProject.repoMeta = repoMeta
          }

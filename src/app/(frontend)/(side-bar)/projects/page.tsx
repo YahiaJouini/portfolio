@@ -1,7 +1,7 @@
 import { projectsWithLang } from "@/graphql/github-repo"
 import { ProjectService } from "@/services/project"
 import { getPaginatedData } from "@/utils/pagination"
-import { loadSearchParams } from "@/utils/project-filters"
+import { loadSearchParams } from "./project-filters"
 import { getServerLocale } from "@/utils/server-locale"
 import type { SearchParams } from "nuqs/server"
 import Pagination from "@/components/global/Pagination"

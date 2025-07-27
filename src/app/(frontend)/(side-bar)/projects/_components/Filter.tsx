@@ -2,7 +2,10 @@
 import { cn } from "@/lib/utils"
 import { layout as layoutText } from "@/messages/seperate/layout"
 import { Locale } from "@/messages/types/shared"
-import { displayModes, filters } from "@/utils/project-filters"
+import {
+   displayModes,
+   filters,
+} from "@/app/(frontend)/(side-bar)/projects/project-filters"
 import { Grid2x2, Rows2 } from "lucide-react"
 import { useQueryStates } from "nuqs"
 
