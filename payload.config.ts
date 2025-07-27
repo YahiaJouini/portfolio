@@ -6,7 +6,7 @@ import {
    lexicalEditor,
 } from "@payloadcms/richtext-lexical"
 import path from "path"
-import { buildConfig, getPayload } from "payload"
+import { buildConfig } from "payload"
 import sharp from "sharp"
 import { fileURLToPath } from "url"
 
@@ -88,4 +88,3 @@ const config = buildConfig({
 })
 
 export default config
-export const payload = await getPayload({ config })

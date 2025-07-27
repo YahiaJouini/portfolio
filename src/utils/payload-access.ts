@@ -1,9 +1,15 @@
+import { CacheFn } from "@/services/project"
 import { Access, PayloadRequest } from "payload"
 
-// only admin users can modify any of the collections
-export const payloadAccess = (options?: {
+type BaseOptions = {
    public: boolean
-}): {
+   clearCacheFn?: (options: CacheFn) => void
+}
+
+// only admin users can modify any of the collections
+export const payloadAccess = (
+   options: BaseOptions,
+): {
    admin?: ({ req }: { req: PayloadRequest }) => boolean | Promise<boolean>
    create?: Access
    delete?: Access
@@ -18,7 +24,32 @@ export const payloadAccess = (options?: {
          return user?.role === "admin"
       },
       create: ({ req: { user } }) => user?.role === "admin",
-      update: ({ req: { user } }) => user?.role === "admin",
-      delete: ({ req: { user } }) => user?.role === "admin",
+
+      update: ({ req: { user, data, locale } }) => {
+         if (user?.role === "admin") {
+            if (options.clearCacheFn && data?.slug) {
+               const resolvedLocale = locale !== "all" ? locale : undefined
+               options.clearCacheFn({
+                  locale: resolvedLocale,
+                  slug: data.slug,
+               })
+            }
+            return true
+         }
+         return false
+      },
+      delete: ({ req: { user, data, locale } }) => {
+         if (user?.role === "admin") {
+            if (options.clearCacheFn && data?.slug) {
+               const resolvedLocale = locale !== "all" ? locale : undefined
+               options.clearCacheFn({
+                  locale: resolvedLocale,
+                  slug: data.slug,
+               })
+            }
+            return true
+         }
+         return false
+      },
    }
 }

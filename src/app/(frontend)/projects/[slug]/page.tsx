@@ -5,8 +5,9 @@ import { profileImage } from "@/messages/global"
 import { layout } from "@/messages/seperate/layout"
 import { ProjectService } from "@/services/project"
 import { readableISO } from "@/utils/readable-iso"
-import RenderMarkdown from "@/utils/render-markdown"
+import { customConverters } from "@/utils/richtext"
 import { getServerLocale } from "@/utils/server-locale"
+import { RichText } from "@payloadcms/richtext-lexical/react"
 import Link from "next/link"
 import DisplaySection from "./_components/DisplaySection"
 import RightSection from "./_components/RightSection"
@@ -18,7 +19,7 @@ export default async function page({
 }) {
    const slug = (await params).slug
    const locale = await getServerLocale()
-   const project = await ProjectService.getProjectWithMeta(locale, slug)
+   const project = await ProjectService.getProject(locale, slug)
    if (!project) {
       return (
          <div className="mx-auto w-full max-w-4xl">
@@ -42,21 +43,24 @@ export default async function page({
                   />
                </div>
                <h3 className="text-lg font-bold">{project.title}</h3>
-               <ProjectVisibility locale={locale} isPublic={project.public} />
+               <ProjectVisibility
+                  locale={locale}
+                  isPublic={project.public === true}
+               />
             </div>
-            {!project ? (
+            {!project.public ? (
                <p>{readableISO(project.createdAt)}</p>
             ) : project.repoMeta ? (
                <p>{readableISO(project.repoMeta.createdAt)}</p>
             ) : null}
          </div>
 
-         {project.website && (
+         {project.demoUrl && (
             <Link
                target="_blank"
                rel="noopener noreferrer"
                className="flex w-fit items-center gap-1 rounded-md bg-[#0969da] px-3 py-1.5 font-medium text-white"
-               href={project.website}
+               href={project.demoUrl}
             >
                <Eye />
                {layout[locale].visit}
@@ -65,8 +69,12 @@ export default async function page({
          <div className="flex items-start justify-between gap-10">
             <div className="border-border-default mt-6 rounded-md border xl:w-[70%]">
                <DisplaySection locale={locale} />
-               <div className="p-4">
-                  <RenderMarkdown content={project.readme} />
+               <div className="p-[18px]">
+                  <RichText
+                     disableContainer
+                     data={project.richText}
+                     converters={customConverters}
+                  />
                </div>
             </div>
             <RightSection locale={locale} project={project} />

@@ -48,6 +48,16 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   await db.run(sql`CREATE INDEX \`users_updated_at_idx\` ON \`users\` (\`updated_at\`);`)
   await db.run(sql`CREATE INDEX \`users_created_at_idx\` ON \`users\` (\`created_at\`);`)
   await db.run(sql`CREATE UNIQUE INDEX \`users_email_idx\` ON \`users\` (\`email\`);`)
+  await db.run(sql`CREATE TABLE \`projects_roles\` (
+  	\`_order\` integer NOT NULL,
+  	\`_parent_id\` integer NOT NULL,
+  	\`id\` text PRIMARY KEY NOT NULL,
+  	\`role\` text NOT NULL,
+  	FOREIGN KEY (\`_parent_id\`) REFERENCES \`projects\`(\`id\`) ON UPDATE no action ON DELETE cascade
+  );
+  `)
+  await db.run(sql`CREATE INDEX \`projects_roles_order_idx\` ON \`projects_roles\` (\`_order\`);`)
+  await db.run(sql`CREATE INDEX \`projects_roles_parent_id_idx\` ON \`projects_roles\` (\`_parent_id\`);`)
   await db.run(sql`CREATE TABLE \`projects_summary_values\` (
   	\`_order\` integer NOT NULL,
   	\`_parent_id\` text NOT NULL,
@@ -62,7 +72,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	\`_order\` integer NOT NULL,
   	\`_parent_id\` integer NOT NULL,
   	\`id\` text PRIMARY KEY NOT NULL,
-  	\`key_name\` text NOT NULL,
+  	\`category\` text NOT NULL,
   	FOREIGN KEY (\`_parent_id\`) REFERENCES \`projects\`(\`id\`) ON UPDATE no action ON DELETE cascade
   );
   `)
@@ -83,21 +93,23 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   await db.run(sql`CREATE TABLE \`projects\` (
   	\`id\` integer PRIMARY KEY NOT NULL,
   	\`slug\` text NOT NULL,
-  	\`github_url\` text,
+  	\`github_url\` text NOT NULL,
   	\`demo_url\` text,
+  	\`type\` text NOT NULL,
+  	\`created_at\` text DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')) NOT NULL,
+  	\`public\` integer DEFAULT true,
+  	\`open_source\` integer DEFAULT true,
   	\`status\` text DEFAULT 'published' NOT NULL,
-  	\`updated_at\` text DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')) NOT NULL,
-  	\`created_at\` text DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')) NOT NULL
+  	\`updated_at\` text DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')) NOT NULL
   );
   `)
   await db.run(sql`CREATE UNIQUE INDEX \`projects_slug_idx\` ON \`projects\` (\`slug\`);`)
   await db.run(sql`CREATE INDEX \`projects_updated_at_idx\` ON \`projects\` (\`updated_at\`);`)
-  await db.run(sql`CREATE INDEX \`projects_created_at_idx\` ON \`projects\` (\`created_at\`);`)
   await db.run(sql`CREATE TABLE \`projects_locales\` (
   	\`title\` text NOT NULL,
   	\`description\` text NOT NULL,
-  	\`markdown\` text NOT NULL,
-  	\`featured\` integer DEFAULT false,
+  	\`rich_text\` text NOT NULL,
+  	\`pinned\` integer DEFAULT false,
   	\`id\` integer PRIMARY KEY NOT NULL,
   	\`_locale\` text NOT NULL,
   	\`_parent_id\` integer NOT NULL,
@@ -176,6 +188,7 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   await db.run(sql`DROP TABLE \`media\`;`)
   await db.run(sql`DROP TABLE \`users_sessions\`;`)
   await db.run(sql`DROP TABLE \`users\`;`)
+  await db.run(sql`DROP TABLE \`projects_roles\`;`)
   await db.run(sql`DROP TABLE \`projects_summary_values\`;`)
   await db.run(sql`DROP TABLE \`projects_summary\`;`)
   await db.run(sql`DROP TABLE \`projects_images\`;`)

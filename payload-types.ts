@@ -163,24 +163,26 @@ export interface User {
   password?: string | null;
 }
 /**
+ * Manage your projects, including details and media.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "projects".
  */
 export interface Project {
   id: number;
-  title: string;
   /**
    * This will be used in the URL for this project
    */
   slug: string;
+  title: string;
   /**
    * A brief description of the project for preview cards
    */
   description: string;
   /**
-   * Full project documentation in markdown format
+   * Full project documentation in rich text format
    */
-  markdown: {
+  richText: {
     root: {
       type: string;
       children: {
@@ -198,11 +200,18 @@ export interface Project {
   /**
    * Link to the project repository (optional)
    */
-  githubUrl?: string | null;
+  githubUrl: string;
   /**
    * Link to live demo or deployed project (optional)
    */
   demoUrl?: string | null;
+  /**
+   * Roles you played in this project (e.g., developer, designer)
+   */
+  roles: {
+    role: 'designed' | 'developed' | 'maintained' | 'deployed' | 'architected';
+    id?: string | null;
+  }[];
   /**
    * Key-value pairs summarizing important project details
    */
@@ -210,17 +219,24 @@ export interface Project {
     /**
      * Select the category for this summary item
      */
-    keyName: 'frameworks' | 'databases' | 'cms' | 'tools' | 'styling';
+    category: 'frameworks' | 'databases' | 'cms' | 'tools' | 'styling';
     values: {
       value: string;
       id?: string | null;
     }[];
     id?: string | null;
   }[];
+  type: 'personal' | 'work';
+  /**
+   * Date when the project was created (used for sorting and display)
+   */
+  createdAt: string;
+  public?: boolean | null;
+  'open-source'?: boolean | null;
   /**
    * Mark this project as featured to highlight it in your portfolio
    */
-  featured?: boolean | null;
+  pinned?: boolean | null;
   status: 'draft' | 'published' | 'archived';
   /**
    * Screenshots or images showcasing the project
@@ -232,7 +248,6 @@ export interface Project {
       }[]
     | null;
   updatedAt: string;
-  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -341,16 +356,22 @@ export interface UsersSelect<T extends boolean = true> {
  * via the `definition` "projects_select".
  */
 export interface ProjectsSelect<T extends boolean = true> {
-  title?: T;
   slug?: T;
+  title?: T;
   description?: T;
-  markdown?: T;
+  richText?: T;
   githubUrl?: T;
   demoUrl?: T;
+  roles?:
+    | T
+    | {
+        role?: T;
+        id?: T;
+      };
   summary?:
     | T
     | {
-        keyName?: T;
+        category?: T;
         values?:
           | T
           | {
@@ -359,7 +380,11 @@ export interface ProjectsSelect<T extends boolean = true> {
             };
         id?: T;
       };
-  featured?: T;
+  type?: T;
+  createdAt?: T;
+  public?: T;
+  'open-source'?: T;
+  pinned?: T;
   status?: T;
   images?:
     | T
@@ -368,7 +393,6 @@ export interface ProjectsSelect<T extends boolean = true> {
         id?: T;
       };
   updatedAt?: T;
-  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

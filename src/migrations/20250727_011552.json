@@ -314,6 +314,73 @@
       "uniqueConstraints": {},
       "checkConstraints": {}
     },
+    "projects_roles": {
+      "name": "projects_roles",
+      "columns": {
+        "_order": {
+          "name": "_order",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "_parent_id": {
+          "name": "_parent_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "role": {
+          "name": "role",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "projects_roles_order_idx": {
+          "name": "projects_roles_order_idx",
+          "columns": [
+            "_order"
+          ],
+          "isUnique": false
+        },
+        "projects_roles_parent_id_idx": {
+          "name": "projects_roles_parent_id_idx",
+          "columns": [
+            "_parent_id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "projects_roles_parent_id_fk": {
+          "name": "projects_roles_parent_id_fk",
+          "tableFrom": "projects_roles",
+          "tableTo": "projects",
+          "columnsFrom": [
+            "_parent_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
     "projects_summary_values": {
       "name": "projects_summary_values",
       "columns": {
@@ -405,8 +472,8 @@
           "notNull": true,
           "autoincrement": false
         },
-        "key_name": {
-          "name": "key_name",
+        "category": {
+          "name": "category",
           "type": "text",
           "primaryKey": false,
           "notNull": true,
@@ -556,7 +623,7 @@
           "name": "github_url",
           "type": "text",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "autoincrement": false
         },
         "demo_url": {
@@ -565,6 +632,37 @@
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
+        },
+        "type": {
+          "name": "type",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))"
+        },
+        "public": {
+          "name": "public",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": true
+        },
+        "open_source": {
+          "name": "open_source",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": true
         },
         "status": {
           "name": "status",
@@ -576,14 +674,6 @@
         },
         "updated_at": {
           "name": "updated_at",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false,
-          "default": "(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))"
-        },
-        "created_at": {
-          "name": "created_at",
           "type": "text",
           "primaryKey": false,
           "notNull": true,
@@ -603,13 +693,6 @@
           "name": "projects_updated_at_idx",
           "columns": [
             "updated_at"
-          ],
-          "isUnique": false
-        },
-        "projects_created_at_idx": {
-          "name": "projects_created_at_idx",
-          "columns": [
-            "created_at"
           ],
           "isUnique": false
         }
@@ -636,15 +719,15 @@
           "notNull": true,
           "autoincrement": false
         },
-        "markdown": {
-          "name": "markdown",
+        "rich_text": {
+          "name": "rich_text",
           "type": "text",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
-        "featured": {
-          "name": "featured",
+        "pinned": {
+          "name": "pinned",
           "type": "integer",
           "primaryKey": false,
           "notNull": false,
@@ -1161,6 +1244,6 @@
   "internal": {
     "indexes": {}
   },
-  "id": "40b4aa1e-65d1-4fb6-9ee7-9b95e12731e4",
+  "id": "cd4fa09c-c2b2-4160-8869-416137d1c682",
   "prevId": "00000000-0000-0000-0000-000000000000"
 }

@@ -1,4 +1,5 @@
 import { summaryKeys } from "@/messages/seperate/project-related"
+import { ProjectService } from "@/services/project"
 import { payloadAccess } from "@/utils/payload-access"
 import { CollectionConfig } from "payload"
 
@@ -11,16 +12,14 @@ export const Projects: CollectionConfig = {
    admin: {
       defaultColumns: ["title", "slug", "createdAt"],
       useAsTitle: "title",
+      description: "Manage your projects, including details and media.",
    },
-   access: payloadAccess(),
+   access: payloadAccess({
+      public: true,
+      clearCacheFn: ({ locale, slug }) =>
+         ProjectService.clearSpecificCache({ locale, slug }),
+   }),
    fields: [
-      {
-         name: "title",
-         type: "text",
-         required: true,
-         label: "Project Title",
-         localized: true,
-      },
       {
          name: "slug",
          type: "text",
@@ -46,6 +45,13 @@ export const Projects: CollectionConfig = {
          },
       },
       {
+         name: "title",
+         type: "text",
+         required: true,
+         label: "Project Title",
+         localized: true,
+      },
+      {
          name: "description",
          type: "textarea",
          localized: true,
@@ -58,19 +64,20 @@ export const Projects: CollectionConfig = {
          },
       },
       {
-         name: "markdown",
+         name: "richText",
          type: "richText",
          required: true,
          label: "Detailed Content",
          localized: true,
          admin: {
-            description: "Full project documentation in markdown format",
+            description: "Full project documentation in rich text format",
          },
       },
       {
          name: "githubUrl",
          type: "text",
          label: "GitHub URL",
+         required: true,
          admin: {
             description: "Link to the project repository (optional)",
          },
@@ -96,6 +103,46 @@ export const Projects: CollectionConfig = {
          },
       },
       {
+         name: "roles",
+         type: "array",
+         label: "Roles",
+         required: true,
+         admin: {
+            description:
+               "Roles you played in this project (e.g., developer, designer)",
+         },
+         fields: [
+            {
+               name: "role",
+               type: "select",
+               required: true,
+               label: "Summary Category",
+               options: [
+                  {
+                     label: "designed",
+                     value: "designed",
+                  },
+                  {
+                     label: "developed",
+                     value: "developed",
+                  },
+                  {
+                     label: "maintained",
+                     value: "maintained",
+                  },
+                  {
+                     label: "deployed",
+                     value: "deployed",
+                  },
+                  {
+                     label: "architected",
+                     value: "architected",
+                  },
+               ],
+            },
+         ],
+      },
+      {
          name: "summary",
          type: "array",
          label: "Project Summary",
@@ -106,7 +153,7 @@ export const Projects: CollectionConfig = {
          },
          fields: [
             {
-               name: "keyName",
+               name: "category",
                type: "select",
                required: true,
                label: "Summary Category",
@@ -136,10 +183,47 @@ export const Projects: CollectionConfig = {
          ],
       },
       {
-         name: "featured",
+         name: "type",
+         type: "select",
+         required: true,
+         label: "Project Type",
+         options: [
+            {
+               label: "Personal",
+               value: "personal",
+            },
+            {
+               label: "Work",
+               value: "work",
+            },
+         ],
+      },
+      {
+         name: "createdAt",
+         type: "date",
+         label: "Creation Date",
+         admin: {
+            description:
+               "Date when the project was created (used for sorting and display)",
+         },
+      },
+      {
+         name: "public",
+         type: "checkbox",
+         label: "Public Project",
+         defaultValue: true,
+      },
+      {
+         name: "open-source",
+         type: "checkbox",
+         label: "Open Source",
+         defaultValue: true,
+      },
+      {
+         name: "pinned",
          type: "checkbox",
          localized: true,
-         label: "Featured Project",
+         label: "Pinned Project",
          admin: {
             description:
                "Mark this project as featured to highlight it in your portfolio",
