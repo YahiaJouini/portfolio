@@ -5,6 +5,8 @@ type CacheEntry<T> = {
 
 // least recently used cache implementation
 export class LRUCache<K, V> {
+   // 24 hours in milliseconds
+   public static readonly CACHE_TTL = 24 * 60 * 60 * 1000
    private cache = new Map<K, CacheEntry<V>>()
    private accessOrder = new Map<K, number>()
    private accessCounter = 0

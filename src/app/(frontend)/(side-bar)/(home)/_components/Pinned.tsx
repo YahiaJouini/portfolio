@@ -1,6 +1,7 @@
 import ProjectVisibility from "@/components/global/ProjectVisibility"
 import Repo from "@/components/icons/Repo"
 import { cn } from "@/lib/utils"
+import { layout } from "@/messages/seperate/layout"
 import { Locale } from "@/messages/types/shared"
 import { ProjectService } from "@/services/project"
 import Link from "next/link"
@@ -13,7 +14,7 @@ export default async function Pinned({ locale }: { locale: Locale }) {
    })
    return (
       <div>
-         <h2 className="mt-8 mb-1">Pinned</h2>
+         <h2 className="mt-8 mb-1">{layout[locale].pinned}</h2>
          <div className="mt-2 grid w-full grid-cols-2 gap-4 max-md:hidden">
             {pinned.map((project) => {
                return (

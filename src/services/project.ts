@@ -22,17 +22,15 @@ type ProjectsOptions = {
 }
 
 export class ProjectService {
-   // 24 hours in milliseconds
-   private static readonly CACHE_TTL = 24 * 60 * 60 * 1000
    // 20 projects
    private static projectCache = new LRUCache<string, DetailedProject>(
       20,
-      this.CACHE_TTL,
+      LRUCache.CACHE_TTL,
    )
    // 30 projects (5 pages of 6 projects each)
    private static projectsListCache = new LRUCache<string, ProjectList[]>(
       5,
-      this.CACHE_TTL,
+      LRUCache.CACHE_TTL,
    )
 
    private static payloadInstance: Payload | null = null

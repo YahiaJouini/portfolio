@@ -1,3 +1,4 @@
+import { LRUCache } from "@/services/cache"
 import { ProjectList, ProjectListWithLang } from "@/types"
 import { GITHUB_TOKEN } from "@/utils/constants"
 
@@ -32,7 +33,7 @@ export async function projectsWithLang(
          },
          body: JSON.stringify({ query }),
          next: {
-            revalidate: 60 * 60 * 24, // 24 days
+            revalidate: LRUCache.CACHE_TTL / 1000, // divide by 1000 to convert to seconds
             tags: ["github-repos"],
          },
       })
