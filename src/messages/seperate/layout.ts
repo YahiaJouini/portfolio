@@ -27,6 +27,8 @@ export const layout = {
       download: " Download",
       previous: "Previous",
       next: "Next",
+      experience: "Experience",
+      education: "Education",
    },
    fr: {
       settings: "Paramètres",
@@ -54,6 +56,8 @@ export const layout = {
       download: "Télécharger",
       previous: "Précédent",
       next: "Suivant",
+      experience: "Expérience",
+      education: "Éducation",
    },
    ar: {
       settings: "الإعدادات",
@@ -81,5 +85,7 @@ export const layout = {
       download: "تحميل",
       previous: "السابق",
       next: "التالي",
+      experience: "الخبرة",
+      education: "التعليم",
    },
 } satisfies Record<Locale, Record<string, string>>

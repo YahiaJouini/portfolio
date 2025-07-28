@@ -8,3 +8,12 @@ export const readableISO = (isoString: string): string => {
       hour12: true,
    })
 }
+
+export const shortNumericDate = (dateStr: string): string => {
+   const date = new Date(dateStr)
+   return date.toLocaleDateString("en-US", {
+      timeZone: "UTC",
+      year: "numeric",
+      month: "short",
+   })
+}

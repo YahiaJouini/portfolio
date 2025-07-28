@@ -49,21 +49,20 @@ export type ProjectRole =
    | "deployed"
    | "architected"
 
-export type Education = {
+type Journey = {
+   description?: string
+   startDate: string
+   endDate?: string
+}
+export type Education = Journey & {
    degree: string
    fieldOfStudy: string
    institution: string
-   startDate: string // or Date
-   endDate?: string // optional for ongoing studies
    mention?: string
-   description?: string
 }
 
-export type Experience = {
+export type Experience = Journey & {
    jobTitle: string
    company: string
-   location?: string // optional if remote or not needed
-   startDate: string
-   endDate?: string // optional for current job
-   description?: string
+   location?: string
 }
