@@ -5,6 +5,7 @@ export const fullName = {
    fr: "Yahia Jouini",
    ar: "يحيى الجويني",
 } satisfies Record<Locale, string>
+
 export const profileImage = {
    src: "/me.webp",
    alt: {
@@ -13,3 +14,5 @@ export const profileImage = {
       ar: "صورة ملف يحيى الجويني",
    } satisfies Record<Locale, string>,
 }
+
+export const resumeUrl =""

@@ -35,6 +35,7 @@ export default function Sidebar({ pages }: { pages: NavBar["items"] }) {
    })
 
    const loading = !data || !locale
+   const resolvedLayout = layout[locale!]
    return (
       <Sheet open={open} onOpenChange={setOpen}>
          <SheetTrigger
@@ -87,21 +88,21 @@ export default function Sidebar({ pages }: { pages: NavBar["items"] }) {
                         </p>
                      </div>
 
-                     <Divider title={layout[locale].settings}>
+                     <Divider title={resolvedLayout.settings}>
                         <div className="mb-4 flex items-center gap-2 pt-2 text-sm">
                            <div className="text-text-secondary flex items-center gap-1">
                               <Moon className="h-4 w-4" />
-                              {layout[locale].dark}
+                              {resolvedLayout.dark}
                            </div>
                            <Theme withIcons={false} />
                            <div className="text-text-secondary flex items-center gap-1">
                               <Sun className="h-4 w-4" />
-                              {layout[locale].light}
+                              {resolvedLayout.light}
                            </div>
                         </div>
                         <Language dropDown={false} />
                      </Divider>
-                     <Divider title={layout[locale].explore}>
+                     <Divider title={resolvedLayout.explore}>
                         <div className="flex flex-col gap-1">
                            {pages.map(({ href, title, id }) => {
                               const Icon = iconMap[id]
@@ -124,7 +125,7 @@ export default function Sidebar({ pages }: { pages: NavBar["items"] }) {
                         </div>
                      </Divider>
 
-                     <Divider title={layout[locale].connect}>
+                     <Divider title={resolvedLayout.connect}>
                         <Contacts />
                      </Divider>
                   </motion.div>

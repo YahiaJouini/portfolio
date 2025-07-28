@@ -12,12 +12,12 @@ type Props = {
 }
 export default function RightSection({ project, locale }: Props) {
    const { repoMeta, ...rest } = project
-
+   const resolvedLayout = layout[locale]
    return (
       <div className="flex flex-1 flex-col gap-6">
          <div className="flex flex-col gap-3">
             <div>
-               <SectionTitle title={layout[locale].about} />
+               <SectionTitle title={resolvedLayout.about} />
                <p>{project.description}</p>
             </div>
 
@@ -47,7 +47,7 @@ export default function RightSection({ project, locale }: Props) {
          </div>
          <Seperator />
          <div>
-            <SectionTitle title={layout[locale].summary} />
+            <SectionTitle title={resolvedLayout.summary} />
             <div className="flex flex-col items-start gap-2">
                {rest.summary.map(({ category, values }) => {
                   const size = values.length
@@ -79,7 +79,7 @@ export default function RightSection({ project, locale }: Props) {
 
          {repoMeta?.languages && (
             <div>
-               <SectionTitle title={layout[locale].languages} />
+               <SectionTitle title={resolvedLayout.languages} />
                <LanguageBar languages={repoMeta.languages} />
             </div>
          )}

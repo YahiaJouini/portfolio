@@ -1,4 +1,6 @@
+import Resume from "@/components/global/Resume"
 import { fullName } from "@/messages/global"
+import { layout } from "@/messages/seperate/layout"
 import { technologies } from "@/messages/seperate/technologies"
 import type { About } from "@/messages/types"
 import { Locale } from "@/messages/types/shared"
@@ -26,12 +28,15 @@ export default async function About({ locale }: { locale: Locale }) {
             dangerouslySetInnerHTML={{ __html: data.description }}
          />
 
-         <Link
-            href="/contact"
-            className="w-fit rounded-sm bg-[#238636] px-3 py-1 font-medium text-white"
-         >
-            Get in touch
-         </Link>
+         <div className="flex items-center gap-2">
+            <Resume locale={locale} />
+            <Link
+               href="/contact"
+               className="border-border-default w-fit gap-1 rounded-sm border bg-[#238636] px-3 py-1 font-medium text-white"
+            >
+               {layout[locale].getInTouch}
+            </Link>
+         </div>
 
          <div className="border-border-default border-b pb-3 text-2xl font-semibold">
             {data.technologies}
