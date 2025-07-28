@@ -12,7 +12,7 @@ export type Language = {
 export type Page =
    | "home"
    | "projects"
-   | "education"
+   | "journey"
    | "blog"
    | "discussions"
    | "contact"

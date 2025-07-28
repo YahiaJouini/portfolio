@@ -48,3 +48,22 @@ export type ProjectRole =
    | "maintained"
    | "deployed"
    | "architected"
+
+export type Education = {
+   degree: string
+   fieldOfStudy: string
+   institution: string
+   startDate: string // or Date
+   endDate?: string // optional for ongoing studies
+   mention?: string
+   description?: string
+}
+
+export type Experience = {
+   jobTitle: string
+   company: string
+   location?: string // optional if remote or not needed
+   startDate: string
+   endDate?: string // optional for current job
+   description?: string
+}

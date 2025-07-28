@@ -14,7 +14,7 @@ export const iconMap: Record<
    home: Home,
    blog: Blog,
    projects: Projects,
-   education: Education,
+   journey: Education,
    contact: Contact,
    discussions: Discussions,
 }

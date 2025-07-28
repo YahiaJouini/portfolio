@@ -21,9 +21,9 @@ export default {
             id: "projects",
          },
          {
-            title: "Education",
-            href: "/education",
-            id: "education",
+            title: "Journey",
+            href: "/journey",
+            id: "journey",
          },
          {
             title: "Blog",
@@ -61,9 +61,9 @@ export default {
             id: "projects",
          },
          {
-            title: "Éducation",
-            href: "/education",
-            id: "education",
+            title: "Parcours",
+            href: "/journey",
+            id: "journey",
          },
          {
             title: "Blog",
@@ -101,9 +101,9 @@ export default {
             id: "projects",
          },
          {
-            title: "المسار الدراسي",
-            href: "/education",
-            id: "education",
+            title: "الرحلة",
+            href: "/journey",
+            id: "journey",
          },
          {
             title: "المدونة",
