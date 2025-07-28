@@ -8,7 +8,7 @@ export default [
          "Higher Institute of Technological Studies of Rades (ISET Rades)",
       startDate: "2023-09",
       description:
-         "Currently enrolled in a 3-year program focused on networking, databases, and software engineering. Expected to graduate in June 2026.",
+         "Pursuing a 3-year university-level diploma focused on networking, databases, and software engineering. Expected graduation: June 2026.",
    },
    {
       degree: "Certificate",

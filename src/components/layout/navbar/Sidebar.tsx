@@ -5,7 +5,6 @@ import {
    Sheet,
    SheetClose,
    SheetContent,
-   SheetDescription,
    SheetHeader,
    SheetTitle,
    SheetTrigger,
@@ -53,7 +52,6 @@ export default function Sidebar({ pages }: { pages: NavBar["items"] }) {
          <SheetContent className="flex flex-col gap-4 overflow-auto p-6">
             <SheetHeader className="hidden">
                <SheetTitle></SheetTitle>
-               <SheetDescription></SheetDescription>
             </SheetHeader>
             <AnimatePresence>
                {!loading && (
@@ -83,7 +81,7 @@ export default function Sidebar({ pages }: { pages: NavBar["items"] }) {
                         <h4 className="text-text-trinary text-[15px]">
                            {data.job}
                         </h4>
-                        <p className="text-text-secondary mt-3 text-[13px]">
+                        <p className="text-text-secondary mt-3 text-sm">
                            {data.description}
                         </p>
                      </div>

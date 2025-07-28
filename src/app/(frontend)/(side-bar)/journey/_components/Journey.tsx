@@ -35,11 +35,11 @@ export default function Journey({ education, experience, locale }: Props) {
                      key={view}
                      onClick={() => setActiveView(view)}
                      className={cn(
-                        "flex items-center rounded-md px-4 py-2 text-sm font-medium transition-all duration-200",
+                        "flex items-center rounded-md border px-4 py-2 text-sm font-medium transition-all duration-200",
                         {
-                           "bg-primary text-text-primary border-border-default border shadow-sm":
+                           "bg-primary text-text-primary border-border-default":
                               activeView === view,
-                           "text-text-secondary hover:text-text-primary":
+                           "text-text-secondary hover:text-text-primary border-transparent":
                               activeView !== view,
                         },
                      )}
@@ -154,21 +154,27 @@ function EducationCard({ education }: { education: Education }) {
                      </span>
                   )}
                </div>
-               <p className="text-accent-icon text-lg font-medium">
+               <p
+                  className={cn("text-text-link text-lg font-medium", {
+                     "mb-1": education.mention,
+                  })}
+               >
                   {education.institution}
                </p>
-               <p className="text-text-secondary">
-                  {education.fieldOfStudy}
-               </p>
+               <div className="flex items-center gap-2">
+                  <p className="text-text-secondary">
+                     {education.fieldOfStudy}
+                  </p>
 
-               {education.mention && (
-                  <div className="mt-3 flex items-center">
-                     <Award className="text-accent-active mr-2 h-4 w-4" />
-                     <span className="bg-accent-active/10 text-accent-active border-accent-active/20 inline-flex items-center rounded-full border px-3 py-1 text-sm font-medium">
-                        {education.mention}
-                     </span>
-                  </div>
-               )}
+                  {education.mention && (
+                     <div className="flex items-center gap-1">
+                        <Award className="text-accent-active h-4 w-4" />
+                        <span className="bg-accent-active/10 text-accent-active inline-flex items-center rounded-full text-sm font-medium">
+                           {education.mention}
+                        </span>
+                     </div>
+                  )}
+               </div>
             </div>
 
             <div className="text-text-secondary bg-tertiary flex items-center rounded-md px-3 py-1">

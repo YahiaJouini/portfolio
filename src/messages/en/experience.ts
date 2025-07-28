@@ -25,6 +25,6 @@ export default [
       startDate: "2023-12",
       endDate: "2024-01",
       description:
-         "Joined Aftercode as an intern where I contributed to real production code as a frontend developer. Focused on implementing UI components, handling API integrations, and working in a modern React + Tailwind + Headless CMS stack.",
+         "Joined Aftercode as an intern where I contributed to real production code as a frontend developer. Focused on implementing UI components, handling API integrations, and working in a modern Nextjs + Tailwind stack.",
    },
 ] satisfies Array<Experience>
