@@ -19,6 +19,7 @@ import {
 import { Media } from "./collections/Media"
 import { Projects } from "./collections/Projects"
 import { Users } from "./collections/Users"
+import { Blog } from "./collections/Blog"
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -52,7 +53,7 @@ const config = buildConfig({
       },
       user: Users.slug,
    },
-   collections: [Media, Users, Projects],
+   collections: [Media, Users, Projects, Blog],
    editor: lexicalEditor({
       features: [...defaultEditorFeatures, FixedToolbarFeature()],
    }),

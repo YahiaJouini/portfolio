@@ -1,3 +1,4 @@
+import ImageLoader from "@/components/global/ImageLoader"
 import Link from "next/link"
 import { Props } from "../types"
 import Bottom from "./Bottom"
@@ -6,7 +7,16 @@ export default function GridShowcase({ locale, project }: Props) {
    return (
       <div className="border-border-default flex flex-col justify-between rounded-md border p-4">
          <div className="flex flex-col gap-2">
-            <div className="mx-auto aspect-video w-full bg-slate-300"></div>
+            {typeof project.thumbnail !== "number" && (
+               <div className="relative mx-auto aspect-video w-full overflow-hidden rounded-md">
+                  <ImageLoader
+                     src={project.thumbnail.url}
+                     alt={project.thumbnail.alt}
+                     fill
+                     className="object-cover"
+                  />
+               </div>
+            )}
             <Link
                className="text-text-link text-lg font-semibold hover:underline md:text-xl"
                href={`/projects/${project.slug}`}

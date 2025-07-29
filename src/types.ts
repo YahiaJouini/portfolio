@@ -17,6 +17,7 @@ export type ProjectList = Pick<
    | "pinned"
    | "public"
    | "type"
+   | "thumbnail"
 >
 
 export type ProjectListWithLang = ProjectList & {

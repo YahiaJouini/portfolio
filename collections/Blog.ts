@@ -1,0 +1,95 @@
+import { CollectionConfig } from "payload"
+
+export const Blog: CollectionConfig = {
+   slug: "blog",
+   labels: {
+      singular: "Blog Post",
+      plural: "Blog Posts",
+   },
+   admin: {
+      useAsTitle: "title",
+   },
+   fields: [
+      {
+         name: "title",
+         localized: true,
+         type: "text",
+         required: true,
+      },
+      {
+         name: "description",
+         localized: true,
+         type: "textarea",
+         required: true,
+      },
+      {
+         name: "thumbnail",
+         type: "upload",
+         relationTo: "media",
+         required: true,
+      },
+      {
+         name: "timeToRead",
+         type: "number",
+         required: true,
+         admin: {
+            description: "Time to read in minutes",
+         },
+      },
+      {
+         name: "author",
+         type: "group",
+         localized: true,
+         fields: [
+            {
+               name: "name",
+               type: "text",
+               localized: true,
+               required: true,
+            },
+            {
+               name: "role",
+               type: "text",
+               localized: true,
+               required: true,
+            },
+         ],
+      },
+      {
+         name: "tags",
+         type: "array",
+         required: true,
+         fields: [
+            {
+               name: "tag",
+               type: "text",
+               required: true,
+            },
+         ],
+      },
+      {
+         name: "sections",
+         type: "array",
+         required: true,
+         fields: [
+            {
+               name: "id",
+               type: "text",
+               required: true,
+            },
+            {
+               name: "title",
+               localized: true,
+               type: "text",
+               required: true,
+            },
+            {
+               name: "body",
+               localized: true,
+               type: "richText",
+               required: true,
+            },
+         ],
+      },
+   ],
+}

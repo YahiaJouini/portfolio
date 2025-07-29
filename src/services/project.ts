@@ -126,6 +126,7 @@ export class ProjectService {
             slug: true,
             description: true,
             demoUrl: true,
+            thumbnail: true,
             githubUrl: true,
             pinned: true,
             public: true,
