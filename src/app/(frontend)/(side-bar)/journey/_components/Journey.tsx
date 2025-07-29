@@ -192,23 +192,22 @@ function EducationCard({ education }: { education: Education }) {
             </div>
          </div>
 
-         {education.certification && (
-            <Link
-               href={education.certification.href}
-               target="_blank"
-               rel="noopener noreferrer"
-               className="text-text-link inline-flex items-center gap-1 text-sm font-medium transition-colors hover:underline"
-            >
-               {education.certification.title}
-               <ExternalLink className="h-4 w-4" />
-            </Link>
-         )}
-
          {education.description && (
-            <div className="border-border-default border-t pt-2">
+            <div className="border-border-default space-y-2 border-t pt-2">
                <p className="text-text-secondary leading-relaxed">
                   {education.description}
                </p>
+               {education.certification && (
+                  <Link
+                     href={education.certification.href}
+                     target="_blank"
+                     rel="noopener noreferrer"
+                     className="text-text-link inline-flex items-center gap-1 text-sm font-medium transition-colors hover:underline"
+                  >
+                     {education.certification.title}
+                     <ExternalLink className="h-4 w-4" />
+                  </Link>
+               )}
             </div>
          )}
       </div>

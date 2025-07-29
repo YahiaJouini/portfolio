@@ -5,6 +5,7 @@ import { summaryKeys } from "@/messages/seperate/project-related"
 import { Locale } from "@/messages/types/shared"
 import { LanguageBar } from "./LanguageBar"
 import { ProjectDetail } from "@/types"
+import Tag from "@/components/global/Tag"
 
 type Props = {
    project: ProjectDetail
@@ -24,12 +25,7 @@ export default function RightSection({ project, locale }: Props) {
             {repoMeta && repoMeta.topics.nodes.length > 0 && (
                <div className="flex flex-wrap items-center gap-2">
                   {repoMeta.topics.nodes.map(({ topic }) => (
-                     <span
-                        key={topic.name}
-                        className="bg-tag-bg text-tag-color hover:bg-tag-hover-bg hover:text-tag-hover-text rounded-md px-2 py-1 text-[13px] font-semibold transition-colors"
-                     >
-                        {topic.name}
-                     </span>
+                     <Tag text={topic.name} key={topic.name} />
                   ))}
                </div>
             )}
