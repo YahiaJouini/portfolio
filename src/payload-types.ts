@@ -239,6 +239,10 @@ export interface Project {
   pinned: boolean;
   status: 'draft' | 'published' | 'archived';
   /**
+   * Thumbnail image for the project, used in previews and listings
+   */
+  thumbnail: number | Media;
+  /**
    * Screenshots or images showcasing the project
    */
   images: {
@@ -389,6 +393,7 @@ export interface ProjectsSelect<T extends boolean = true> {
   'open-source'?: T;
   pinned?: T;
   status?: T;
+  thumbnail?: T;
   images?:
     | T
     | {

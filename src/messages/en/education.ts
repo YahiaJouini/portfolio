@@ -18,6 +18,10 @@ export default [
       endDate: "2024-02",
       description:
          "Completed an intensive online software development bootcamp focused on fullstack web technologies, clean code principles, and agile workflows. Gained hands-on experience building real-world apps under tight deadlines.",
+      certification: {
+         href: "https://app.diplomasafe.com/en-US/diploma/d1202b62c0d64a1d0f78d4c5814d6ed87f1b5e6f5",
+         title: "Show credentials",
+      },
    },
 
    {

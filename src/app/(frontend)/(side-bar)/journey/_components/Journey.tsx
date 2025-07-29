@@ -1,12 +1,20 @@
 "use client"
 
-import { useState } from "react"
-import type { Education, Experience } from "@/messages/types"
-import { GraduationCap, Briefcase, MapPin, Calendar, Award } from "lucide-react"
-import { shortNumericDate } from "@/utils/format-date"
-import { Locale } from "@/messages/types/shared"
-import { layout } from "@/messages/seperate/layout"
 import { cn } from "@/lib/utils"
+import { layout } from "@/messages/seperate/layout"
+import type { Education, Experience } from "@/messages/types"
+import { Locale } from "@/messages/types/shared"
+import { shortNumericDate } from "@/utils/format-date"
+import {
+   Award,
+   Briefcase,
+   Calendar,
+   ExternalLink,
+   GraduationCap,
+   MapPin,
+} from "lucide-react"
+import Link from "next/link"
+import { useState } from "react"
 
 type Props = {
    education: Education[]
@@ -165,7 +173,6 @@ function EducationCard({ education }: { education: Education }) {
                   <p className="text-text-secondary">
                      {education.fieldOfStudy}
                   </p>
-
                   {education.mention && (
                      <div className="flex items-center gap-1">
                         <Award className="text-accent-active h-4 w-4" />
@@ -184,6 +191,18 @@ function EducationCard({ education }: { education: Education }) {
                </span>
             </div>
          </div>
+
+         {education.certification && (
+            <Link
+               href={education.certification.href}
+               target="_blank"
+               rel="noopener noreferrer"
+               className="text-text-link inline-flex items-center gap-1 text-sm font-medium transition-colors hover:underline"
+            >
+               {education.certification.title}
+               <ExternalLink className="h-4 w-4" />
+            </Link>
+         )}
 
          {education.description && (
             <div className="border-border-default border-t pt-2">

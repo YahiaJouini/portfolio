@@ -250,6 +250,17 @@ export const Projects: CollectionConfig = {
          ],
       },
       {
+         name: "thumbnail",
+         type: "upload",
+         relationTo: "media",
+         required: true,
+         label: "Project Thumbnail",
+         admin: {
+            description:
+               "Thumbnail image for the project, used in previews and listings",
+         },
+      },
+      {
          name: "images",
          type: "array",
          label: "Project Images",

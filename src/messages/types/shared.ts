@@ -9,13 +9,7 @@ export type Language = {
    abbreviation: string
    Flag: React.ComponentType<React.SVGProps<SVGSVGElement>>
 }
-export type Page =
-   | "home"
-   | "projects"
-   | "journey"
-   | "blog"
-   | "discussions"
-   | "contact"
+export type Page = "home" | "projects" | "journey" | "blog" | "contact"
 
 export type Item = {
    title: string

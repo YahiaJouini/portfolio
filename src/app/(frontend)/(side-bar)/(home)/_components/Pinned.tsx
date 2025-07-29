@@ -12,6 +12,7 @@ export default async function Pinned({ locale }: { locale: Locale }) {
       locale,
       page: 1,
    })
+   if (!pinned || pinned.length === 0) return null
    return (
       <div>
          <h2 className="mt-8 mb-1">{layout[locale].pinned}</h2>

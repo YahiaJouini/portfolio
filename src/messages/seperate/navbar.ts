@@ -30,11 +30,6 @@ export default {
             href: "/blog",
             id: "blog",
          },
-         {
-            title: "Discussions",
-            href: "/discussions",
-            id: "discussions",
-         },
 
          {
             title: "Contact",
@@ -71,12 +66,6 @@ export default {
             id: "blog",
          },
          {
-            title: "Discussions",
-            href: "/discussions",
-            id: "discussions",
-         },
-
-         {
             title: "Contact",
             href: "/contact",
             id: "contact",
@@ -109,11 +98,6 @@ export default {
             title: "المدونة",
             href: "/blog",
             id: "blog",
-         },
-         {
-            title: "النقاشات",
-            href: "/discussions",
-            id: "discussions",
          },
          {
             title: "تواصل معي",
