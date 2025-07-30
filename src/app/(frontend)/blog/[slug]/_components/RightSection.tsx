@@ -1,10 +1,10 @@
+import Seperator from "@/components/global/Seperator"
 import Tag from "@/components/global/Tag"
+import { cn } from "@/lib/utils"
 import { Blog } from "@/payload-types"
 import { scrollToSection } from "@/utils/scroll-to"
 import React from "react"
 import { ActiveBlogSection } from "../types"
-import Seperator from "@/components/global/Seperator"
-import { cn } from "@/lib/utils"
 
 type Props = {
    ref: React.RefObject<HTMLDivElement | null>
@@ -21,7 +21,7 @@ export default function RightSection({
    sections,
 }: Props) {
    return (
-      <div className="relative hidden w-1/3 md:block">
+      <div className="relative hidden w-[350px] shrink-0 lg:block">
          <div className="mb-6 w-full">
             <h4 className="mb-2 text-lg font-semibold">Tags </h4>
             <Seperator />
@@ -33,15 +33,12 @@ export default function RightSection({
          </div>
          <div className="w-full" ref={ref}>
             <div
-               className={cn("relative", {
-                  "fixed top-6 z-50 w-[calc(33.333%-2.5rem)] max-w-[300px]":
-                     isTocSticky,
+               className={cn("relative w-[350px]", {
+                  "fixed top-6 z-50": isTocSticky,
                   relative: !isTocSticky,
                })}
             >
-               <h4 className="mb-2 text-lg font-semibold">
-                  Table of Contents {isTocSticky ? "Sticky" : "Not Sticky"}
-               </h4>
+               <h4 className="mb-2 text-lg font-semibold">Table of Contents</h4>
                <Seperator />
                <div className="space-y-2">
                   {sections.map((section) => (
@@ -49,7 +46,7 @@ export default function RightSection({
                         key={section.id}
                         onClick={() => scrollToSection(section.id)}
                         className={cn(
-                           "hover:bg-tag-hover-bg hover:text-tag-hover-text w-full rounded-md px-3 py-2 text-left text-sm",
+                           "hover:bg-tag-bg hover:text-tag-color w-full rounded-md px-3 py-2 text-left text-sm",
                            {
                               "bg-tag-bg text-tag-color":
                                  activeSection === section.id,

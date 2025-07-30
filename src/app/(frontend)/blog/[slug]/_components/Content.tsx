@@ -74,7 +74,7 @@ export default function Content({ data }: { data: Blog }) {
    }, [data, isHeroInView])
 
    return (
-      <div className="flex w-full justify-center">
+      <div className="mx-auto flex w-full justify-center lg:w-[90%]">
          <div className="flex w-full flex-col">
             <div
                ref={heroRef}
@@ -101,7 +101,7 @@ export default function Content({ data }: { data: Blog }) {
             </div>
 
             <div className="flex gap-10">
-               <div className="w-full md:w-2/3">
+               <div className="w-full lg:w-2/3">
                   <TocMobile
                      sections={data.sections}
                      activeSection={activeSection}
