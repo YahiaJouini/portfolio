@@ -74,19 +74,21 @@ export default function Content({ data }: { data: Blog }) {
    }, [data, isHeroInView])
 
    return (
-      <div className="mx-auto flex w-full justify-center lg:w-[90%]">
+      <div className="flex w-full justify-center">
          <div className="flex w-full flex-col">
             <div
                ref={heroRef}
                id="hero"
-               className="blog-header mb-8 flex flex-col gap-4 text-center md:mb-12"
+               className="mb-8 flex flex-col gap-6 text-center md:mb-12"
             >
-               <h1 className="text-3xl leading-tight font-bold md:text-5xl">
-                  {data.title}
-               </h1>
-               <p className="text-text-secondary mx-auto max-w-3xl text-base leading-relaxed md:text-lg">
-                  {data.description}
-               </p>
+               <div className="mx-auto max-w-3xl space-y-2">
+                  <h1 className="text-3xl leading-tight font-bold md:text-4xl">
+                     {data.title}
+                  </h1>
+                  <p className="text-text-secondary mx-auto text-base leading-relaxed md:text-lg">
+                     {data.description}
+                  </p>
+               </div>
                {typeof data.thumbnail !== "number" && (
                   <div className="border-default relative mb-6 aspect-video w-full border">
                      <ImageLoader

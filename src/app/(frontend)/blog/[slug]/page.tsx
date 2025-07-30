@@ -1,4 +1,4 @@
-import { BlogService } from "@/services/blogs"
+import { BlogService } from "@/services/blog"
 import { getServerLocale } from "@/utils/server-locale"
 import Content from "./_components/Content"
 

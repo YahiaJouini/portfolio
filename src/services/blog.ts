@@ -81,18 +81,23 @@ export class BlogService {
       }
       try {
          const payload = await Orm.getPayloadInstance()
+
+         const values: Record<keyof BlogList, boolean> = {
+            author: true,
+            createdAt: true,
+            id: true,
+            slug: true,
+            description: true,
+            thumbnail: true,
+            title: true,
+         }
          const { docs: blogList } = await payload.find({
             collection: "blog",
             limit: 100,
             depth: 1,
-            select: {
-               id: true,
-               title: true,
-               slug: true,
-               description: true,
-               createdAt: true,
-               author: true,
-            },
+            // use as any because select requires a different type
+            // but we know it is safe to use this select
+            select: values as any,
             sort: "-createdAt",
             locale,
          })

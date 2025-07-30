@@ -105,24 +105,29 @@ export class ProjectService {
       locale: Locale,
    ): Promise<ProjectList[]> {
       const payload = await Orm.getPayloadInstance()
+
+      const values: Record<keyof ProjectList, boolean> = {
+         id: true,
+         slug: true,
+         description: true,
+         thumbnail: true,
+         title: true,
+         demoUrl: true,
+         githubUrl: true,
+         pinned: true,
+         public: true,
+         type: true,
+      }
+
       const { docs: projects } = await payload.find({
          collection: "projects",
          limit: 6,
          page,
          locale,
          where: pinned ? { pinned: { equals: true } } : {},
-         select: {
-            id: true,
-            title: true,
-            slug: true,
-            description: true,
-            demoUrl: true,
-            thumbnail: true,
-            githubUrl: true,
-            pinned: true,
-            public: true,
-            type: true,
-         },
+         // use as any because select requires a different type
+         // but we know it is safe to use this select
+         select: values as any,
          depth: 1,
          sort: "-createdAt",
       })
