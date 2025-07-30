@@ -47,7 +47,7 @@ export default function Content({ data }: { data: Blog }) {
          },
          {
             threshold: 0,
-            rootMargin: "0px 0px -70% 0px",
+            rootMargin: "0px 0px -60% 0px",
          },
       )
 
@@ -108,12 +108,12 @@ export default function Content({ data }: { data: Blog }) {
                </p>
             </div>
             {typeof data.thumbnail !== "number" && (
-               <div className="border-default relative mb-6 aspect-video w-full border">
+               <div className="border-border-default relative aspect-video w-full overflow-hidden rounded-lg border">
                   <ImageLoader
                      src={data.thumbnail.url}
                      alt={data.thumbnail.alt}
                      fill
-                     className="mt-6 rounded-lg object-cover"
+                     className="object-cover"
                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
                   />
                </div>
@@ -166,6 +166,7 @@ export default function Content({ data }: { data: Blog }) {
                sections={data.sections}
                tags={data.tags}
                isTocSticky={isTocSticky}
+               hideToc={isWriterInView}
                activeSection={activeSection}
             />
          </div>

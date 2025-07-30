@@ -1,10 +1,9 @@
+import { Blog } from "@/payload-types"
 import { BlogList } from "@/types"
 import { memo, useEffect, useState } from "react"
 import { BlogCard } from "../../_components/BlogCard"
-import { Blog } from "@/payload-types"
 
 function KeepReading({ slug }: { slug: Blog["slug"] }) {
-   console.log("rendered")
    const [data, setData] = useState<BlogList | null>(null)
    const [loading, setLoading] = useState(true)
    useEffect(() => {
