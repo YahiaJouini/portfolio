@@ -1,3 +1,5 @@
+import Seperator from "@/components/global/Seperator"
+import { ParagraphSkeleton, TitleSkeleton, UnorderedListSkeleton } from "@/components/global/Skeletons"
 import { Skeleton } from "@/components/ui/skeleton"
 
 const RightSectionSkeleton = () => (
@@ -133,26 +135,3 @@ const ProjectPageSkeleton = () => {
 }
 
 export default ProjectPageSkeleton
-
-const TitleSkeleton = () => <Skeleton className="h-7 w-2/3" />
-
-const ParagraphSkeleton = ({ lines }: { lines: number }) => (
-   <div className="space-y-2">
-      {Array.from({ length: lines }).map((_, index) => (
-         <Skeleton key={index} className="h-4 w-full" />
-      ))}
-   </div>
-)
-
-const UnorderedListSkeleton = ({ items }: { items: number }) => (
-   <div className="space-y-2">
-      {Array.from({ length: items }).map((_, index) => (
-         <div key={index} className="flex items-start gap-3">
-            <Skeleton className="mt-2 h-2 w-2 flex-shrink-0 rounded-full" />
-            <Skeleton className="h-4 w-full" />
-         </div>
-      ))}
-   </div>
-)
-
-const Seperator = () => <div className="bg-border-default h-px w-full" />
