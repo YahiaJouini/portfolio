@@ -9,6 +9,7 @@ import ThemeProvider from "@/providers/Theme"
 import { getServerLocale } from "@/utils/server-locale"
 import Footer from "@/components/layout/Footer"
 import NextTopLoader from "nextjs-toploader"
+import { Toaster } from "sonner"
 
 export const metadata: Metadata = {
    title: "Create Next App",
@@ -30,7 +31,7 @@ export default async function RootLayout({
       >
          <body
             className={cn(
-               `text-text-primary bg-primary relative flex min-h-screen flex-col overflow-x-hidden antialiased`,
+               `text-text-primary bg-primary relative min-h-screen overflow-x-hidden antialiased`,
                inter.className,
             )}
          >
@@ -48,6 +49,7 @@ export default async function RootLayout({
                         {children}
                      </main>
                      <Footer />
+                     <Toaster position="bottom-right" richColors />
                   </NuqsAdapter>
                </LocaleProvider>
             </ThemeProvider>

@@ -1,13 +1,11 @@
 import { fullName } from "@/messages/global"
-import { getServerLocale } from "@/utils/server-locale"
+import { linkedin } from "@/messages/seperate/contact"
 import Link from "next/link"
 import Logo from "../global/Logo"
-import { linkedin } from "@/messages/seperate/contact"
 
-export default async function Footer() {
-   const locale = await getServerLocale()
+export default function Footer() {
    return (
-      <footer className="mt-auto w-full px-10 pt-16 pb-16 sm:pb-12">
+      <footer className="mt-auto w-full px-10 pt-24 pb-16 sm:pb-12">
          <div className="center w-full flex-col gap-4 md:flex-row-reverse">
             <div className="center flex-wrap gap-4">
                <Link
@@ -37,7 +35,7 @@ export default async function Footer() {
                <Logo withName={false} />
                <p className="text-text-secondary text-center text-xs">
                   © {new Date().getFullYear()}{" "}
-                  <span className="font-semibold">{fullName[locale]}</span>
+                  <span className="font-semibold">{fullName.en}</span>
                </p>
             </div>
          </div>

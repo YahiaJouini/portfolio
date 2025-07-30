@@ -1,3 +1,4 @@
+import { Locale } from "@/types"
 import { Page } from "./shared"
 
 export type About = {
@@ -69,3 +70,23 @@ export type Experience = Journey & {
    company: string
    location?: string
 }
+
+type FieldType = "email" | "text" | "textarea"
+type FieldName = "name" | "email" | "message"
+export type ContactFields = {
+   title: string
+   placeholder: string
+   type: FieldType
+   errorMessage: string
+}
+
+export type ContactPage = Record<
+   Locale,
+   {
+      form: Record<FieldName, ContactFields>
+      submitButton: string
+      successMessage: string
+      errorMessage: string
+      alternative: string
+   }
+>

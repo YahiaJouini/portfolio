@@ -4,6 +4,7 @@ import type { BlogList } from "@/types"
 import { readableISO } from "@/utils/format-date"
 import { Calendar } from "lucide-react"
 import Link from "next/link"
+import { FaLongArrowAltRight } from "react-icons/fa"
 
 export function BlogCard({ blog }: { blog: BlogList[number] }) {
    return (
@@ -54,8 +55,8 @@ export function BlogCard({ blog }: { blog: BlogList[number] }) {
                   </div>
                </div>
 
-               <span className="text-text-link group-hover:text-accent-active text-sm font-medium transition-colors duration-200">
-                  Read more →
+               <span className="text-text-link group-hover:text-accent-active flex items-center gap-1 text-sm font-medium transition-colors duration-200">
+                  Read more <FaLongArrowAltRight />
                </span>
             </div>
          </div>
