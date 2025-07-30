@@ -4,7 +4,7 @@ import { GITHUB_API } from "@/utils/constants"
 import { GITHUB_TOKEN } from "@/utils/env"
 
 export async function projectsWithLang(
-   projects: Array<ProjectList>,
+   projects: ProjectList,
 ): Promise<Array<ProjectListWithLang>> {
    // sort so if the order changes the cache is still valid
    const cacheKey = projects

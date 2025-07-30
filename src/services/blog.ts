@@ -11,7 +11,7 @@ export class BlogService {
    )
    // 1 blog list because no need for pagination since it is a small collection
    // accounting for different locales
-   private static blogListCache = new LRUCache<string, BlogList[]>(
+   private static blogListCache = new LRUCache<string, BlogList>(
       1 * LOCALES_LENGTH,
       LRUCache.CACHE_TTL,
    )
@@ -73,7 +73,7 @@ export class BlogService {
       locale,
    }: {
       locale: Locale
-   }): Promise<BlogList[] | undefined> {
+   }): Promise<BlogList | undefined> {
       const cacheKey = this.generateBlogListKey(locale)
       const cachedBlogList = this.blogListCache.get(cacheKey)
       if (cachedBlogList) {
@@ -82,7 +82,7 @@ export class BlogService {
       try {
          const payload = await Orm.getPayloadInstance()
 
-         const values: Record<keyof BlogList, boolean> = {
+         const values: Record<keyof BlogList[number], boolean> = {
             author: true,
             createdAt: true,
             id: true,

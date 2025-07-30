@@ -7,21 +7,23 @@ export type ProjectDetail = Project & {
 }
 
 // for listing projects
-export type ProjectList = Pick<
-   Project,
-   | "id"
-   | "title"
-   | "slug"
-   | "description"
-   | "demoUrl"
-   | "githubUrl"
-   | "pinned"
-   | "public"
-   | "type"
-   | "thumbnail"
+export type ProjectList = Array<
+   Pick<
+      Project,
+      | "id"
+      | "title"
+      | "slug"
+      | "description"
+      | "demoUrl"
+      | "githubUrl"
+      | "pinned"
+      | "public"
+      | "type"
+      | "thumbnail"
+   >
 >
 
-export type ProjectListWithLang = ProjectList & {
+export type ProjectListWithLang = ProjectList[number] & {
    primaryLanguage: {
       name: string | null
       color: string | null
@@ -52,15 +54,17 @@ export type RepoMeta = {
    }
 }
 
-export type BlogList = Pick<
-   Blog,
-   | "id"
-   | "title"
-   | "slug"
-   | "description"
-   | "thumbnail"
-   | "author"
-   | "createdAt"
+export type BlogList = Array<
+   Pick<
+      Blog,
+      | "id"
+      | "title"
+      | "slug"
+      | "description"
+      | "thumbnail"
+      | "author"
+      | "createdAt"
+   >
 >
 
 export type Locale = (typeof SUPPORTED_LOCALES)[number]

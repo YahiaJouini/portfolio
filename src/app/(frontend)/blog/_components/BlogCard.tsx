@@ -4,12 +4,7 @@ import { readableISO } from "@/utils/format-date"
 import { Calendar } from "lucide-react"
 import Link from "next/link"
 
-interface BlogCardProps {
-   blog: BlogList
-}
-
-export function BlogCard({ blog }: BlogCardProps) {
-   console.log(blog)
+export function BlogCard({ blog }: { blog: BlogList[number] }) {
    return (
       <Link
          href={`/blog/${blog.slug}`}

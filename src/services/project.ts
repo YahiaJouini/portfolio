@@ -24,7 +24,7 @@ export class ProjectService {
       LRUCache.CACHE_TTL,
    )
    // 2 pages of 6 projects each (12 projects total for each locale)
-   private static projectsListCache = new LRUCache<string, ProjectList[]>(
+   private static projectsListCache = new LRUCache<string, ProjectList>(
       2 * LOCALES_LENGTH,
       LRUCache.CACHE_TTL,
    )
@@ -103,10 +103,10 @@ export class ProjectService {
       page: number,
       pinned = false,
       locale: Locale,
-   ): Promise<ProjectList[]> {
+   ): Promise<ProjectList> {
       const payload = await Orm.getPayloadInstance()
 
-      const values: Record<keyof ProjectList, boolean> = {
+      const values: Record<keyof ProjectList[number], boolean> = {
          id: true,
          slug: true,
          description: true,
@@ -138,7 +138,7 @@ export class ProjectService {
       page = 1,
       pinned = false,
       locale,
-   }: ProjectsOptions): Promise<ProjectList[]> {
+   }: ProjectsOptions): Promise<ProjectList> {
       const cacheKey = this.generateProjectsListKey(page, pinned, locale)
 
       // check cache first
