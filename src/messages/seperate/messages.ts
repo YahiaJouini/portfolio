@@ -1,4 +1,4 @@
-import { Locale } from "../types/shared"
+import { Locale } from "@/types"
 
 export const messages = {
    en: {

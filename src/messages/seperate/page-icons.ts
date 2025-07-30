@@ -1,6 +1,5 @@
 import Blog from "@/components/icons/Blog"
 import Contact from "@/components/icons/Contact"
-import Discussions from "@/components/icons/Discussions"
 import Education from "@/components/icons/Education"
 import Home from "@/components/icons/Home"
 import Projects from "@/components/icons/Projects"
@@ -16,5 +15,4 @@ export const iconMap: Record<
    projects: Projects,
    journey: Education,
    contact: Contact,
-   discussions: Discussions,
 }

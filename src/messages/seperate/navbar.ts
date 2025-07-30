@@ -1,4 +1,4 @@
-import { Locale } from "../types/shared"
+import { Locale } from "@/types"
 import { NavBar } from "../types"
 
 // drop all translations into one object to load instantly to prevent layout shifts

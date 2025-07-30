@@ -9,7 +9,7 @@ export class BlogService {
       5 * LOCALES_LENGTH,
       LRUCache.CACHE_TTL,
    )
-   // 1 blog list because no need for pagination since it is a small collection
+   // 1 blog list because no need for pagination since it is a small dataset
    // accounting for different locales
    private static blogListCache = new LRUCache<string, BlogList>(
       1 * LOCALES_LENGTH,
@@ -108,5 +108,11 @@ export class BlogService {
          console.log(err)
          return undefined
       }
+   }
+
+   // clear all cause it's a small dataset
+   public static clearCache() {
+      this.blogCache.clear()
+      this.blogListCache.clear()
    }
 }

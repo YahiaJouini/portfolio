@@ -1,3 +1,4 @@
+import { BlogService } from "@/services/blog"
 import { ProjectService } from "@/services/project"
 import { Access, PayloadRequest } from "payload"
 
@@ -71,6 +72,34 @@ export const projectPayloadAccess = (): PayloadAccess => {
                   locale: resolvedLocale,
                })
             }
+            return true
+         }
+         return false
+      },
+   }
+}
+
+export const blogPayloadAccess = (): PayloadAccess => {
+   return {
+      read: () => true,
+      create: ({ req: { user } }) => {
+         if (user?.role === "admin") {
+            BlogService.clearCache()
+            return true
+         }
+         return false
+      },
+
+      update: ({ req: { user } }) => {
+         if (user?.role === "admin") {
+            BlogService.clearCache()
+            return true
+         }
+         return false
+      },
+      delete: ({ req: { user } }) => {
+         if (user?.role === "admin") {
+            BlogService.clearCache()
             return true
          }
          return false

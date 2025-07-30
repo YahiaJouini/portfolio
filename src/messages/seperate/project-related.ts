@@ -1,5 +1,5 @@
+import { Locale } from "@/types"
 import { ProjectRole } from "../types"
-import { Locale } from "../types/shared"
 
 export const summaryKeys = {
    frameworks: {

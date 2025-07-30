@@ -1,3 +1,4 @@
+import { blogPayloadAccess } from "@/utils/payload-access"
 import { CollectionConfig } from "payload"
 import { slugField } from "./slug-field"
 
@@ -7,6 +8,7 @@ export const Blog: CollectionConfig = {
       singular: "Blog Post",
       plural: "Blog Posts",
    },
+   access: blogPayloadAccess(),
    admin: {
       useAsTitle: "title",
    },

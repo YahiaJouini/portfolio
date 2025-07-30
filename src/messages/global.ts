@@ -1,4 +1,4 @@
-import { Locale } from "./types/shared"
+import { Locale } from "@/types"
 
 export const fullName = {
    en: "Yahia Jouini",
@@ -15,4 +15,4 @@ export const profileImage = {
    } satisfies Record<Locale, string>,
 }
 
-export const resumeUrl =""
+export const resumeUrl = ""
