@@ -1,4 +1,5 @@
 import { CollectionConfig } from "payload"
+import { slugField } from "./slug-field"
 
 export const Blog: CollectionConfig = {
    slug: "blog",
@@ -10,6 +11,7 @@ export const Blog: CollectionConfig = {
       useAsTitle: "title",
    },
    fields: [
+      slugField,
       {
          name: "title",
          localized: true,
@@ -81,6 +83,9 @@ export const Blog: CollectionConfig = {
                name: "title",
                localized: true,
                type: "text",
+               admin: {
+                  description: "Title will be used for table of content",
+               },
                required: true,
             },
             {

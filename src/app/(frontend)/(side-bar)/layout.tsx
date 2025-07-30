@@ -13,7 +13,7 @@ export default function layout({
    children: React.ReactNode
 }>) {
    return (
-      <div className="mx-auto flex items-start justify-between gap-12">
+      <div className="mx-auto flex items-start justify-between gap-8">
          <SideBar />
          {children}
       </div>

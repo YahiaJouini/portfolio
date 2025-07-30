@@ -1,6 +1,7 @@
 import { summaryKeys } from "@/messages/seperate/project-related"
 import { projectPayloadAccess } from "@/utils/payload-access"
 import { CollectionConfig } from "payload"
+import { slugField } from "./slug-field"
 
 export const Projects: CollectionConfig = {
    slug: "projects",
@@ -15,30 +16,7 @@ export const Projects: CollectionConfig = {
    },
    access: projectPayloadAccess(),
    fields: [
-      {
-         name: "slug",
-         type: "text",
-         required: true,
-         unique: true,
-         label: "URL Slug",
-         minLength: 3,
-         admin: {
-            description: "This will be used in the URL for this project",
-         },
-         hooks: {
-            beforeValidate: [
-               ({ value, operation, data }) => {
-                  if (operation === "create" && !value && data?.title) {
-                     return data.title
-                        .toLowerCase()
-                        .replace(/ /g, "-")
-                        .replace(/[^\w-]+/g, "")
-                  }
-                  return value
-               },
-            ],
-         },
-      },
+      slugField,
       {
          name: "title",
          type: "text",

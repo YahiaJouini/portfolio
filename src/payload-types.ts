@@ -264,6 +264,10 @@ export interface Project {
  */
 export interface Blog {
   id: number;
+  /**
+   * This will be used in the URL for this project
+   */
+  slug: string;
   title: string;
   description: string;
   thumbnail: number | Media;
@@ -281,6 +285,9 @@ export interface Blog {
   }[];
   sections: {
     id: string;
+    /**
+     * Title will be used for table of content
+     */
     title: string;
     body: {
       root: {
@@ -458,6 +465,7 @@ export interface ProjectsSelect<T extends boolean = true> {
  * via the `definition` "blog_select".
  */
 export interface BlogSelect<T extends boolean = true> {
+  slug?: T;
   title?: T;
   description?: T;
   thumbnail?: T;

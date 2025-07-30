@@ -54,7 +54,7 @@ export default function BlogPage() {
    }, [])
 
    return (
-      <div className="flex w-full justify-center px-4 pt-8 md:px-6 md:pt-12">
+      <div className="flex w-full justify-center">
          <div className="flex w-full flex-col">
             <div className="blog-header mb-8 text-center md:mb-12">
                <h1 className="mb-4 text-3xl leading-tight font-bold md:text-5xl">
