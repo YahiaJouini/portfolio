@@ -8,6 +8,7 @@ import "./globals.css"
 import ThemeProvider from "@/providers/Theme"
 import { getServerLocale } from "@/utils/server-locale"
 import Footer from "@/components/layout/Footer"
+import NextTopLoader from "nextjs-toploader"
 
 export const metadata: Metadata = {
    title: "Create Next App",
@@ -36,6 +37,12 @@ export default async function RootLayout({
             <ThemeProvider attribute="class" defaultTheme="dark">
                <LocaleProvider>
                   <NuqsAdapter>
+                     <NextTopLoader
+                        color="#fd8c73"
+                        shadow={false}
+                        showSpinner={false}
+                        height={2}
+                     />
                      <Navbar />
                      <main className="mx-auto w-[90%] flex-1 flex-grow overflow-x-hidden xl:max-w-[1250px]">
                         {children}

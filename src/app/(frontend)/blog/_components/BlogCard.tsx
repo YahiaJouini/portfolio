@@ -1,4 +1,5 @@
 import ImageLoader from "@/components/global/ImageLoader"
+import { Skeleton } from "@/components/ui/skeleton"
 import type { BlogList } from "@/types"
 import { readableISO } from "@/utils/format-date"
 import { Calendar } from "lucide-react"
@@ -59,5 +60,44 @@ export function BlogCard({ blog }: { blog: BlogList[number] }) {
             </div>
          </div>
       </Link>
+   )
+}
+
+export function BlogCardSkeleton() {
+   return (
+      <div className="group bg-primary border-border-default overflow-hidden rounded-xl border">
+         <div className="relative aspect-video w-full overflow-hidden">
+            <Skeleton className="h-full w-full" />
+         </div>
+
+         <div className="p-6">
+            <div className="mb-3 flex items-center gap-2">
+               <Skeleton className="h-4 w-4" />
+               <Skeleton className="h-4 w-24" />
+            </div>
+
+            <div className="mb-3 space-y-2">
+               <Skeleton className="h-6 w-full" />
+               <Skeleton className="h-6 w-3/4" />
+            </div>
+
+            <div className="mb-4 space-y-2">
+               <Skeleton className="h-4 w-full" />
+               <Skeleton className="h-4 w-full" />
+               <Skeleton className="h-4 w-2/3" />
+            </div>
+
+            <div className="flex items-center justify-between">
+               <div className="flex items-center gap-2">
+                  <Skeleton className="h-8 w-8 rounded-full" />
+                  <div className="space-y-1">
+                     <Skeleton className="h-4 w-20" />
+                     <Skeleton className="h-3 w-16" />
+                  </div>
+               </div>
+               <Skeleton className="h-4 w-20" />
+            </div>
+         </div>
+      </div>
    )
 }

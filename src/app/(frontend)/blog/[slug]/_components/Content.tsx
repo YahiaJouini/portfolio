@@ -53,7 +53,7 @@ export default function Content({ data }: Props) {
          },
          {
             threshold: 0,
-            rootMargin: "0px 0px -60% 0px",
+            rootMargin: "100% 0px -60% 0px",
          },
       )
 
