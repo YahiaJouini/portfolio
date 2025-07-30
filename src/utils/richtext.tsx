@@ -1,3 +1,4 @@
+import ImageLoader from "@/components/global/ImageLoader"
 import { JSXConvertersFunction } from "@payloadcms/richtext-lexical/react"
 
 export const customConverters: JSXConvertersFunction = ({
@@ -134,5 +135,20 @@ export const customConverters: JSXConvertersFunction = ({
       }
 
       return content
+   },
+   upload: ({ node }) => {
+      const url = (node.value as any)?.url as string | undefined
+      const alt = (node.value as any)?.alt || "Uploaded image"
+      if (!url) return null
+      return (
+         <div className="relative my-4 aspect-video w-full">
+            <ImageLoader
+               src={url}
+               alt={alt}
+               fill
+               sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+            />
+         </div>
+      )
    },
 })

@@ -1,22 +1,34 @@
 "use client"
 
+import ImageLoader from "@/components/global/ImageLoader"
 import { Blog } from "@/payload-types"
 import { customConverters } from "@/utils/richtext"
 import { RichText } from "@payloadcms/richtext-lexical/react"
 import { useEffect, useRef, useState } from "react"
+import { ActiveBlogSection } from "../types"
 import RightSection from "./RightSection"
 import TocMobile from "./TocMobile"
-import { ActiveBlogSection } from "../types"
 
 export default function Content({ data }: { data: Blog }) {
    const [activeSection, setActiveSection] = useState<ActiveBlogSection>(null)
    const [isTocSticky, setIsTocSticky] = useState(false)
+   const [isHeroInView, setIsHeroInView] = useState(true)
    const tocContainerRef = useRef<HTMLDivElement>(null)
+   const heroRef = useRef<HTMLDivElement>(null)
 
    useEffect(() => {
+      const heroObserver = new IntersectionObserver(
+         ([entry]) => {
+            setIsHeroInView(entry.isIntersecting)
+         },
+         {
+            threshold: 0,
+            rootMargin: "0px 0px 0px 0px",
+         },
+      )
       const tocObserver = new IntersectionObserver(
          ([entry]) => {
-            setIsTocSticky(!entry.isIntersecting)
+            setIsTocSticky(!entry.isIntersecting && !isHeroInView)
          },
          {
             threshold: 1,
@@ -34,9 +46,14 @@ export default function Content({ data }: { data: Blog }) {
          },
          {
             threshold: 0.3,
-            rootMargin: "-20% 0px -70% 0px",
+            rootMargin: "0px 0px -70% 0px",
          },
       )
+
+      // Set up observers
+      if (heroRef.current) {
+         heroObserver.observe(heroRef.current)
+      }
 
       if (tocContainerRef.current) {
          tocObserver.observe(tocContainerRef.current)
@@ -50,21 +67,37 @@ export default function Content({ data }: { data: Blog }) {
       })
 
       return () => {
+         heroObserver.disconnect()
          tocObserver.disconnect()
          sectionObserver.disconnect()
       }
-   }, [data])
+   }, [data, isHeroInView])
 
    return (
       <div className="flex w-full justify-center">
          <div className="flex w-full flex-col">
-            <div className="blog-header mb-8 text-center md:mb-12">
-               <h1 className="mb-4 text-3xl leading-tight font-bold md:text-5xl">
+            <div
+               ref={heroRef}
+               id="hero"
+               className="blog-header mb-8 flex flex-col gap-4 text-center md:mb-12"
+            >
+               <h1 className="text-3xl leading-tight font-bold md:text-5xl">
                   {data.title}
                </h1>
-               <p className="mx-auto max-w-3xl text-base leading-relaxed text-gray-600 md:text-lg dark:text-gray-300">
+               <p className="text-text-secondary mx-auto max-w-3xl text-base leading-relaxed md:text-lg">
                   {data.description}
                </p>
+               {typeof data.thumbnail !== "number" && (
+                  <div className="border-default relative mb-6 aspect-video w-full border">
+                     <ImageLoader
+                        src={data.thumbnail.url}
+                        alt={data.thumbnail.alt}
+                        fill
+                        className="mt-6 rounded-lg object-cover"
+                        sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+                     />
+                  </div>
+               )}
             </div>
 
             <div className="flex gap-10">
@@ -74,17 +107,16 @@ export default function Content({ data }: { data: Blog }) {
                      activeSection={activeSection}
                   />
                   {data.sections.map((section) => (
-                     <RichText
-                        key={section.id}
-                        converters={customConverters}
-                        data={section.body}
-                     />
+                     <div id={section.id} key={section.id}>
+                        <RichText
+                           converters={customConverters}
+                           data={section.body}
+                        />
+                     </div>
                   ))}
 
                   <div className="mt-8 flex w-full flex-col md:mt-12">
-                     <h3 className="text-xl font-bold text-gray-900 md:text-3xl dark:text-white">
-                        Written by
-                     </h3>
+                     <h3 className="text-xl font-bold">Written by</h3>
                      <div className="mt-3 h-[2px] w-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"></div>
                      <div className="mt-6 flex items-center gap-4">
                         <div className="flex h-[80px] w-[80px] items-center justify-center rounded-full bg-gradient-to-br from-blue-400 to-purple-500 md:h-[120px] md:w-[120px]">
@@ -96,10 +128,10 @@ export default function Content({ data }: { data: Blog }) {
                            </span>
                         </div>
                         <div className="flex flex-col">
-                           <h4 className="text-xl font-semibold text-gray-900 dark:text-white">
+                           <h4 className="text-xl font-semibold">
                               {data.author.name}
                            </h4>
-                           <p className="text-sm text-gray-600 dark:text-gray-400">
+                           <p className="text-text-secondary text-sm">
                               {data.author.role}
                            </p>
                         </div>

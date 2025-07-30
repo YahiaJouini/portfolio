@@ -23,7 +23,7 @@ type Props = (
 }
 
 export default function ImageLoader(props: Props) {
-   const { src, alt, fill, className, sizes, priority } = props
+   const { src, alt, fill, className, sizes, priority = false } = props
    const [loading, setLoading] = useState(true)
    const [error, setError] = useState(false)
 
@@ -60,10 +60,11 @@ export default function ImageLoader(props: Props) {
                className,
                loading ? "opacity-0" : "opacity-100 transition-opacity",
             )}
-            onLoadingComplete={() => setLoading(false)}
+            onLoad={() => setLoading(false)}
             onError={handleError}
             sizes={sizes}
             priority={priority}
+            loading={priority ? "eager" : "lazy"}
          />
       </>
    )
