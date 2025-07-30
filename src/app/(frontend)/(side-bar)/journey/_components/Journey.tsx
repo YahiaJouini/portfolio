@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils"
 import { layout } from "@/messages/seperate/layout"
 import type { Education, Experience } from "@/messages/types"
-import { Locale } from "@/types"
+import { useLocale } from "@/providers/Locale"
 import { shortNumericDate } from "@/utils/format-date"
 import {
    Award,
@@ -19,7 +19,6 @@ import { useState } from "react"
 type Props = {
    education: Education[]
    experience: Experience[]
-   locale: Locale
 }
 
 const views = ["experience", "education"] as const
@@ -30,9 +29,10 @@ function formatDateRange(startDate: string, endDate?: string): string {
    return `${start} - ${end}`
 }
 
-export default function Journey({ education, experience, locale }: Props) {
+export default function Journey({ education, experience }: Props) {
    const [activeView, setActiveView] =
       useState<(typeof views)[number]>("experience")
+   const { locale } = useLocale()
    const resolvedLayout = layout[locale]
    return (
       <div className="space-y-8">

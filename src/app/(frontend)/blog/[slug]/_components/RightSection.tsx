@@ -7,6 +7,8 @@ import { scrollToSection } from "@/utils/scroll-to"
 import { AnimatePresence, motion } from "framer-motion"
 import React from "react"
 import { ActiveBlogSection } from "../types"
+import { useLocale } from "@/providers/Locale"
+import { t } from "../../t"
 
 type Props = {
    ref: React.RefObject<HTMLDivElement | null>
@@ -24,10 +26,11 @@ export default function RightSection({
    hideToc,
    sections,
 }: Props) {
+   const { locale } = useLocale()
    return (
       <div className="relative hidden w-[350px] shrink-0 lg:block">
          <div className="mb-6 w-full">
-            <h4 className="mb-2 text-lg font-semibold">Tags </h4>
+            <h4 className="mb-2 text-lg font-semibold">{t[locale].tags} </h4>
             <Seperator />
             <div className="flex flex-wrap gap-2">
                {tags.map(({ tag, id }) => (
@@ -49,7 +52,7 @@ export default function RightSection({
                      })}
                   >
                      <h4 className="mb-2 text-lg font-semibold">
-                        Table of Contents
+                        {t[locale].tableOfContents}
                      </h4>
                      <Seperator />
                      <div className="space-y-2">

@@ -5,13 +5,18 @@ import { Blog } from "@/payload-types"
 import { customConverters } from "@/utils/richtext"
 import { RichText } from "@payloadcms/richtext-lexical/react"
 import { lazy, useEffect, useRef, useState } from "react"
+import { t } from "../../t"
 import { ActiveBlogSection } from "../types"
 import RightSection from "./RightSection"
 import TocMobile from "./TocMobile"
+import { useLocale } from "@/providers/Locale"
 
 const KeepReading = lazy(() => import("./KeepReading"))
 
-export default function Content({ data }: { data: Blog }) {
+type Props = {
+   data: Blog
+}
+export default function Content({ data }: Props) {
    const [activeSection, setActiveSection] = useState<ActiveBlogSection>(null)
    const [isTocSticky, setIsTocSticky] = useState(false)
    const [isHeroInView, setIsHeroInView] = useState(true)
@@ -19,6 +24,7 @@ export default function Content({ data }: { data: Blog }) {
    const tocContainerRef = useRef<HTMLDivElement>(null)
    const heroRef = useRef<HTMLDivElement>(null)
    const writerRef = useRef<HTMLDivElement>(null)
+   const { locale } = useLocale()
 
    useEffect(() => {
       const heroObserver = new IntersectionObserver(
@@ -139,7 +145,7 @@ export default function Content({ data }: { data: Blog }) {
                   ref={writerRef}
                   className="mt-8 flex w-full flex-col md:mt-12"
                >
-                  <h3 className="text-xl font-bold">Written by</h3>
+                  <h3 className="text-xl font-bold">{t[locale].writtenBy}</h3>
                   <div className="bg-accent-active mt-3 h-[2px] w-full"></div>
                   <div className="mt-6 flex items-center gap-4">
                      <div className="bg-accent-active flex h-[80px] w-[80px] items-center justify-center rounded-full bg-gradient-to-br md:h-[120px] md:w-[120px]">

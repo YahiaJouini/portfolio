@@ -29,7 +29,7 @@ export default async function About({ locale }: { locale: Locale }) {
          />
 
          <div className="flex items-center gap-2">
-            <Resume locale={locale} />
+            <Resume />
             <Link
                href="/contact"
                className="border-border-default w-fit gap-1 rounded-sm border bg-[#238636] px-3 py-1 font-medium text-white"

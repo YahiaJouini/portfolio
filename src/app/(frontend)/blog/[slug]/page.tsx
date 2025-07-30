@@ -1,5 +1,6 @@
 import { BlogService } from "@/services/blog"
 import { getServerLocale } from "@/utils/server-locale"
+import { t } from "../t"
 import Content from "./_components/Content"
 
 type Props = {
@@ -14,9 +15,9 @@ export default async function page({ params }: Props) {
    if (!data) {
       return (
          <div className="mx-auto w-full max-w-4xl">
-            <h1 className="text-2xl font-bold">Blog Not Found</h1>
+            <h1 className="text-2xl font-bold">{t[locale].notFound}</h1>
             <p className="text-text-secondary mt-2">
-               The blog you are looking for does not exist.
+               {t[locale].notFoundDescription}
             </p>
          </div>
       )

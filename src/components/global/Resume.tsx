@@ -8,13 +8,14 @@ import {
    DialogTrigger,
 } from "@/components/ui/dialog"
 import { layout } from "@/messages/seperate/layout"
-import { Locale } from "@/types"
+import { useLocale } from "@/providers/Locale"
 import { Suspense, lazy, useState } from "react"
 import Spinner from "./Spinner"
 
 const PDFViewer = lazy(() => import("./PDFViewer"))
 
-export default function Resume({ locale }: { locale: Locale }) {
+export default function Resume() {
+   const { locale } = useLocale()
    const [isOpen, setIsOpen] = useState(false)
 
    return (

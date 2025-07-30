@@ -12,11 +12,7 @@ export default async function JourneyPage() {
    ])
    return (
       <div className="bg-primary min-h-screen">
-         <Journey
-            locale={locale}
-            education={education}
-            experience={experience}
-         />
+         <Journey education={education} experience={experience} />
       </div>
    )
 }

@@ -1,6 +1,7 @@
 import { BlogService } from "@/services/blog"
 import { getServerLocale } from "@/utils/server-locale"
 import { BlogCard } from "./_components/BlogCard"
+import { t } from "./t"
 
 export default async function page() {
    const locale = await getServerLocale()
@@ -8,9 +9,9 @@ export default async function page() {
    if (!data || data.length === 0) {
       return (
          <div className="mx-auto w-full max-w-4xl">
-            <h1 className="text-2xl font-bold">No Blogs Found</h1>
+            <h1 className="text-2xl font-bold">{t[locale].noBlogsFound}</h1>
             <p className="text-text-secondary mt-2">
-               There are currently no blogs available.
+               {t[locale].noBlogsFoundDescription}
             </p>
          </div>
       )
@@ -18,15 +19,12 @@ export default async function page() {
    return (
       <div>
          <div className="mx-auto mb-12 max-w-3xl text-center">
-            <h1 className="text-text-primary mb-6 text-5xl leading-tight font-bold">
-               My <span className="text-accent-active">Tech</span> Corner
-            </h1>
+            <h1
+               dangerouslySetInnerHTML={{ __html: t[locale].title }}
+               className="text-text-primary mb-6 text-5xl leading-tight font-bold"
+            ></h1>
             <p className="text-text-secondary text-lg">
-               A personal log of what I build, break, and learn. I write about
-               web dev, backend systems, performance, real-world architecture,
-               and random experiments with tools like Next.js, TypeScript, Go,
-               and whatever else I&apos;m into. No filler—just the process, the
-               wins, and the bugs.
+               {t[locale].description}
             </p>
          </div>
 

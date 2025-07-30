@@ -6,6 +6,7 @@ import { Locale } from "@/types"
 import { LanguageBar } from "./LanguageBar"
 import { ProjectDetail } from "@/types"
 import Tag from "@/components/global/Tag"
+import Seperator from "@/components/global/Seperator"
 
 type Props = {
    project: ProjectDetail
@@ -86,5 +87,3 @@ export default function RightSection({ project, locale }: Props) {
 const SectionTitle = ({ title }: { title: string }) => (
    <h4 className="mb-2 text-[17px] font-semibold">{title}</h4>
 )
-
-const Seperator = () => <div className="bg-border-default h-px w-full" />
