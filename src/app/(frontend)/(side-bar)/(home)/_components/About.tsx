@@ -3,7 +3,7 @@ import { fullName } from "@/messages/global"
 import { layout } from "@/messages/seperate/layout"
 import { technologies } from "@/messages/seperate/technologies"
 import type { About } from "@/messages/types"
-import { Locale } from "@/messages/types/shared"
+import { Locale } from "@/types"
 import { getTranslation } from "@/utils/get-translation"
 import Link from "next/link"
 

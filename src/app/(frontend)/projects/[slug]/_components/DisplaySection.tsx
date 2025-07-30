@@ -1,6 +1,6 @@
 "use client"
 import { cn } from "@/lib/utils"
-import { Locale } from "@/messages/types/shared"
+import { Locale } from "@/types"
 import { BookOpen } from "lucide-react"
 import { useQueryStates } from "nuqs"
 import { displaySections, filters } from "../project-filters"

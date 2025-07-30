@@ -8,7 +8,7 @@ import {
    DialogTrigger,
 } from "@/components/ui/dialog"
 import { layout } from "@/messages/seperate/layout"
-import { Locale } from "@/messages/types/shared"
+import { Locale } from "@/types"
 import { Suspense, lazy, useState } from "react"
 import Spinner from "./Spinner"
 

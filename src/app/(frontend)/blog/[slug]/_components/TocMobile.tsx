@@ -1,18 +1,19 @@
+import { Blog } from "@/payload-types"
 import { scrollToSection } from "@/utils/scroll-to"
-import { blogExample } from "../example"
+import { ActiveBlogSection } from "../types"
 
-export default function TocMobile({
-   activeSection,
-}: {
-   activeSection: string | null
-}) {
+type Props = {
+   activeSection: ActiveBlogSection
+   sections: Blog["sections"]
+}
+export default function TocMobile({ activeSection, sections }: Props) {
    return (
       <div className="mb-8 w-full border-b border-gray-200 pb-6 md:hidden dark:border-gray-700">
          <h4 className="mb-4 text-xl font-semibold text-gray-900 dark:text-white">
             Table of Contents
          </h4>
          <ul className="space-y-2">
-            {blogExample.sections.map((section) => (
+            {sections.map((section) => (
                <li key={section.id}>
                   <button
                      onClick={() => scrollToSection(section.id)}

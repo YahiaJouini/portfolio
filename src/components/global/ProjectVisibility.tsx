@@ -1,5 +1,5 @@
 import { layout } from "@/messages/seperate/layout"
-import { Locale } from "@/messages/types/shared"
+import { Locale } from "@/types"
 import { Project } from "@/payload-types"
 
 type Props = {

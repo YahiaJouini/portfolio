@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils"
 import { layout } from "@/messages/seperate/layout"
 import type { Education, Experience } from "@/messages/types"
-import { Locale } from "@/messages/types/shared"
+import { Locale } from "@/types"
 import { shortNumericDate } from "@/utils/format-date"
 import {
    Award,

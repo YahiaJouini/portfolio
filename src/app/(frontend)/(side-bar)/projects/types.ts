@@ -1,4 +1,4 @@
-import { Locale } from "@/messages/types/shared"
+import { Locale } from "@/types"
 import { ProjectListWithLang } from "@/types"
 
 export type Props = {

@@ -1,6 +1,6 @@
 "use client"
 import { LayoutLoader } from "@/components/layout/LayoutLoader"
-import { Locale } from "@/messages/types/shared"
+import { Locale } from "@/types"
 import { validLocale } from "@/utils/validate-locale"
 import { useRouter } from "next/navigation"
 import { createContext, useContext, useEffect, useState } from "react"

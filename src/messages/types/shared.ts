@@ -1,8 +1,6 @@
+import { Locale } from "@/types"
 import { LucideIcon } from "lucide-react"
-import React from "react"
 
-export const SUPPORTED_LOCALES = ["en", "fr", "ar"] as const
-export type Locale = (typeof SUPPORTED_LOCALES)[number]
 export type Language = {
    title: string
    id: Locale

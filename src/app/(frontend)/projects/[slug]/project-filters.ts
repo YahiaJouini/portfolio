@@ -1,4 +1,4 @@
-import { Locale } from "@/messages/types/shared"
+import { Locale } from "@/types"
 import { createLoader, parseAsStringLiteral } from "nuqs/server"
 
 type Item = {

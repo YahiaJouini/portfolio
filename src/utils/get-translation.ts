@@ -1,4 +1,5 @@
-import { Locale, Translation } from "@/messages/types/shared"
+import { Translation } from "@/messages/types/shared"
+import { Locale } from "@/types"
 
 const translationCache = new Map<string, any>()
 

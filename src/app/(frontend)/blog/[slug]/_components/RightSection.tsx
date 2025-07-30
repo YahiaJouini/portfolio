@@ -1,17 +1,22 @@
 import Tag from "@/components/global/Tag"
+import { Blog } from "@/payload-types"
 import { scrollToSection } from "@/utils/scroll-to"
 import React from "react"
-import { blogExample } from "../example"
+import { ActiveBlogSection } from "../types"
 
 type Props = {
    ref: React.RefObject<HTMLDivElement | null>
    isTocSticky: boolean
-   activeSection: string | null
+   activeSection: ActiveBlogSection
+   tags: Blog["tags"]
+   sections: Blog["sections"]
 }
 export default function RightSection({
    ref,
    isTocSticky,
    activeSection,
+   tags,
+   sections,
 }: Props) {
    return (
       <div className="hidden w-1/3 md:block">
@@ -21,8 +26,8 @@ export default function RightSection({
             </h4>
             <div className="mb-4 h-[2px] w-full bg-gray-200 dark:bg-gray-700" />
             <div className="flex flex-wrap gap-2">
-               {blogExample.tags.map((tag, index) => (
-                  <Tag text={tag} key={index} />
+               {tags.map(({ tag, id }) => (
+                  <Tag text={tag} key={id} />
                ))}
             </div>
          </div>
@@ -35,7 +40,7 @@ export default function RightSection({
                </h4>
                <div className="mb-4 h-[2px] w-full bg-gray-200 dark:bg-gray-700" />
                <div className="space-y-2">
-                  {blogExample.sections.map((section) => (
+                  {sections.map((section) => (
                      <button
                         key={section.id}
                         onClick={() => scrollToSection(section.id)}

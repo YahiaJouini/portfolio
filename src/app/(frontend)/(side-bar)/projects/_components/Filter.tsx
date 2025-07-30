@@ -1,7 +1,7 @@
 "use client"
 import { cn } from "@/lib/utils"
 import { layout as layoutText } from "@/messages/seperate/layout"
-import { Locale } from "@/messages/types/shared"
+import { Locale } from "@/types"
 import {
    displayModes,
    filters,

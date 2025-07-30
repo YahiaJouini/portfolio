@@ -2,7 +2,7 @@ import ProjectVisibility from "@/components/global/ProjectVisibility"
 import Repo from "@/components/icons/Repo"
 import { cn } from "@/lib/utils"
 import { layout } from "@/messages/seperate/layout"
-import { Locale } from "@/messages/types/shared"
+import { Locale } from "@/types"
 import { ProjectService } from "@/services/project"
 import Link from "next/link"
 

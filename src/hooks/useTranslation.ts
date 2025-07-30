@@ -1,5 +1,6 @@
-import { Locale, Translation } from "@/messages/types/shared"
+import { Translation } from "@/messages/types/shared"
 import { useLocale } from "@/providers/Locale"
+import { Locale } from "@/types"
 import { getTranslation } from "@/utils/get-translation"
 import { useLayoutEffect, useState } from "react"
 

@@ -1,10 +1,10 @@
 import { getRepoMeta } from "@/graphql/github-repo"
-import { Locale } from "@/messages/types/shared"
+import { Locale } from "@/types"
 import { ProjectDetail, ProjectList } from "@/types"
-import config from "@payload-config"
-import { getPayload, Payload } from "payload"
 import { Project } from "../payload-types"
 import { LRUCache } from "./cache"
+import { Orm } from "./orm"
+import { LOCALES_LENGTH } from "@/utils/constants"
 
 export type CacheFn = {
    locale?: Locale
@@ -18,25 +18,16 @@ type ProjectsOptions = {
 }
 
 export class ProjectService {
-   // 20 projects
+   // 7 projects (accounting for different locales)
    private static projectCache = new LRUCache<string, ProjectDetail>(
-      20,
+      7 * LOCALES_LENGTH,
       LRUCache.CACHE_TTL,
    )
-   // 30 projects (5 pages of 6 projects each)
+   // 2 pages of 6 projects each (12 projects total for each locale)
    private static projectsListCache = new LRUCache<string, ProjectList[]>(
-      5,
+      2 * LOCALES_LENGTH,
       LRUCache.CACHE_TTL,
    )
-
-   private static payloadInstance: Payload | null = null
-
-   private static async getPayloadInstance(): Promise<Payload> {
-      if (!this.payloadInstance) {
-         this.payloadInstance = await getPayload({ config })
-      }
-      return this.payloadInstance
-   }
 
    private static generateProjectKey(slug: string, locale: Locale): string {
       return `${locale}:${slug}`
@@ -54,7 +45,7 @@ export class ProjectService {
       slug: string,
       locale: Locale,
    ): Promise<Project | undefined> {
-      const payload = await this.getPayloadInstance()
+      const payload = await Orm.getPayloadInstance()
       const {
          docs: [project],
       } = await payload.find({
@@ -113,7 +104,7 @@ export class ProjectService {
       pinned = false,
       locale: Locale,
    ): Promise<ProjectList[]> {
-      const payload = await this.getPayloadInstance()
+      const payload = await Orm.getPayloadInstance()
       const { docs: projects } = await payload.find({
          collection: "projects",
          limit: 6,

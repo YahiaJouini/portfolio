@@ -15,7 +15,7 @@ import {
    ADMIN_PASSWORD,
    DATABASE_URI,
    PAYLOAD_SECRET,
-} from "@/utils/constants"
+} from "@/utils/env"
 import { Media } from "./collections/Media"
 import { Projects } from "./collections/Projects"
 import { Users } from "./collections/Users"

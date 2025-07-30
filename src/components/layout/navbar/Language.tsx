@@ -1,7 +1,7 @@
 import Dropdown from "@/components/global/DropDown"
 import { cn } from "@/lib/utils"
 import { languages as data } from "@/messages/seperate/languages"
-import { Locale } from "@/messages/types/shared"
+import { Locale } from "@/types"
 import { useLocale } from "@/providers/Locale"
 
 export default function Language({ dropDown = true }) {

@@ -1,4 +1,5 @@
-import { Project } from "./payload-types"
+import { Blog, Project } from "./payload-types"
+import { SUPPORTED_LOCALES } from "./utils/constants"
 
 // for details page
 export type ProjectDetail = Project & {
@@ -50,3 +51,16 @@ export type RepoMeta = {
       }>
    }
 }
+
+export type BlogList = Pick<
+   Blog,
+   | "id"
+   | "title"
+   | "slug"
+   | "description"
+   | "thumbnail"
+   | "author"
+   | "createdAt"
+>
+
+export type Locale = (typeof SUPPORTED_LOCALES)[number]

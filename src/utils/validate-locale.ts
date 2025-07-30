@@ -1,4 +1,5 @@
-import { Locale, SUPPORTED_LOCALES } from "@/messages/types/shared"
+import { Locale } from "@/types"
+import { SUPPORTED_LOCALES } from "./constants"
 
 export const validLocale = (locale: string | undefined) => {
    if (!locale) return false

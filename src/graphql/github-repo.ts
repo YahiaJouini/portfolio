@@ -1,6 +1,7 @@
 import { LRUCache } from "@/services/cache"
 import { ProjectList, ProjectListWithLang, RepoMeta } from "@/types"
-import { GITHUB_API, GITHUB_TOKEN } from "@/utils/constants"
+import { GITHUB_API } from "@/utils/constants"
+import { GITHUB_TOKEN } from "@/utils/env"
 
 export async function projectsWithLang(
    projects: Array<ProjectList>,
