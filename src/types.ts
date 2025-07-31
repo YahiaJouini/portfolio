@@ -68,3 +68,5 @@ export type BlogList = Array<
 >
 
 export type Locale = (typeof SUPPORTED_LOCALES)[number]
+
+export type MergedTranslations = Record<Locale, Record<string, string>>

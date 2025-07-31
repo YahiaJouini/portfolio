@@ -1,7 +1,6 @@
 "use client"
 
 import { cn } from "@/lib/utils"
-import { layout } from "@/messages/seperate/layout"
 import type { Education, Experience } from "@/messages/types"
 import { useLocale } from "@/providers/Locale"
 import { shortNumericDate } from "@/utils/format-date"
@@ -15,6 +14,7 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 import { useState } from "react"
+import { t } from "../t"
 
 type Props = {
    education: Education[]
@@ -33,7 +33,7 @@ export default function Journey({ education, experience }: Props) {
    const [activeView, setActiveView] =
       useState<(typeof views)[number]>("experience")
    const { locale } = useLocale()
-   const resolvedLayout = layout[locale]
+   const resolvedLayout = t[locale]
    return (
       <div className="space-y-8">
          <div className="flex justify-center">

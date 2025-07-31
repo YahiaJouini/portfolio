@@ -1,7 +1,7 @@
 import Code from "@/components/icons/Code"
 import Eye from "@/components/icons/Eye"
-import { layout } from "@/messages/seperate/layout"
 import Link from "next/link"
+import { t } from "../t"
 import { Props } from "../types"
 
 export default function Bottom({ project, locale }: Props) {
@@ -24,7 +24,7 @@ export default function Bottom({ project, locale }: Props) {
                href={project.demoUrl}
             >
                <Eye />
-               {layout[locale].visit}
+               {t[locale].visit}
             </Link>
          )}
          {project.public && (

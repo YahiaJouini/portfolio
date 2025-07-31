@@ -1,7 +1,6 @@
 import ImageLoader from "@/components/global/ImageLoader"
 import ProjectVisibility from "@/components/global/ProjectVisibility"
 import { profileImage } from "@/messages/global"
-import { layout } from "@/messages/seperate/layout"
 import { ProjectService } from "@/services/project"
 import { readableISO } from "@/utils/format-date"
 import { customConverters } from "@/utils/richtext"
@@ -15,6 +14,7 @@ import DisplaySection from "./_components/DisplaySection"
 import RightSection from "./_components/RightSection"
 import ScreenShots from "./_components/ScreenShots"
 import { loadSearchParams } from "./project-filters"
+import { t } from "./t"
 
 type Props = {
    params: Promise<{ slug: string }>
@@ -29,8 +29,8 @@ export default async function page({ params, searchParams }: Props) {
 
    const project = await ProjectService.getProject({ locale, slug })
    if (!project) notFound()
-   const resolvedLayout = layout[locale]
 
+   const resolvedTranslation = t[locale]
    return (
       <div className="mx-auto w-full max-sm:px-4">
          <div className="border-border-default mb-6 flex flex-col gap-4 border-b pb-6">
@@ -74,7 +74,7 @@ export default async function page({ params, searchParams }: Props) {
                      className="bg-tag-hover-bg text-tag-hover-text hover:bg-accent-active hidden items-center gap-2 rounded-md px-4 py-2 font-medium shadow-lg transition-all duration-200 hover:text-white hover:shadow-xl sm:flex"
                   >
                      <ExternalLink className="h-4 w-4" />
-                     <span>{resolvedLayout.visit}</span>
+                     <span>{resolvedTranslation.visit}</span>
                   </Link>
                )}
             </div>
@@ -88,7 +88,7 @@ export default async function page({ params, searchParams }: Props) {
                   className="bg-tag-hover-bg text-tag-hover-text hover:bg-accent-active flex w-full items-center justify-center gap-2 rounded-md px-4 py-2 font-medium shadow-lg transition-all duration-200 hover:text-white sm:hidden"
                >
                   <ExternalLink className="h-4 w-4" />
-                  <span>{resolvedLayout.visit}</span>
+                  <span>{resolvedTranslation.visit}</span>
                </Link>
             )}
          </div>
@@ -121,10 +121,10 @@ export default async function page({ params, searchParams }: Props) {
                      <div className="mt-4 hidden lg:block">
                         <div className="border-border-default bg-tertiary rounded-lg border p-4">
                            <h3 className="text-text-primary mb-2 font-semibold">
-                              {resolvedLayout.liveDemo}
+                              {resolvedTranslation.liveDemo}
                            </h3>
                            <p className="text-text-secondary mb-3 text-sm">
-                              {resolvedLayout.liveDemoDescription}
+                              {resolvedTranslation.liveDemoDescription}
                            </p>
                            <Link
                               target="_blank"
@@ -133,7 +133,7 @@ export default async function page({ params, searchParams }: Props) {
                               className="bg-tag-hover-bg text-tag-hover-text hover:bg-accent-active flex w-full items-center justify-center gap-2 rounded-md px-4 py-2 font-medium transition-all duration-200 hover:text-white"
                            >
                               <ExternalLink className="h-4 w-4" />
-                              <span>{resolvedLayout.visit}</span>
+                              <span>{resolvedTranslation.visit}</span>
                            </Link>
                         </div>
                      </div>

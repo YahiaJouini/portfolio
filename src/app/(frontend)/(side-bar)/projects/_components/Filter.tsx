@@ -1,13 +1,13 @@
 "use client"
-import { cn } from "@/lib/utils"
-import { layout as layoutText } from "@/messages/seperate/layout"
-import { Locale } from "@/types"
 import {
    displayModes,
    filters,
 } from "@/app/(frontend)/(side-bar)/projects/project-filters"
+import { cn } from "@/lib/utils"
+import { Locale } from "@/types"
 import { Grid2x2, Rows2 } from "lucide-react"
 import { useQueryStates } from "nuqs"
+import { t } from "../t"
 
 export default function Filter({ locale }: { locale: Locale }) {
    const [{ layout }, setFilters] = useQueryStates(filters, {
@@ -41,7 +41,7 @@ export default function Filter({ locale }: { locale: Locale }) {
                   ) : (
                      <Rows2 className="h-4 w-4" />
                   )}
-                  {layoutText[locale][value]}
+                  {t[locale][value]}
                </button>
             ))}
          </div>

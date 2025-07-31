@@ -14,5 +14,3 @@ export const profileImage = {
       ar: "صورة ملف يحيى الجويني",
    } satisfies Record<Locale, string>,
 }
-
-export const resumeUrl = ""

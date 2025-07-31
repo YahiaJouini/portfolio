@@ -7,12 +7,24 @@ import {
    DialogTitle,
    DialogTrigger,
 } from "@/components/ui/dialog"
-import { layout } from "@/messages/seperate/layout"
 import { useLocale } from "@/providers/Locale"
+import { MergedTranslations } from "@/types"
 import { Suspense, lazy, useState } from "react"
 import Spinner from "./Spinner"
 
 const PDFViewer = lazy(() => import("./PDFViewer"))
+
+const t = {
+   en: {
+      resume: "My Resume",
+   },
+   fr: {
+      resume: "Mon CV",
+   },
+   ar: {
+      resume: "السيرة الذاتية",
+   },
+} satisfies MergedTranslations
 
 export default function Resume() {
    const { locale } = useLocale()
@@ -21,7 +33,7 @@ export default function Resume() {
    return (
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
          <DialogTrigger className="border-border-default w-fit gap-1 rounded-sm border bg-[#0969da] px-3 py-1 font-medium text-white">
-            <span className="font-medium">{layout[locale].resume}</span>
+            <span className="font-medium">{t[locale].resume}</span>
          </DialogTrigger>
 
          <DialogContent
@@ -42,7 +54,10 @@ export default function Resume() {
                         </div>
                      }
                   >
-                     <PDFViewer resumeFile="/resume.pdf" />
+                     <PDFViewer
+                        title={t[locale].resume}
+                        resumeFile="/resume.pdf"
+                     />
                   </Suspense>
                )}
             </div>

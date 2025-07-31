@@ -8,23 +8,42 @@ import "react-pdf/dist/Page/AnnotationLayer.css"
 import "react-pdf/dist/Page/TextLayer.css"
 
 import { configurePDFWorker, PDF_OPTIONS } from "@/lib/pdf-config"
-import { layout } from "@/messages/seperate/layout"
-import { useLocale } from "@/providers/Locale"
-import Spinner from "./Spinner"
 import { messages } from "@/messages/seperate/messages"
+import { useLocale } from "@/providers/Locale"
+import { MergedTranslations } from "@/types"
+import Spinner from "./Spinner"
 // configure worker immediately
 configurePDFWorker()
 
 type PDFViewerProps = {
    resumeFile: string
+   title: string
 }
 
-function PDFViewer({ resumeFile }: PDFViewerProps) {
+const t = {
+   en: {
+      download: " Download",
+      previous: "Previous",
+      next: "Next",
+   },
+   fr: {
+      download: "Télécharger",
+      previous: "Précédent",
+      next: "Suivant",
+   },
+   ar: {
+      download: "تحميل",
+      previous: "السابق",
+      next: "التالي",
+   },
+} satisfies MergedTranslations
+
+function PDFViewer({ resumeFile, title }: PDFViewerProps) {
    const [numPages, setNumPages] = useState<number>(0)
    const [pageNumber, setPageNumber] = useState<number>(1)
    const [loading, setLoading] = useState(true)
    const { locale } = useLocale()
-   const resolvedLayout = layout[locale]
+   const resolvedLayout = t[locale]
    return (
       <div className="bg-primary border-border-default overflow-hidden rounded-lg border shadow-sm">
          <div className="bg-secondary border-border-default border-b px-4 py-3">
@@ -32,7 +51,7 @@ function PDFViewer({ resumeFile }: PDFViewerProps) {
                <div className="flex items-center gap-2">
                   <FileText className="text-accent-icon h-5 w-5" />
                   <span className="text-text-primary text-sm font-medium">
-                     {resolvedLayout.resume}
+                     {title}
                   </span>
                </div>
                <Link

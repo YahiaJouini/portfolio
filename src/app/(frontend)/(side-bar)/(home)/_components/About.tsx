@@ -1,11 +1,11 @@
 import Resume from "@/components/global/Resume"
 import { fullName } from "@/messages/global"
-import { layout } from "@/messages/seperate/layout"
 import { technologies } from "@/messages/seperate/technologies"
 import type { About } from "@/messages/types"
 import { Locale } from "@/types"
 import { getTranslation } from "@/utils/get-translation"
 import Link from "next/link"
+import { t } from "../t"
 
 export default async function About({ locale }: { locale: Locale }) {
    const data = await getTranslation<About>(locale, "about")
@@ -34,7 +34,7 @@ export default async function About({ locale }: { locale: Locale }) {
                href="/contact"
                className="border-border-default w-fit gap-1 rounded-sm border bg-[#238636] px-3 py-1 font-medium text-white"
             >
-               {layout[locale].getInTouch}
+               {t[locale].getInTouch}
             </Link>
          </div>
 

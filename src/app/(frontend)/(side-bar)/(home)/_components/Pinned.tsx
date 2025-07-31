@@ -1,10 +1,10 @@
 import ProjectVisibility from "@/components/global/ProjectVisibility"
 import Repo from "@/components/icons/Repo"
 import { cn } from "@/lib/utils"
-import { layout } from "@/messages/seperate/layout"
 import { ProjectService } from "@/services/project"
 import { Locale } from "@/types"
 import Link from "next/link"
+import { t } from "../t"
 
 export default async function Pinned({ locale }: { locale: Locale }) {
    const pinned = await ProjectService.getProjects({
@@ -15,7 +15,7 @@ export default async function Pinned({ locale }: { locale: Locale }) {
    if (!pinned || pinned.length === 0) return null
    return (
       <div>
-         <h2 className="mt-8 mb-1">{layout[locale].pinned}</h2>
+         <h2 className="mt-8 mb-1">{t[locale].pinned}</h2>
          <div className="mt-2 grid w-full gap-4 sm:grid-cols-2">
             {pinned.map((project) => {
                return (

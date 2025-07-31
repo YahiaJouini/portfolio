@@ -1,20 +1,20 @@
 "use client"
 
+import { t } from "@/app/(frontend)/(side-bar)/contact/t"
 import InputField from "@/components/global/InputField"
 import { Form, FormField } from "@/components/ui/form"
 import { fullName } from "@/messages/global"
-import { contactPage } from "@/messages/seperate/contact-page"
+import { messages } from "@/messages/seperate/messages"
 import { useLocale } from "@/providers/Locale"
 import { contactSchema, ContactSchema } from "@/schemas/contact"
-import { FaArrowLeftLong } from "react-icons/fa6"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
+import { FaArrowLeftLong } from "react-icons/fa6"
 import { toast } from "sonner"
-import { messages } from "@/messages/seperate/messages"
 
 export default function Page() {
    const { locale } = useLocale()
-   const content = contactPage[locale]
+   const content = t[locale]
    const form = useForm<ContactSchema>({
       resolver: zodResolver(contactSchema(content.form)),
       mode: "all",

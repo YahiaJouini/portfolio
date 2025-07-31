@@ -1,12 +1,11 @@
+import Seperator from "@/components/global/Seperator"
+import Tag from "@/components/global/Tag"
 import Tick from "@/components/global/Tick"
 import Summary from "@/components/icons/Summary"
-import { layout } from "@/messages/seperate/layout"
 import { summaryKeys } from "@/messages/seperate/project-related"
-import { Locale } from "@/types"
+import { Locale, ProjectDetail } from "@/types"
+import { t } from "../t"
 import { LanguageBar } from "./LanguageBar"
-import { ProjectDetail } from "@/types"
-import Tag from "@/components/global/Tag"
-import Seperator from "@/components/global/Seperator"
 
 type Props = {
    project: ProjectDetail
@@ -15,7 +14,7 @@ type Props = {
 
 export default function RightSection({ project, locale }: Props) {
    const { repoMeta, ...rest } = project
-   const resolvedLayout = layout[locale]
+   const resolvedLayout = t[locale]
    return (
       <div className="flex flex-1 flex-col gap-6">
          <div className="flex flex-col gap-3">

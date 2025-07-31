@@ -1,6 +1,6 @@
-import { ContactPage } from "../types"
+import { ContactPage } from "../../../../messages/types"
 
-export const contactPage = {
+export const t = {
    en: {
       form: {
          name: {
