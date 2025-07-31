@@ -1,6 +1,5 @@
 import ImageLoader from "@/components/global/ImageLoader"
 import ProjectVisibility from "@/components/global/ProjectVisibility"
-import Eye from "@/components/icons/Eye"
 import { profileImage } from "@/messages/global"
 import { layout } from "@/messages/seperate/layout"
 import { ProjectService } from "@/services/project"
@@ -8,13 +7,14 @@ import { readableISO } from "@/utils/format-date"
 import { customConverters } from "@/utils/richtext"
 import { getServerLocale } from "@/utils/server-locale"
 import { RichText } from "@payloadcms/richtext-lexical/react"
+import { ExternalLink } from "lucide-react"
 import Link from "next/link"
+import { notFound } from "next/navigation"
 import { SearchParams } from "nuqs"
 import DisplaySection from "./_components/DisplaySection"
 import RightSection from "./_components/RightSection"
 import ScreenShots from "./_components/ScreenShots"
 import { loadSearchParams } from "./project-filters"
-import { notFound } from "next/navigation"
 
 type Props = {
    params: Promise<{ slug: string }>
@@ -26,62 +26,120 @@ export default async function page({ params, searchParams }: Props) {
       loadSearchParams(searchParams).then((sp) => sp.display),
       getServerLocale(),
    ])
-   const project = await ProjectService.getProject({ locale, slug })
 
+   const project = await ProjectService.getProject({ locale, slug })
    if (!project) notFound()
+   const resolvedLayout = layout[locale]
 
    return (
-      <div className="mx-auto w-full">
-         <div className="border-default-border mb-4 flex items-center justify-between border-b pb-3">
-            <div className="flex items-center gap-3">
-               <div className="relative h-8 w-8 rounded-full">
-                  <ImageLoader
-                     src={profileImage.src}
-                     alt={profileImage.alt[locale]}
-                     fill
-                     className="rounded-full object-cover"
-                  />
+      <div className="mx-auto w-full max-sm:px-4">
+         <div className="border-border-default mb-6 flex flex-col gap-4 border-b pb-6">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+               <div className="flex items-center gap-3">
+                  <div className="ring-accent-border relative h-10 w-10 flex-shrink-0 rounded-full ring-2">
+                     <ImageLoader
+                        src={profileImage.src}
+                        alt={profileImage.alt[locale]}
+                        fill
+                        className="rounded-full object-cover"
+                     />
+                  </div>
+                  <div className="flex flex-col">
+                     <h1 className="text-text-primary text-2xl font-bold sm:text-3xl">
+                        {project.title}
+                     </h1>
+                     <div className="mt-1 flex items-center gap-2">
+                        <ProjectVisibility
+                           locale={locale}
+                           isPublic={project.public === true}
+                        />
+                        <span className="text-text-secondary">•</span>
+                        <span className="text-text-secondary text-sm">
+                           {!project.public
+                              ? readableISO(project.createdAt)
+                              : project.repoMeta
+                                ? readableISO(project.repoMeta.createdAt)
+                                : null}
+                        </span>
+                     </div>
+                  </div>
                </div>
-               <h3 className="text-lg font-bold">{project.title}</h3>
-               <ProjectVisibility
-                  locale={locale}
-                  isPublic={project.public === true}
-               />
+
+               {/* desktop visit button */}
+               {project.demoUrl && (
+                  <Link
+                     target="_blank"
+                     rel="noopener noreferrer"
+                     href={project.demoUrl}
+                     className="bg-tag-hover-bg text-tag-hover-text hover:bg-accent-active hidden items-center gap-2 rounded-md px-4 py-2 font-medium shadow-lg transition-all duration-200 hover:text-white hover:shadow-xl sm:flex"
+                  >
+                     <ExternalLink className="h-4 w-4" />
+                     <span>{resolvedLayout.visit}</span>
+                  </Link>
+               )}
             </div>
-            {!project.public ? (
-               <p>{readableISO(project.createdAt)}</p>
-            ) : project.repoMeta ? (
-               <p>{readableISO(project.repoMeta.createdAt)}</p>
-            ) : null}
+
+            {/* mobile visit button */}
+            {project.demoUrl && (
+               <Link
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={project.demoUrl}
+                  className="bg-tag-hover-bg text-tag-hover-text hover:bg-accent-active flex w-full items-center justify-center gap-2 rounded-md px-4 py-2 font-medium shadow-lg transition-all duration-200 hover:text-white sm:hidden"
+               >
+                  <ExternalLink className="h-4 w-4" />
+                  <span>{resolvedLayout.visit}</span>
+               </Link>
+            )}
          </div>
 
-         {project.demoUrl && (
-            <Link
-               target="_blank"
-               rel="noopener noreferrer"
-               className="flex w-fit items-center gap-1 rounded-md bg-[#0969da] px-3 py-1.5 font-medium text-white"
-               href={project.demoUrl}
-            >
-               <Eye />
-               {layout[locale].visit}
-            </Link>
-         )}
-         <div className="flex items-start justify-between gap-10">
-            <div className="border-border-default mt-6 rounded-md border xl:w-[70%]">
-               <DisplaySection locale={locale} />
-               <div className="p-6">
-                  {display === "readme" ? (
-                     <RichText
-                        disableContainer
-                        data={project.richText}
-                        converters={customConverters}
-                     />
-                  ) : (
-                     <ScreenShots images={project.images} />
+         <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between lg:gap-10">
+            <div className="order-2 w-full lg:order-1 lg:flex-1">
+               <div className="border-border-default rounded-lg border shadow-sm">
+                  <DisplaySection locale={locale} />
+                  <div className="p-4 sm:p-6">
+                     {display === "readme" ? (
+                        <div className="max-w-none">
+                           <RichText
+                              disableContainer
+                              data={project.richText}
+                              converters={customConverters}
+                           />
+                        </div>
+                     ) : (
+                        <ScreenShots images={project.images} />
+                     )}
+                  </div>
+               </div>
+            </div>
+
+            <div className="order-1 w-full lg:order-2 lg:w-80 lg:flex-shrink-0">
+               <div className="sticky top-4">
+                  <RightSection locale={locale} project={project} />
+
+                  {project.demoUrl && (
+                     <div className="mt-4 hidden lg:block">
+                        <div className="border-border-default bg-tertiary rounded-lg border p-4">
+                           <h3 className="text-text-primary mb-2 font-semibold">
+                              {resolvedLayout.liveDemo}
+                           </h3>
+                           <p className="text-text-secondary mb-3 text-sm">
+                              {resolvedLayout.liveDemoDescription}
+                           </p>
+                           <Link
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              href={project.demoUrl}
+                              className="bg-tag-hover-bg text-tag-hover-text hover:bg-accent-active flex w-full items-center justify-center gap-2 rounded-md px-4 py-2 font-medium transition-all duration-200 hover:text-white"
+                           >
+                              <ExternalLink className="h-4 w-4" />
+                              <span>{resolvedLayout.visit}</span>
+                           </Link>
+                        </div>
+                     </div>
                   )}
                </div>
             </div>
-            <RightSection locale={locale} project={project} />
          </div>
       </div>
    )

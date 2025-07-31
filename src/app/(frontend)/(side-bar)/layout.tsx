@@ -14,7 +14,7 @@ export default function Layout({
    children: React.ReactNode
 }>) {
    return (
-      <div className="mx-auto flex flex-col gap-4 p-4 sm:gap-6 sm:p-6 lg:flex-row lg:items-start lg:justify-between lg:gap-8 lg:p-0">
+      <div className="mx-auto flex flex-col gap-4 sm:gap-6 md:flex-row md:items-start md:justify-between md:gap-8">
          <SideBar />
          <div className="flex-1">{children}</div>
       </div>
@@ -26,30 +26,31 @@ async function SideBar() {
    const data = await getTranslation<Profile>(locale, "profile")
 
    return (
-      <div className="flex w-full shrink-0 flex-col justify-center gap-4 sm:gap-6 lg:w-[280px] xl:w-[320px]">
-         <div className="text-center lg:text-left">
-            <div className="border-accent-border relative z-10 mx-auto mb-3 aspect-square w-24 overflow-hidden rounded-full border object-cover object-center sm:mb-4 sm:w-32 md:w-40 lg:mx-0 lg:w-[70%] xl:w-[80%]">
+      <div className="w-full shrink-0 flex-col justify-center gap-4 max-sm:my-3 sm:gap-6 md:flex md:w-[280px] xl:w-[320px]">
+         <div className="flex items-start gap-4 text-left md:flex-col md:items-center md:text-center lg:items-start lg:text-left">
+            <div className="border-accent-border relative z-10 aspect-square w-20 shrink-0 overflow-hidden rounded-full border object-cover object-center sm:w-24 md:mx-auto md:mb-3 md:w-[70%] lg:mx-0 xl:w-[80%]">
                <ImageLoader
                   fill
                   className="h-full w-full object-cover object-center"
-                  src={profileImage.src || "/placeholder.svg"}
+                  src={profileImage.src}
                   priority
                   alt={profileImage.alt[locale]}
                />
             </div>
-            <h2 className="text-xl font-medium sm:text-2xl lg:text-2xl">
-               {data.fullName}
-            </h2>
-            <h4 className="text-text-trinary text-base sm:text-lg lg:text-lg">
-               {data.job}
-            </h4>
-            <p className="mt-2 text-sm max-sm:hidden sm:text-base lg:text-base">
-               {data.description}
-            </p>
+            <div className="flex-1 md:flex-none">
+               <h2 className="text-lg font-medium sm:text-xl md:text-2xl">
+                  {data.fullName}
+               </h2>
+               <h4 className="text-text-trinary text-base sm:text-lg md:text-lg">
+                  {data.job}
+               </h4>
+               <p className="text-sm max-sm:hidden sm:mt-2 sm:text-base md:text-base">
+                  {data.description}
+               </p>
+            </div>
          </div>
-
          <Divider
-            className="max-sm:hidden"
+            className="max-md:hidden"
             title={layoutMessages[locale].connect}
          >
             <Contacts />

@@ -50,7 +50,7 @@ export default async function RootLayout({
                      />
                      <Navbar locale={locale} />
 
-                     <main className="mx-auto w-[97%] flex-1 flex-grow overflow-x-hidden sm:w-[90%] xl:max-w-[1250px]">
+                     <main className="mx-auto w-[90%] flex-1 flex-grow overflow-x-hidden md:w-[95%] xl:max-w-[1250px]">
                         {children}
                      </main>
                      <Footer />

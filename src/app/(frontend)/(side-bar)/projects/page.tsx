@@ -8,6 +8,7 @@ import Filter from "./_components/Filter"
 import GridShowcase from "./_components/GridShowcase"
 import ListShowcase from "./_components/ListShowcase"
 import { loadSearchParams } from "./project-filters"
+import { notFound } from "next/navigation"
 
 type Props = {
    searchParams: Promise<SearchParams>
@@ -27,13 +28,7 @@ export default async function Page({ searchParams }: Props) {
    const { items, ...paginationProps } = getPaginatedData(data, page)
    const projects = await projectsWithLang(items)
 
-   if (projects.length === 0) {
-      return (
-         <div className="flex h-full w-full items-center justify-center">
-            <p className="text-text-secondary">No projects found</p>
-         </div>
-      )
-   }
+   if (projects.length === 0) notFound()
    return (
       <div className="w-full">
          <Filter locale={locale} />

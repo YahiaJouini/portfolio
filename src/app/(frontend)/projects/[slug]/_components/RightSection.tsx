@@ -12,6 +12,7 @@ type Props = {
    project: ProjectDetail
    locale: Locale
 }
+
 export default function RightSection({ project, locale }: Props) {
    const { repoMeta, ...rest } = project
    const resolvedLayout = layout[locale]

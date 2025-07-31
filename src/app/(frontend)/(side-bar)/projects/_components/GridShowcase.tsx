@@ -2,6 +2,7 @@ import ImageLoader from "@/components/global/ImageLoader"
 import Link from "next/link"
 import { Props } from "../types"
 import Bottom from "./Bottom"
+import ProjectVisibility from "@/components/global/ProjectVisibility"
 
 export default function GridShowcase({ locale, project }: Props) {
    return (
@@ -17,12 +18,16 @@ export default function GridShowcase({ locale, project }: Props) {
                   />
                </div>
             )}
-            <Link
-               className="text-text-link text-lg font-semibold hover:underline md:text-xl"
-               href={`/projects/${project.slug}`}
-            >
-               {project.title}
-            </Link>
+            <div className="flex items-center gap-2 flex-wrap">
+               <Link
+                  className="text-text-link text-lg font-semibold hover:underline md:text-xl"
+                  href={`/projects/${project.slug}`}
+               >
+                  {project.title}
+               </Link>
+               <ProjectVisibility isPublic={project.public} locale={locale} />
+            </div>
+
             <p className="text-text-secondary mt-1 text-sm">
                {project.description}
             </p>

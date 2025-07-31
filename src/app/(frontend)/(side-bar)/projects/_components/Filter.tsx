@@ -23,30 +23,27 @@ export default function Filter({ locale }: { locale: Locale }) {
       }
    }
    return (
-      <div>
-         <div className="flex items-center gap-2">
-            <p className="font-medium">{layoutText[locale].layout}</p>
-            <div className="grid grid-cols-2 gap-1">
-               {displayModes.map((value) => (
-                  <button
-                     key={value}
-                     onClick={() => handleLayoutChange(value)}
-                     className={cn(
-                        "border-border-default flex items-center gap-1 rounded-md border px-2 py-1",
-                        {
-                           "bg-hover-2": layout === value,
-                        },
-                     )}
-                  >
-                     {value === "grid" ? (
-                        <Grid2x2 className="h-4 w-4" />
-                     ) : (
-                        <Rows2 className="h-4 w-4" />
-                     )}
-                     {layoutText[locale][value]}
-                  </button>
-               ))}
-            </div>
+      <div className="flex items-center gap-2">
+         <div className="grid grid-cols-2 gap-1 max-md:w-full">
+            {displayModes.map((value) => (
+               <button
+                  key={value}
+                  onClick={() => handleLayoutChange(value)}
+                  className={cn(
+                     "border-border-default flex w-full items-center justify-center gap-1 rounded-md border px-4 py-1",
+                     {
+                        "bg-hover-2": layout === value,
+                     },
+                  )}
+               >
+                  {value === "grid" ? (
+                     <Grid2x2 className="h-4 w-4" />
+                  ) : (
+                     <Rows2 className="h-4 w-4" />
+                  )}
+                  {layoutText[locale][value]}
+               </button>
+            ))}
          </div>
       </div>
    )

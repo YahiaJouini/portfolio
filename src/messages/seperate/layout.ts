@@ -1,4 +1,4 @@
-import { Locale } from "@/types";
+import { Locale } from "@/types"
 
 export const layout = {
    en: {
@@ -29,6 +29,8 @@ export const layout = {
       next: "Next",
       experience: "Experience",
       education: "Education",
+      liveDemo: "Live Demo",
+      liveDemoDescription: "View the live demo of this project",
    },
    fr: {
       settings: "Paramètres",
@@ -58,6 +60,8 @@ export const layout = {
       next: "Suivant",
       experience: "Expérience",
       education: "Éducation",
+      liveDemo: "Démo",
+      liveDemoDescription: "Voir la démo de ce projet",
    },
    ar: {
       settings: "الإعدادات",
@@ -87,5 +91,7 @@ export const layout = {
       next: "التالي",
       experience: "الخبرة",
       education: "التعليم",
+      liveDemo: "عرض مباشر",
+      liveDemoDescription: "عرض العرض المباشر لهذا المشروع",
    },
 } satisfies Record<Locale, Record<string, string>>

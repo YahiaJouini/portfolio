@@ -2,22 +2,22 @@ import { Skeleton } from "@/components/ui/skeleton"
 import Link from "next/link"
 import { Props } from "../types"
 import Bottom from "./Bottom"
+import ProjectVisibility from "@/components/global/ProjectVisibility"
 
 export default function ListShowcase({ project, locale }: Props) {
    return (
-      <div className="border-accent-border flex w-full justify-between border-b pb-4 max-[430px]:px-4 max-md:px-6 md:pb-5">
+      <div className="border-accent-border flex w-full justify-between border-b pb-4 md:pb-5">
          <div className="flex-1">
             <h4 className="flex flex-wrap items-center gap-2">
-               <span>
-                  <Link
-                     className="text-text-link text-lg font-semibold hover:underline md:text-xl"
-                     href={`/projects/${project.slug}`}
-                  >
-                     {project.title}
-                  </Link>
-               </span>
+               <Link
+                  className="text-text-link text-lg font-semibold hover:underline md:text-xl"
+                  href={`/projects/${project.slug}`}
+               >
+                  {project.title}
+               </Link>
+               <ProjectVisibility isPublic={project.public} locale={locale} />
             </h4>
-            <p className="text-text-secondary mt-1 w-[95%] text-sm">
+            <p className="text-text-secondary mt-1 w-[95%] text-sm line-clamp-3">
                {project.description}
             </p>
             <Bottom project={project} locale={locale} />
@@ -28,7 +28,7 @@ export default function ListShowcase({ project, locale }: Props) {
 
 export function ListShowcaseSkeleton() {
    return (
-      <div className="border-accent-border flex w-full justify-between border-b pb-4 max-[430px]:px-4 max-md:px-6 md:pb-5">
+      <div className="border-accent-border flex w-full justify-between border-b pb-4">
          <div className="flex-1">
             <div className="flex flex-wrap items-center gap-3">
                <Skeleton className="h-5 w-56 md:h-6 md:w-64" />

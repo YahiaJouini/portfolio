@@ -6,7 +6,7 @@ import Logo from "../global/Logo"
 // don't translate
 export default function Footer() {
    return (
-      <footer className="mt-auto w-full px-10 pt-24 pb-16 sm:pb-12">
+      <footer className="mt-auto w-full px-10 pt-8 pb-10 sm:pt-16 sm:pb-12 lg:pt-24">
          <div className="center w-full flex-col gap-4 md:flex-row-reverse">
             <div className="center flex-wrap gap-4">
                <Link
