@@ -38,7 +38,7 @@ export default async function RootLayout({
             <ThemeProvider
                attribute="class"
                defaultTheme="dark"
-               themes={["light", "dark"]}
+               themes={["light", "dark"] as const}
             >
                <LocaleProvider initialValue={locale}>
                   <NuqsAdapter>

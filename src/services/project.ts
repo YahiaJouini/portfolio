@@ -167,6 +167,7 @@ export class ProjectService {
    }
 
    static clearProjectsListCache(): void {
+      console.log("cleared projects list cache")
       this.projectsListCache.clear()
    }
 

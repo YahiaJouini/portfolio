@@ -1,3 +1,4 @@
+import { User } from "@/payload-types"
 import { BlogService } from "@/services/blog"
 import { ProjectService } from "@/services/project"
 import { Access, PayloadRequest } from "payload"
@@ -12,97 +13,67 @@ type PayloadAccess = {
    update?: Access
 }
 
-// only admin users can modify any of the collections
+type UserType =
+   | (User & {
+        collection: "users"
+     })
+   | null
+   | undefined
+
+const isAdmin = (user: UserType): boolean => user?.role === "admin"
+
 export const payloadAccess = ({
    isPublic = true,
 }: {
    isPublic?: boolean
 }): PayloadAccess => {
    return {
-      read: ({ req: { user } }) => {
-         if (isPublic) return true
-         return user?.role === "admin"
-      },
-      create: ({ req: { user } }) => user?.role === "admin",
-
-      update: ({ req: { user } }) => user?.role === "admin",
-      delete: ({ req: { user } }) => user?.role === "admin",
+      read: ({ req: { user } }) => isPublic || isAdmin(user),
+      create: ({ req: { user } }) => isAdmin(user),
+      update: ({ req: { user } }) => isAdmin(user),
+      delete: ({ req: { user } }) => isAdmin(user),
    }
 }
 
 export const projectPayloadAccess = (): PayloadAccess => {
+   const handleProjectAccess: Access = ({ req: { user, data, locale } }) => {
+      if (!isAdmin(user)) return false
+
+      // means an action happened
+      if (data?.slug) {
+         ProjectService.clearProjectsListCache()
+         const resolvedLocale = locale !== "all" ? locale : undefined
+         ProjectService.clearProjectCache({
+            slug: data.slug,
+            locale: resolvedLocale,
+         })
+      }
+      return true
+   }
+
    return {
       read: () => true,
-      create: ({ req: { user, data, locale } }) => {
-         if (user?.role === "admin") {
-            ProjectService.clearProjectsListCache()
-            if (data?.slug) {
-               const resolvedLocale = locale !== "all" ? locale : undefined
-               ProjectService.clearProjectCache({
-                  slug: data.slug,
-                  locale: resolvedLocale,
-               })
-            }
-            return true
-         }
-         return false
-      },
-
-      update: ({ req: { user, data, locale } }) => {
-         if (user?.role === "admin") {
-            ProjectService.clearProjectsListCache()
-            if (data?.slug) {
-               const resolvedLocale = locale !== "all" ? locale : undefined
-               ProjectService.clearProjectCache({
-                  slug: data.slug,
-                  locale: resolvedLocale,
-               })
-            }
-            return true
-         }
-         return false
-      },
-      delete: ({ req: { user, data, locale } }) => {
-         if (user?.role === "admin") {
-            ProjectService.clearProjectsListCache()
-            if (data?.slug) {
-               const resolvedLocale = locale !== "all" ? locale : undefined
-               ProjectService.clearProjectCache({
-                  slug: data.slug,
-                  locale: resolvedLocale,
-               })
-            }
-            return true
-         }
-         return false
-      },
+      create: handleProjectAccess,
+      update: handleProjectAccess,
+      delete: handleProjectAccess,
    }
 }
 
 export const blogPayloadAccess = (): PayloadAccess => {
+   const handleBlogAccess: Access = ({ req: { user, data } }) => {
+      if (!isAdmin(user)) return false
+
+      // means an action happened
+      if (data) {
+         BlogService.clearCache()
+      }
+      return true
+   }
+
    return {
       read: () => true,
-      create: ({ req: { user } }) => {
-         if (user?.role === "admin") {
-            BlogService.clearCache()
-            return true
-         }
-         return false
-      },
-
-      update: ({ req: { user } }) => {
-         if (user?.role === "admin") {
-            BlogService.clearCache()
-            return true
-         }
-         return false
-      },
-      delete: ({ req: { user } }) => {
-         if (user?.role === "admin") {
-            BlogService.clearCache()
-            return true
-         }
-         return false
-      },
+      create: handleBlogAccess,
+      update: handleBlogAccess,
+      delete: handleBlogAccess,
    }
 }

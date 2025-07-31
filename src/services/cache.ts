@@ -37,6 +37,7 @@ export class LRUCache<K, V> {
    set(key: K, value: V): void {
       // remove existing entry if it exists
       if (this.cache.has(key)) {
+         console.log("cache update for", key)
          this.delete(key)
       }
 
