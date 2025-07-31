@@ -18,7 +18,7 @@ export default function Navbar({ locale }: { locale: Locale }) {
    return (
       <nav className="bg-secondary border-border-default mb-4 w-full border-b pt-3 sm:mb-12">
          <div className="px-4 sm:px-12">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between max-sm:pb-2">
                <Logo />
                <div className="flex items-center gap-2.5 sm:gap-4">
                   <Search content={content.search} />

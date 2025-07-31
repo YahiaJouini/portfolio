@@ -51,7 +51,7 @@ export default function Sidebar({ pages }: { pages: NavBar["items"] }) {
                toggled={open}
             />
          </SheetTrigger>
-         <SheetContent className="flex w-[80%] flex-col gap-4 overflow-auto p-6">
+         <SheetContent className="flex w-[80%] flex-col gap-4 overflow-auto p-3 sm:p-6">
             <SheetHeader className="hidden">
                <SheetTitle></SheetTitle>
             </SheetHeader>

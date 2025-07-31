@@ -16,7 +16,7 @@ export default function Layout({
    return (
       <div className="mx-auto flex flex-col gap-4 p-4 sm:gap-6 sm:p-6 lg:flex-row lg:items-start lg:justify-between lg:gap-8 lg:p-0">
          <SideBar />
-         <div className="min-w-0 flex-1">{children}</div>
+         <div className="flex-1">{children}</div>
       </div>
    )
 }
