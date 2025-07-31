@@ -14,6 +14,7 @@ import DisplaySection from "./_components/DisplaySection"
 import RightSection from "./_components/RightSection"
 import ScreenShots from "./_components/ScreenShots"
 import { loadSearchParams } from "./project-filters"
+import { notFound } from "next/navigation"
 
 type Props = {
    params: Promise<{ slug: string }>
@@ -27,16 +28,7 @@ export default async function page({ params, searchParams }: Props) {
    ])
    const project = await ProjectService.getProject({ locale, slug })
 
-   if (!project) {
-      return (
-         <div className="mx-auto w-full max-w-4xl">
-            <h1 className="text-2xl font-bold">Project Not Found</h1>
-            <p className="text-text-secondary mt-2">
-               The project you are looking for does not exist.
-            </p>
-         </div>
-      )
-   }
+   if (!project) notFound()
 
    return (
       <div className="mx-auto w-full">

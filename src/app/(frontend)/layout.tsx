@@ -31,7 +31,7 @@ export default async function RootLayout({
       >
          <body
             className={cn(
-               `text-text-primary bg-primary relative min-h-screen overflow-x-hidden antialiased`,
+               `text-text-primary bg-primary relative flex min-h-screen flex-col overflow-x-hidden antialiased`,
                inter.className,
             )}
          >
@@ -45,10 +45,12 @@ export default async function RootLayout({
                         height={2}
                      />
                      <Navbar />
+
                      <main className="mx-auto w-[90%] flex-1 flex-grow overflow-x-hidden xl:max-w-[1250px]">
                         {children}
                      </main>
                      <Footer />
+
                      <Toaster position="bottom-right" richColors />
                   </NuqsAdapter>
                </LocaleProvider>

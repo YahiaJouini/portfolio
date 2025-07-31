@@ -1,6 +1,6 @@
 import { BlogService } from "@/services/blog"
 import { getServerLocale } from "@/utils/server-locale"
-import { t } from "../t"
+import { notFound } from "next/navigation"
 import Content from "./_components/Content"
 
 type Props = {
@@ -12,15 +12,6 @@ export default async function page({ params }: Props) {
       getServerLocale(),
    ])
    const data = await BlogService.getBlog({ slug, locale })
-   if (!data) {
-      return (
-         <div className="mx-auto w-full max-w-4xl">
-            <h1 className="text-2xl font-bold">{t[locale].notFound}</h1>
-            <p className="text-text-secondary mt-2">
-               {t[locale].notFoundDescription}
-            </p>
-         </div>
-      )
-   }
+   if (!data) notFound()
    return <Content data={data} />
 }

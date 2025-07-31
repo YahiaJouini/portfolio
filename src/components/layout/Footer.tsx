@@ -3,6 +3,7 @@ import { linkedin } from "@/messages/seperate/contact"
 import Link from "next/link"
 import Logo from "../global/Logo"
 
+// don't translate
 export default function Footer() {
    return (
       <footer className="mt-auto w-full px-10 pt-24 pb-16 sm:pb-12">

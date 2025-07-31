@@ -6,6 +6,7 @@ const envSchema = z.object({
    DATABASE_URI: z.string().nonempty(),
    ADMIN_EMAIL: z.email().nonempty(),
    ADMIN_PASSWORD: z.string().nonempty(),
+   RESEND_API_KEY: z.string().nonempty(),
 })
 
 export const {
@@ -14,4 +15,5 @@ export const {
    DATABASE_URI,
    ADMIN_EMAIL,
    ADMIN_PASSWORD,
+   RESEND_API_KEY,
 } = envSchema.parse(process.env)
