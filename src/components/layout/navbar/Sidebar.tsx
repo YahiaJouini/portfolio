@@ -33,7 +33,7 @@ export default function Sidebar({ pages }: { pages: NavBar["items"] }) {
       show: open,
    })
 
-   const loading = !data || !locale
+   const loading = !data
    const resolvedLayout = layout[locale!]
    return (
       <Sheet open={open} onOpenChange={setOpen}>

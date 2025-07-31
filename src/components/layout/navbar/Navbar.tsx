@@ -2,19 +2,18 @@
 import Logo from "@/components/global/Logo"
 import useActivePath from "@/hooks/useActivePath"
 import { cn } from "@/lib/utils"
-import { iconMap } from "@/messages/seperate/page-icons"
 import navbar from "@/messages/seperate/navbar"
-import { useLocale } from "@/providers/Locale"
+import { iconMap } from "@/messages/seperate/page-icons"
+import { Locale } from "@/types"
 import Link from "next/link"
 import Language from "./Language"
 import Search from "./Search"
 import Sidebar from "./Sidebar"
 import Theme from "./Theme"
 
-export default function Navbar() {
-   const { locale } = useLocale()
+export default function Navbar({ locale }: { locale: Locale }) {
    // instant load to prevent layout shifts
-   const data = navbar[locale]
+   const content = navbar[locale]
    const isActive = useActivePath()
    return (
       <nav className="bg-secondary border-border-default mb-12 w-full border-b pt-3">
@@ -22,17 +21,17 @@ export default function Navbar() {
             <div className="flex items-center justify-between">
                <Logo />
                <div className="flex items-center gap-4">
-                  <Search data={data.search} />
+                  <Search content={content.search} />
                   <div className="bg-accent-border h-5 w-px" />
                   <Theme />
                   <Language />
                   <div className="bg-accent-border h-5 w-px" />
-                  <Sidebar pages={data.items} />
+                  <Sidebar pages={content.items} />
                </div>
             </div>
 
             <div className="text-text-primary mt-3 flex items-center gap-9 font-medium">
-               {data.items.map((item) => {
+               {content.items.map((item) => {
                   const Icon = iconMap[item.id]
                   const active = isActive(item.href)
                   return (

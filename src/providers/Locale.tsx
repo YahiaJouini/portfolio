@@ -1,9 +1,7 @@
 "use client"
-import { LayoutLoader } from "@/components/layout/LayoutLoader"
 import { Locale } from "@/types"
-import { validLocale } from "@/utils/validate-locale"
 import { useRouter } from "next/navigation"
-import { createContext, useContext, useEffect, useState } from "react"
+import { createContext, useContext, useState } from "react"
 
 type Context = {
    locale: Locale
@@ -11,33 +9,20 @@ type Context = {
 }
 const context = createContext<Context | null>(null)
 
-export default function LocaleProvider({
-   children,
-}: {
+type Props = {
    children: React.ReactNode
-}) {
-   const [locale, setLocaleState] = useState<Locale | null>(null)
+   value: Locale
+}
+export default function LocaleProvider({ children, value }: Props) {
+   const [locale, setLocaleState] = useState<Locale>(value)
    const router = useRouter()
-   useEffect(() => {
-      const match = document.cookie.match(/(^| )locale=([^;]+)/)
-      const cookieLocale = match?.[2]
-
-      if (validLocale(cookieLocale)) {
-         setLocaleState(cookieLocale as Locale)
-      } else {
-         document.cookie = `locale=en; path=/`
-         setLocaleState("en")
-      }
-   }, [])
 
    const setLocale = (newLocale: Locale) => {
       document.cookie = `locale=${newLocale}; path=/`
       setLocaleState(newLocale)
       router.refresh()
    }
-   if (!locale) {
-      return <LayoutLoader />
-   }
+
    return (
       <context.Provider value={{ locale, setLocale }}>
          {children}

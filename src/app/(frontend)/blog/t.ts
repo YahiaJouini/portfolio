@@ -28,6 +28,7 @@ export const t = {
       description:
          "Un journal personnel de ce que je construis, casse et apprends. J'écris sur le développement web, les systèmes backend, la performance, l'architecture réelle et des expériences aléatoires avec des outils comme Next.js, TypeScript, Go et tout ce qui m'intéresse. Pas de remplissage—juste le processus, les réussites et les bugs.",
       notFound: "Blog non trouvé",
+      noBlogsFound: "Aucun blog trouvé",
       noBlogsFoundDescription: "Il n'y a actuellement aucun blog disponible.",
       readMore: "Lire la suite",
       tags: "Étiquettes",

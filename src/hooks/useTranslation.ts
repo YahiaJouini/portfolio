@@ -11,7 +11,7 @@ type Props = {
 export const useTranslation = <T>({
    translation,
    show = true,
-}: Props): { data: T | null; locale: Locale | null } => {
+}: Props): { data: T | null; locale: Locale } => {
    const { locale } = useLocale()
    const [data, setData] = useState<T | null>(null)
    useLayoutEffect(() => {

@@ -36,7 +36,7 @@ export default async function RootLayout({
             )}
          >
             <ThemeProvider attribute="class" defaultTheme="dark">
-               <LocaleProvider>
+               <LocaleProvider value={locale}>
                   <NuqsAdapter>
                      <NextTopLoader
                         color="#fd8c73"
@@ -44,7 +44,7 @@ export default async function RootLayout({
                         showSpinner={false}
                         height={2}
                      />
-                     <Navbar />
+                     <Navbar locale={locale} />
 
                      <main className="mx-auto w-[90%] flex-1 flex-grow overflow-x-hidden xl:max-w-[1250px]">
                         {children}
