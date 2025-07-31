@@ -16,21 +16,21 @@ export default function Navbar({ locale }: { locale: Locale }) {
    const content = navbar[locale]
    const isActive = useActivePath()
    return (
-      <nav className="bg-secondary border-border-default mb-12 w-full border-b pt-3">
-         <div className="px-12">
+      <nav className="bg-secondary border-border-default mb-4 w-full border-b pt-3 sm:mb-12">
+         <div className="px-4 sm:px-12">
             <div className="flex items-center justify-between">
                <Logo />
-               <div className="flex items-center gap-4">
+               <div className="flex items-center gap-2.5 sm:gap-4">
                   <Search content={content.search} />
-                  <div className="bg-accent-border h-5 w-px" />
+                  <div className="bg-accent-border h-5 w-px max-sm:hidden" />
                   <Theme />
                   <Language />
-                  <div className="bg-accent-border h-5 w-px" />
+                  <div className="bg-accent-border h-5 w-px max-sm:hidden" />
                   <Sidebar pages={content.items} />
                </div>
             </div>
 
-            <div className="text-text-primary mt-3 flex items-center gap-9 font-medium">
+            <div className="text-text-primary mt-3 flex items-center gap-9 font-medium max-sm:hidden">
                {content.items.map((item) => {
                   const Icon = iconMap[item.id]
                   const active = isActive(item.href)

@@ -1,7 +1,8 @@
 "use client"
+import { LayoutLoader } from "@/components/layout/LayoutLoader"
 import { Locale } from "@/types"
 import { useRouter } from "next/navigation"
-import { createContext, useContext, useState } from "react"
+import { createContext, useContext, useEffect, useState } from "react"
 
 type Context = {
    locale: Locale
@@ -11,11 +12,17 @@ const context = createContext<Context | null>(null)
 
 type Props = {
    children: React.ReactNode
-   value: Locale
+   initialValue: Locale
 }
-export default function LocaleProvider({ children, value }: Props) {
-   const [locale, setLocaleState] = useState<Locale>(value)
+export default function LocaleProvider({ children, initialValue }: Props) {
+   const [locale, setLocaleState] = useState<Locale>(initialValue)
    const router = useRouter()
+   // prevent hydration mismatch by not rendering until mounted
+   // not just for locale but for all providers (theme, etc.)
+   const [mounted, setMounted] = useState(false)
+   useEffect(() => {
+      setMounted(true)
+   }, [])
 
    const setLocale = (newLocale: Locale) => {
       document.cookie = `locale=${newLocale}; path=/`
@@ -23,6 +30,7 @@ export default function LocaleProvider({ children, value }: Props) {
       router.refresh()
    }
 
+   if (!mounted) return <LayoutLoader />
    return (
       <context.Provider value={{ locale, setLocale }}>
          {children}

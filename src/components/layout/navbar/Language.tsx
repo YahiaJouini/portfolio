@@ -37,13 +37,13 @@ export default function Language({ dropDown = true }) {
       )
    }
    return (
-      <div className="grid grid-cols-3 gap-2">
+      <div className="flex items-center gap-2 max-sm:flex-wrap">
          {data.map((lang) => (
             <button
                key={lang.id}
                onClick={() => handleLanguageChange(lang.id)}
                className={cn(
-                  "border-border-default hover:bg-hover-2 center flex cursor-pointer items-center gap-2 rounded border px-2 py-1 text-sm",
+                  "border-border-default hover:bg-hover-2 center flex w-1/3 cursor-pointer items-center gap-2 rounded border px-2 py-1 text-sm",
                   {
                      "bg-hover-2": locale === lang.id,
                   },

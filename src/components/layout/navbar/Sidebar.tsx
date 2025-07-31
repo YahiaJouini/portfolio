@@ -33,14 +33,16 @@ export default function Sidebar({ pages }: { pages: NavBar["items"] }) {
       show: open,
    })
 
-   const loading = !data
-   const resolvedLayout = layout[locale!]
+   const resolvedLayout = layout[locale]
    return (
       <Sheet open={open} onOpenChange={setOpen}>
          <SheetTrigger
-            className={cn("text-accent-icon hover:text-text-primaryr", {
-               "text-text-primary": open,
-            })}
+            className={cn(
+               "text-accent-icon hover:text-text-primary -ml-3 w-8 items-center",
+               {
+                  "text-text-primary": open,
+               },
+            )}
          >
             <Hamburger
                duration={0.2}
@@ -49,34 +51,32 @@ export default function Sidebar({ pages }: { pages: NavBar["items"] }) {
                toggled={open}
             />
          </SheetTrigger>
-         <SheetContent className="flex flex-col gap-4 overflow-auto p-6">
+         <SheetContent className="flex w-[80%] flex-col gap-4 overflow-auto p-6">
             <SheetHeader className="hidden">
                <SheetTitle></SheetTitle>
             </SheetHeader>
             <AnimatePresence>
-               {!loading && (
+               {data && (
                   <motion.div
                      variants={fade}
                      animate="animate"
                      initial="initial"
                      exit="exit"
-                     className="flex flex-col gap-6"
+                     className="relative flex flex-col gap-6"
                   >
-                     <div>
-                        <div className="flex items-start justify-between">
-                           <div className="border-accent-border relative z-10 -mr-1 mb-3 aspect-square w-1/3 overflow-hidden rounded-full border object-cover object-center">
-                              <ImageLoader
-                                 fill
-                                 className="h-full w-full object-cover object-center"
-                                 src={profileImage.src}
-                                 alt={profileImage.alt.en}
-                              />
-                           </div>
-
-                           <SheetClose>
-                              <X className="text-text-secondary hover:text-text-primary h-5 w-5" />
-                           </SheetClose>
+                     <SheetClose className="absolute top-0 right-2 z-10">
+                        <X className="text-text-secondary hover:text-text-primary h-6 w-6" />
+                     </SheetClose>
+                     <div className="max-sm:hidden">
+                        <div className="border-accent-border relative z-10 -mr-1 mb-3 aspect-square w-1/3 overflow-hidden rounded-full border object-cover object-center">
+                           <ImageLoader
+                              fill
+                              className="h-full w-full object-cover object-center"
+                              src={profileImage.src}
+                              alt={profileImage.alt.en}
+                           />
                         </div>
+
                         <h2 className="text-xl font-medium">{data.fullName}</h2>
                         <h4 className="text-text-trinary text-[15px]">
                            {data.job}
@@ -86,7 +86,10 @@ export default function Sidebar({ pages }: { pages: NavBar["items"] }) {
                         </p>
                      </div>
 
-                     <Divider title={resolvedLayout.settings}>
+                     <Divider
+                        className="max-sm:mt-6"
+                        title={resolvedLayout.settings}
+                     >
                         <div className="mb-4 flex items-center gap-2 pt-2 text-sm">
                            <div className="text-text-secondary flex items-center gap-1">
                               <Moon className="h-4 w-4" />

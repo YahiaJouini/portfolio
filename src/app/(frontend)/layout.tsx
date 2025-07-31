@@ -35,8 +35,12 @@ export default async function RootLayout({
                inter.className,
             )}
          >
-            <ThemeProvider attribute="class" defaultTheme="dark">
-               <LocaleProvider value={locale}>
+            <ThemeProvider
+               attribute="class"
+               defaultTheme="dark"
+               themes={["light", "dark"]}
+            >
+               <LocaleProvider initialValue={locale}>
                   <NuqsAdapter>
                      <NextTopLoader
                         color="#fd8c73"
@@ -46,7 +50,7 @@ export default async function RootLayout({
                      />
                      <Navbar locale={locale} />
 
-                     <main className="mx-auto w-[90%] flex-1 flex-grow overflow-x-hidden xl:max-w-[1250px]">
+                     <main className="mx-auto w-[95%] flex-1 flex-grow overflow-x-hidden sm:w-[90%] xl:max-w-[1250px]">
                         {children}
                      </main>
                      <Footer />
