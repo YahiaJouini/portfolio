@@ -1,14 +1,23 @@
 import Dropdown from "@/components/global/DropDown"
+import { usePathname, useRouter } from "@/i18n/navigation"
 import { cn } from "@/lib/utils"
 import { languages as data } from "@/messages/seperate/languages"
 import { Locale } from "@/types"
-import { useLocale } from "@/providers/Locale"
+import { useLocale } from "next-intl"
+import { useSearchParams } from "next/navigation"
 
 export default function Language({ dropDown = true }) {
-   const { locale, setLocale } = useLocale()
+   const locale = useLocale()
+   const router = useRouter()
+   const pathname = usePathname()
+   const searchParams = useSearchParams()
 
    const handleLanguageChange = (lang: Locale) => {
-      setLocale(lang)
+      if (lang === locale) return
+      router.push(
+         { pathname, query: Object.fromEntries(searchParams) },
+         { locale: lang },
+      )
    }
 
    if (dropDown) {

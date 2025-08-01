@@ -9,7 +9,7 @@ import "react-pdf/dist/Page/TextLayer.css"
 
 import { configurePDFWorker, PDF_OPTIONS } from "@/lib/pdf-config"
 import { messages } from "@/messages/seperate/messages"
-import { useLocale } from "@/providers/Locale"
+import { useLocale } from "@/hooks/useLocale"
 import { MergedTranslations } from "@/types"
 import Spinner from "./Spinner"
 // configure worker immediately
@@ -42,7 +42,7 @@ function PDFViewer({ resumeFile, title }: PDFViewerProps) {
    const [numPages, setNumPages] = useState<number>(0)
    const [pageNumber, setPageNumber] = useState<number>(1)
    const [loading, setLoading] = useState(true)
-   const { locale } = useLocale()
+   const locale = useLocale()
    const resolvedLayout = t[locale]
    return (
       <div className="bg-primary border-border-default overflow-hidden rounded-lg border shadow-sm">

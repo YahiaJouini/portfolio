@@ -1,15 +1,6 @@
 import { Locale } from "@/types"
-import { validLocale } from "@/utils/validate-locale"
-import { cookies } from "next/headers"
-import { cache } from "react"
+import { getLocale } from "next-intl/server"
 
-export const getServerLocale = cache(async (): Promise<Locale> => {
-   const cookieStore = await cookies()
-   const locale = cookieStore.get("locale")?.value
-
-   if (validLocale(locale)) {
-      return locale as Locale
-   }
-
-   return "en"
-})
+export const getServerLocale = async (): Promise<Locale> => {
+   return getLocale() as Promise<Locale>
+}

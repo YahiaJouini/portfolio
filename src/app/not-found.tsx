@@ -1,6 +1,0 @@
-import "@/app/(frontend)/globals.css"
-import NotFound from "@/components/global/NotFound"
-
-export default function page() {
-   return <NotFound global />
-}

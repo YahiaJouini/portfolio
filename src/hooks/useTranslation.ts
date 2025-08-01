@@ -1,5 +1,5 @@
+import { useLocale } from "@/hooks/useLocale"
 import { Translation } from "@/messages/types/shared"
-import { useLocale } from "@/providers/Locale"
 import { Locale } from "@/types"
 import { getTranslation } from "@/utils/get-translation"
 import { useLayoutEffect, useState } from "react"
@@ -12,7 +12,7 @@ export const useTranslation = <T>({
    translation,
    show = true,
 }: Props): { data: T | null; locale: Locale } => {
-   const { locale } = useLocale()
+   const locale = useLocale()
    const [data, setData] = useState<T | null>(null)
    useLayoutEffect(() => {
       if (!show) return

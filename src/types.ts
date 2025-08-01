@@ -68,5 +68,6 @@ export type BlogList = Array<
 >
 
 export type Locale = (typeof SUPPORTED_LOCALES)[number]
+export type LocaleParams = { params: Promise<{ locale: Locale }> }
 
 export type MergedTranslations = Record<Locale, Record<string, string>>

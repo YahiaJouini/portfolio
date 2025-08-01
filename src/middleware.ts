@@ -1,17 +1,11 @@
-import type { NextRequest } from "next/server"
-import { NextResponse } from "next/server"
-import { validLocale } from "./utils/validate-locale"
+import createMiddleware from "next-intl/middleware"
+import {routing} from "./i18n/routing"
 
-export function middleware(request: NextRequest) {
-   const locale = request.cookies.get("locale")?.value
-   const response = NextResponse.next()
+export default createMiddleware(routing)
 
-   if (!validLocale(locale)) {
-      response.cookies.set("locale", "en", {
-         path: "/",
-         httpOnly: false,
-      })
-   }
-
-   return response
+export const config = {
+   // Match all pathnames except for
+   // - … if they start with `/api`, `/trpc`, `/_next` or `/_vercel`
+   // - … the ones containing a dot (e.g. `favicon.ico`)
+   matcher: "/((?!api|trpc|admin|_next|_vercel|.*\\..*).*)",
 }

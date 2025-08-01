@@ -7,7 +7,7 @@ import {
    DialogTitle,
    DialogTrigger,
 } from "@/components/ui/dialog"
-import { useLocale } from "@/providers/Locale"
+import { useLocale } from "@/hooks/useLocale"
 import { MergedTranslations } from "@/types"
 import { Suspense, lazy, useState } from "react"
 import Spinner from "./Spinner"
@@ -27,7 +27,7 @@ const t = {
 } satisfies MergedTranslations
 
 export default function Resume() {
-   const { locale } = useLocale()
+   const locale = useLocale()
    const [isOpen, setIsOpen] = useState(false)
 
    return (
