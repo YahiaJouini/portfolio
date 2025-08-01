@@ -32,7 +32,7 @@ export default async function page({ params, searchParams }: Props) {
 
    const resolvedTranslation = t[locale]
    return (
-      <div className="mx-auto w-full max-sm:px-4">
+      <div className="mx-auto w-full">
          <div className="border-border-default mb-6 flex flex-col gap-4 border-b pb-6">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                <div className="flex items-center gap-3">
@@ -48,19 +48,21 @@ export default async function page({ params, searchParams }: Props) {
                      <h1 className="text-text-primary text-2xl font-bold sm:text-3xl">
                         {project.title}
                      </h1>
-                     <div className="mt-1 flex items-center gap-2">
+                     <div className="mt-1 flex items-center gap-3">
                         <ProjectVisibility
                            locale={locale}
                            isPublic={project.public === true}
                         />
-                        <span className="text-text-secondary">•</span>
-                        <span className="text-text-secondary text-sm">
-                           {!project.public
-                              ? readableISO(project.createdAt)
-                              : project.repoMeta
-                                ? readableISO(project.repoMeta.createdAt)
-                                : null}
-                        </span>
+                        <div className="flex items-center gap-0.5">
+                           <span className="text-text-secondary">•</span>
+                           <span className="text-text-secondary text-sm">
+                              {!project.public
+                                 ? readableISO(project.createdAt)
+                                 : project.repoMeta
+                                   ? readableISO(project.repoMeta.createdAt)
+                                   : null}
+                           </span>
+                        </div>
                      </div>
                   </div>
                </div>

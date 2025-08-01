@@ -3,18 +3,11 @@
 import { cn } from "@/lib/utils"
 import type { Education, Experience } from "@/messages/types"
 import { useLocale } from "@/providers/Locale"
-import { shortNumericDate } from "@/utils/format-date"
-import {
-   Award,
-   Briefcase,
-   Calendar,
-   ExternalLink,
-   GraduationCap,
-   MapPin,
-} from "lucide-react"
-import Link from "next/link"
-import { useState } from "react"
+import { Briefcase, GraduationCap } from "lucide-react"
+import React, { useState } from "react"
 import { t } from "../t"
+import EducationCard from "./EducationCard"
+import ExperienceCard from "./ExperienceCard"
 
 type Props = {
    education: Education[]
@@ -23,19 +16,13 @@ type Props = {
 
 const views = ["experience", "education"] as const
 
-function formatDateRange(startDate: string, endDate?: string): string {
-   const start = shortNumericDate(startDate)
-   const end = endDate ? shortNumericDate(endDate) : "Present"
-   return `${start} - ${end}`
-}
-
 export default function Journey({ education, experience }: Props) {
    const [activeView, setActiveView] =
       useState<(typeof views)[number]>("experience")
    const { locale } = useLocale()
    const resolvedLayout = t[locale]
    return (
-      <div className="space-y-8">
+      <div className="space-y-6 md:space-y-8">
          <div className="flex justify-center">
             <div className="bg-secondary border-border-default inline-flex rounded-lg border p-1">
                {views.map((view) => (
@@ -43,7 +30,7 @@ export default function Journey({ education, experience }: Props) {
                      key={view}
                      onClick={() => setActiveView(view)}
                      className={cn(
-                        "flex items-center rounded-md border px-4 py-2 text-sm font-medium transition-all duration-200",
+                        "flex items-center rounded-md border px-3 py-1.5 text-xs font-medium transition-all duration-200 md:px-4 md:py-2 md:text-sm",
                         {
                            "bg-primary text-text-primary border-border-default":
                               activeView === view,
@@ -52,7 +39,7 @@ export default function Journey({ education, experience }: Props) {
                         },
                      )}
                   >
-                     <Briefcase className="mr-2 h-4 w-4" />
+                     <Briefcase className="mr-1.5 h-3 w-3 md:mr-2 md:h-4 md:w-4" />
                      {resolvedLayout[view]}
                   </button>
                ))}
@@ -60,37 +47,31 @@ export default function Journey({ education, experience }: Props) {
          </div>
 
          <div className="relative">
-            <div className="bg-border-default absolute top-0 bottom-0 left-6 w-0.5" />
+            <div className="bg-border-default absolute top-0 bottom-0 left-5 w-0.5 md:left-6" />
 
-            <div className="space-y-8">
+            <div className="space-y-6 md:space-y-8">
                {activeView === "experience" &&
                   experience.map((exp, index) => (
-                     <div key={index} className="relative flex items-start">
-                        <div className="border-primary bg-hover relative z-10 flex h-12 w-12 items-center justify-center rounded-full border-2 shadow-sm">
-                           <Briefcase className="text-tag-color h-5 w-5" />
-                        </div>
-
-                        <div className="ml-8 flex-1">
-                           <div className="bg-secondary border-border-default hover:border-accent-border rounded-lg border p-6 transition-colors">
-                              <ExperienceCard experience={exp} />
-                           </div>
-                        </div>
-                     </div>
+                     <Container
+                        key={index}
+                        icon={
+                           <Briefcase className="text-tag-color h-4 w-4 md:h-5 md:w-5" />
+                        }
+                     >
+                        <ExperienceCard experience={exp} />
+                     </Container>
                   ))}
 
                {activeView === "education" &&
                   education.map((edu, index) => (
-                     <div key={index} className="relative flex items-start">
-                        <div className="border-primary bg-hover relative z-10 flex h-12 w-12 items-center justify-center rounded-full border-2 shadow-sm">
-                           <GraduationCap className="text-accent-icon h-5 w-5" />
-                        </div>
-
-                        <div className="ml-8 flex-1">
-                           <div className="bg-secondary border-border-default hover:border-accent-border rounded-lg border p-6 transition-colors">
-                              <EducationCard education={edu} />
-                           </div>
-                        </div>
-                     </div>
+                     <Container
+                        key={index}
+                        icon={
+                           <GraduationCap className="text-accent-icon h-4 w-4 md:h-5 md:w-5" />
+                        }
+                     >
+                        <EducationCard education={edu} />
+                     </Container>
                   ))}
             </div>
          </div>
@@ -98,118 +79,24 @@ export default function Journey({ education, experience }: Props) {
    )
 }
 
-function ExperienceCard({ experience }: { experience: Experience }) {
-   const isCurrentRole = !experience.endDate
-
+function Container({
+   children,
+   icon,
+}: {
+   children: React.ReactNode
+   icon: React.ReactNode
+}) {
    return (
-      <div className="space-y-4">
-         <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
-            <div className="flex-1">
-               <div className="mb-2 flex items-center gap-3">
-                  <h3 className="text-text-primary text-xl font-semibold">
-                     {experience.jobTitle}
-                  </h3>
-                  {isCurrentRole && (
-                     <span className="bg-tag-bg text-tag-color border-tag-color/20 inline-flex items-center rounded-full border px-2 py-1 text-xs font-medium">
-                        Current
-                     </span>
-                  )}
-               </div>
-               <p className="text-text-link mb-1 text-lg font-medium">
-                  {experience.company}
-               </p>
-               {experience.location && (
-                  <div className="text-text-secondary flex items-center">
-                     <MapPin className="mr-1 h-4 w-4" />
-                     <span className="text-sm">{experience.location}</span>
-                  </div>
-               )}
-            </div>
-
-            <div className="text-text-secondary bg-tertiary flex items-center rounded-md px-3 py-1">
-               <Calendar className="mr-2 h-4 w-4" />
-               <span className="text-sm font-medium">
-                  {formatDateRange(experience.startDate, experience.endDate)}
-               </span>
-            </div>
+      <div className="relative flex items-start gap-2 md:gap-5 lg:gap-8">
+         <div className="border-primary bg-hover relative z-10 flex h-10 w-10 items-center justify-center rounded-full border-2 shadow-sm md:h-12 md:w-12">
+            {icon}
          </div>
 
-         {experience.description && (
-            <div className="border-border-default border-t pt-2">
-               <p className="text-text-secondary leading-relaxed">
-                  {experience.description}
-               </p>
-            </div>
-         )}
-      </div>
-   )
-}
-
-function EducationCard({ education }: { education: Education }) {
-   const isCurrentRole = !education.endDate
-
-   return (
-      <div className="space-y-4">
-         <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
-            <div className="flex-1">
-               <div className="mb-2 flex items-center gap-3">
-                  <h3 className="text-text-primary text-xl font-semibold">
-                     {education.degree}
-                  </h3>
-                  {isCurrentRole && (
-                     <span className="bg-tag-bg text-tag-color border-tag-color/20 inline-flex items-center rounded-full border px-2 py-1 text-xs font-medium">
-                        Current
-                     </span>
-                  )}
-               </div>
-               <p
-                  className={cn("text-text-link text-lg font-medium", {
-                     "mb-1": education.mention,
-                  })}
-               >
-                  {education.institution}
-               </p>
-               <div className="flex items-center gap-2">
-                  <p className="text-text-secondary">
-                     {education.fieldOfStudy}
-                  </p>
-                  {education.mention && (
-                     <div className="flex items-center gap-1">
-                        <Award className="text-accent-active h-4 w-4" />
-                        <span className="bg-accent-active/10 text-accent-active inline-flex items-center rounded-full text-sm font-medium">
-                           {education.mention}
-                        </span>
-                     </div>
-                  )}
-               </div>
-            </div>
-
-            <div className="text-text-secondary bg-tertiary flex items-center rounded-md px-3 py-1">
-               <Calendar className="mr-2 h-4 w-4" />
-               <span className="text-sm font-medium">
-                  {formatDateRange(education.startDate, education.endDate)}
-               </span>
+         <div className="flex-1">
+            <div className="bg-secondary border-border-default hover:border-accent-border rounded-lg border p-4 transition-colors md:p-6">
+               {children}
             </div>
          </div>
-
-         {education.description && (
-            <div className="border-border-default space-y-2 border-t pt-2">
-               <p className="text-text-secondary leading-relaxed">
-                  {education.description}
-               </p>
-               {education.certification && (
-                  <Link
-                     href={education.certification.href}
-                     target="_blank"
-                     rel="noopener noreferrer"
-                     className="text-text-link inline-flex items-center gap-1 text-sm font-medium transition-colors hover:underline"
-                  >
-                     {education.certification.title}
-                     <ExternalLink className="h-4 w-4" />
-                  </Link>
-               )}
-            </div>
-         )}
       </div>
    )
 }

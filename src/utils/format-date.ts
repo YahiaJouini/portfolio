@@ -17,3 +17,9 @@ export const shortNumericDate = (dateStr: string): string => {
       month: "short",
    })
 }
+
+export function formatDateRange(startDate: string, endDate?: string): string {
+   const start = shortNumericDate(startDate)
+   const end = endDate ? shortNumericDate(endDate) : "Present"
+   return `${start} - ${end}`
+}
