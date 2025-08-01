@@ -8,8 +8,9 @@ import { Locale } from "@/types"
 import Link from "next/link"
 import Language from "./Language"
 import Search from "./Search"
-import Sidebar from "./Sidebar"
 import Theme from "./Theme"
+import { lazy } from "react"
+const Sidebar = lazy(() => import("./Sidebar"))
 
 export default function Navbar({ locale }: { locale: Locale }) {
    // instant load to prevent layout shifts

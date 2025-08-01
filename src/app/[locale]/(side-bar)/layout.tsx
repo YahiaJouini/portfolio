@@ -36,6 +36,7 @@ async function SideBar({ locale }: { locale: Locale }) {
                   className="h-full w-full object-cover object-center"
                   src={profileImage.src}
                   priority
+                  sizes="(max-width: 640px) 80vw, (max-width: 768px) 70vw, (max-width: 1024px) 60vw, (max-width: 1280px) 50vw, (max-width: 1536px) 40vw, 320px"
                   alt={profileImage.alt[locale]}
                />
             </div>

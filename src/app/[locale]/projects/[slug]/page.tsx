@@ -21,9 +21,9 @@ type Props = {
    searchParams: Promise<SearchParams>
 }
 export default async function page({ params, searchParams }: Props) {
-   const [display, { locale, slug }] = await Promise.all([
-      loadSearchParams(searchParams).then((sp) => sp.display),
-      params.then((p) => p),
+   const [{ display }, { locale, slug }] = await Promise.all([
+      loadSearchParams(searchParams),
+      params,
    ])
 
    const project = await ProjectService.getProject({ locale, slug })

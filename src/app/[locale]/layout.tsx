@@ -11,7 +11,7 @@ import { notFound } from "next/navigation"
 import NextTopLoader from "nextjs-toploader"
 import { NuqsAdapter } from "nuqs/adapters/next/app"
 import { Toaster } from "sonner"
-import { routing } from "../../i18n/routing"
+import { routing } from "@/i18n/routing"
 import "./globals.css"
 
 export const metadata: Metadata = {
