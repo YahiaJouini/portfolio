@@ -106,7 +106,7 @@ export default function Content({ data }: Props) {
             className="mb-8 flex flex-col gap-6 text-center md:mb-12"
          >
             <div className="mx-auto max-w-3xl space-y-2">
-               <h1 className="text-3xl leading-tight font-bold md:text-4xl">
+               <h1 className="text-2xl leading-tight font-bold sm:text-3xl md:text-4xl">
                   {data.title}
                </h1>
                <p className="text-text-secondary mx-auto text-base leading-relaxed md:text-lg">

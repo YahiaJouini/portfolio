@@ -18,6 +18,7 @@ type Props = {
    sections: Blog["sections"]
    hideToc: boolean
 }
+
 export default function RightSection({
    ref,
    isTocSticky,
@@ -28,11 +29,13 @@ export default function RightSection({
 }: Props) {
    const { locale } = useLocale()
    return (
-      <div className="relative hidden w-[350px] shrink-0 lg:block">
-         <div className="mb-6 w-full">
-            <h4 className="mb-2 text-lg font-semibold">{t[locale].tags} </h4>
+      <div className="relative hidden w-[250px] shrink-0 md:block md:w-[280px] lg:w-[320px] xl:w-[350px]">
+         <div className="mb-3 w-full md:mb-4 lg:mb-6">
+            <h4 className="mb-2 text-sm font-semibold md:text-base lg:text-lg">
+               {t[locale].tags}{" "}
+            </h4>
             <Seperator />
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-1 md:gap-1.5 lg:gap-2">
                {tags.map(({ tag, id }) => (
                   <Tag text={tag} key={id} />
                ))}
@@ -46,22 +49,23 @@ export default function RightSection({
                      initial="initial"
                      animate="animate"
                      exit="exit"
-                     className={cn("relative w-[350px]", {
-                        "fixed top-6 z-50": isTocSticky,
+                     className={cn("relative", {
+                        "fixed top-6 z-50 w-[250px] md:w-[280px] lg:w-[320px] xl:w-[350px]":
+                           isTocSticky,
                         relative: !isTocSticky,
                      })}
                   >
-                     <h4 className="mb-2 text-lg font-semibold">
+                     <h4 className="mb-2 text-sm font-semibold md:text-base lg:text-lg">
                         {t[locale].tableOfContents}
                      </h4>
                      <Seperator />
-                     <div className="space-y-2">
+                     <div className="space-y-1 md:space-y-1.5 lg:space-y-2">
                         {sections.map((section) => (
                            <button
                               key={section.id}
                               onClick={() => scrollToSection(section.id)}
                               className={cn(
-                                 "hover:bg-tag-bg hover:text-tag-color w-full rounded-md px-3 py-2 text-left text-sm",
+                                 "hover:bg-tag-bg hover:text-tag-color w-full rounded-md px-2 py-1 text-left text-xs md:px-2.5 md:py-1.5 md:text-xs lg:px-3 lg:py-2 lg:text-sm",
                                  {
                                     "bg-tag-bg text-tag-color":
                                        activeSection === section.id,

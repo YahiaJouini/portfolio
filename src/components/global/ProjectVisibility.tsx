@@ -20,6 +20,7 @@ const t = {
       private: "خاص",
    },
 } satisfies MergedTranslations
+
 export default async function ProjectVisibility({ isPublic, locale }: Props) {
    return (
       <div className="border-accent-border text-accent-icon rounded-full border px-[5px] py-[3px] text-xs leading-none font-semibold max-md:hidden">

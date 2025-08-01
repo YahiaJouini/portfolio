@@ -15,7 +15,7 @@ export type NavBar = {
       placeholder: string
       sections: Array<{
          title: string
-         id: Extract<Page, "projects" | "blog" | "education">
+         id: Page
          href: string
       }>
    }

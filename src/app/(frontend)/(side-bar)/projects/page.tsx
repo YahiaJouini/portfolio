@@ -28,15 +28,13 @@ export default async function Page({ searchParams }: Props) {
    const { items, ...paginationProps } = getPaginatedData(data, page)
    const projects = await projectsWithLang(items)
 
-   if (projects.length === 0) {
+   if (projects.length == 0) {
       return (
-         <div className="w-full">
-            <div className="text-muted-foreground mt-10 text-center">
-               <p className="text-lg font-medium">
-                  {t[locale].noProjectsFound}
-               </p>
-               <p className="text-sm">{t[locale].noProjectsFoundDescription}</p>
-            </div>
+         <div className="w-full text-center">
+            <h2 className="text-2xl font-bold">{t[locale].noProjectsFound}</h2>
+            <p className="text-text-secondary mt-2">
+               {t[locale].noProjectsFoundDescription}
+            </p>
          </div>
       )
    }

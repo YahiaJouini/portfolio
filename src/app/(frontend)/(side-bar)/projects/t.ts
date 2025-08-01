@@ -1,12 +1,13 @@
 import { MergedTranslations } from "@/types"
 
-export const t: MergedTranslations = {
+export const t = {
    en: {
       grid: "Grid",
       list: "List",
       noProjectsFound: "No projects found.",
       noProjectsFoundDescription:
          "Try adjusting your filters or check back later.",
+      visit: "Visit",
    },
    fr: {
       grid: "Grille",
@@ -14,6 +15,7 @@ export const t: MergedTranslations = {
       noProjectsFound: "Aucun projet trouvé.",
       noProjectsFoundDescription:
          "Essayez d'ajuster vos filtres ou revenez plus tard.",
+      visit: "Visiter",
    },
    ar: {
       grid: "شبكة",
@@ -21,5 +23,6 @@ export const t: MergedTranslations = {
       noProjectsFound: "لم يتم العثور على مشاريع.",
       noProjectsFoundDescription:
          "حاول ضبط المرشحات الخاصة بك أو تحقق مرة أخرى لاحقًا.",
+      visit: "زيارة",
    },
-}
+} satisfies MergedTranslations

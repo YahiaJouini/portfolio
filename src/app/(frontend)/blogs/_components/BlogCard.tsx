@@ -9,7 +9,7 @@ import { FaLongArrowAltRight } from "react-icons/fa"
 export function BlogCard({ blog }: { blog: BlogList[number] }) {
    return (
       <Link
-         href={`/blog/${blog.slug}`}
+         href={`/blogs/${blog.slug}`}
          className="group bg-primary border-border-default hover:border-accent-border overflow-hidden rounded-xl border transition-all duration-300 hover:shadow-lg"
       >
          {typeof blog.thumbnail !== "number" && (

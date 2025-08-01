@@ -27,8 +27,8 @@ export default {
          },
          {
             title: "Blog",
-            href: "/blog",
-            id: "blog",
+            href: "/blogs",
+            id: "blogs",
          },
 
          {
@@ -63,7 +63,7 @@ export default {
          {
             title: "Blog",
             href: "/blog",
-            id: "blog",
+            id: "blogs",
          },
          {
             title: "Contact",
@@ -97,7 +97,7 @@ export default {
          {
             title: "المدونة",
             href: "/blog",
-            id: "blog",
+            id: "blogs",
          },
          {
             title: "تواصل معي",

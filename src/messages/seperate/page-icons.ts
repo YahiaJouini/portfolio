@@ -11,7 +11,7 @@ export const iconMap: Record<
    React.ComponentType<React.SVGProps<SVGSVGElement>>
 > = {
    home: Home,
-   blog: Blog,
+   blogs: Blog,
    projects: Projects,
    journey: Education,
    contact: Contact,

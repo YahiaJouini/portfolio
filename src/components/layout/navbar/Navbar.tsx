@@ -16,7 +16,7 @@ export default function Navbar({ locale }: { locale: Locale }) {
    const content = navbar[locale]
    const isActive = useActivePath()
    return (
-      <nav className="bg-secondary border-border-default mb-4 w-full border-b pt-3 sm:mb-12">
+      <nav className="bg-secondary border-border-default mb-8 w-full border-b pt-3 sm:mb-12">
          <div className="px-4 sm:px-12">
             <div className="flex items-center justify-between max-sm:pb-2">
                <Logo />
