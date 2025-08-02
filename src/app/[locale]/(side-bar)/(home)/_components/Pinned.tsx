@@ -3,7 +3,7 @@ import Repo from "@/components/icons/Repo"
 import { cn } from "@/lib/utils"
 import { ProjectService } from "@/services/project"
 import { Locale } from "@/types"
-import Link from "next/link"
+import { Link } from "@/i18n/navigation"
 import { t } from "../t"
 
 export default async function Pinned({ locale }: { locale: Locale }) {

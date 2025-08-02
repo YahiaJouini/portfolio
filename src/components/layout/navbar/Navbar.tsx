@@ -1,15 +1,15 @@
 "use client"
 import Logo from "@/components/global/Logo"
 import useActivePath from "@/hooks/useActivePath"
+import { Link } from "@/i18n/navigation"
 import { cn } from "@/lib/utils"
 import navbar from "@/messages/seperate/navbar"
 import { iconMap } from "@/messages/seperate/page-icons"
 import { Locale } from "@/types"
-import Link from "next/link"
+import { lazy } from "react"
 import Language from "./Language"
 import Search from "./Search"
 import Theme from "./Theme"
-import { lazy } from "react"
 const Sidebar = lazy(() => import("./Sidebar"))
 
 export default function Navbar({ locale }: { locale: Locale }) {
@@ -32,17 +32,18 @@ export default function Navbar({ locale }: { locale: Locale }) {
             </div>
 
             <div className="text-text-primary mt-3 flex items-center gap-9 font-medium max-sm:hidden">
-               {content.items.map((item) => {
-                  const Icon = iconMap[item.id]
-                  const active = isActive(item.href)
+               {content.items.map(({ id, href, title }) => {
+                  const Icon = iconMap[id]
+                  const active = isActive(href)
                   return (
                      <Link
-                        key={item.href}
-                        href={item.href}
+                        prefetch
+                        key={id}
+                        href={href}
                         className="group relative flex items-center gap-1.5 pb-3 text-sm"
                      >
                         <Icon />
-                        {item.title}
+                        {title}
 
                         <div
                            className={cn(

@@ -91,7 +91,7 @@ export default function Page() {
                      !form.formState.isValid || form.formState.isSubmitting
                   }
                   type="submit"
-                  className="border-border-default w-fit gap-1 rounded-sm border bg-[#238636] px-4 py-2 font-medium text-white disabled:opacity-50"
+                  className="border-border-default bg-btn-green hover:bg-btn-green-hover w-fit gap-1 rounded-sm border px-4 py-2 font-medium text-white disabled:cursor-default disabled:opacity-50"
                >
                   {form.formState.isSubmitting
                      ? messages[locale].submitting

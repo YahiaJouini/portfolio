@@ -1,5 +1,5 @@
 import ImageLoader from "@/components/global/ImageLoader"
-import Link from "next/link"
+import { Link } from "@/i18n/navigation"
 import { Props } from "../types"
 import Bottom from "./Bottom"
 import ProjectVisibility from "@/components/global/ProjectVisibility"
@@ -18,7 +18,7 @@ export default function GridShowcase({ locale, project }: Props) {
                   />
                </div>
             )}
-            <div className="flex items-center gap-2 flex-wrap">
+            <div className="flex flex-wrap items-center gap-2">
                <Link
                   className="text-text-link text-lg font-semibold hover:underline md:text-xl"
                   href={`/projects/${project.slug}`}

@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils"
 import { Education } from "@/messages/types"
 import { formatDateRange } from "@/utils/format-date"
 import { Award, Calendar, ExternalLink } from "lucide-react"
-import Link from "next/link"
+import { Link } from "@/i18n/navigation"
 
 export default function EducationCard({ education }: { education: Education }) {
    const isCurrentRole = !education.endDate

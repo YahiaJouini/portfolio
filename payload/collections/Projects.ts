@@ -1,7 +1,7 @@
 import { summaryKeys } from "@/messages/seperate/project-related"
 import { projectPayloadAccess } from "@/utils/payload-access"
 import { CollectionConfig } from "payload"
-import { slugField } from "./slug-field"
+import { slugField } from "../slug-field"
 
 export const Projects: CollectionConfig = {
    slug: "projects",

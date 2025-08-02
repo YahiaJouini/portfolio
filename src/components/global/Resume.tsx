@@ -32,8 +32,8 @@ export default function Resume() {
 
    return (
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-         <DialogTrigger className="border-border-default w-fit gap-1 rounded-sm border bg-[#0969da] px-3 py-1 font-medium text-white">
-            <span className="font-medium">{t[locale].resume}</span>
+         <DialogTrigger className="border-border-default bg-btn-blue hover:bg-btn-blue-hover w-fit gap-1 rounded-sm border px-3 py-1 font-medium text-white">
+            {t[locale].resume}
          </DialogTrigger>
 
          <DialogContent

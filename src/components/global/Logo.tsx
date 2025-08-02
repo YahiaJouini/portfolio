@@ -1,5 +1,5 @@
 import { fullName } from "@/messages/global"
-import Link from "next/link"
+import { Link } from "@/i18n/navigation"
 
 export default function Logo({ loader = false, withName = true }) {
    if (loader) {

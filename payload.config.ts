@@ -16,10 +16,10 @@ import {
    DATABASE_URI,
    PAYLOAD_SECRET,
 } from "@/utils/env"
-import { Media } from "./collections/Media"
-import { Projects } from "./collections/Projects"
-import { Users } from "./collections/Users"
-import { Blog } from "./collections/Blog"
+import { Blog } from "./payload/collections/Blog"
+import { Media } from "./payload/collections/Media"
+import { Projects } from "./payload/collections/Projects"
+import { Users } from "./payload/collections/Users"
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)

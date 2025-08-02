@@ -1,6 +1,6 @@
 import { contacts } from "@/messages/seperate/contact"
 import { Contact } from "@/messages/types/shared"
-import Link from "next/link"
+import { Link } from "@/i18n/navigation"
 
 export default function Contacts() {
    return (

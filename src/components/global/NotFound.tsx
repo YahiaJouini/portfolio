@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils"
 import { Locale } from "@/types"
 import { getServerLocale } from "@/utils/server-locale"
-import Link from "next/link"
+import { Link } from "@/i18n/navigation"
 import ImageLoader from "./ImageLoader"
 
 const t = {

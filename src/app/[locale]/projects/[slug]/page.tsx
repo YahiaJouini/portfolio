@@ -7,7 +7,7 @@ import { readableISO } from "@/utils/format-date"
 import { customConverters } from "@/utils/richtext"
 import { RichText } from "@payloadcms/richtext-lexical/react"
 import { ExternalLink } from "lucide-react"
-import Link from "next/link"
+import { Link } from "@/i18n/navigation"
 import { notFound } from "next/navigation"
 import { SearchParams } from "nuqs"
 import DisplaySection from "./_components/DisplaySection"
@@ -72,7 +72,7 @@ export default async function page({ params, searchParams }: Props) {
                      target="_blank"
                      rel="noopener noreferrer"
                      href={project.demoUrl}
-                     className="bg-tag-hover-bg text-tag-hover-text hover:bg-accent-active hidden items-center gap-2 rounded-md px-4 py-2 font-medium shadow-lg transition-all duration-200 hover:text-white hover:shadow-xl sm:flex"
+                     className="bg-btn-blue hover:bg-btn-blue-hover text-tag-hover-text hidden items-center gap-2 rounded-md px-4 py-2 font-medium shadow-lg transition-all duration-200 hover:text-white hover:shadow-xl sm:flex"
                   >
                      <ExternalLink className="h-4 w-4" />
                      <span>{resolvedTranslation.visit}</span>
@@ -86,7 +86,7 @@ export default async function page({ params, searchParams }: Props) {
                   target="_blank"
                   rel="noopener noreferrer"
                   href={project.demoUrl}
-                  className="bg-tag-hover-bg text-tag-hover-text hover:bg-accent-active flex w-full items-center justify-center gap-2 rounded-md px-4 py-2 font-medium shadow-lg transition-all duration-200 hover:text-white sm:hidden"
+                  className="bg-btn-blue hover:bg-btn-blue-hover flex w-full items-center justify-center gap-2 rounded-md px-4 py-2 font-medium shadow-lg transition-all duration-200 hover:text-white sm:hidden"
                >
                   <ExternalLink className="h-4 w-4" />
                   <span>{resolvedTranslation.visit}</span>
@@ -131,7 +131,7 @@ export default async function page({ params, searchParams }: Props) {
                               target="_blank"
                               rel="noopener noreferrer"
                               href={project.demoUrl}
-                              className="bg-tag-hover-bg text-tag-hover-text hover:bg-accent-active flex w-full items-center justify-center gap-2 rounded-md px-4 py-2 font-medium transition-all duration-200 hover:text-white"
+                              className="bg-btn-blue hover:bg-btn-blue-hover flex w-full items-center justify-center gap-2 rounded-md px-4 py-2 font-medium transition-all duration-200 hover:text-white"
                            >
                               <ExternalLink className="h-4 w-4" />
                               <span>{resolvedTranslation.visit}</span>

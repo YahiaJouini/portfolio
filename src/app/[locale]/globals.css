@@ -34,6 +34,13 @@
       --tag-hover-bg: #0969da;
       --tag-hover-text: #fff;
 
+      /* buttons */
+      --btn-green: #238636;
+      --btn-green-hover: #2ea043;
+
+      --btn-blue: #0969da;
+      --btn-blue-hover: #0c7be5;
+
       /* === shadcn Base (Leave Intact) === */
       --background: oklch(1 0 0);
       --foreground: oklch(0.145 0 0);
@@ -160,6 +167,12 @@
    --color-tag-bg: var(--tag-bg);
    --color-tag-hover-bg: var(--tag-hover-bg);
    --color-tag-hover-text: var(--tag-hover-text);
+
+   /* buttons */
+   --color-btn-green: var(--btn-green);
+   --color-btn-green-hover: var(--btn-green-hover);
+   --color-btn-blue: var(--btn-blue);
+   --color-btn-blue-hover: var(--btn-blue-hover);
 
 
    /* shadcn tokens */

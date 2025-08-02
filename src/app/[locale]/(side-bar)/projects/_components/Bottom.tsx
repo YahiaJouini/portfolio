@@ -1,6 +1,6 @@
 import Code from "@/components/icons/Code"
 import Eye from "@/components/icons/Eye"
-import Link from "next/link"
+import { Link } from "@/i18n/navigation"
 import { t } from "../t"
 import { Props } from "../types"
 

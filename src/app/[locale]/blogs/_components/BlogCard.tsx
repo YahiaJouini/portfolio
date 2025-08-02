@@ -3,7 +3,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 import type { BlogList } from "@/types"
 import { readableISO } from "@/utils/format-date"
 import { Calendar } from "lucide-react"
-import Link from "next/link"
+import { Link } from "@/i18n/navigation"
 import { FaLongArrowAltRight } from "react-icons/fa"
 
 export function BlogCard({ blog }: { blog: BlogList[number] }) {

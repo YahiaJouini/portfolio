@@ -1,6 +1,6 @@
 import { blogPayloadAccess } from "@/utils/payload-access"
 import { CollectionConfig } from "payload"
-import { slugField } from "./slug-field"
+import { slugField } from "../slug-field"
 
 export const Blog: CollectionConfig = {
    slug: "blog",

@@ -1,6 +1,6 @@
 import { fullName } from "@/messages/global"
 import { linkedin } from "@/messages/seperate/contact"
-import Link from "next/link"
+import { Link } from "@/i18n/navigation"
 import Logo from "../global/Logo"
 
 // don't translate

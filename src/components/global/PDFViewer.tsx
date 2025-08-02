@@ -1,7 +1,7 @@
 "use client"
 
 import { ChevronLeft, ChevronRight, Download, FileText } from "lucide-react"
-import Link from "next/link"
+import { Link } from "@/i18n/navigation"
 import { memo, useState } from "react"
 import { Document, Page } from "react-pdf"
 import "react-pdf/dist/Page/AnnotationLayer.css"

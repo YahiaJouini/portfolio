@@ -1,5 +1,5 @@
 import { Skeleton } from "@/components/ui/skeleton"
-import Link from "next/link"
+import { Link } from "@/i18n/navigation"
 import { Props } from "../types"
 import Bottom from "./Bottom"
 import ProjectVisibility from "@/components/global/ProjectVisibility"
@@ -17,7 +17,7 @@ export default function ListShowcase({ project, locale }: Props) {
                </Link>
                <ProjectVisibility isPublic={project.public} locale={locale} />
             </h4>
-            <p className="text-text-secondary mt-1 w-[95%] text-sm line-clamp-3">
+            <p className="text-text-secondary mt-1 line-clamp-3 w-[95%] text-sm">
                {project.description}
             </p>
             <Bottom project={project} locale={locale} />
