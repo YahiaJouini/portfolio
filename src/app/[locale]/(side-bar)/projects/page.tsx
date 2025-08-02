@@ -1,5 +1,4 @@
 import Pagination from "@/components/global/Pagination"
-import { projectsWithLang } from "@/graphql/github-repo"
 import { ProjectService } from "@/services/project"
 import { LocaleParams } from "@/types"
 import { getPaginatedData } from "@/utils/pagination"
@@ -25,9 +24,7 @@ export default async function Page({ searchParams, params }: Props) {
       page,
       pinned: false,
    })
-
-   const { items, ...paginationProps } = getPaginatedData(data, page)
-   const projects = await projectsWithLang(items)
+   const { items: projects, ...paginationProps } = getPaginatedData(data, page)
 
    if (projects.length == 0) {
       return (

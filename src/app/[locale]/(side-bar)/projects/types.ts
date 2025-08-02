@@ -1,7 +1,7 @@
 import { Locale } from "@/types"
-import { ProjectListWithLang } from "@/types"
+import { ProjectList } from "@/types"
 
 export type Props = {
    locale: Locale
-   project: ProjectListWithLang
+   project: ProjectList[number]
 }

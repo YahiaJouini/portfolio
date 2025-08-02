@@ -28,7 +28,6 @@ export default async function page({ params, searchParams }: Props) {
 
    const project = await ProjectService.getProject({ locale, slug })
    if (!project) notFound()
-
    const resolvedTranslation = t[locale]
    return (
       <div className="mx-auto w-full">
@@ -55,11 +54,7 @@ export default async function page({ params, searchParams }: Props) {
                         <div className="flex items-center gap-0.5">
                            <span className="text-text-secondary">•</span>
                            <span className="text-text-secondary text-sm">
-                              {!project.public
-                                 ? readableISO(project.createdAt)
-                                 : project.repoMeta
-                                   ? readableISO(project.repoMeta.createdAt)
-                                   : null}
+                              {readableISO(project.createdAt)}
                            </span>
                         </div>
                      </div>

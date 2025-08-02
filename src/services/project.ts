@@ -1,10 +1,9 @@
-import { getRepoMeta } from "@/graphql/github-repo"
-import { Locale } from "@/types"
-import { ProjectDetail, ProjectList } from "@/types"
+import { fetchRepoMeta } from "@/graphql/github-repo"
+import { Locale, ProjectDetail, ProjectList } from "@/types"
+import { LOCALES_LENGTH } from "@/utils/constants"
 import { Project } from "../payload-types"
 import { LRUCache } from "./cache"
 import { Orm } from "./orm"
-import { LOCALES_LENGTH } from "@/utils/constants"
 
 export type CacheFn = {
    locale?: Locale
@@ -15,6 +14,13 @@ type ProjectsOptions = {
    pinned: boolean
    locale: Locale
    page: number
+}
+
+type FetchProjectsParams = {
+   page: number
+   pinned?: boolean
+   locale: Locale
+   fields?: Partial<Record<keyof ProjectList[number], boolean>>
 }
 
 export class ProjectService {
@@ -76,7 +82,7 @@ export class ProjectService {
       try {
          const [projectResult, repoMetaResult] = await Promise.allSettled([
             this.fetchProject(slug, locale),
-            getRepoMeta(slug),
+            fetchRepoMeta(slug),
          ])
          const project =
             projectResult.status === "fulfilled" ? projectResult.value : null
@@ -99,14 +105,11 @@ export class ProjectService {
    }
 
    // depth 1 to speed up queries since we don't need nested data
-   private static async fetchProjects(
-      page: number,
-      pinned = false,
-      locale: Locale,
-   ): Promise<ProjectList> {
-      const payload = await Orm.getPayloadInstance()
-
-      const values: Record<keyof ProjectList[number], boolean> = {
+   private static async fetchProjects({
+      page,
+      pinned,
+      locale,
+      fields = {
          id: true,
          slug: true,
          description: true,
@@ -117,7 +120,11 @@ export class ProjectService {
          pinned: true,
          public: true,
          type: true,
-      }
+         primaryLanguage: true,
+         primaryLanguageColor: true,
+      },
+   }: FetchProjectsParams): Promise<ProjectList> {
+      const payload = await Orm.getPayloadInstance()
 
       const { docs: projects } = await payload.find({
          collection: "projects",
@@ -127,7 +134,7 @@ export class ProjectService {
          where: pinned ? { pinned: { equals: true } } : {},
          // use as any because select requires a different type
          // but we know it is safe to use this select
-         select: values as any,
+         select: fields as any,
          depth: 1,
          sort: "-createdAt",
       })
@@ -140,13 +147,12 @@ export class ProjectService {
       locale,
    }: ProjectsOptions): Promise<ProjectList> {
       const cacheKey = this.generateProjectsListKey(page, pinned, locale)
-
       // check cache first
       const cachedProjects = this.projectsListCache.get(cacheKey)
       if (cachedProjects) return cachedProjects
 
       try {
-         const projects = await this.fetchProjects(page, pinned, locale)
+         const projects = await this.fetchProjects({ page, pinned, locale })
          this.projectsListCache.set(cacheKey, projects)
          return projects
       } catch (err) {

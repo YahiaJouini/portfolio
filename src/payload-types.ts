@@ -208,6 +208,22 @@ export interface Project {
    */
   demoUrl?: string | null;
   /**
+   * Auto-populated from GitHub repository
+   */
+  primaryLanguage?: string | null;
+  /**
+   * Auto-populated from GitHub repository
+   */
+  primaryLanguageColor?: string | null;
+  /**
+   * Auto-populated from GitHub repository
+   */
+  public?: boolean | null;
+  /**
+   * Auto-populated from GitHub repository
+   */
+  createdAt: string;
+  /**
    * Roles you played in this project (e.g., developer, designer)
    */
   roles: {
@@ -229,11 +245,6 @@ export interface Project {
     id?: string | null;
   }[];
   type: 'personal' | 'work';
-  /**
-   * Date when the project was created (used for sorting and display)
-   */
-  createdAt: string;
-  public: boolean;
   'open-source': boolean;
   /**
    * Mark this project as featured to highlight it in your portfolio
@@ -425,6 +436,10 @@ export interface ProjectsSelect<T extends boolean = true> {
   richText?: T;
   githubUrl?: T;
   demoUrl?: T;
+  primaryLanguage?: T;
+  primaryLanguageColor?: T;
+  public?: T;
+  createdAt?: T;
   roles?:
     | T
     | {
@@ -444,8 +459,6 @@ export interface ProjectsSelect<T extends boolean = true> {
         id?: T;
       };
   type?: T;
-  createdAt?: T;
-  public?: T;
   'open-source'?: T;
   pinned?: T;
   status?: T;

@@ -20,22 +20,20 @@ export type ProjectList = Array<
       | "public"
       | "type"
       | "thumbnail"
+      | "primaryLanguage"
+      | "primaryLanguageColor"
    >
 >
 
-export type ProjectListWithLang = ProjectList[number] & {
+export type PopulatedProject = {
+   createdAt: string
+   isPrivate: boolean
    primaryLanguage: {
-      name: string | null
-      color: string | null
+      name: string
+      color: string
    }
 }
-
 export type RepoMeta = {
-   createdAt: string
-   primaryLanguage: {
-      name: string | null
-      color: string | null
-   }
    languages: {
       edges: Array<{
          size: number

@@ -10,11 +10,11 @@ export default function Bottom({ project, locale }: Props) {
          <div
             className="h-[12px] w-[12px] rounded-full"
             style={{
-               backgroundColor: project.primaryLanguage.color ?? "#000",
+               backgroundColor: project.primaryLanguageColor ?? "#000",
             }}
          />
          <p className="text-text-secondary text-xs">
-            {project.primaryLanguage.name ?? "Unknown"}
+            {project.primaryLanguage ?? "Unknown"}
          </p>
          {project.demoUrl && (
             <Link

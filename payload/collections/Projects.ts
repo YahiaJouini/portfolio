@@ -1,3 +1,4 @@
+import { populateFromRepoMeta } from "@/graphql/github-repo"
 import { summaryKeys } from "@/messages/seperate/project-related"
 import { projectPayloadAccess } from "@/utils/payload-access"
 import { CollectionConfig } from "payload"
@@ -15,6 +16,38 @@ export const Projects: CollectionConfig = {
       description: "Manage your projects, including details and media.",
    },
    access: projectPayloadAccess(),
+   hooks: {
+      beforeChange: [
+         async ({ data, req, operation }) => {
+            if (
+               (operation === "create" || operation === "update") &&
+               data?.slug &&
+               !data?.autoPopulate
+            ) {
+               try {
+                  const repoMeta = await populateFromRepoMeta(data.slug)
+                  if (!repoMeta) return
+                  await req.payload.update({
+                     collection: "projects",
+                     id: data.id,
+                     data: {
+                        primaryLanguage: repoMeta.primaryLanguage.name,
+                        primaryLanguageColor: repoMeta.primaryLanguage.color,
+                        public: !repoMeta.isPrivate,
+                        createdAt: repoMeta.createdAt,
+                        autoPopulate: true,
+                     },
+                  })
+               } catch (err) {
+                  console.error(
+                     `Failed to fetch primary language for project ${data.slug}:`,
+                     err,
+                  )
+               }
+            }
+         },
+      ],
+   },
    fields: [
       slugField,
       {
@@ -75,6 +108,46 @@ export const Projects: CollectionConfig = {
             return true
          },
       },
+
+      // === (Auto-populated using the hook) ===
+      {
+         name: "primaryLanguage",
+         type: "text",
+         label: "Primary Language",
+         admin: {
+            readOnly: true,
+            description: "Auto-populated from GitHub repository",
+            position: "sidebar",
+         },
+      },
+      {
+         name: "primaryLanguageColor",
+         type: "text",
+         label: "Primary Language Color",
+         admin: {
+            readOnly: true,
+            description: "Auto-populated from GitHub repository",
+            position: "sidebar",
+         },
+      },
+      {
+         name: "public",
+         type: "checkbox",
+         label: "Public Project",
+         defaultValue: true,
+         admin: {
+            description: "Auto-populated from GitHub repository",
+         },
+      },
+      {
+         name: "createdAt",
+         type: "date",
+         label: "Creation Date",
+         admin: {
+            description: "Auto-populated from GitHub repository",
+         },
+      },
+      // === (end Auto-populated) ===
       {
          name: "roles",
          type: "array",
@@ -172,27 +245,14 @@ export const Projects: CollectionConfig = {
          ],
       },
       {
-         name: "createdAt",
-         type: "date",
-         label: "Creation Date",
+         name: "auto populate",
+         type: "checkbox",
+         label: "Auto-populate from GitHub",
+         defaultValue: false,
          admin: {
-            description:
-               "Date when the project was created (used for sorting and display)",
+            readOnly: true,
+            description: "To make sure the hook only runs once",
          },
-      },
-      {
-         name: "public",
-         type: "checkbox",
-         label: "Public Project",
-         required: true,
-         defaultValue: true,
-      },
-      {
-         name: "open-source",
-         type: "checkbox",
-         label: "Open Source",
-         required: true,
-         defaultValue: true,
       },
       {
          name: "pinned",
