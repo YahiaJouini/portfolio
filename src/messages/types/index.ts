@@ -12,12 +12,12 @@ export type About = {
 export type NavBar = {
    title: string
    search: {
-      placeholder: string
-      sections: Array<{
-         title: string
-         id: Page
-         href: string
-      }>
+      placeholder: {
+         mainInput: string
+         secondaryInput: string
+      }
+      jump: string
+      notFound: string
    }
    items: Array<{
       title: string

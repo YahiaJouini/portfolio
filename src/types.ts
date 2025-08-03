@@ -62,3 +62,12 @@ export type Locale = (typeof SUPPORTED_LOCALES)[number]
 export type LocaleParams = { params: Promise<{ locale: Locale }> }
 
 export type MergedTranslations = Record<Locale, Record<string, string>>
+
+export type WebsiteSearch = {
+   blogs: {
+      docs: Pick<Blog, "title" | "slug" | "author">[]
+   }
+   projects: {
+      docs: Pick<Project, "title" | "slug">[]
+   }
+}

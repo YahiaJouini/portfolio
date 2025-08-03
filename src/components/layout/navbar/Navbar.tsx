@@ -10,8 +10,8 @@ import { lazy } from "react"
 import Language from "./Language"
 import Search from "./Search"
 import Theme from "./Theme"
-const Sidebar = lazy(() => import("./Sidebar"))
 
+const Sidebar = lazy(() => import("./Sidebar"))
 export default function Navbar({ locale }: { locale: Locale }) {
    // instant load to prevent layout shifts
    const content = navbar[locale]
@@ -22,7 +22,7 @@ export default function Navbar({ locale }: { locale: Locale }) {
             <div className="flex items-center justify-between max-sm:pb-2">
                <Logo />
                <div className="flex items-center gap-2.5 sm:gap-4">
-                  <Search content={content.search} />
+                  <Search pages={content.items} content={content.search} />
                   <div className="bg-accent-border h-5 w-px max-sm:hidden" />
                   <Theme />
                   <Language />

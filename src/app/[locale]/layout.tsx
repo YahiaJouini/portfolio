@@ -1,7 +1,9 @@
 import Footer from "@/components/layout/Footer"
 import Navbar from "@/components/layout/navbar/Navbar"
+import { routing } from "@/i18n/routing"
 import { inter } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
+import QueryProvider from "@/providers/ReactQuery"
 import ThemeProvider from "@/providers/Theme"
 import { LocaleParams } from "@/types"
 import type { Metadata } from "next"
@@ -11,7 +13,6 @@ import { notFound } from "next/navigation"
 import NextTopLoader from "nextjs-toploader"
 import { NuqsAdapter } from "nuqs/adapters/next/app"
 import { Toaster } from "sonner"
-import { routing } from "@/i18n/routing"
 import "./globals.css"
 
 export const metadata: Metadata = {
@@ -58,12 +59,13 @@ export default async function RootLayout({
                         showSpinner={false}
                         height={2}
                      />
-                     <Navbar locale={locale} />
-
-                     <main className="mx-auto w-[90%] flex-1 flex-grow overflow-x-hidden md:w-[95%] xl:max-w-[1250px]">
-                        {children}
-                     </main>
-                     <Footer />
+                     <QueryProvider>
+                        <Navbar locale={locale} />
+                        <main className="mx-auto w-[90%] flex-1 flex-grow overflow-x-hidden md:w-[95%] xl:max-w-[1250px]">
+                           {children}
+                        </main>
+                        <Footer />
+                     </QueryProvider>
 
                      <Toaster position="bottom-right" richColors />
                   </NuqsAdapter>

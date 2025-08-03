@@ -6,8 +6,12 @@ export default {
    en: {
       title: "Yahia Jouini",
       search: {
-         placeholder: "Type / to search",
-         sections: [],
+         placeholder: {
+            mainInput: "Search this website ...",
+            secondaryInput: "Type / to search",
+         },
+         jump: "Jump to",
+         notFound: "No results found for",
       },
       items: [
          {
@@ -41,8 +45,12 @@ export default {
    fr: {
       title: "Yahia Jouini",
       search: {
-         placeholder: "Tapez / pour rechercher",
-         sections: [],
+         placeholder: {
+            mainInput: "Chercher sur ce site ...",
+            secondaryInput: "Tapez / pour rechercher",
+         },
+         jump: "Aller à",
+         notFound: "Aucun résultat trouvé pour",
       },
       items: [
          {
@@ -62,7 +70,7 @@ export default {
          },
          {
             title: "Blog",
-            href: "/blog",
+            href: "/blogs",
             id: "blogs",
          },
          {
@@ -75,8 +83,12 @@ export default {
    ar: {
       title: "يحيى الجويني",
       search: {
-         placeholder: "اكتب / للبحث",
-         sections: [],
+         placeholder: {
+            mainInput: "ابحث في هذا الموقع ...",
+            secondaryInput: "اكتب / للبحث",
+         },
+         jump: "انتقل",
+         notFound: "لا توجد نتائج لـ",
       },
       items: [
          {
@@ -96,7 +108,7 @@ export default {
          },
          {
             title: "المدونة",
-            href: "/blog",
+            href: "/blogs",
             id: "blogs",
          },
          {
