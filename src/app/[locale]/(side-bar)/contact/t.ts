@@ -1,4 +1,4 @@
-import { ContactPage } from "../../../../messages/types"
+import { ContactPage } from "@/messages/types";
 
 export const t = {
    en: {
@@ -37,23 +37,23 @@ export const t = {
             type: "text",
          },
          email: {
-            title: "Email",
-            placeholder: "Entrez votre email",
+            title: "Adresse e-mail",
+            placeholder: "Entrez votre adresse e-mail",
             type: "email",
-            errorMessage: "Adresse email invalide",
+            errorMessage: "Adresse e-mail invalide",
          },
          message: {
             title: "Message",
-            placeholder: "Tapez votre message ici...",
+            placeholder: "Écrivez votre message ici...",
             type: "textarea",
             errorMessage: "Le message est requis",
          },
       },
       submitButton: "Envoyer le message",
-      errorMessage: "Une erreur s'est produite lors de l'envoi du message.",
+      errorMessage: "Une erreur est survenue lors de l'envoi du message.",
       successMessage:
-         "Merci pour votre message ! Nous vous répondrons bientôt.",
-      alternative: "Vous pouvez également me contacter sur mes réseaux sociaux",
+         "Merci pour votre message ! Je vous répondrai dans les plus brefs délais.",
+      alternative: "Vous pouvez aussi me contacter via les réseaux sociaux",
    },
    ar: {
       form: {
@@ -67,7 +67,7 @@ export const t = {
             title: "البريد الإلكتروني",
             placeholder: "أدخل بريدك الإلكتروني",
             type: "email",
-            errorMessage: "عنوان البريد الإلكتروني غير صالح",
+            errorMessage: "البريد الإلكتروني غير صالح",
          },
          message: {
             title: "الرسالة",
@@ -78,8 +78,7 @@ export const t = {
       },
       submitButton: "إرسال الرسالة",
       errorMessage: "حدث خطأ أثناء إرسال الرسالة.",
-      successMessage: "شكرًا لرسالتك! سنعود إليك قريبًا.",
-      alternative:
-         "بدلاً من ذلك، يمكنك الاتصال بي على وسائل التواصل الاجتماعي الخاصة بي",
+      successMessage: "شكرًا على رسالتك! سأرد عليك في أقرب وقت ممكن.",
+      alternative: "أو يمكنك التواصل معي عبر مواقع التواصل الاجتماعي",
    },
 } satisfies ContactPage

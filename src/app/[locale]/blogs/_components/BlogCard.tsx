@@ -1,22 +1,38 @@
 import ImageLoader from "@/components/global/ImageLoader"
 import { Skeleton } from "@/components/ui/skeleton"
-import type { BlogList } from "@/types"
+import { Link } from "@/i18n/navigation"
+import type { BlogList, Locale, MergedTranslations } from "@/types"
 import { readableISO } from "@/utils/format-date"
 import { Calendar } from "lucide-react"
-import { Link } from "@/i18n/navigation"
 import { FaLongArrowAltRight } from "react-icons/fa"
 
-export function BlogCard({ blog }: { blog: BlogList[number] }) {
+type Props = {
+   locale: Locale
+   data: BlogList[number]
+}
+
+const t = {
+   en: {
+      readMore: "Read more",
+   },
+   fr: {
+      readMore: "Lire la suite",
+   },
+   ar: {
+      readMore: "اقرأ أكثر",
+   },
+} satisfies MergedTranslations
+export function BlogCard({ locale, data }: Props) {
    return (
       <Link
-         href={`/blogs/${blog.slug}`}
+         href={`/blogs/${data.slug}`}
          className="group bg-primary border-border-default hover:border-accent-border overflow-hidden rounded-xl border transition-all duration-300 hover:shadow-lg"
       >
-         {typeof blog.thumbnail !== "number" && (
+         {typeof data.thumbnail !== "number" && (
             <div className="relative aspect-video w-full overflow-hidden">
                <ImageLoader
-                  src={blog.thumbnail.url}
-                  alt={blog.thumbnail.alt}
+                  src={data.thumbnail.url}
+                  alt={data.thumbnail.alt}
                   fill
                   className="w-full object-cover"
                />
@@ -27,36 +43,37 @@ export function BlogCard({ blog }: { blog: BlogList[number] }) {
          <div className="p-6">
             <div className="text-text-secondary mb-3 flex items-center gap-2 text-sm">
                <Calendar className="h-4 w-4" />
-               {readableISO(blog.createdAt)}
+               {readableISO(data.createdAt)}
             </div>
 
             <h2 className="text-text-primary group-hover:text-text-link mb-3 line-clamp-2 text-xl font-semibold transition-colors duration-200">
-               {blog.title}
+               {data.title}
             </h2>
 
             <p className="text-text-secondary mb-4 line-clamp-3 text-sm leading-relaxed">
-               {blog.description}
+               {data.description}
             </p>
 
             <div className="flex items-center justify-between">
                <div className="flex items-center gap-2">
                   <div className="bg-secondary flex h-8 w-8 items-center justify-center rounded-full">
                      <span className="text-text-primary text-xs font-medium">
-                        {blog.author.name.charAt(0).toUpperCase()}
+                        {data.author.name.charAt(0).toUpperCase()}
                      </span>
                   </div>
                   <div>
                      <p className="text-text-primary text-sm font-medium">
-                        {blog.author.name}
+                        {data.author.name}
                      </p>
                      <p className="text-text-secondary text-xs">
-                        {blog.author.role}
+                        {data.author.role}
                      </p>
                   </div>
                </div>
 
                <span className="text-text-link group-hover:text-accent-active flex items-center gap-1 text-sm font-medium transition-colors duration-200">
-                  Read more <FaLongArrowAltRight />
+                  {t[locale].readMore}{" "}
+                  <FaLongArrowAltRight className="rtl:rotate-180" />
                </span>
             </div>
          </div>

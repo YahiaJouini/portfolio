@@ -1,10 +1,27 @@
 import { Skeleton } from "@/components/ui/skeleton"
 import { Blog } from "@/payload-types"
-import { BlogList } from "@/types"
+import { BlogList, Locale, MergedTranslations } from "@/types"
 import { memo, useEffect, useState } from "react"
 import { BlogCard, BlogCardSkeleton } from "../../_components/BlogCard"
 
-function KeepReading({ slug }: { slug: Blog["slug"] }) {
+type Props = {
+   locale: Locale
+   slug: Blog["slug"]
+}
+
+const t = {
+   en: {
+      keepReading: "Keep Reading",
+   },
+   fr: {
+      keepReading: "Continuez à lire",
+   },
+   ar: {
+      keepReading: "تابع القراءة",
+   },
+} satisfies MergedTranslations
+
+function KeepReading({ locale, slug }: Props) {
    const [data, setData] = useState<BlogList | null>(null)
    const [loading, setLoading] = useState(true)
 
@@ -35,11 +52,11 @@ function KeepReading({ slug }: { slug: Blog["slug"] }) {
    return (
       <div className="flex flex-col gap-6">
          <h2 className="border-border-default border-b pb-3 text-2xl font-bold">
-            Keep Reading
+            {t[locale].keepReading}
          </h2>
          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             {data.map((blog) => (
-               <BlogCard key={blog.id} blog={blog} />
+               <BlogCard key={blog.id} locale={locale} data={blog} />
             ))}
          </div>
       </div>

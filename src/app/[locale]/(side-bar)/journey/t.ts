@@ -8,12 +8,12 @@ export const t = {
    },
    fr: {
       experience: "Expérience",
-      education: "Éducation",
-      current: "Actuel",
+      education: "Formation",
+      current: "En cours",
    },
    ar: {
-      experience: "الخبرة",
-      education: "التعليم",
-      current: "الحالي",
+      experience: "الخبرات",
+      education: "التكوين الأكاديمي",
+      current: "حالي",
    },
 } satisfies MergedTranslations

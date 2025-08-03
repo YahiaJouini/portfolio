@@ -31,7 +31,7 @@ export default async function page({ params }: LocaleParams) {
 
          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
             {data.map((blog) => (
-               <BlogCard key={blog.id} blog={blog} />
+               <BlogCard locale={locale} key={blog.id} data={blog} />
             ))}
          </div>
       </div>

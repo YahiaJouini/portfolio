@@ -12,17 +12,16 @@ export const t = {
    fr: {
       grid: "Grille",
       list: "Liste",
-      noProjectsFound: "Aucun projet trouvé.",
+      noProjectsFound: "Aucun projet n’a été trouvé.",
       noProjectsFoundDescription:
-         "Essayez d'ajuster vos filtres ou revenez plus tard.",
-      visit: "Visiter",
+         "Essayez de modifier vos filtres ou réessayez plus tard.",
+      visit: "Voir le projet",
    },
    ar: {
       grid: "شبكة",
       list: "قائمة",
-      noProjectsFound: "لم يتم العثور على مشاريع.",
-      noProjectsFoundDescription:
-         "حاول ضبط المرشحات الخاصة بك أو تحقق مرة أخرى لاحقًا.",
-      visit: "زيارة",
+      noProjectsFound: "لا توجد مشاريع.",
+      noProjectsFoundDescription: "حاول تعديل عوامل التصفية أو جرّب لاحقًا.",
+      visit: "عرض المشروع",
    },
 } satisfies MergedTranslations

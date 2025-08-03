@@ -27,7 +27,7 @@ export default [
    {
       degree: "Baccalauréat",
       fieldOfStudy: "Computer Science",
-      institution: "Lycée Route Soliman",
+      institution: "Lycée Route De La Plage Soliman",
       startDate: "2022-09",
       endDate: "2023-06",
       mention: "Excellent",

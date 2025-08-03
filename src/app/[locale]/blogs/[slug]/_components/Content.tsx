@@ -176,7 +176,7 @@ export default function Content({ data }: Props) {
                activeSection={activeSection}
             />
          </div>
-         <KeepReading slug={data.slug} />
+         <KeepReading locale={locale} slug={data.slug} />
       </div>
    )
 }

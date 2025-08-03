@@ -13,8 +13,7 @@ export const layout = {
    fr: {
       settings: "Paramètres",
       explore: "Explorer",
-      connect: "Connecter avec moi",
-      other: "Autre",
+      connect: "Me contacter",
       pinned: "Épinglé",
       pages: "Pages",
       dark: "Sombre",
@@ -22,12 +21,11 @@ export const layout = {
    },
    ar: {
       settings: "الإعدادات",
-      explore: "استكشاف",
-      connect: "اتصل بيّ",
-      other: "أخرى",
-      pinned: "مثبت",
-      pages: "صفحات",
-      dark: "داكن",
-      light: "فاتح",
+      explore: "تصفح",
+      connect: "تواصل معي",
+      pinned: "مثبّت",
+      pages: "الصفحات",
+      dark: "الوضع الداكن",
+      light: "الوضع الفاتح",
    },
 } satisfies MergedTranslations

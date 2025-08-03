@@ -2,29 +2,29 @@ import { Experience } from "../types"
 
 export default [
    {
-      jobTitle: "Freelance Web Developer",
-      company: "Self-employed",
-      location: "Remote",
+      jobTitle: "مطور ويب حر",
+      company: "عمل مستقل",
+      location: "عن بُعد",
       startDate: "2025-07",
       description:
-         "Currently working as a freelancer with a focus on fullstack web apps. Taking on projects involving backend APIs, responsive UI design, and DevOps pipelines. Responsible for delivering end-to-end solutions to clients while managing timelines, communication, and deployment.",
+         "أعمل حالياً كمطور ويب حر، أركّز على تطوير تطبيقات ويب كاملة (Fullstack). أُنفّذ مشاريع تشمل تطوير واجهات مستخدم متجاوبة، بناء واجهات برمجية خلفية (APIs)، وإنشاء خطوط نشر أوتوماتيكية (DevOps Pipelines). أتحمّل مسؤولية تقديم حلول متكاملة للعملاء، مع إدارة الجداول الزمنية، والتواصل، وعمليات النشر.",
    },
    {
-      jobTitle: "Fullstack Developer (Part-time)",
+      jobTitle: "مطور Fullstack (دوام جزئي)",
       company: "Aftercode Tunisia",
-      location: "Remote",
+      location: "عن بُعد",
       startDate: "2024-01",
       endDate: "2025-07",
       description:
-         "After the internship, I was offered a part-time developer role where I worked on fullstack projects—designing backend architecture (Express, Drizzle ORM, PostgreSQL), building frontend UIs (Next.js, Framer Motion), and integrating third-party services. Delivered fully functional, scalable websites and contributed to product planning alongside the core team.",
+         "بعد انتهاء فترة التدريب، عُرضت عليّ وظيفة كمطور بدوام جزئي، حيث شاركت في تطوير مشاريع كاملة شملت تصميم البنية الخلفية (Express، Drizzle ORM، PostgreSQL)، وبناء الواجهات الأمامية (Next.js، Framer Motion)، إلى جانب دمج خدمات خارجية. ساهمت في تسليم مواقع إلكترونية جاهزة وقابلة للتوسّع، وشاركت في تخطيط المنتج إلى جانب الفريق الأساسي.",
    },
    {
-      jobTitle: "Frontend Developer (Intern)",
+      jobTitle: "مطور واجهات أمامية (متدرب)",
       company: "Aftercode Tunisia",
-      location: "Remote",
+      location: "عن بُعد",
       startDate: "2023-12",
       endDate: "2024-01",
       description:
-         "Joined Aftercode as an intern where I contributed to real production code as a frontend developer. Focused on implementing UI components, handling API integrations, and working in a modern Nextjs + Tailwind stack.",
+         "انضممت إلى Aftercode كمتدرب في مجال الواجهات الأمامية، وساهمت في كتابة كود فعلي يدخل في الإنتاج. ركّزت على تنفيذ مكونات الواجهة (UI Components)، ربط واجهات الاستخدام مع واجهات برمجية (API Integrations)، والعمل ضمن بيئة حديثة تعتمد على Next.js وTailwind CSS.",
    },
 ] satisfies Array<Experience>

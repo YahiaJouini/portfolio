@@ -2,36 +2,35 @@ import { Education } from "../types"
 
 export default [
    {
-      degree: "Diploma (in progress)",
-      fieldOfStudy: "Information Technology",
+      degree: "Diplôme universitaire (en cours)",
+      fieldOfStudy: "Technologies de l'information",
       institution:
-         "Higher Institute of Technological Studies of Rades (ISET Rades)",
+         "Institut Supérieur des Études Technologiques de Radès (ISET Radès)",
       startDate: "2023-09",
       description:
-         "Pursuing a 3-year university-level diploma focused on networking, databases, and software engineering. Expected graduation: June 2026.",
+         "Formation universitaire de trois ans axée sur les réseaux, les bases de données et l'ingénierie logicielle. Diplôme prévu en juin 2026.",
    },
    {
-      degree: "Certificate",
-      fieldOfStudy: "Software Development (Accelerated Bootcamp)",
+      degree: "Certificat de formation",
+      fieldOfStudy: "Développement logiciel (Bootcamp intensif)",
       institution: "Coding Dojo",
       startDate: "2023-09",
       endDate: "2024-02",
       description:
-         "Completed an intensive online software development bootcamp focused on fullstack web technologies, clean code principles, and agile workflows. Gained hands-on experience building real-world apps under tight deadlines.",
+         "Formation en ligne intensive en développement web fullstack, avec un accent sur le code propre et les méthodes agiles. Réalisation de projets concrets dans des délais courts, favorisant une forte expérience pratique.",
       certification: {
          href: "https://app.diplomasafe.com/en-US/diploma/d1202b62c0d64a1d0f78d4c5814d6ed87f1b5e6f5",
-         title: "Show credentials",
+         title: "Voir le certificat",
       },
    },
-
    {
       degree: "Baccalauréat",
-      fieldOfStudy: "Computer Science",
-      institution: "Lycée Route Soliman",
+      fieldOfStudy: "Sciences informatiques",
+      institution: "Lycée Route De La Plage Soliman",
       startDate: "2022-09",
       endDate: "2023-06",
-      mention: "Excellent",
+      mention: "Mention Très Bien",
       description:
-         "Graduated with the highest honors (mention: Excellent) in Computer Science, gaining a solid foundation in algorithms, logic, and mathematics.",
+         "Obtention du baccalauréat en sciences informatiques avec la mention Très Bien, avec une solide base en algorithmes, logique et mathématiques.",
    },
 ] satisfies Array<Education>

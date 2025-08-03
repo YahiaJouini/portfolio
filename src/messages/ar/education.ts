@@ -2,36 +2,34 @@ import { Education } from "../types"
 
 export default [
    {
-      degree: "Diploma (in progress)",
-      fieldOfStudy: "Information Technology",
-      institution:
-         "Higher Institute of Technological Studies of Rades (ISET Rades)",
+      degree: "شهادة تقني سامي (قيد الدراسة)",
+      fieldOfStudy: "تكنولوجيا المعلومات",
+      institution: "المعهد العالي للدراسات التكنولوجية برادس (ISET رادس)",
       startDate: "2023-09",
       description:
-         "Pursuing a 3-year university-level diploma focused on networking, databases, and software engineering. Expected graduation: June 2026.",
+         "أتابع تكويناً جامعياً يمتد على ثلاث سنوات يركّز على الشبكات، وقواعد البيانات، وهندسة البرمجيات. من المتوقع التخرّج في جوان 2026.",
    },
    {
-      degree: "Certificate",
-      fieldOfStudy: "Software Development (Accelerated Bootcamp)",
+      degree: "شهادة",
+      fieldOfStudy: "تطوير البرمجيات (معسكر تدريبي مكثف)",
       institution: "Coding Dojo",
       startDate: "2023-09",
       endDate: "2024-02",
       description:
-         "Completed an intensive online software development bootcamp focused on fullstack web technologies, clean code principles, and agile workflows. Gained hands-on experience building real-world apps under tight deadlines.",
+         "أتممت برنامجاً تدريبياً مكثفاً عبر الإنترنت في تطوير البرمجيات يركّز على تقنيات الويب الشاملة، ومبادئ كتابة الكود النظيف، وأساليب العمل الرشيق (Agile). اكتسبت من خلاله خبرة عملية في بناء تطبيقات حقيقية ضمن مهل زمنية ضيّقة.",
       certification: {
          href: "https://app.diplomasafe.com/en-US/diploma/d1202b62c0d64a1d0f78d4c5814d6ed87f1b5e6f5",
-         title: "Show credentials",
+         title: "عرض الشهادة",
       },
    },
-
    {
-      degree: "Baccalauréat",
-      fieldOfStudy: "Computer Science",
-      institution: "Lycée Route Soliman",
+      degree: "البكالوريا",
+      fieldOfStudy: "علوم الإعلامية",
+      institution: "المعهد الثانوي طريق الشاطئ بسليمان",
       startDate: "2022-09",
       endDate: "2023-06",
-      mention: "Excellent",
+      mention: "امتياز",
       description:
-         "Graduated with the highest honors (mention: Excellent) in Computer Science, gaining a solid foundation in algorithms, logic, and mathematics.",
+         "تحصّلت على شهادة البكالوريا في شعبة علوم الإعلامية بامتياز، مما وفر لي أساساً قوياً في الخوارزميات، والمنطق، والرياضيات.",
    },
 ] satisfies Array<Education>

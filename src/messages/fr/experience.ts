@@ -2,29 +2,29 @@ import { Experience } from "../types"
 
 export default [
    {
-      jobTitle: "Freelance Web Developer",
-      company: "Self-employed",
-      location: "Remote",
+      jobTitle: "Développeur Web Freelance",
+      company: "Travailleur indépendant",
+      location: "Télétravail",
       startDate: "2025-07",
       description:
-         "Currently working as a freelancer with a focus on fullstack web apps. Taking on projects involving backend APIs, responsive UI design, and DevOps pipelines. Responsible for delivering end-to-end solutions to clients while managing timelines, communication, and deployment.",
+         "Actuellement en activité en tant que développeur freelance spécialisé dans les applications web fullstack. Je prends en charge des projets incluant la création d’API backend, la conception d’interfaces utilisateur réactives, ainsi que la mise en place de pipelines DevOps. Je suis responsable de la livraison de solutions complètes, de la gestion des délais, de la communication avec les clients et du déploiement final.",
    },
    {
-      jobTitle: "Fullstack Developer (Part-time)",
+      jobTitle: "Développeur Fullstack (Temps partiel)",
       company: "Aftercode Tunisia",
-      location: "Remote",
+      location: "Télétravail",
       startDate: "2024-01",
       endDate: "2025-07",
       description:
-         "After the internship, I was offered a part-time developer role where I worked on fullstack projects—designing backend architecture (Express, Drizzle ORM, PostgreSQL), building frontend UIs (Next.js, Framer Motion), and integrating third-party services. Delivered fully functional, scalable websites and contributed to product planning alongside the core team.",
+         "Suite à mon stage, j’ai été recruté en tant que développeur fullstack à temps partiel. J’ai travaillé sur des projets complets, en concevant l’architecture backend (Express, Drizzle ORM, PostgreSQL), en développant des interfaces frontend (Next.js, Framer Motion) et en intégrant des services externes. J’ai livré des sites web fonctionnels et évolutifs, tout en participant à la planification produit avec l’équipe principale.",
    },
    {
-      jobTitle: "Frontend Developer (Intern)",
+      jobTitle: "Développeur Frontend (Stagiaire)",
       company: "Aftercode Tunisia",
-      location: "Remote",
+      location: "Télétravail",
       startDate: "2023-12",
       endDate: "2024-01",
       description:
-         "Joined Aftercode as an intern where I contributed to real production code as a frontend developer. Focused on implementing UI components, handling API integrations, and working in a modern Nextjs + Tailwind stack.",
+         "Intégré chez Aftercode en tant que stagiaire frontend, j’ai contribué à du code en production réel. Mon travail s’est concentré sur l’implémentation de composants UI, l’intégration d’API, et le développement dans un environnement moderne basé sur Next.js et Tailwind CSS.",
    },
 ] satisfies Array<Experience>
