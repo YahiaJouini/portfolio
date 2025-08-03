@@ -1,7 +1,18 @@
+import { generatePageMetadata } from "@/lib/metadata"
 import { BlogService } from "@/services/blog"
 import { LocaleParams } from "@/types"
+import { SUPPORTED_LOCALES } from "@/utils/constants"
 import { BlogCard } from "./_components/BlogCard"
 import { t } from "./t"
+
+export async function generateStaticParams() {
+   return SUPPORTED_LOCALES.map((locale) => ({ locale }))
+}
+
+export async function generateMetadata({ params }: LocaleParams) {
+   const { locale } = await params
+   return generatePageMetadata({ locale, path: "blogs", namespace: "blogs" })
+}
 
 export default async function page({ params }: LocaleParams) {
    const { locale } = await params

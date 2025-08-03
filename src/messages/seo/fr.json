@@ -1,0 +1,35 @@
+{
+   "metadata": {
+      "title": "Yahia Jouini - Développeur Full Stack",
+      "siteName": "Yahia Jouini",
+      "description": "Développeur full stack passionné par l’architecture propre, la scalabilité, et les technologies web modernes. Je construis des applications de qualité pour résoudre des problèmes concrets.",
+      "keywords": "Yahia Jouini, développeur full stack, react, next.js, node.js, typescript, web, performance, automatisation",
+      "authorName": "Yahia Jouini",
+      "ogImageAlt": "Yahia Jouini - Portfolio Développeur Web"
+   },
+   "home": {
+      "title": "Yahia Jouini - Portfolio & Parcours Dev",
+      "description": "Découvrez mes projets web, mon blog technique et mon parcours de développeur. Stack: React, Next.js, Node.js.",
+      "keywords": "portfolio, développeur web, react, next.js, node.js, typescript"
+   },
+   "projects": {
+      "title": "Mes Projets - Applications & Outils Web",
+      "description": "Des projets concrets développés avec des stacks modernes. Performants, propres et utiles.",
+      "keywords": "projets, react, next.js, node.js, typescript, web"
+   },
+   "journey": {
+      "title": "Mon Parcours de Développeur",
+      "description": "Un regard honnête sur mon évolution en tant que développeur. Bricoler, apprendre, progresser.",
+      "keywords": "parcours développeur, apprentissage, évolution, devlog"
+   },
+   "blogs": {
+      "title": "Blog - Développement Web & Backend",
+      "description": "Articles techniques sur le développement web, la performance, et l’architecture logicielle.",
+      "keywords": "blog, développement web, backend, performance, architecture"
+   },
+   "contact": {
+      "title": "Contact - Travaillons Ensemble",
+      "description": "Disponible pour missions freelance ou à distance. Collaborons sur des projets concrets et intelligents.",
+      "keywords": "contact, freelance, développeur, mission, travail à distance"
+   }
+}

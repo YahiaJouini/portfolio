@@ -1,4 +1,4 @@
-import { Blog, Project } from "./payload-types"
+import { Blog, Media, Project } from "./payload-types"
 import { SUPPORTED_LOCALES } from "./utils/constants"
 
 // for listing projects
@@ -70,4 +70,13 @@ export type WebsiteSearch = {
    projects: {
       docs: Pick<Project, "title" | "slug">[]
    }
+}
+
+export type DynamicMetaData = {
+   title: string
+   description: string
+   image: Media | number | null | undefined
+   author: string
+   tags: string[]
+   publishedTime: string
 }

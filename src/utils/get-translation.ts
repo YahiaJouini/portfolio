@@ -7,7 +7,6 @@ export async function getTranslation<T>(
    locale: Locale,
    translation: Translation,
 ): Promise<T> {
-   console.log("fetched translation")
    const key = `${locale}/${translation}`
    if (translationCache.has(key)) return translationCache.get(key)
 

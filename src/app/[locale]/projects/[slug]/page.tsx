@@ -1,13 +1,15 @@
 import ImageLoader from "@/components/global/ImageLoader"
 import ProjectVisibility from "@/components/global/ProjectVisibility"
-import { profileImage } from "@/messages/global"
+import { Link } from "@/i18n/navigation"
+import { generateDynamicMetadata } from "@/lib/dynamic-metadata"
+import { fullName, profileImage } from "@/messages/global"
 import { ProjectService } from "@/services/project"
 import { Locale } from "@/types"
 import { readableISO } from "@/utils/format-date"
 import { customConverters } from "@/utils/richtext"
 import { RichText } from "@payloadcms/richtext-lexical/react"
 import { ExternalLink } from "lucide-react"
-import { Link } from "@/i18n/navigation"
+import { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { SearchParams } from "nuqs"
 import DisplaySection from "./_components/DisplaySection"
@@ -20,6 +22,33 @@ type Props = {
    params: Promise<{ slug: string; locale: Locale }>
    searchParams: Promise<SearchParams>
 }
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+   const { slug, locale } = await params
+   const data = await ProjectService.getProject({ slug, locale })
+   if (!data) {
+      return {
+         title: "Project Not Found",
+         description: "The project you are looking for does not exist.",
+         robots: { index: false, follow: false },
+      }
+   }
+   const { thumbnail, topics, createdAt, ...rest } = data
+
+   return generateDynamicMetadata({
+      locale,
+      path: `projects/${slug}`,
+      type: "website",
+      data: {
+         ...rest,
+         image: thumbnail,
+         tags: topics ? topics.map(({ name }) => name) : [],
+         author: fullName[locale],
+         publishedTime: createdAt,
+      },
+   })
+}
+
 export default async function page({ params, searchParams }: Props) {
    const [{ display }, { locale, slug }] = await Promise.all([
       loadSearchParams(searchParams),

@@ -1,4 +1,5 @@
 import Pagination from "@/components/global/Pagination"
+import { generatePageMetadata } from "@/lib/metadata"
 import { ProjectService } from "@/services/project"
 import { LocaleParams } from "@/types"
 import { getPaginatedData } from "@/utils/pagination"
@@ -12,6 +13,15 @@ import { t } from "./t"
 type Props = {
    searchParams: Promise<SearchParams>
    params: LocaleParams["params"]
+}
+
+export async function generateMetadata({ params }: LocaleParams) {
+   const { locale } = await params
+   return generatePageMetadata({
+      locale,
+      path: "projects",
+      namespace: "projects",
+   })
 }
 
 export default async function Page({ searchParams, params }: Props) {

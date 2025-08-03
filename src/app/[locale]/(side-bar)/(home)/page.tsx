@@ -1,10 +1,11 @@
+import { generatePageMetadata } from "@/lib/metadata"
 import { LocaleParams } from "@/types"
-import { SUPPORTED_LOCALES } from "@/utils/constants"
 import About from "./_components/About"
 import Pinned from "./_components/Pinned"
 
-export async function generateStaticParams() {
-   return SUPPORTED_LOCALES.map((locale) => ({ locale }))
+export async function generateMetadata({ params }: LocaleParams) {
+   const { locale } = await params
+   return generatePageMetadata({ locale, path: "home", namespace: "home" })
 }
 
 export default async function page({ params }: LocaleParams) {

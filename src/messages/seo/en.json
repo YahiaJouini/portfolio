@@ -1,0 +1,35 @@
+{
+   "metadata": {
+      "title": "Yahia Jouini - Full Stack Web Developer",
+      "siteName": "Yahia Jouini",
+      "description": "Full-stack developer focused on clean architecture, scalability, and modern web technologies. I build high-quality apps and solve real-world problems through smart code.",
+      "keywords": "Yahia Jouini, full stack developer, react, next.js, node.js, typescript, web apps, automation, performance, scalability",
+      "authorName": "Yahia Jouini",
+      "ogImageAlt": "Yahia Jouini - Web Developer Portfolio"
+   },
+   "home": {
+      "title": "Yahia Jouini - Portfolio & Dev Insights",
+      "description": "Explore my full-stack projects, blog posts, and developer journey. Built with React, Next.js, and Node.js.",
+      "keywords": "portfolio, web developer, react, next.js, node.js, typescript"
+   },
+   "projects": {
+      "title": "My Projects - Real Web Apps & Tools",
+      "description": "Production-grade apps, tools, and experiments using modern stacks. Focused on performance and clean code.",
+      "keywords": "projects, portfolio, react, next.js, node.js, web apps"
+   },
+   "journey": {
+      "title": "My Developer Journey",
+      "description": "A transparent look at my growth as a developer — things I build, break, and learn along the way.",
+      "keywords": "developer journey, devlog, learning, growth, experiences"
+   },
+   "blogs": {
+      "title": "Blog - Web Dev & Architecture",
+      "description": "Thoughts on full-stack development, backend systems, performance, and software architecture.",
+      "keywords": "dev blog, web development, backend, performance, clean code"
+   },
+   "contact": {
+      "title": "Contact - Work With Me",
+      "description": "Open for freelance and remote opportunities. Let’s build something smart, scalable, and useful.",
+      "keywords": "contact, hire, freelance developer, full stack, remote work"
+   }
+}

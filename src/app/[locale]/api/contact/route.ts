@@ -10,7 +10,6 @@ export async function POST(req: NextRequest) {
       const body = await req.json()
       const { name, email, message } = contactSchema().parse(body)
 
-      console.log({ name, email, message })
       const { error } = await resend.emails.send({
          from: "Portfolio Contact Form <onboarding@resend.dev>",
          to: "jouiniyahya117@gmail.com",
@@ -28,8 +27,6 @@ export async function POST(req: NextRequest) {
           </div>
       `,
       })
-
-      console.log("passd")
 
       if (error) {
          console.log(error)

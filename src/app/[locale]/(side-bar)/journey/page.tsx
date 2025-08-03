@@ -1,5 +1,6 @@
+import { generatePageMetadata } from "@/lib/metadata"
 import { Education, Experience } from "@/messages/types"
-import { Locale } from "@/types"
+import { Locale, LocaleParams } from "@/types"
 import { getTranslation } from "@/utils/get-translation"
 import { Briefcase, GraduationCap } from "lucide-react"
 import { SearchParams } from "nuqs"
@@ -11,6 +12,15 @@ import { loadSearchParams } from "./search-params"
 type Props = {
    searchParams: Promise<SearchParams>
    params: Promise<{ locale: Locale }>
+}
+
+export async function generateMetadata({ params }: LocaleParams) {
+   const { locale } = await params
+   return generatePageMetadata({
+      locale,
+      path: "journey",
+      namespace: "journey",
+   })
 }
 
 export default async function page({ params, searchParams }: Props) {

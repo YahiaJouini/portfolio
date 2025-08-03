@@ -28,7 +28,6 @@ const InputField = (props: InputFieldProps) => {
       search = false,
       ...inputProps
    } = props
-   console.log(reactHookForm)
    const handleDisplay = () => {
       return (
          <div className="relative h-fit">
