@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/sheet"
 import useActivePath from "@/hooks/useActivePath"
 import { useTranslation } from "@/hooks/useTranslation"
+import { Link } from "@/i18n/navigation"
 import { cn } from "@/lib/utils"
 import { profileImage } from "@/messages/global"
 import { layout } from "@/messages/seperate/layout"
@@ -20,7 +21,6 @@ import { fade } from "@/utils/animations"
 import { AnimatePresence, motion } from "framer-motion"
 import { Slant as Hamburger } from "hamburger-react"
 import { Moon, Sun, X } from "lucide-react"
-import { Link } from "@/i18n/navigation"
 import { useState } from "react"
 import Language from "./Language"
 import Theme from "./Theme"
@@ -38,7 +38,7 @@ export default function Sidebar({ pages }: { pages: NavBar["items"] }) {
       <Sheet open={open} onOpenChange={setOpen}>
          <SheetTrigger
             className={cn(
-               "text-accent-icon hover:text-text-primary -ml-3 w-8 items-center",
+               "text-accent-icon hover:text-text-primary w-8 items-center not-rtl:-ml-3 rtl:-mr-3",
                {
                   "text-text-primary": open,
                },
@@ -90,7 +90,7 @@ export default function Sidebar({ pages }: { pages: NavBar["items"] }) {
                         className="max-sm:mt-6"
                         title={resolvedLayout.settings}
                      >
-                        <div className="mb-4 flex items-center gap-2 pt-2 text-sm">
+                        <div className="mb-4 flex items-center gap-2 pt-2 text-sm rtl:flex-row-reverse rtl:justify-end">
                            <div className="text-text-secondary flex items-center gap-1">
                               <Moon className="h-4 w-4" />
                               {resolvedLayout.dark}

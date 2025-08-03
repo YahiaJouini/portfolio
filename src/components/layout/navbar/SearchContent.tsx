@@ -69,103 +69,105 @@ export default function SearchContent({
    )
 
    return (
-      <>
-         <DialogHeader className="sr-only">
-            <DialogTitle>Search</DialogTitle>
-         </DialogHeader>
-         <InputField
-            onChange={handleSearchChange}
-            type="text"
-            placeholder={content.placeholder.mainInput}
-            className="w-full bg-transparent text-sm"
-            value={search}
-            search
-         />
+      <div className="overflow-y-auto">
+         <div className="mx-2">
+            <DialogHeader className="sr-only">
+               <DialogTitle>Search</DialogTitle>
+            </DialogHeader>
+            <InputField
+               onChange={handleSearchChange}
+               type="text"
+               placeholder={content.placeholder.mainInput}
+               className="w-full bg-transparent text-sm"
+               value={search}
+               search
+            />
 
-         <div className="flex-1 overflow-y-auto">
-            {isLoading && <SearchSkeleton />}
+            <div className="flex-1 overflow-y-auto">
+               {isLoading && <SearchSkeleton />}
 
-            {data && (
-               <>
-                  {!hasResults && search.trim() && (
-                     <div className="text-text-secondary py-8 text-center text-sm">
-                        {content.notFound} {'"' + search + '"'}
-                     </div>
-                  )}
+               {data && (
+                  <>
+                     {!hasResults && search.trim() && (
+                        <div className="text-text-secondary py-8 text-center text-sm">
+                           {content.notFound} {'"' + search + '"'}
+                        </div>
+                     )}
 
-                  {filteredResults.projects.length > 0 && (
-                     <SearchSection
-                        title="Projects"
-                        first
-                        items={filteredResults.projects}
-                        renderItem={(project) => (
-                           <SearchItem
-                              key={project.slug}
-                              href={`/projects/${project.slug}`}
-                              icon={
-                                 <RiGitRepositoryFill className="text-text-secondary -mr-1 h-4 w-4" />
-                              }
-                              title={project.title}
-                              prefix={`${fullName.en}/`}
-                              jumpText={content.jump}
-                              onCLick={handleItemlick}
-                           />
-                        )}
-                     />
-                  )}
-                  {filteredResults.blogs.length > 0 && (
-                     <SearchSection
-                        title="Blog Posts"
-                        first={
-                           filteredResults.projects.length === 0 &&
-                           filteredResults.pages.length === 0
-                        }
-                        items={filteredResults.blogs}
-                        renderItem={(blog) => (
-                           <SearchItem
-                              key={blog.slug}
-                              href={`/blogs/${blog.slug}`}
-                              prefix={`${blog.author.name}/`}
-                              icon={
-                                 <FaBookOpenReader className="text-text-secondary h-4 w-4" />
-                              }
-                              title={blog.title}
-                              jumpText={content.jump}
-                              onCLick={handleItemlick}
-                           />
-                        )}
-                     />
-                  )}
-
-                  {filteredResults.pages.length > 0 && (
-                     <SearchSection
-                        title="Pages"
-                        first={
-                           filteredResults.projects.length === 0 &&
-                           filteredResults.blogs.length === 0
-                        }
-                        items={filteredResults.pages}
-                        renderItem={(page) => {
-                           const Icon = iconMap[page.id]
-                           return (
+                     {filteredResults.projects.length > 0 && (
+                        <SearchSection
+                           title="Projects"
+                           first
+                           items={filteredResults.projects}
+                           renderItem={(project) => (
                               <SearchItem
-                                 key={page.id}
-                                 href={page.href}
-                                 onCLick={handleItemlick}
+                                 key={project.slug}
+                                 href={`/projects/${project.slug}`}
                                  icon={
-                                    <Icon className="text-text-secondary h-4 w-4" />
+                                    <RiGitRepositoryFill className="text-text-secondary -mr-1 h-4 w-4" />
                                  }
-                                 title={page.title}
+                                 title={project.title}
+                                 prefix={`${fullName.en}/`}
                                  jumpText={content.jump}
+                                 onCLick={handleItemlick}
                               />
-                           )
-                        }}
-                     />
-                  )}
-               </>
-            )}
+                           )}
+                        />
+                     )}
+                     {filteredResults.blogs.length > 0 && (
+                        <SearchSection
+                           title="Blog Posts"
+                           first={
+                              filteredResults.projects.length === 0 &&
+                              filteredResults.pages.length === 0
+                           }
+                           items={filteredResults.blogs}
+                           renderItem={(blog) => (
+                              <SearchItem
+                                 key={blog.slug}
+                                 href={`/blogs/${blog.slug}`}
+                                 prefix={`${blog.author.name}/`}
+                                 icon={
+                                    <FaBookOpenReader className="text-text-secondary h-4 w-4" />
+                                 }
+                                 title={blog.title}
+                                 jumpText={content.jump}
+                                 onCLick={handleItemlick}
+                              />
+                           )}
+                        />
+                     )}
+
+                     {filteredResults.pages.length > 0 && (
+                        <SearchSection
+                           title="Pages"
+                           first={
+                              filteredResults.projects.length === 0 &&
+                              filteredResults.blogs.length === 0
+                           }
+                           items={filteredResults.pages}
+                           renderItem={(page) => {
+                              const Icon = iconMap[page.id]
+                              return (
+                                 <SearchItem
+                                    key={page.id}
+                                    href={page.href}
+                                    onCLick={handleItemlick}
+                                    icon={
+                                       <Icon className="text-text-secondary h-4 w-4" />
+                                    }
+                                    title={page.title}
+                                    jumpText={content.jump}
+                                 />
+                              )
+                           }}
+                        />
+                     )}
+                  </>
+               )}
+            </div>
          </div>
-      </>
+      </div>
    )
 }
 
@@ -190,12 +192,12 @@ const SearchSection = <T,>({
 }) => (
    <div
       className={cn(
-         "border-border-default mb-2 flex flex-col gap-2 border-t pt-2",
-         first && "border-none pt-0",
+         "border-border-default mb-3 flex flex-col gap-1.5 border-t pt-3",
+         first && "mt-4 border-none",
       )}
    >
-      <p className="text-text-secondary pt-3 text-xs font-medium">{title}</p>
-      <div className="flex flex-col items-start gap-1">
+      <p className="text-text-secondary px-2 text-xs font-medium">{title}</p>
+      <div className="flex flex-col items-start gap-[3px]">
          {items.map(renderItem)}
       </div>
    </div>
@@ -219,7 +221,7 @@ const SearchItem = ({
    <Link
       href={href}
       onClick={onCLick}
-      className="hover:bg-hover-2 focus:bg-hover-2 relative flex w-full cursor-pointer items-center justify-between rounded-sm px-1 py-[5px] pr-3 text-sm transition-colors"
+      className="hover:bg-hover-2 focus:bg-hover-2 relative flex w-full cursor-pointer items-center justify-between rounded-sm px-2 py-[5px] pr-3 text-sm transition-colors"
    >
       <div className="flex items-center gap-2">
          {icon}

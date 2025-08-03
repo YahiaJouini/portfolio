@@ -1,10 +1,18 @@
+import { Link } from "@/i18n/navigation"
 import { cn } from "@/lib/utils"
 import { Education } from "@/messages/types"
+import { Locale } from "@/types"
 import { formatDateRange } from "@/utils/format-date"
 import { Award, Calendar, ExternalLink } from "lucide-react"
-import { Link } from "@/i18n/navigation"
+import { t } from "../t"
 
-export default function EducationCard({ education }: { education: Education }) {
+export default function EducationCard({
+   education,
+   locale,
+}: {
+   education: Education
+   locale: Locale
+}) {
    const isCurrentRole = !education.endDate
 
    return (
@@ -17,7 +25,7 @@ export default function EducationCard({ education }: { education: Education }) {
                   </h3>
                   {isCurrentRole && (
                      <span className="bg-tag-bg text-tag-color border-tag-color/20 inline-flex w-fit items-center rounded-full border px-2 py-1 text-xs font-medium">
-                        Current
+                        {t[locale].current}
                      </span>
                   )}
                </div>
@@ -36,7 +44,7 @@ export default function EducationCard({ education }: { education: Education }) {
                      {education.fieldOfStudy}
                   </p>
                   {education.mention && (
-                     <div className="flex items-center gap-1">
+                     <div className="flex items-center rtl:flex-row-reverse gap-1">
                         <Award className="text-accent-active h-3 w-3 md:h-4 md:w-4" />
                         <span className="bg-accent-active/10 text-accent-active inline-flex items-center rounded-full text-xs font-medium md:text-sm">
                            {education.mention}

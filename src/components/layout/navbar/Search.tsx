@@ -45,7 +45,7 @@ export default function Search({
          {open && (
             <DialogContent
                showCloseButton={false}
-               className="border-border-default top-1 flex h-[400px] w-[60%] translate-y-0 flex-col gap-4 overflow-hidden border sm:max-w-full"
+               className="border-border-default top-1 flex h-[400px] w-[60%] translate-y-0 flex-col gap-4 overflow-hidden overflow-y-auto border px-6 sm:max-w-full"
             >
                <SearchContent
                   handleItemlick={() => setOpen(false)}

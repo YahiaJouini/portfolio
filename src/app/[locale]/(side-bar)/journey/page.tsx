@@ -31,7 +31,7 @@ export default async function page({ params, searchParams }: Props) {
             <Section />
          </div>
          <div className="relative">
-            <div className="bg-border-default absolute top-0 bottom-0 left-5 w-0.5 md:left-6" />
+            <div className="bg-border-default absolute top-0 bottom-0 w-0.5 not-rtl:left-5 md:left-6 rtl:right-[22px]" />
 
             <div className="space-y-6 md:space-y-8">
                {view === "experience" &&
@@ -42,7 +42,7 @@ export default async function page({ params, searchParams }: Props) {
                            <Briefcase className="text-tag-color h-4 w-4 md:h-5 md:w-5" />
                         }
                      >
-                        <ExperienceCard experience={exp} />
+                        <ExperienceCard locale={locale} experience={exp} />
                      </Container>
                   ))}
 
@@ -54,7 +54,7 @@ export default async function page({ params, searchParams }: Props) {
                            <GraduationCap className="text-accent-icon h-4 w-4 md:h-5 md:w-5" />
                         }
                      >
-                        <EducationCard education={edu} />
+                        <EducationCard locale={locale} education={edu} />
                      </Container>
                   ))}
             </div>

@@ -33,6 +33,7 @@ export default function Filter({ locale }: { locale: Locale }) {
                      "border-border-default flex w-full items-center justify-center gap-1 rounded-md border px-4 py-1",
                      {
                         "bg-hover-2": layout === value,
+                        "hover:bg-hover-2/50": layout !== value,
                      },
                   )}
                >

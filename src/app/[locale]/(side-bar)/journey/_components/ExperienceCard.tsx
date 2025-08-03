@@ -1,11 +1,15 @@
 import { Experience } from "@/messages/types"
 import { formatDateRange } from "@/utils/format-date"
 import { Calendar, MapPin } from "lucide-react"
+import { t } from "../t"
+import { Locale } from "@/types"
 
 export default function ExperienceCard({
    experience,
+   locale,
 }: {
    experience: Experience
+   locale: Locale
 }) {
    const isCurrentRole = !experience.endDate
 
@@ -19,7 +23,7 @@ export default function ExperienceCard({
                   </h3>
                   {isCurrentRole && (
                      <span className="bg-tag-bg text-tag-color border-tag-color/20 inline-flex w-fit items-center rounded-full border px-2 py-1 text-xs font-medium">
-                        Current
+                        {t[locale].current}
                      </span>
                   )}
                </div>
@@ -27,8 +31,8 @@ export default function ExperienceCard({
                   {experience.company}
                </p>
                {experience.location && (
-                  <div className="text-text-secondary flex items-center">
-                     <MapPin className="mr-1 h-3 w-3 md:h-4 md:w-4" />
+                  <div className="text-text-secondary rtl:justify-end flex items-center gap-0.5 rtl:flex-row-reverse">
+                     <MapPin className="h-3 w-3 md:h-4 md:w-4" />
                      <span className="text-xs md:text-sm">
                         {experience.location}
                      </span>

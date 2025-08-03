@@ -13,7 +13,7 @@ export default function Section() {
    const locale = useLocale()
    const resolvedLayout = t[locale]
    return (
-      <div className="bg-secondary border-border-default inline-flex rounded-lg border p-1">
+      <div className="bg-secondary border-border-default flex rounded-lg border p-1">
          {sections.map((view) => (
             <button
                key={view}
@@ -23,7 +23,7 @@ export default function Section() {
                   })
                }
                className={cn(
-                  "flex items-center rounded-md border px-3 py-1.5 text-xs font-medium transition-all duration-200 md:px-4 md:py-2 md:text-sm",
+                  "flex items-center rounded-md border px-3 py-1.5 text-xs font-medium transition-all duration-200 md:px-4 md:py-2 md:text-sm rtl:flex-row-reverse",
                   {
                      "bg-primary text-text-primary border-border-default":
                         activeView === view,

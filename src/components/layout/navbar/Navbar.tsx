@@ -19,9 +19,9 @@ export default function Navbar({ locale }: { locale: Locale }) {
    return (
       <nav className="bg-secondary border-border-default mb-8 w-full border-b pt-3 sm:mb-12">
          <div className="px-4 sm:px-12">
-            <div className="flex items-center justify-between max-sm:pb-2">
-               <Logo />
-               <div className="flex items-center gap-2.5 sm:gap-4">
+            <div className="flex items-center justify-between max-sm:pb-2 rtl:flex-row-reverse">
+               <Logo text={content.title} />
+               <div className="flex items-center gap-2.5 sm:gap-4 rtl:flex-row-reverse">
                   <Search pages={content.items} content={content.search} />
                   <div className="bg-accent-border h-5 w-px max-sm:hidden" />
                   <Theme />
@@ -31,7 +31,7 @@ export default function Navbar({ locale }: { locale: Locale }) {
                </div>
             </div>
 
-            <div className="text-text-primary mt-3 flex items-center gap-9 font-medium max-sm:hidden">
+            <div className="text-text-primary mt-3 flex items-center gap-9 font-medium max-sm:hidden rtl:flex-row-reverse">
                {content.items.map(({ id, href, title }) => {
                   const Icon = iconMap[id]
                   const active = isActive(href)
