@@ -1,5 +1,4 @@
-import { fetchRepoMeta } from "@/graphql/github-repo"
-import { Locale, ProjectDetail, ProjectList } from "@/types"
+import { Locale, ProjectList } from "@/types"
 import { LOCALES_LENGTH } from "@/utils/constants"
 import { Project } from "../payload-types"
 import { LRUCache } from "./cache"
@@ -25,7 +24,7 @@ type FetchProjectsParams = {
 
 export class ProjectService {
    // 7 projects (accounting for different locales)
-   private static projectCache = new LRUCache<string, ProjectDetail>(
+   private static projectCache = new LRUCache<string, Project>(
       7 * LOCALES_LENGTH,
       LRUCache.CACHE_TTL,
    )
@@ -74,30 +73,18 @@ export class ProjectService {
    }: {
       locale: Locale
       slug: string
-   }): Promise<ProjectDetail | undefined> {
+   }): Promise<Project | undefined> {
       const cacheKey = this.generateProjectKey(slug, locale)
       // check cache first
       const cachedProject = this.projectCache.get(cacheKey)
       if (cachedProject) return cachedProject
       try {
-         const [projectResult, repoMetaResult] = await Promise.allSettled([
-            this.fetchProject(slug, locale),
-            fetchRepoMeta(slug),
-         ])
-         const project =
-            projectResult.status === "fulfilled" ? projectResult.value : null
-         const repoMeta =
-            repoMetaResult.status === "fulfilled" ? repoMetaResult.value : null
+         const project = await this.fetchProject(slug, locale)
 
          if (!project) return undefined
 
-         const detailedProject: ProjectDetail = { ...project }
-         if (repoMeta) {
-            detailedProject.repoMeta = repoMeta
-         }
-
-         this.projectCache.set(cacheKey, detailedProject)
-         return detailedProject
+         this.projectCache.set(cacheKey, project)
+         return project
       } catch (err) {
          console.error("Error fetching project:", err)
          return undefined

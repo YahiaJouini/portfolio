@@ -1,11 +1,6 @@
 import { Blog, Project } from "./payload-types"
 import { SUPPORTED_LOCALES } from "./utils/constants"
 
-// for details page
-export type ProjectDetail = Project & {
-   repoMeta?: RepoMeta
-}
-
 // for listing projects
 export type ProjectList = Array<
    Pick<

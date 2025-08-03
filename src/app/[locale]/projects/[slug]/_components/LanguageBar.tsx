@@ -1,20 +1,30 @@
-import { RepoMeta } from "@/types"
+import { Project } from "@/payload-types"
 
 export function LanguageBar({
    languages,
 }: {
-   languages: RepoMeta["languages"]
+   languages: Project["languages"]
 }) {
-   const totalSize = languages.edges.reduce((sum, lang) => sum + lang.size, 0)
+   const totalSize = languages!.reduce((sum, lang) => sum + (lang.size || 0), 0)
+   const hasValidSizes = languages!.some((lang) => lang.size && lang.size > 0)
 
-   const parsedLanguages = languages.edges
-      .map(({ size, node }) => ({
-         name: node.name,
-         color: node.color || "#ccc",
-         size,
-         percentage: totalSize > 0 ? (size / totalSize) * 100 : 0,
+   const parsedLanguages = languages!
+      .map((lang) => ({
+         name: lang.name,
+         color: lang.color || "#ccc",
+         size: lang.size || 0,
+         percentage: hasValidSizes
+            ? totalSize > 0
+               ? ((lang.size || 0) / totalSize) * 100
+               : 0
+            : 100 / languages!.length,
       }))
       .filter((lang) => lang.percentage > 0)
+      .sort((a, b) => b.percentage - a.percentage)
+
+   if (parsedLanguages.length === 0) {
+      return null
+   }
 
    return (
       <div className="flex flex-col gap-2">

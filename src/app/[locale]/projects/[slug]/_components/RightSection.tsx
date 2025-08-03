@@ -3,17 +3,18 @@ import Tag from "@/components/global/Tag"
 import Tick from "@/components/global/Tick"
 import Summary from "@/components/icons/Summary"
 import { summaryKeys } from "@/messages/seperate/project-related"
-import { Locale, ProjectDetail } from "@/types"
+import { Project } from "@/payload-types"
+import { Locale } from "@/types"
 import { t } from "../t"
 import { LanguageBar } from "./LanguageBar"
 
 type Props = {
-   project: ProjectDetail
+   project: Project
    locale: Locale
 }
 
 export default function RightSection({ project, locale }: Props) {
-   const { repoMeta, ...rest } = project
+   const { topics, languages, roles, summary } = project
    const resolvedLayout = t[locale]
    return (
       <div className="flex flex-1 flex-col gap-6">
@@ -23,16 +24,16 @@ export default function RightSection({ project, locale }: Props) {
                <p>{project.description}</p>
             </div>
 
-            {repoMeta && repoMeta.topics.nodes.length > 0 && (
+            {topics && topics.length > 0 && (
                <div className="flex flex-wrap items-center gap-2">
-                  {repoMeta.topics.nodes.map(({ topic }) => (
-                     <Tag text={topic.name} key={topic.name} />
+                  {topics.map(({ name, id }) => (
+                     <Tag text={name} key={id} />
                   ))}
                </div>
             )}
 
             <div className="flex flex-col gap-1">
-               {rest.roles.map(({ role }) => (
+               {roles.map(({ role }) => (
                   <div key={role} className="flex items-center gap-1">
                      <div className="h-[17px] w-[17px]">
                         <Tick />
@@ -46,7 +47,7 @@ export default function RightSection({ project, locale }: Props) {
          <div>
             <SectionTitle title={resolvedLayout.summary} />
             <div className="flex flex-col items-start gap-2">
-               {rest.summary.map(({ category, values }) => {
+               {summary.map(({ category, values }) => {
                   const size = values.length
                   return (
                      <div key={category} className="flex items-start gap-2">
@@ -74,10 +75,10 @@ export default function RightSection({ project, locale }: Props) {
          </div>
          <Seperator />
 
-         {repoMeta?.languages && (
+         {languages && languages.length > 0 && (
             <div>
                <SectionTitle title={resolvedLayout.languages} />
-               <LanguageBar languages={repoMeta.languages} />
+               <LanguageBar languages={languages} />
             </div>
          )}
       </div>

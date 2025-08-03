@@ -7,13 +7,9 @@ import {
    DialogTitle,
    DialogTrigger,
 } from "@/components/ui/dialog"
-import { ProjectDetail } from "@/types"
+import { Project } from "@/payload-types"
 
-export default function ScreenShots({
-   images,
-}: {
-   images: ProjectDetail["images"]
-}) {
+export default function ScreenShots({ images }: { images: Project["images"] }) {
    if (!images || images.length === 0) {
       return null
    }
@@ -26,7 +22,7 @@ export default function ScreenShots({
    )
 }
 
-export function Popup({ media }: { media: ProjectDetail["images"][number] }) {
+export function Popup({ media }: { media: Project["images"][number] }) {
    const { image, title, description } = media
    if (typeof image === "number" || !image.url) {
       return null
