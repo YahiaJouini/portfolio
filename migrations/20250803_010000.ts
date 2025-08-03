@@ -48,6 +48,28 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   await db.run(sql`CREATE INDEX \`users_updated_at_idx\` ON \`users\` (\`updated_at\`);`)
   await db.run(sql`CREATE INDEX \`users_created_at_idx\` ON \`users\` (\`created_at\`);`)
   await db.run(sql`CREATE UNIQUE INDEX \`users_email_idx\` ON \`users\` (\`email\`);`)
+  await db.run(sql`CREATE TABLE \`projects_languages\` (
+  	\`_order\` integer NOT NULL,
+  	\`_parent_id\` integer NOT NULL,
+  	\`id\` text PRIMARY KEY NOT NULL,
+  	\`name\` text NOT NULL,
+  	\`color\` text,
+  	\`size\` numeric,
+  	FOREIGN KEY (\`_parent_id\`) REFERENCES \`projects\`(\`id\`) ON UPDATE no action ON DELETE cascade
+  );
+  `)
+  await db.run(sql`CREATE INDEX \`projects_languages_order_idx\` ON \`projects_languages\` (\`_order\`);`)
+  await db.run(sql`CREATE INDEX \`projects_languages_parent_id_idx\` ON \`projects_languages\` (\`_parent_id\`);`)
+  await db.run(sql`CREATE TABLE \`projects_topics\` (
+  	\`_order\` integer NOT NULL,
+  	\`_parent_id\` integer NOT NULL,
+  	\`id\` text PRIMARY KEY NOT NULL,
+  	\`name\` text NOT NULL,
+  	FOREIGN KEY (\`_parent_id\`) REFERENCES \`projects\`(\`id\`) ON UPDATE no action ON DELETE cascade
+  );
+  `)
+  await db.run(sql`CREATE INDEX \`projects_topics_order_idx\` ON \`projects_topics\` (\`_order\`);`)
+  await db.run(sql`CREATE INDEX \`projects_topics_parent_id_idx\` ON \`projects_topics\` (\`_parent_id\`);`)
   await db.run(sql`CREATE TABLE \`projects_roles\` (
   	\`_order\` integer NOT NULL,
   	\`_parent_id\` integer NOT NULL,
@@ -107,10 +129,9 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	\`demo_url\` text,
   	\`primary_language\` text,
   	\`primary_language_color\` text,
-  	\`public\` integer DEFAULT true,
+  	\`public\` integer,
   	\`created_at\` text DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')) NOT NULL,
   	\`type\` text NOT NULL,
-  	\`open_source\` integer DEFAULT true NOT NULL,
   	\`status\` text DEFAULT 'published' NOT NULL,
   	\`thumbnail_id\` integer NOT NULL,
   	\`updated_at\` text DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')) NOT NULL,
@@ -261,6 +282,8 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   await db.run(sql`DROP TABLE \`media\`;`)
   await db.run(sql`DROP TABLE \`users_sessions\`;`)
   await db.run(sql`DROP TABLE \`users\`;`)
+  await db.run(sql`DROP TABLE \`projects_languages\`;`)
+  await db.run(sql`DROP TABLE \`projects_topics\`;`)
   await db.run(sql`DROP TABLE \`projects_roles\`;`)
   await db.run(sql`DROP TABLE \`projects_summary_values\`;`)
   await db.run(sql`DROP TABLE \`projects_summary\`;`)

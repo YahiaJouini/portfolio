@@ -1,7 +1,7 @@
-import { populateFromRepoMeta } from "@/graphql/github-repo"
 import { summaryKeys } from "@/messages/seperate/project-related"
 import { projectPayloadAccess } from "@/utils/payload-access"
 import { CollectionConfig } from "payload"
+import { populateProjectHook } from "../hooks"
 import { slugField } from "../slug-field"
 
 export const Projects: CollectionConfig = {
@@ -17,36 +17,7 @@ export const Projects: CollectionConfig = {
    },
    access: projectPayloadAccess(),
    hooks: {
-      beforeChange: [
-         async ({ data, req, operation }) => {
-            if (
-               (operation === "create" || operation === "update") &&
-               data?.slug &&
-               !data?.autoPopulate
-            ) {
-               try {
-                  const repoMeta = await populateFromRepoMeta(data.slug)
-                  if (!repoMeta) return
-                  await req.payload.update({
-                     collection: "projects",
-                     id: data.id,
-                     data: {
-                        primaryLanguage: repoMeta.primaryLanguage.name,
-                        primaryLanguageColor: repoMeta.primaryLanguage.color,
-                        public: !repoMeta.isPrivate,
-                        createdAt: repoMeta.createdAt,
-                        autoPopulate: true,
-                     },
-                  })
-               } catch (err) {
-                  console.error(
-                     `Failed to fetch primary language for project ${data.slug}:`,
-                     err,
-                  )
-               }
-            }
-         },
-      ],
+      beforeChange: [populateProjectHook],
    },
    fields: [
       slugField,
@@ -131,11 +102,57 @@ export const Projects: CollectionConfig = {
          },
       },
       {
+         name: "languages",
+         type: "array",
+         label: "Languages",
+         admin: {
+            readOnly: true,
+            description: "Auto-populated from GitHub repository",
+            position: "sidebar",
+         },
+         fields: [
+            {
+               name: "name",
+               type: "text",
+               required: true,
+               label: "Language Name",
+            },
+            {
+               name: "color",
+               type: "text",
+               label: "Language Color",
+            },
+            {
+               name: "size",
+               type: "number",
+               label: "Size (bytes)",
+            },
+         ],
+      },
+      {
+         name: "topics",
+         type: "array",
+         label: "Repository Topics/Tags",
+         admin: {
+            readOnly: true,
+            description: "Auto-populated from GitHub repository",
+            position: "sidebar",
+         },
+         fields: [
+            {
+               name: "name",
+               type: "text",
+               required: true,
+               label: "Topic Name",
+            },
+         ],
+      },
+      {
          name: "public",
          type: "checkbox",
          label: "Public Project",
-         defaultValue: true,
          admin: {
+            readOnly: true,
             description: "Auto-populated from GitHub repository",
          },
       },
@@ -144,7 +161,7 @@ export const Projects: CollectionConfig = {
          type: "date",
          label: "Creation Date",
          admin: {
-            description: "Auto-populated from GitHub repository",
+            description: "Auto-populated from GitHub repository (can change)",
          },
       },
       // === (end Auto-populated) ===
@@ -243,16 +260,6 @@ export const Projects: CollectionConfig = {
                value: "work",
             },
          ],
-      },
-      {
-         name: "auto populate",
-         type: "checkbox",
-         label: "Auto-populate from GitHub",
-         defaultValue: false,
-         admin: {
-            readOnly: true,
-            description: "To make sure the hook only runs once",
-         },
       },
       {
          name: "pinned",

@@ -25,15 +25,13 @@ export type ProjectList = Array<
    >
 >
 
-export type PopulatedProject = {
+export type RepoMeta = {
    createdAt: string
    isPrivate: boolean
    primaryLanguage: {
       name: string
       color: string
    }
-}
-export type RepoMeta = {
    languages: {
       edges: Array<{
          size: number

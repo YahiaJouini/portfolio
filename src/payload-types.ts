@@ -218,9 +218,29 @@ export interface Project {
   /**
    * Auto-populated from GitHub repository
    */
-  public?: boolean | null;
+  languages?:
+    | {
+        name: string;
+        color?: string | null;
+        size?: number | null;
+        id?: string | null;
+      }[]
+    | null;
   /**
    * Auto-populated from GitHub repository
+   */
+  topics?:
+    | {
+        name: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Auto-populated from GitHub repository
+   */
+  public?: boolean | null;
+  /**
+   * Auto-populated from GitHub repository (can change)
    */
   createdAt: string;
   /**
@@ -245,7 +265,6 @@ export interface Project {
     id?: string | null;
   }[];
   type: 'personal' | 'work';
-  'open-source': boolean;
   /**
    * Mark this project as featured to highlight it in your portfolio
    */
@@ -438,6 +457,20 @@ export interface ProjectsSelect<T extends boolean = true> {
   demoUrl?: T;
   primaryLanguage?: T;
   primaryLanguageColor?: T;
+  languages?:
+    | T
+    | {
+        name?: T;
+        color?: T;
+        size?: T;
+        id?: T;
+      };
+  topics?:
+    | T
+    | {
+        name?: T;
+        id?: T;
+      };
   public?: T;
   createdAt?: T;
   roles?:
@@ -459,7 +492,6 @@ export interface ProjectsSelect<T extends boolean = true> {
         id?: T;
       };
   type?: T;
-  'open-source'?: T;
   pinned?: T;
   status?: T;
   thumbnail?: T;
