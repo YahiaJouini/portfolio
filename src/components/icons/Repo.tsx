@@ -7,7 +7,7 @@ export default function Repo() {
          fill="currentColor"
          strokeWidth="0"
          viewBox="0 0 24 24"
-         className="text-accent-icon mr-1 min-w-[18px]"
+         className="text-accent-icon min-w-[18px]"
          height="18"
          width="18"
          xmlns="http://www.w3.org/2000/svg"

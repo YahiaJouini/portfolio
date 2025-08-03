@@ -1,10 +1,10 @@
 import Resume from "@/components/global/Resume"
+import { Link } from "@/i18n/navigation"
 import { fullName } from "@/messages/global"
 import { technologies } from "@/messages/seperate/technologies"
 import type { About } from "@/messages/types"
 import { Locale } from "@/types"
 import { getTranslation } from "@/utils/get-translation"
-import { Link } from "@/i18n/navigation"
 import { t } from "../t"
 
 export default async function About({ locale }: { locale: Locale }) {
@@ -49,7 +49,7 @@ export default async function About({ locale }: { locale: Locale }) {
                   style={{
                      backgroundColor: background,
                   }}
-                  className="bg-accent-border border-border-default flex items-center gap-1 rounded-sm border px-[7px] py-[5px] text-sm font-medium sm:px-[9px] sm:text-[15px]"
+                  className="bg-accent-border border-border-default flex items-center gap-1 rounded-sm border px-[7px] py-[5px] text-sm font-medium sm:px-[9px] sm:text-[15px] rtl:flex-row-reverse"
                >
                   <Icon className="h-4 w-4 lg:h-[17px] lg:w-[17px]" />
                   {name}

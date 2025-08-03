@@ -23,10 +23,10 @@ export default async function Pinned({ locale }: { locale: Locale }) {
                      key={project.slug}
                      className="border-border-default flex min-h-[125px] flex-col justify-between rounded-md border p-4"
                   >
-                     <div className="flex items-center justify-start">
+                     <div className="flex items-center justify-start gap-1">
                         <Repo />
                         <Link
-                           className="mr-2 w-auto overflow-hidden text-sm font-semibold text-nowrap hover:underline"
+                           className="w-auto overflow-hidden text-sm font-semibold text-nowrap not-rtl:mr-2 hover:underline rtl:ml-2"
                            href={`/projects/${project.slug}`}
                         >
                            {project.title}
@@ -37,7 +37,7 @@ export default async function Pinned({ locale }: { locale: Locale }) {
                         />
                      </div>
 
-                     <p className="text-text-secondary my-2.5 line-clamp-3 text-sm">
+                     <p className="text-text-secondary my-2.5 line-clamp-3 w-full text-sm">
                         {project.description}
                      </p>
 
