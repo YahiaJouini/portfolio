@@ -20,7 +20,6 @@ const query = `
 
 // fetch all because it's a small dataset
 export const fetchWebsiteSearch = async (): Promise<WebsiteSearch | null> => {
-   await new Promise((resolve) => setTimeout(resolve, 2000))
    const response = await fetch("/api/graphql", {
       method: "POST",
       headers: {
