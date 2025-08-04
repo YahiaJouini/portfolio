@@ -8,8 +8,8 @@ export async function GET(req: NextRequest) {
    const searchParams = req.nextUrl.searchParams
    const slug = searchParams.get("slug")
 
-   const blogs = await BlogService.getBlogList({ locale })
-   if (!blogs || blogs.length === 0) {
+   const blogs = await BlogService.getBlogs({ locale })
+   if (blogs.length === 0) {
       return NextResponse.json({ message: "No blogs found" }, { status: 404 })
    }
    if (slug) {

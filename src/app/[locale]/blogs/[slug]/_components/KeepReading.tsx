@@ -1,7 +1,8 @@
 import { Skeleton } from "@/components/ui/skeleton"
 import { Blog } from "@/payload-types"
 import { BlogList, Locale, MergedTranslations } from "@/types"
-import { memo, useEffect, useState } from "react"
+import { useQuery } from "@tanstack/react-query"
+import { memo } from "react"
 import { BlogCard, BlogCardSkeleton } from "../../_components/BlogCard"
 
 type Props = {
@@ -21,29 +22,19 @@ const t = {
    },
 } satisfies MergedTranslations
 
+const fetchKeepReading = async (slug: string) => {
+   const res = await fetch("/api/readings?slug=" + slug)
+   if (!res.ok) throw new Error("Failed to fetch related blogs")
+   return res.json()
+}
+
 function KeepReading({ locale, slug }: Props) {
-   const [data, setData] = useState<BlogList | null>(null)
-   const [loading, setLoading] = useState(true)
+   const { data, isLoading } = useQuery<BlogList>({
+      queryKey: ["keepReading", slug],
+      queryFn: () => fetchKeepReading(slug),
+   })
 
-   useEffect(() => {
-      const fetchReading = async () => {
-         const response = await fetch("/api/readings?slug=" + slug)
-         const data = await response.json()
-         return data
-      }
-
-      fetchReading()
-         .then((data) => {
-            if (data && data.length > 0) {
-               setData(data)
-            }
-         })
-         .finally(() => {
-            setLoading(false)
-         })
-   }, [slug])
-
-   if (loading) {
+   if (isLoading) {
       return <KeepReadingSkeleton />
    }
 

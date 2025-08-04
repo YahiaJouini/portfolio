@@ -7,10 +7,25 @@ import { Locale } from "@/types"
 import React from "react"
 
 type Props<T> = {
-   page: Page
+   page: "projects" | "blogs"
    data: T
    locale: Locale
 }
+
+const t = {
+   en: {
+      projects: "Projects",
+      blogs: "Blogs",
+   },
+   ar: {
+      projects: "المشاريع",
+      blogs: "المدونات",
+   },
+   fr: {
+      projects: "Projets",
+      blogs: "Blogs",
+   },
+} satisfies Record<Locale, Partial<Record<Page, string>>>
 export default function PinnedCard<
    T extends {
       slug: string
@@ -47,7 +62,7 @@ export default function PinnedCard<
                })}
             />
             <p className="text-text-secondary text-xs leading-none hover:underline">
-               /{page}
+               /{t[locale][page]}
             </p>
          </div>
       </div>
