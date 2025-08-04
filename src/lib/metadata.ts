@@ -22,8 +22,6 @@ export async function generatePageMetadata({
    const title = t("title")
    const description = t("description")
    const keywords = t("keywords")
-   const siteName = t("siteName")
-   const authorName = t("authorName")
 
    const fullUrl = `${BASE_URL}/${locale}/${path}`
 
@@ -31,31 +29,6 @@ export async function generatePageMetadata({
       title,
       description,
       keywords,
-      authors: [{ name: authorName }],
-      creator: authorName,
-
-      openGraph: {
-         title,
-         description,
-         url: fullUrl,
-         siteName,
-         locale,
-         type: "website",
-         images: [
-            {
-               url: `${BASE_URL}/og-image.webp`,
-               width: 1388,
-               height: 728,
-               alt: t("ogImageAlt"),
-            },
-         ],
-      },
-
-      twitter: {
-         card: "summary_large_image",
-         title,
-         description,
-      },
 
       robots: {
          index: !noIndex,
@@ -76,6 +49,7 @@ export async function generatePageMetadata({
    }
 }
 
+// Root metadata with all shared settings including OpenGraph and Twitter
 export async function generateRootMetadata(locale: Locale): Promise<Metadata> {
    const t = await getTranslations({ locale, namespace: "metadata" })
 
@@ -84,7 +58,6 @@ export async function generateRootMetadata(locale: Locale): Promise<Metadata> {
    const keywords = t("keywords")
    const siteName = t("siteName")
    const authorName = t("authorName")
-   const ogImageAlt = t("ogImageAlt")
 
    const fullUrl = `${BASE_URL}/${locale}`
 
@@ -108,19 +81,16 @@ export async function generateRootMetadata(locale: Locale): Promise<Metadata> {
          type: "website",
          images: [
             {
-               url: `${BASE_URL}/og-image.webp`,
+               url: "/og-image.webp",
                width: 1388,
                height: 728,
-               alt: ogImageAlt,
+               alt: siteName,
             },
          ],
       },
 
       twitter: {
          card: "summary_large_image",
-         title,
-         description,
-         images: [`${BASE_URL}/og-image.webp`],
       },
 
       robots: {

@@ -38,7 +38,6 @@ export function generateDynamicMetadata<T extends DynamicMetaData>({
          url: fullUrl,
          type,
          locale,
-         siteName: BASE_URL,
          ...(type === "article" && publishedTime && { publishedTime }),
          ...(type === "article" && author && { authors: [author] }),
          ...(image &&
