@@ -60,6 +60,18 @@ export const Blog: CollectionConfig = {
          ],
       },
       {
+         name: "pinned",
+         type: "checkbox",
+         localized: true,
+         required: true,
+         label: "Pinned Blog",
+         admin: {
+            description:
+               "Mark this blog post as featured to highlight it in your portfolio",
+         },
+         defaultValue: false,
+      },
+      {
          name: "tags",
          type: "array",
          required: true,

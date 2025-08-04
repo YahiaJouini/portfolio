@@ -1,8 +1,8 @@
 import { Blog } from "@/payload-types"
-import { Orm } from "./orm"
-import { LRUCache } from "./cache"
 import { BlogList, Locale } from "@/types"
 import { LOCALES_LENGTH } from "@/utils/constants"
+import { LRUCache } from "./cache"
+import { Orm } from "./orm"
 
 export class BlogService {
    private static blogCache = new LRUCache<string, Blog>(
@@ -69,20 +69,14 @@ export class BlogService {
       }
    }
 
-   public static async getBlogList({
-      locale,
-   }: {
-      locale: Locale
-   }): Promise<BlogList | undefined> {
-      const cacheKey = this.generateBlogListKey(locale)
-      const cachedBlogList = this.blogListCache.get(cacheKey)
-      if (cachedBlogList) {
-         return cachedBlogList
-      }
-      try {
-         const payload = await Orm.getPayloadInstance()
+   private static async fetchBlogs(locale: Locale): Promise<BlogList> {
+      const payload = await Orm.getPayloadInstance()
 
-         const values: Record<keyof BlogList[number], boolean> = {
+      const { docs: blogs } = await payload.find({
+         collection: "blog",
+         limit: 100,
+         depth: 1,
+         select: {
             author: true,
             createdAt: true,
             id: true,
@@ -90,24 +84,32 @@ export class BlogService {
             description: true,
             thumbnail: true,
             title: true,
-         }
-         const { docs: blogList } = await payload.find({
-            collection: "blog",
-            limit: 100,
-            depth: 1,
-            // use as any because select requires a different type
-            // but we know it is safe to use this select
-            select: values as any,
-            sort: "-createdAt",
-            locale,
-         })
+         },
+         sort: ["pinned", "-createdAt"],
+         locale,
+      })
+      return blogs
+   }
 
-         this.blogListCache.set(cacheKey, blogList)
-         return blogList
-      } catch (err) {
-         console.log(err)
-         return undefined
+   public static async getBlogs({
+      locale,
+      pinned = false,
+   }: {
+      locale: Locale
+      pinned?: boolean
+   }): Promise<BlogList> {
+      const cacheKey = this.generateBlogListKey(locale)
+      let blogs = this.blogListCache.get(cacheKey)
+      if (!blogs) {
+         try {
+            blogs = await this.fetchBlogs(locale)
+            this.blogListCache.set(cacheKey, blogs)
+         } catch (err) {
+            console.log(err)
+            return []
+         }
       }
+      return pinned ? blogs.filter((blog) => blog.pinned) : blogs
    }
 
    // clear all cause it's a small dataset

@@ -878,13 +878,6 @@
           "autoincrement": false,
           "default": "(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))"
         },
-        "type": {
-          "name": "type",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
         "status": {
           "name": "status",
           "type": "text",
@@ -1356,6 +1349,14 @@
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
+        },
+        "pinned": {
+          "name": "pinned",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": false
         },
         "id": {
           "name": "id",
@@ -1894,6 +1895,6 @@
   "internal": {
     "indexes": {}
   },
-  "id": "58188313-4980-478c-85cc-064f47c7f2b5",
+  "id": "ed19b8a5-4539-4255-b6f7-11c7f58077ea",
   "prevId": "00000000-0000-0000-0000-000000000000"
 }

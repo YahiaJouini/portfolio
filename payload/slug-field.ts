@@ -8,7 +8,7 @@ export const slugField: Field = {
    label: "URL Slug",
    minLength: 3,
    admin: {
-      description: "This will be used in the URL for this project",
+      description: "This will be used in the URL for this collection",
    },
    hooks: {
       beforeValidate: [

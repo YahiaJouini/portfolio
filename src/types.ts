@@ -13,7 +13,6 @@ export type ProjectList = Array<
       | "githubUrl"
       | "pinned"
       | "public"
-      | "type"
       | "thumbnail"
       | "primaryLanguage"
       | "primaryLanguageColor"
@@ -55,6 +54,7 @@ export type BlogList = Array<
       | "thumbnail"
       | "author"
       | "createdAt"
+      | "pinned"
    >
 >
 

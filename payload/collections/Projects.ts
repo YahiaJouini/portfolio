@@ -246,22 +246,6 @@ export const Projects: CollectionConfig = {
          ],
       },
       {
-         name: "type",
-         type: "select",
-         required: true,
-         label: "Project Type",
-         options: [
-            {
-               label: "Personal",
-               value: "personal",
-            },
-            {
-               label: "Work",
-               value: "work",
-            },
-         ],
-      },
-      {
          name: "pinned",
          type: "checkbox",
          localized: true,

@@ -17,7 +17,6 @@ type ProjectsOptions = {
 
 type FetchProjectsParams = {
    page: number
-   pinned?: boolean
    locale: Locale
    fields?: Partial<Record<keyof ProjectList[number], boolean>>
 }
@@ -35,15 +34,14 @@ export class ProjectService {
    )
 
    private static generateProjectKey(slug: string, locale: Locale): string {
-      return `${locale}:${slug}`
+      return `Project:${locale}:${slug}`
    }
 
    private static generateProjectsListKey(
       page: number,
-      pinned: boolean,
       locale: Locale,
    ): string {
-      return `${locale}:${pinned ? "pinned" : "all"}:${page}`
+      return `Projects:${locale}:${page}`
    }
 
    private static async fetchProject(
@@ -94,7 +92,6 @@ export class ProjectService {
    // depth 1 to speed up queries since we don't need nested data
    private static async fetchProjects({
       page,
-      pinned,
       locale,
       fields = {
          id: true,
@@ -106,7 +103,6 @@ export class ProjectService {
          githubUrl: true,
          pinned: true,
          public: true,
-         type: true,
          primaryLanguage: true,
          primaryLanguageColor: true,
       },
@@ -115,15 +111,15 @@ export class ProjectService {
 
       const { docs: projects } = await payload.find({
          collection: "projects",
-         limit: 6,
+         limit: 4,
          page,
          locale,
-         where: pinned ? { pinned: { equals: true } } : {},
          // use as any because select requires a different type
          // but we know it is safe to use this select
          select: fields as any,
          depth: 1,
-         sort: "-createdAt",
+         // sort by pinned so don't have to fetch homepage data while still caching all projects
+         sort: ["pinned", "-createdAt"],
       })
       return projects
    }
@@ -133,19 +129,20 @@ export class ProjectService {
       pinned = false,
       locale,
    }: ProjectsOptions): Promise<ProjectList> {
-      const cacheKey = this.generateProjectsListKey(page, pinned, locale)
       // check cache first
-      const cachedProjects = this.projectsListCache.get(cacheKey)
-      if (cachedProjects) return cachedProjects
+      const cacheKey = this.generateProjectsListKey(page, locale)
+      let projects = this.projectsListCache.get(cacheKey)
 
-      try {
-         const projects = await this.fetchProjects({ page, pinned, locale })
-         this.projectsListCache.set(cacheKey, projects)
-         return projects
-      } catch (err) {
-         console.error("Error fetching projects:", err)
-         return []
+      if (!projects) {
+         try {
+            projects = await this.fetchProjects({ page, locale })
+            this.projectsListCache.set(cacheKey, projects)
+         } catch (err) {
+            console.error("Error fetching projects:", err)
+            return []
+         }
       }
+      return pinned ? projects.filter((project) => project.pinned) : projects
    }
 
    // cache clearing

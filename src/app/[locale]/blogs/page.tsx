@@ -16,8 +16,8 @@ export async function generateMetadata({ params }: LocaleParams) {
 
 export default async function page({ params }: LocaleParams) {
    const { locale } = await params
-   const data = await BlogService.getBlogList({ locale })
-   if (!data || data.length === 0) {
+   const data = await BlogService.getBlogs({ locale })
+   if (data.length === 0) {
       return (
          <div className="w-full text-center">
             <h2 className="text-2xl font-bold">{t[locale].noBlogsFound}</h2>

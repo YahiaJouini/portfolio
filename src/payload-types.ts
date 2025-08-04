@@ -173,7 +173,7 @@ export interface User {
 export interface Project {
   id: number;
   /**
-   * This will be used in the URL for this project
+   * This will be used in the URL for this collection
    */
   slug: string;
   title: string;
@@ -264,7 +264,6 @@ export interface Project {
     }[];
     id?: string | null;
   }[];
-  type: 'personal' | 'work';
   /**
    * Mark this project as featured to highlight it in your portfolio
    */
@@ -295,7 +294,7 @@ export interface Project {
 export interface Blog {
   id: number;
   /**
-   * This will be used in the URL for this project
+   * This will be used in the URL for this collection
    */
   slug: string;
   title: string;
@@ -309,6 +308,10 @@ export interface Blog {
     name: string;
     role: string;
   };
+  /**
+   * Mark this blog post as featured to highlight it in your portfolio
+   */
+  pinned: boolean;
   tags: {
     tag: string;
     id?: string | null;
@@ -491,7 +494,6 @@ export interface ProjectsSelect<T extends boolean = true> {
             };
         id?: T;
       };
-  type?: T;
   pinned?: T;
   status?: T;
   thumbnail?: T;
@@ -521,6 +523,7 @@ export interface BlogSelect<T extends boolean = true> {
         name?: T;
         role?: T;
       };
+  pinned?: T;
   tags?:
     | T
     | {

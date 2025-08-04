@@ -13,7 +13,7 @@ export class LRUCache<K, V> {
    private maxSize: number // maximum number of items in the cache
    private ttl: number // time to live in milliseconds
 
-   constructor(maxSize: number = 100, ttl: number = 24 * 60 * 60 * 1000) {
+   constructor(maxSize: number = 50, ttl: number = 24 * 60 * 60 * 1000) {
       this.maxSize = maxSize
       this.ttl = ttl
    }
