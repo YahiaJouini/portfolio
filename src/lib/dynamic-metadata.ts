@@ -1,5 +1,6 @@
 import { Page } from "@/messages/types/shared"
 import { DynamicMetaData, Locale } from "@/types"
+import { buildLocalizedUrl } from "@/utils/build-url"
 import { BASE_URL } from "@/utils/constants"
 import { Metadata } from "next"
 import { languageAlternates } from "./language-alternates"
@@ -18,7 +19,7 @@ export function generateDynamicMetadata<T extends DynamicMetaData>({
    locale,
 }: Options<T>): Metadata {
    const { title, description, image, author, tags, publishedTime } = data
-   const fullUrl = `${BASE_URL}/${locale}/${path}`
+   const fullUrl = buildLocalizedUrl(locale, path)
 
    return {
       title,

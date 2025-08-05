@@ -1,5 +1,6 @@
 import { Page } from "@/messages/types/shared"
 import { Locale } from "@/types"
+import { buildLocalizedUrl } from "@/utils/build-url"
 import { BASE_URL } from "@/utils/constants"
 import type { Metadata } from "next"
 import { getTranslations } from "next-intl/server"
@@ -23,7 +24,7 @@ export async function generatePageMetadata({
    const description = t("description")
    const keywords = t("keywords")
 
-   const fullUrl = `${BASE_URL}/${locale}/${path}`
+   const fullUrl = buildLocalizedUrl(locale, path)
 
    return {
       title,
@@ -59,7 +60,7 @@ export async function generateRootMetadata(locale: Locale): Promise<Metadata> {
    const siteName = t("siteName")
    const authorName = t("authorName")
 
-   const fullUrl = `${BASE_URL}/${locale}`
+   const fullUrl = buildLocalizedUrl(locale)
 
    return {
       title: {
@@ -72,6 +73,42 @@ export async function generateRootMetadata(locale: Locale): Promise<Metadata> {
       authors: [{ name: authorName }],
       creator: authorName,
 
+      icons: {
+         icon: [
+            {
+               url: "/favicon/favicon-16x16.png",
+               sizes: "16x16",
+               type: "image/png",
+            },
+            {
+               url: "/favicon/favicon-32x32.png",
+               sizes: "32x32",
+               type: "image/png",
+            },
+            { url: "/favicon/favicon.ico", sizes: "any" },
+         ],
+         apple: [
+            {
+               url: "/favicon/apple-touch-icon.png",
+               sizes: "180x180",
+               type: "image/png",
+            },
+         ],
+         other: [
+            {
+               rel: "icon",
+               url: "/favicon/android-chrome-192x192.png",
+               sizes: "192x192",
+               type: "image/png",
+            },
+            {
+               rel: "icon",
+               url: "/favicon/android-chrome-512x512.png",
+               sizes: "512x512",
+               type: "image/png",
+            },
+         ],
+      },
       openGraph: {
          title,
          description,

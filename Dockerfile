@@ -1,5 +1,5 @@
 
-FROM oven/bun:debian AS base
+FROM oven/bun:alpine AS base
 
 # Stage 1: Install dependencies
 FROM base AS deps
