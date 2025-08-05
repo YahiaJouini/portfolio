@@ -1,4 +1,4 @@
-import { BASE_URL } from "@/utils/constants"
+import { BASE_URL } from "@/utils/env"
 import type { MetadataRoute } from "next"
 
 export default function sitemap(): MetadataRoute.Sitemap {

@@ -1,4 +1,4 @@
-import { BASE_URL } from "@/utils/constants"
+import { BASE_URL } from "@/utils/env"
 import type { MetadataRoute } from "next"
 
 export default function robots(): MetadataRoute.Robots {
@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       rules: {
          userAgent: "*",
          allow: "/",
-         disallow: "/private/",
+         disallow: ["/admin/*", "/api/*", "/_next/*"],
       },
       sitemap: `${BASE_URL}/sitemap.xml`,
    }

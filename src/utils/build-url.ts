@@ -1,4 +1,5 @@
-import { BASE_URL, DEFAULT_LOCALE } from "./constants"
+import { DEFAULT_LOCALE } from "./constants"
+import { BASE_URL } from "./env"
 
 export const buildLocalizedUrl = (locale: string, path?: string): string => {
    const cleanedPath = path ? path.replace(/^\/+/, "") : ""

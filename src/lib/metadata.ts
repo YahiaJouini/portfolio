@@ -1,7 +1,7 @@
 import { Page } from "@/messages/types/shared"
 import { Locale } from "@/types"
 import { buildLocalizedUrl } from "@/utils/build-url"
-import { BASE_URL } from "@/utils/constants"
+import { BASE_URL } from "@/utils/env"
 import type { Metadata } from "next"
 import { getTranslations } from "next-intl/server"
 import { languageAlternates } from "./language-alternates"
