@@ -9,4 +9,6 @@ services:
          - ./data.db:/app/data.db
       environment:
          - NODE_ENV=production
+      cap_add:
+         - SYS_RESOURCE
       restart: unless-stopped
