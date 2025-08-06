@@ -20,6 +20,7 @@ export default function GridShowcase({ locale, project }: Props) {
             )}
             <div className="flex flex-wrap items-center gap-2">
                <Link
+                  aria-label="View project details"
                   className="text-text-link text-lg font-semibold hover:underline md:text-xl"
                   href={`/projects/${project.slug}`}
                >

@@ -3,14 +3,9 @@
       "title": "Yahia Jouini - Full Stack Web Developer",
       "siteName": "Yahia Jouini - Portfolio",
       "description": "Full-stack developer focused on clean architecture, scalability, and modern web technologies. I build high-quality apps and solve real-world problems through smart code.",
-      "keywords": "Yahia Jouini, full stack developer, react, next.js, node.js, typescript, web apps, automation, performance, scalability",
+      "keywords": "Yahia Jouini, full stack developer, react, next.js, node.js, typescript, web apps, automation, performance, scalability, portfolio, web developer",
       "authorName": "Yahia Jouini",
       "ogImageAlt": "Yahia Jouini - Web Developer Portfolio"
-   },
-   "home": {
-      "title": "Yahia Jouini - Portfolio & Dev Insights",
-      "description": "Explore my full-stack projects, blog posts, and developer journey. Built with React, Next.js, and Node.js.",
-      "keywords": "portfolio, web developer, react, next.js, node.js, typescript"
    },
    "projects": {
       "title": "My Projects - Real Web Apps & Tools",

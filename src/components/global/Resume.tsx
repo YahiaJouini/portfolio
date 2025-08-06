@@ -32,7 +32,10 @@ export default function Resume() {
 
    return (
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-         <DialogTrigger className="border-border-default bg-btn-blue hover:bg-btn-blue-hover w-fit gap-1 rounded-sm border px-3 py-1 font-medium text-white">
+         <DialogTrigger
+            aria-label="Open resume"
+            className="border-border-default bg-btn-blue hover:bg-btn-blue-hover w-fit gap-1 rounded-sm border px-3 py-1 font-medium text-white"
+         >
             {t[locale].resume}
          </DialogTrigger>
 

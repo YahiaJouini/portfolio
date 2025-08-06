@@ -21,6 +21,7 @@ export default function Logo({ loader = false, withName = true, text }: Props) {
    }
    return (
       <Link
+         aria-label="Go to home"
          href="/"
          className={`${withName && "flex items-center gap-3 rtl:flex-row-reverse"}`}
       >

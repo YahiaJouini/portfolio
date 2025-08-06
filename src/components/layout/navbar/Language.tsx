@@ -29,6 +29,7 @@ export default function Language({ dropDown = true }) {
             <Dropdown.Content className="flex flex-col gap-1 p-1">
                {data.map((lang) => (
                   <button
+                     aria-label={`Switch to ${lang.title} language`}
                      key={lang.id}
                      onClick={() => handleLanguageChange(lang.id)}
                      className={cn(
@@ -49,6 +50,7 @@ export default function Language({ dropDown = true }) {
       <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
          {data.map((lang) => (
             <button
+               aria-label={`Switch to ${lang.title} language`}
                key={lang.id}
                onClick={() => handleLanguageChange(lang.id)}
                className={cn(

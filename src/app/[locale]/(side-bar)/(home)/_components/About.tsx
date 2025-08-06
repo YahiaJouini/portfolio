@@ -20,10 +20,10 @@ export default async function About({ locale }: { locale: Locale }) {
             <span className="text-accent-icon false">.md</span>
          </p>
 
-         <div className="border-border-default border-b pb-3 text-center text-2xl font-semibold sm:text-3xl lg:text-[33px]">
+         <h1 className="border-border-default border-b pb-3 text-center text-2xl font-semibold sm:text-3xl lg:text-[33px]">
             {data.title}
-         </div>
-         <div
+         </h1>
+         <p
             className="text-text-primary flex flex-col gap-2 leading-[26px] font-medium tracking-[0.01em] sm:text-base lg:text-[17px]"
             dangerouslySetInnerHTML={{ __html: data.description }}
          />
@@ -31,6 +31,7 @@ export default async function About({ locale }: { locale: Locale }) {
          <div className="flex items-center gap-2">
             <Resume />
             <Link
+               aria-label="Contact me"
                href="/contact"
                className="border-border-default bg-btn-green hover:bg-btn-green-hover w-fit gap-1 rounded-sm border px-3 py-1 font-medium text-white"
             >

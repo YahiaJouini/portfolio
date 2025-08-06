@@ -14,6 +14,7 @@ export default function DisplaySection({ locale }: { locale: Locale }) {
       <div className="bg-tertiary border-border-default flex h-12 w-full items-center gap-4 border-b px-4">
          {displaySections.map(({ values, key }) => (
             <button
+               aria-label={`View ${values[locale]} section`}
                onClick={() => setFilter({ display: key })}
                key={key}
                className="relative flex h-full items-center gap-1 px-1 font-medium"

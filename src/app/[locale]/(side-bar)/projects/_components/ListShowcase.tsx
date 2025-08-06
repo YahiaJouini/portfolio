@@ -10,6 +10,7 @@ export default function ListShowcase({ project, locale }: Props) {
          <div className="flex-1">
             <h4 className="flex flex-wrap items-center gap-2">
                <Link
+                  aria-label="View project details"
                   className="text-text-link text-lg font-semibold hover:underline md:text-xl"
                   href={`/projects/${project.slug}`}
                >

@@ -18,6 +18,7 @@ export default function Bottom({ project, locale }: Props) {
          </p>
          {project.demoUrl && (
             <Link
+               aria-label="View demo"
                target="_blank"
                rel="noopener noreferrer"
                className="text-text-secondary hover:text-text-link ml-4 flex items-center gap-1 text-xs hover:underline max-[265px]:hidden"
@@ -29,6 +30,7 @@ export default function Bottom({ project, locale }: Props) {
          )}
          {project.public && (
             <Link
+               aria-label="View code"
                target="_blank"
                rel="noopener noreferrer"
                className="text-text-secondary hover:text-text-link ml-4 flex items-center gap-1 text-xs hover:underline max-[265px]:hidden"

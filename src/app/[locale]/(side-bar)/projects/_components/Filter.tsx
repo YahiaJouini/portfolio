@@ -27,6 +27,7 @@ export default function Filter({ locale }: { locale: Locale }) {
          <div className="grid grid-cols-2 gap-1 max-md:w-full">
             {displayModes.map((value) => (
                <button
+                  aria-label={`View ${value} layout`}
                   key={value}
                   onClick={() => handleLayoutChange(value)}
                   className={cn(

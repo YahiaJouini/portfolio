@@ -93,6 +93,7 @@ export default async function page({ params, searchParams }: Props) {
                {/* desktop visit button */}
                {project.demoUrl && (
                   <Link
+                     aria-label="View demo"
                      target="_blank"
                      rel="noopener noreferrer"
                      href={project.demoUrl}
@@ -107,6 +108,7 @@ export default async function page({ params, searchParams }: Props) {
             {/* mobile visit button */}
             {project.demoUrl && (
                <Link
+                  aria-label="View demo"
                   target="_blank"
                   rel="noopener noreferrer"
                   href={project.demoUrl}
@@ -152,6 +154,7 @@ export default async function page({ params, searchParams }: Props) {
                               {resolvedTranslation.liveDemoDescription}
                            </p>
                            <Link
+                              aria-label="View demo"
                               target="_blank"
                               rel="noopener noreferrer"
                               href={project.demoUrl}

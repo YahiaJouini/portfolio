@@ -219,6 +219,7 @@ const SearchItem = ({
    onCLick: () => void
 }) => (
    <Link
+      aria-label={`Go to ${title}`}
       href={href}
       onClick={onCLick}
       className="hover:bg-hover-2 focus:bg-hover-2 relative flex w-full cursor-pointer items-center justify-between rounded-sm px-2 py-[5px] pr-3 text-sm transition-colors"

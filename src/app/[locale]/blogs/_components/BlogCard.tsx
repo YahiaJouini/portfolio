@@ -25,6 +25,7 @@ const t = {
 export function BlogCard({ locale, data }: Props) {
    return (
       <Link
+         aria-label={`View blog details`}
          href={`/blogs/${data.slug}`}
          className="group bg-primary border-border-default hover:border-accent-border overflow-hidden rounded-xl border transition-all duration-300 hover:shadow-lg"
       >

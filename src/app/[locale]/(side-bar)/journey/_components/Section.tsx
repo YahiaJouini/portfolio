@@ -16,6 +16,7 @@ export default function Section() {
       <div className="bg-secondary border-border-default flex rounded-lg border p-1">
          {sections.map((view) => (
             <button
+               aria-label={`View ${view} section`}
                key={view}
                onClick={() =>
                   setFilters({

@@ -10,12 +10,14 @@ export default function Footer() {
          <div className="center w-full flex-col gap-4 md:flex-row-reverse">
             <div className="center flex-wrap gap-4">
                <Link
+                  aria-label="Go to homepage"
                   className="text-text-secondary hover:text-accent-extra text-center text-xs"
                   href="/contact"
                >
                   Contact
                </Link>
                <Link
+                  aria-label="Go to LinkedIn"
                   className="text-text-secondary hover:text-accent-extra text-center text-xs"
                   href={linkedin}
                   target="_blank"
@@ -24,6 +26,7 @@ export default function Footer() {
                   LinkedIn
                </Link>
                <Link
+                  aria-label="Go to GitHub"
                   target="_blank"
                   className="text-text-secondary hover:text-accent-extra text-center text-xs"
                   href="https://github.com/YahiaJouini/portfolio"

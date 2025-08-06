@@ -45,6 +45,7 @@ export default function Sidebar({ pages }: { pages: NavBar["items"] }) {
             )}
          >
             <Hamburger
+               aria-label="Toggle navigation menu"
                duration={0.2}
                size={20}
                onToggle={setOpen}
@@ -109,6 +110,7 @@ export default function Sidebar({ pages }: { pages: NavBar["items"] }) {
                               const Icon = iconMap[id]
                               return (
                                  <Link
+                                    aria-label={`Go to ${title}`}
                                     key={id}
                                     href={href!}
                                     className={

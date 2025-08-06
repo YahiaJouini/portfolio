@@ -20,6 +20,7 @@ export default function TocMobile({ activeSection, sections }: Props) {
             {sections.map((section) => (
                <li key={section.id}>
                   <button
+                     aria-label={`Go to ${section.title} section`}
                      onClick={() => scrollToSection(section.id)}
                      className={cn(
                         "w-full rounded-md px-3 py-2 text-left text-sm",

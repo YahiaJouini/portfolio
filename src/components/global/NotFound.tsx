@@ -52,6 +52,7 @@ export default async function NotFound({ global = false }: Props) {
             </p>
 
             <Link
+               aria-label="Go to homepage"
                href="/"
                className="bg-accent mt-4 rounded-full px-6 py-2 text-sm font-semibold text-white transition hover:brightness-110"
             >

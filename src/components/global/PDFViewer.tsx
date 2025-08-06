@@ -55,6 +55,9 @@ function PDFViewer({ resumeFile, title }: PDFViewerProps) {
                   </span>
                </div>
                <Link
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Download ${title}`}
                   href={resumeFile}
                   download
                   className="text-text-link hover:text-text-primary bg-button hover:bg-hover border-border-default inline-flex items-center gap-2 rounded-md border px-3 py-1.5 text-sm font-medium transition-colors"
@@ -89,6 +92,7 @@ function PDFViewer({ resumeFile, title }: PDFViewerProps) {
                            </p>
 
                            <Link
+                              aria-label={`Download ${title}`}
                               href={resumeFile}
                               target="_blank"
                               rel="noopener noreferrer"
@@ -125,6 +129,7 @@ function PDFViewer({ resumeFile, title }: PDFViewerProps) {
             <div className="bg-secondary border-border-default border-t px-4 py-3">
                <div className="flex items-center justify-center gap-3">
                   <button
+                     aria-label="Go to previous page"
                      onClick={() => setPageNumber(Math.max(1, pageNumber - 1))}
                      disabled={pageNumber <= 1}
                      className="text-text-primary bg-button hover:bg-hover disabled:bg-quartiary disabled:text-text-secondary border-border-default inline-flex items-center gap-2 rounded-md border px-3 py-1.5 text-sm font-medium transition-colors disabled:cursor-not-allowed"
@@ -134,6 +139,7 @@ function PDFViewer({ resumeFile, title }: PDFViewerProps) {
                   </button>
 
                   <button
+                     aria-label="Go to next page"
                      onClick={() =>
                         setPageNumber(Math.min(numPages, pageNumber + 1))
                      }

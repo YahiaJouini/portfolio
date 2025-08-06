@@ -37,6 +37,7 @@ export default function Navbar({ locale }: { locale: Locale }) {
                   const active = isActive(href)
                   return (
                      <Link
+                        aria-label={`Go to ${title}`}
                         prefetch
                         key={id}
                         href={href}

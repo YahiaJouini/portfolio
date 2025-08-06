@@ -62,6 +62,7 @@ export default function RightSection({
                      <div className="space-y-1 md:space-y-1.5 lg:space-y-2">
                         {sections.map((section) => (
                            <button
+                              aria-label={`Go to ${section.title} section`}
                               key={section.id}
                               onClick={() => scrollToSection(section.id)}
                               className={cn(

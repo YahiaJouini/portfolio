@@ -7,11 +7,6 @@
       "authorName": "Yahia Jouini",
       "ogImageAlt": "Yahia Jouini - Portfolio Développeur Web"
    },
-   "home": {
-      "title": "Yahia Jouini - Portfolio & Parcours Dev",
-      "description": "Découvrez mes projets web, mon blog technique et mon parcours de développeur. Stack: React, Next.js, Node.js.",
-      "keywords": "portfolio, développeur web, react, next.js, node.js, typescript"
-   },
    "projects": {
       "title": "Mes Projets - Applications & Outils Web",
       "description": "Des projets concrets développés avec des stacks modernes. Performants, propres et utiles.",

@@ -87,6 +87,7 @@ export default function Page() {
                ))}
 
                <button
+                  aria-label="Submit contact form"
                   disabled={
                      !form.formState.isValid || form.formState.isSubmitting
                   }

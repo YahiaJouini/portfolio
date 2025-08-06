@@ -30,7 +30,7 @@ async function SideBar({ locale }: { locale: Locale }) {
    return (
       <div className="w-full shrink-0 flex-col justify-center gap-4 max-sm:my-3 sm:gap-6 md:flex md:w-[280px] xl:w-[320px]">
          <div className="flex items-start gap-4 text-left md:flex-col md:items-center md:text-center lg:items-start lg:text-left">
-            <div className="border-accent-border relative z-10 aspect-square w-20 shrink-0 overflow-hidden rounded-full border object-cover object-center sm:w-24 md:mx-auto md:mb-3 md:w-[70%] lg:mx-0 xl:w-[80%] ring-accent-border ring-1">
+            <div className="border-accent-border ring-accent-border relative z-10 aspect-square w-20 shrink-0 overflow-hidden rounded-full border object-cover object-center ring-1 sm:w-24 md:mx-auto md:mb-3 md:w-[70%] lg:mx-0 xl:w-[80%]">
                <ImageLoader
                   fill
                   className="h-full w-full object-cover object-center"
@@ -44,9 +44,9 @@ async function SideBar({ locale }: { locale: Locale }) {
                <h2 className="text-lg font-medium sm:text-xl md:text-2xl">
                   {data.fullName}
                </h2>
-               <h4 className="text-text-trinary text-base sm:text-lg md:text-lg">
+               <h3 className="text-text-trinary text-base sm:text-lg md:text-lg">
                   {data.job}
-               </h4>
+               </h3>
                <p className="text-sm max-sm:hidden sm:mt-2 sm:text-base md:text-base">
                   {data.description}
                </p>

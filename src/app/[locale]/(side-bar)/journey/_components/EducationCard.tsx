@@ -44,7 +44,7 @@ export default function EducationCard({
                      {education.fieldOfStudy}
                   </p>
                   {education.mention && (
-                     <div className="flex items-center rtl:flex-row-reverse gap-1">
+                     <div className="flex items-center gap-1 rtl:flex-row-reverse">
                         <Award className="text-accent-active h-3 w-3 md:h-4 md:w-4" />
                         <span className="bg-accent-active/10 text-accent-active inline-flex items-center rounded-full text-xs font-medium md:text-sm">
                            {education.mention}
@@ -69,6 +69,7 @@ export default function EducationCard({
                </p>
                {education.certification && (
                   <Link
+                     aria-label="View certification"
                      href={education.certification.href}
                      target="_blank"
                      rel="noopener noreferrer"

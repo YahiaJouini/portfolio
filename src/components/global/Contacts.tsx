@@ -16,6 +16,7 @@ const Item = ({ href, title, Icon }: Contact) => {
    if (href) {
       return (
          <Link
+            aria-label="Contact me"
             href={href}
             className="hover:text-text-primary hover:bg-hover-2 flex w-full items-center gap-1.5 rounded-md px-1.5 py-[6px] text-sm"
          >

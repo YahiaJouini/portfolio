@@ -47,6 +47,7 @@ Dropdown.Trigger = function Trigger({ children, className }: BaseProps) {
    const { setVisible, visible } = useDropDown()
    return (
       <button
+         aria-label="Toggle dropdown"
          className={cn("cursor-pointer", className)}
          onClick={() => setVisible(!visible)}
       >
