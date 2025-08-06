@@ -5,6 +5,16 @@ const nextConfig: NextConfig = {
    output: "standalone",
    // compression will be configured using nginx
    compress: false,
+
+   images: {
+      remotePatterns: [
+         {
+            protocol: "https",
+            hostname: "res.cloudinary.com",
+            pathname: "/**",
+         },
+      ],
+   },
 }
 
 const withNextIntl = createNextIntlPlugin()

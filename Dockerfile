@@ -1,5 +1,4 @@
-
-FROM oven/bun:alpine AS base
+FROM oven/bun:debian AS base
 
 # Stage 1: Install dependencies
 FROM base AS deps
@@ -12,14 +11,13 @@ FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-# Setup local SQLite DB
-RUN bun run db:generate && bun run db:migrate
 RUN bun run build
 
-# Stage 3: Production server
+# Stage 3: Production server 
 FROM base AS runner
 WORKDIR /app
 ENV NODE_ENV=production
+COPY --from=deps /app/node_modules ./node_modules
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static

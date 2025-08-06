@@ -1,5 +1,6 @@
 import { sqliteAdapter } from "@payloadcms/db-sqlite"
 
+import { cloudStoragePlugin } from "@payloadcms/plugin-cloud-storage"
 import {
    defaultEditorFeatures,
    FixedToolbarFeature,
@@ -10,10 +11,12 @@ import { buildConfig } from "payload"
 import sharp from "sharp"
 import { fileURLToPath } from "url"
 
+import { cloudinaryAdapter, generateFileURL } from "@/lib/cloudinary"
 import {
    ADMIN_EMAIL,
    ADMIN_PASSWORD,
-   DATABASE_URI,
+   DATABASE_AUTH_TOKEN,
+   DATABASE_URL,
    PAYLOAD_SECRET,
 } from "@/utils/env"
 import { Blog } from "./payload/collections/Blog"
@@ -63,12 +66,24 @@ const config = buildConfig({
    },
    db: sqliteAdapter({
       client: {
-         url: DATABASE_URI || path.resolve(dirname, "data.db"),
+         url: DATABASE_URL,
+         authToken: DATABASE_AUTH_TOKEN,
       },
       migrationDir: path.resolve(dirname, "migrations"),
    }),
    sharp,
-   plugins: [],
+   plugins: [
+      cloudStoragePlugin({
+         collections: {
+            media: {
+               adapter: cloudinaryAdapter,
+
+               disableLocalStorage: true, // Prevent Payload from saving files to disk
+               generateFileURL,
+            },
+         },
+      }),
+   ],
    onInit: async (payload) => {
       // create initial admin user if it doesn't exist
       const existingUsers = await payload.find({
