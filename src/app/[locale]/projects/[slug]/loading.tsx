@@ -1,5 +1,9 @@
 import Seperator from "@/components/global/Seperator"
-import { ParagraphSkeleton, TitleSkeleton, UnorderedListSkeleton } from "@/components/global/Skeletons"
+import {
+   ParagraphSkeleton,
+   TitleSkeleton,
+   UnorderedListSkeleton,
+} from "@/components/global/Skeletons"
 import { Skeleton } from "@/components/ui/skeleton"
 
 const RightSectionSkeleton = () => (
@@ -110,25 +114,46 @@ const ProjectPageSkeleton = () => {
    return (
       <div className="mx-auto w-full">
          {/* Header Section */}
-         <div className="border-border-default mb-4 flex items-center justify-between border-b pb-3">
-            <div className="flex items-center gap-3">
-               <Skeleton className="h-8 w-8 rounded-full" />
-               <Skeleton className="h-6 w-48" />
-               <Skeleton className="h-5 w-16 rounded-full" />
+         <div className="border-border-default mb-6 flex flex-col gap-4 border-b pb-6">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+               <div className="flex items-center gap-3">
+                  <div className="ring-accent-border relative h-10 w-10 flex-shrink-0 rounded-full ring-2">
+                     <Skeleton className="h-full w-full rounded-full" />
+                  </div>
+                  <div className="flex flex-col">
+                     <Skeleton className="mb-1 h-7 w-64 sm:h-8" />
+                     <div className="mt-1 flex items-center gap-3">
+                        <Skeleton className="h-5 w-16 rounded-full" />
+                        <div className="flex items-center gap-0.5">
+                           <span className="text-text-secondary">•</span>
+                           <Skeleton className="h-4 w-20" />
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               {/* Desktop visit button */}
+               <Skeleton className="hidden h-10 w-24 rounded-md sm:flex" />
             </div>
-            <Skeleton className="h-4 w-24" />
+
+            {/* Mobile visit button */}
+            <Skeleton className="h-10 w-full rounded-md sm:hidden" />
          </div>
 
-         {/* Main Content Area */}
-         <div className="flex items-start justify-between gap-10">
-            {/* Left Section - Main Content */}
-            <div className="border-border-default mt-6 rounded-md border xl:w-[70%]">
-               <DisplaySectionSkeleton />
-               <ContentSkeleton />
+         {/* Main Content Area - Responsive Layout */}
+         <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between lg:gap-10">
+            <div className="order-2 w-full lg:order-1 lg:flex-1">
+               <div className="border-border-default rounded-lg border shadow-sm">
+                  <DisplaySectionSkeleton />
+                  <ContentSkeleton />
+               </div>
             </div>
 
-            {/* Right Section */}
-            <RightSectionSkeleton />
+            <div className="order-1 w-full lg:order-2 lg:w-80 lg:flex-shrink-0">
+               <div className="sticky top-4">
+                  <RightSectionSkeleton />
+               </div>
+            </div>
          </div>
       </div>
    )

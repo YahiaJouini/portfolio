@@ -33,8 +33,6 @@ export const Projects: CollectionConfig = {
          type: "textarea",
          localized: true,
          required: true,
-         maxLength: 300,
-         minLength: 100,
          label: "Short Description",
          admin: {
             description: "A brief description of the project for preview cards",

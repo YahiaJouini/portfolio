@@ -41,7 +41,7 @@ export function Popup({ media }: { media: Project["images"][number] }) {
          <DialogTrigger className="relative aspect-video w-full overflow-hidden rounded-lg">
             {renderedImage}
          </DialogTrigger>
-         <DialogContent className="w-[50%] !max-w-none">
+         <DialogContent className="sm:max-w-none lg:w-[50%]">
             <DialogHeader>
                <DialogTitle>{title}</DialogTitle>
                {description && (

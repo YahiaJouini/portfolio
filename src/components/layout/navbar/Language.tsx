@@ -24,7 +24,7 @@ export default function Language({ dropDown = true }) {
    if (dropDown) {
       return (
          <Dropdown>
-            <Dropdown.Trigger className="border-border-default hover:bg-hover-2 center h-8 w-8 cursor-pointer rounded border text-sm">
+            <Dropdown.Trigger className="border-border-default hover:bg-hover-2 center h-8 w-8 cursor-pointer rounded border text-sm max-sm:!hidden">
                {data.find((lang) => lang.id === locale)!.abbreviation}
             </Dropdown.Trigger>
             <Dropdown.Content className="flex flex-col gap-1 p-1">
