@@ -112,7 +112,8 @@ export default function Sidebar({ pages }: { pages: NavBar["items"] }) {
                                  <Link
                                     aria-label={`Go to ${title}`}
                                     key={id}
-                                    href={href!}
+                                    href={href}
+                                    onClick={() => setOpen(false)}
                                     className={
                                        "hover:text-text-primary hover:bg-hover-2 flex w-full items-center gap-1.5 rounded-md px-1.5 py-[7px] text-sm"
                                     }
