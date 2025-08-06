@@ -45,7 +45,7 @@ export default function Sidebar({ pages }: { pages: NavBar["items"] }) {
             )}
          >
             <Hamburger
-               aria-label="Toggle navigation menu"
+               label="Toggle sidebar"
                duration={0.2}
                size={20}
                onToggle={setOpen}

@@ -14,7 +14,8 @@ export default function Language({ dropDown = true }) {
 
    const handleLanguageChange = (lang: Locale) => {
       if (lang === locale) return
-      router.push(
+
+      router.replace(
          { pathname, query: Object.fromEntries(searchParams) },
          { locale: lang },
       )

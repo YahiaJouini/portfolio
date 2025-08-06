@@ -14,6 +14,7 @@ import { NuqsAdapter } from "nuqs/adapters/next/app"
 import { Toaster } from "sonner"
 import "./globals.css"
 import { SUPPORTED_LOCALES } from "@/utils/constants"
+import { setRequestLocale } from "next-intl/server"
 
 export async function generateStaticParams() {
    return SUPPORTED_LOCALES.map((locale) => ({ locale }))
@@ -33,6 +34,7 @@ export default async function RootLayout({
 }) {
    const { locale } = await params
    if (!hasLocale(routing.locales, locale)) notFound()
+   setRequestLocale(locale)
 
    return (
       <html
