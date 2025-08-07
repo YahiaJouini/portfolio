@@ -57,6 +57,10 @@ export default async function About({ locale }: { locale: Locale }) {
                </div>
             ))}
          </div>
+         <div className="flex items-start gap-1 text-sm">
+            💡
+            <div>{data.websiteDescription}</div>
+         </div>
       </div>
    )
 }

@@ -77,6 +77,7 @@ export default function Page() {
                      render={({ field, fieldState }) => (
                         <InputField
                            {...field}
+                           reactHookForm
                            type={value.type}
                            label={value.title}
                            placeholder={value.placeholder}

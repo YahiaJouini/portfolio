@@ -19,7 +19,6 @@ export async function generateMetadata({ params }: LocaleParams) {
    const { locale } = await params
    return generatePageMetadata({
       locale,
-      path: "projects",
       namespace: "projects",
    })
 }

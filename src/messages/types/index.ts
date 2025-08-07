@@ -6,7 +6,6 @@ export type About = {
    description: string
    websiteDescription: string
    technologies: string
-   profileViews: string
 }
 
 export type NavBar = {
