@@ -78,3 +78,8 @@ export type DynamicMetaData = {
    tags: string[]
    publishedTime: string
 }
+
+export type ViewportSize = {
+   width: number
+   height: number
+}

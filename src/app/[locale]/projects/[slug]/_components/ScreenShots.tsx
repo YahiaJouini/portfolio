@@ -1,62 +1,35 @@
-import ImageLoader from "@/components/global/ImageLoader"
-import {
-   Dialog,
-   DialogContent,
-   DialogDescription,
-   DialogHeader,
-   DialogTitle,
-   DialogTrigger,
-} from "@/components/ui/dialog"
-import { cn } from "@/lib/utils"
+"use client"
 import { Project } from "@/payload-types"
+import { ViewportSize } from "@/types"
+import { lazy, useEffect, useState } from "react"
 
+const ScreenShotPopup = lazy(() => import("./ScreenShotPopup"))
 export default function ScreenShots({ images }: { images: Project["images"] }) {
+   const [viewportSize, setViewportSize] = useState<ViewportSize>({
+      width: 0,
+      height: 0,
+   })
+
+   useEffect(() => {
+      if (typeof window === "undefined") return
+      setViewportSize({
+         width: window.innerWidth,
+         height: window.innerHeight,
+      })
+   }, [])
+
    if (!images || images.length === 0) {
       return null
    }
    return (
       <div className="w-full space-y-6">
          {images.map((image) => (
-            <Popup media={image} key={image.id} />
+            <ScreenShotPopup
+               viewportSize={viewportSize}
+               media={image}
+               key={image.id}
+            />
          ))}
       </div>
-   )
-}
-
-export function Popup({ media }: { media: Project["images"][number] }) {
-   const { image, title, description } = media
-   if (typeof image === "number" || !image.url) {
-      return null
-   }
-   const renderedImage = (
-      <ImageLoader
-         src={image.url}
-         alt={image.alt}
-         fill
-         className="object-cover"
-         sizes="100vw"
-      />
-   )
-   return (
-      <Dialog>
-         <DialogTrigger className="relative aspect-video w-full overflow-hidden rounded-lg">
-            {renderedImage}
-         </DialogTrigger>
-         <DialogContent
-            className={cn("sm:max-w-none lg:w-[50%]", !title && "p-0")}
-         >
-            <DialogHeader className={cn(!title && "hidden")}>
-               <DialogTitle>{title}</DialogTitle>
-               {description && (
-                  <DialogDescription className="text-text-secondary">
-                     {description}
-                  </DialogDescription>
-               )}
-            </DialogHeader>
-            <div className="relative aspect-video w-full overflow-hidden rounded-lg">
-               {renderedImage}
-            </div>
-         </DialogContent>
-      </Dialog>
    )
 }
