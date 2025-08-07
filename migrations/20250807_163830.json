@@ -757,7 +757,7 @@
           "name": "title",
           "type": "text",
           "primaryKey": false,
-          "notNull": true,
+          "notNull": false,
           "autoincrement": false
         },
         "description": {
@@ -1895,6 +1895,6 @@
   "internal": {
     "indexes": {}
   },
-  "id": "a2c533a3-0340-487a-864d-d9aacad31b88",
+  "id": "0969aa83-fa2a-4602-8a29-61e89caed5f9",
   "prevId": "00000000-0000-0000-0000-000000000000"
 }

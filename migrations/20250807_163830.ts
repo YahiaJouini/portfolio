@@ -113,7 +113,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   await db.run(sql`CREATE INDEX \`projects_images_parent_id_idx\` ON \`projects_images\` (\`_parent_id\`);`)
   await db.run(sql`CREATE INDEX \`projects_images_image_idx\` ON \`projects_images\` (\`image_id\`);`)
   await db.run(sql`CREATE TABLE \`projects_images_locales\` (
-  	\`title\` text NOT NULL,
+  	\`title\` text,
   	\`description\` text,
   	\`id\` integer PRIMARY KEY NOT NULL,
   	\`_locale\` text NOT NULL,

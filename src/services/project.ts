@@ -1,5 +1,6 @@
-import { Locale, ProjectList } from "@/types"
-import { LOCALES_LENGTH } from "@/utils/constants"
+import { ListedProject, Locale } from "@/types"
+import { ITEMS_PER_PAGE, LOCALES_LENGTH } from "@/utils/constants"
+import { PaginatedDocs } from "payload"
 import { Project } from "../payload-types"
 import { LRUCache } from "./cache"
 import { Orm } from "./orm"
@@ -18,7 +19,7 @@ type ProjectsOptions = {
 type FetchProjectsParams = {
    page: number
    locale: Locale
-   fields?: Partial<Record<keyof ProjectList[number], boolean>>
+   fields?: Partial<Record<keyof ListedProject, boolean>>
 }
 
 export class ProjectService {
@@ -27,11 +28,11 @@ export class ProjectService {
       7 * LOCALES_LENGTH,
       LRUCache.CACHE_TTL,
    )
-   // 2 pages of 6 projects each (12 projects total for each locale)
-   private static projectsListCache = new LRUCache<string, ProjectList>(
-      2 * LOCALES_LENGTH,
-      LRUCache.CACHE_TTL,
-   )
+   // 2 pages of 4 projects each (8 projects total for each locale)
+   private static projectsListCache = new LRUCache<
+      string,
+      PaginatedDocs<ListedProject>
+   >(2 * LOCALES_LENGTH, LRUCache.CACHE_TTL)
 
    private static generateProjectKey(slug: string, locale: Locale): string {
       return `Project:${locale}:${slug}`
@@ -59,7 +60,7 @@ export class ProjectService {
             },
          },
          limit: 1,
-         locale: locale,
+         locale,
       })
 
       return project
@@ -89,7 +90,6 @@ export class ProjectService {
       }
    }
 
-   // depth 1 to speed up queries since we don't need nested data
    private static async fetchProjects({
       page,
       locale,
@@ -106,14 +106,15 @@ export class ProjectService {
          primaryLanguage: true,
          primaryLanguageColor: true,
       },
-   }: FetchProjectsParams): Promise<ProjectList> {
+   }: FetchProjectsParams): Promise<PaginatedDocs<ListedProject>> {
       const payload = await Orm.getPayloadInstance()
 
-      const { docs: projects } = await payload.find({
+      const data = await payload.find({
          collection: "projects",
-         limit: 4,
+         limit: ITEMS_PER_PAGE,
          page,
          locale,
+         pagination: true,
          // use as any because select requires a different type
          // but we know it is safe to use this select
          select: fields as any,
@@ -121,28 +122,40 @@ export class ProjectService {
          // sort by pinned so don't have to fetch homepage data while still caching all projects
          sort: ["pinned", "-createdAt"],
       })
-      return projects
+      return data
    }
 
    static async getProjects({
       page = 1,
       pinned = false,
       locale,
-   }: ProjectsOptions): Promise<ProjectList> {
+   }: ProjectsOptions): Promise<PaginatedDocs<ListedProject> | null> {
       // check cache first
       const cacheKey = this.generateProjectsListKey(page, locale)
-      let projects = this.projectsListCache.get(cacheKey)
+      let paginatedProjects = this.projectsListCache.get(cacheKey)
 
-      if (!projects) {
+      if (!paginatedProjects) {
          try {
-            projects = await this.fetchProjects({ page, locale })
-            this.projectsListCache.set(cacheKey, projects)
+            paginatedProjects = await this.fetchProjects({ page, locale })
+            this.projectsListCache.set(cacheKey, paginatedProjects)
          } catch (err) {
             console.error("Error fetching projects:", err)
-            return []
+            return null
          }
       }
-      return pinned ? projects.filter((project) => project.pinned) : projects
+
+      if (pinned) {
+         const filteredDocs = paginatedProjects.docs.filter(
+            (project) => project.pinned,
+         )
+         return {
+            ...paginatedProjects,
+            docs: filteredDocs,
+            totalDocs: filteredDocs.length,
+         }
+      }
+
+      return paginatedProjects
    }
 
    // cache clearing

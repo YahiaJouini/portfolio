@@ -2,7 +2,6 @@ import Pagination from "@/components/global/Pagination"
 import { generatePageMetadata } from "@/lib/metadata"
 import { ProjectService } from "@/services/project"
 import { LocaleParams } from "@/types"
-import { getPaginatedData } from "@/utils/pagination"
 import type { SearchParams } from "nuqs/server"
 import Filter from "./_components/Filter"
 import GridShowcase from "./_components/GridShowcase"
@@ -33,9 +32,8 @@ export default async function Page({ searchParams, params }: Props) {
       page,
       pinned: false,
    })
-   const { items: projects, ...paginationProps } = getPaginatedData(data, page)
 
-   if (projects.length == 0) {
+   if (!data || data.docs.length == 0) {
       return (
          <div className="w-full text-center">
             <h2 className="text-2xl font-bold">{t[locale].noProjectsFound}</h2>
@@ -45,6 +43,7 @@ export default async function Page({ searchParams, params }: Props) {
          </div>
       )
    }
+   const { docs: projects, ...pagination } = data
    return (
       <div className="w-full">
          <Filter locale={locale} />
@@ -73,7 +72,7 @@ export default async function Page({ searchParams, params }: Props) {
                </div>
             )}
 
-            <Pagination {...paginationProps} />
+            <Pagination {...pagination} />
          </div>
       </div>
    )

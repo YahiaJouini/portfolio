@@ -7,6 +7,7 @@ import {
    DialogTitle,
    DialogTrigger,
 } from "@/components/ui/dialog"
+import { cn } from "@/lib/utils"
 import { Project } from "@/payload-types"
 
 export default function ScreenShots({ images }: { images: Project["images"] }) {
@@ -41,8 +42,10 @@ export function Popup({ media }: { media: Project["images"][number] }) {
          <DialogTrigger className="relative aspect-video w-full overflow-hidden rounded-lg">
             {renderedImage}
          </DialogTrigger>
-         <DialogContent className="sm:max-w-none lg:w-[50%]">
-            <DialogHeader>
+         <DialogContent
+            className={cn("sm:max-w-none lg:w-[50%]", !title && "p-0")}
+         >
+            <DialogHeader className={cn(!title && "hidden")}>
                <DialogTitle>{title}</DialogTitle>
                {description && (
                   <DialogDescription className="text-text-secondary">

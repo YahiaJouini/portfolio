@@ -84,6 +84,7 @@ export class BlogService {
             description: true,
             thumbnail: true,
             title: true,
+            pinned: true,
          },
          sort: ["pinned", "-createdAt"],
          locale,

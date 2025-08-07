@@ -2,21 +2,19 @@ import { Blog, Media, Project } from "./payload-types"
 import { SUPPORTED_LOCALES } from "./utils/constants"
 
 // for listing projects
-export type ProjectList = Array<
-   Pick<
-      Project,
-      | "id"
-      | "title"
-      | "slug"
-      | "description"
-      | "demoUrl"
-      | "githubUrl"
-      | "pinned"
-      | "public"
-      | "thumbnail"
-      | "primaryLanguage"
-      | "primaryLanguageColor"
-   >
+export type ListedProject = Pick<
+   Project,
+   | "id"
+   | "title"
+   | "slug"
+   | "description"
+   | "demoUrl"
+   | "githubUrl"
+   | "pinned"
+   | "public"
+   | "thumbnail"
+   | "primaryLanguage"
+   | "primaryLanguageColor"
 >
 
 export type RepoMeta = {

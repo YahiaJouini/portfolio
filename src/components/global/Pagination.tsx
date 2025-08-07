@@ -13,12 +13,15 @@ import { generatePaginationNumbers } from "@/utils/pagination"
 import { parseAsInteger, useQueryState } from "nuqs"
 
 type Props = {
+   hasNextPage: boolean
+   hasPrevPage: boolean
    totalPages: number
-   totalItems: number
-   itemsPerPage: number
 }
-
-export default function Pagination({ totalPages }: Props) {
+export default function Pagination({
+   totalPages,
+   hasNextPage,
+   hasPrevPage,
+}: Props) {
    const [currentPage, setCurrentPage] = useQueryState("page", {
       ...parseAsInteger.withDefault(1),
       shallow: false,
@@ -26,8 +29,6 @@ export default function Pagination({ totalPages }: Props) {
    })
 
    const paginationNumbers = generatePaginationNumbers(currentPage, totalPages)
-   const hasPreviousPage = currentPage > 1
-   const hasNextPage = currentPage < totalPages
 
    const handlePageChange = (page: number) => {
       if (page >= 1 && page <= totalPages && page !== currentPage) {
@@ -45,7 +46,7 @@ export default function Pagination({ totalPages }: Props) {
                   <PaginationPrevious
                      onClick={() => handlePageChange(currentPage - 1)}
                      className={
-                        !hasPreviousPage
+                        !hasPrevPage
                            ? "pointer-events-none opacity-50"
                            : "cursor-pointer"
                      }

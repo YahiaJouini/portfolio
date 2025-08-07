@@ -3,13 +3,13 @@ import { Skeleton } from "@/components/ui/skeleton"
 import { ListShowcaseSkeleton } from "./_components/ListShowcase"
 import { useEffect, useState } from "react"
 
-// show loader after 40ms
+// show loader after 50ms
 // this is to prevent loader flashing when the page loads data quickly from cache
 export default function Loading() {
    const [show, setShow] = useState(false)
 
    useEffect(() => {
-      const timer = setTimeout(() => setShow(true), 40)
+      const timer = setTimeout(() => setShow(true), 50)
       return () => clearTimeout(timer)
    }, [])
 

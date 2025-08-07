@@ -278,7 +278,7 @@ export interface Project {
    */
   images: {
     image: number | Media;
-    title: string;
+    title?: string | null;
     /**
      * Optional description for the image, used for accessibility
      */

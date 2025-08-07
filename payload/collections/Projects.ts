@@ -305,7 +305,6 @@ export const Projects: CollectionConfig = {
             {
                name: "title",
                type: "text",
-               required: true,
                localized: true,
                label: "Image Title",
             },
