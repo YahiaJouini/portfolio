@@ -24,7 +24,7 @@ type Props = (
 
 export default function ImageLoader(props: Props) {
    const { src, alt, fill, className, sizes, priority = false } = props
-   const [loading, setLoading] = useState(true)
+   const [loading, setLoading] = useState(false)
    const [error, setError] = useState(false)
 
    const handleError = () => {
@@ -60,6 +60,7 @@ export default function ImageLoader(props: Props) {
                className,
                loading ? "opacity-0" : "opacity-100 transition-opacity",
             )}
+            onLoadStart={() => setLoading(true)}
             onLoad={() => setLoading(false)}
             onError={handleError}
             sizes={sizes}
