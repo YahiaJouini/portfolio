@@ -72,7 +72,7 @@ export default async function page({ params, searchParams }: Props) {
                      />
                   </div>
                   <div className="flex flex-col">
-                     <h1 className="text-text-primary max-w-[80%] text-2xl font-bold sm:text-3xl">
+                     <h1 className="text-text-primary text-xl font-bold sm:max-w-[80%] sm:text-2xl md:text-3xl">
                         {project.title}
                      </h1>
                      <div className="mt-1 flex items-center gap-3">

@@ -41,7 +41,7 @@ export default function Resume() {
 
          <DialogContent
             showCloseButton={false}
-            className="max-h-[90vh] w-fit !max-w-none min-w-[700px] overflow-hidden p-0"
+            className="max-h-[90vh] w-[95%] !max-w-none overflow-hidden p-0 sm:w-fit sm:min-w-[700px]"
          >
             <DialogHeader className="hidden">
                <DialogTitle></DialogTitle>

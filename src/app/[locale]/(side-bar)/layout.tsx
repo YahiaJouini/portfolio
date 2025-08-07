@@ -28,7 +28,7 @@ async function SideBar({ locale }: { locale: Locale }) {
    const data = await getTranslation<Profile>(locale, "profile")
 
    return (
-      <div className="w-full shrink-0 flex-col justify-center gap-4 max-sm:my-3 sm:gap-6 md:flex md:w-[280px] xl:w-[320px]">
+      <div className="w-full shrink-0 flex-col justify-center gap-4 max-sm:mb-3 sm:gap-6 md:flex md:w-[280px] xl:w-[320px]">
          <div className="flex items-start gap-4 text-left md:flex-col md:items-center md:text-center lg:items-start lg:text-left">
             <div className="border-accent-border ring-accent-border relative z-10 aspect-square w-20 shrink-0 overflow-hidden rounded-full border object-cover object-center ring-1 sm:w-24 md:mx-auto md:mb-3 md:w-[70%] lg:mx-0 xl:w-[80%]">
                <ImageLoader

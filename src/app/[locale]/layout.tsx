@@ -42,10 +42,11 @@ export default async function RootLayout({
          dir={locale === "ar" ? "rtl" : "ltr"}
          key={locale}
          suppressHydrationWarning
+         className="overflow-x-hidden"
       >
          <body
             className={cn(
-               `text-text-primary bg-primary relative flex min-h-screen flex-col overflow-x-hidden antialiased`,
+               `text-text-primary bg-primary relative flex min-h-screen flex-col antialiased`,
                inter.className,
             )}
          >

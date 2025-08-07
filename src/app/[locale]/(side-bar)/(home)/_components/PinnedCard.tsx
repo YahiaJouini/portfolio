@@ -43,8 +43,9 @@ export default function PinnedCard<
          <div className="flex items-center justify-start gap-1">
             <Repo />
             <Link
+               title={data.title}
                aria-label={`View ${page} details`}
-               className="w-auto overflow-hidden text-sm font-semibold text-nowrap not-rtl:mr-2 hover:underline rtl:ml-2"
+               className="line-clamp-1 w-auto overflow-hidden text-sm font-semibold not-rtl:mr-2 hover:underline rtl:ml-2"
                href={`/${page}/${data.slug}`}
             >
                {data.title}

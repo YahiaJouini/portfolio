@@ -1,15 +1,15 @@
 "use client"
 
-import { ChevronLeft, ChevronRight, Download, FileText } from "lucide-react"
 import { Link } from "@/i18n/navigation"
-import { memo, useState } from "react"
+import { ChevronLeft, ChevronRight, Download, FileText } from "lucide-react"
+import { memo, useEffect, useState } from "react"
 import { Document, Page } from "react-pdf"
 import "react-pdf/dist/Page/AnnotationLayer.css"
 import "react-pdf/dist/Page/TextLayer.css"
 
+import { useLocale } from "@/hooks/useLocale"
 import { configurePDFWorker, PDF_OPTIONS } from "@/lib/pdf-config"
 import { messages } from "@/messages/seperate/messages"
-import { useLocale } from "@/hooks/useLocale"
 import { MergedTranslations } from "@/types"
 import Spinner from "./Spinner"
 // configure worker immediately
@@ -42,8 +42,28 @@ function PDFViewer({ resumeFile, title }: PDFViewerProps) {
    const [numPages, setNumPages] = useState<number>(0)
    const [pageNumber, setPageNumber] = useState<number>(1)
    const [loading, setLoading] = useState(true)
+   const [scale, setScale] = useState<number>(1.3)
    const locale = useLocale()
    const resolvedLayout = t[locale]
+
+   useEffect(() => {
+      if (typeof window === "undefined") return
+      const updateScale = () => {
+         const width = window.innerWidth
+         if (width < 640) {
+            // mobile
+            setScale(0.6)
+         } else if (width < 1024) {
+            // tablet
+            setScale(1.0)
+         } else {
+            // desktop
+            setScale(1.3)
+         }
+      }
+      updateScale()
+   }, [])
+
    return (
       <div className="bg-primary border-border-default overflow-hidden rounded-lg border shadow-sm">
          <div className="bg-secondary border-border-default border-b px-4 py-3">
@@ -110,7 +130,7 @@ function PDFViewer({ resumeFile, title }: PDFViewerProps) {
                      <div className="flex justify-center">
                         <Page
                            pageNumber={pageNumber}
-                           scale={1.3}
+                           scale={scale}
                            className="shadow-sm"
                            renderTextLayer={false}
                            renderAnnotationLayer={false}

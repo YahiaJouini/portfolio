@@ -17,9 +17,9 @@ export default async function Pinned({ locale }: { locale: Locale }) {
    if (!pinnedBlogs || !pinnedProjects) return null
    const { docs: projects } = pinnedProjects
    return (
-      <div>
+      <div className="w-full overflow-hidden">
          <h2 className="mt-8 mb-1">{t[locale].pinned}</h2>
-         <div className="mt-2 grid w-full gap-4 sm:grid-cols-2">
+         <div className="mt-2 grid w-full min-w-0 grid-cols-1 gap-4 sm:grid-cols-2">
             {projects.map((project) => {
                return (
                   <PinnedCard
