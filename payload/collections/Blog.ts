@@ -1,5 +1,6 @@
-import { blogPayloadAccess } from "@/utils/payload-access"
+import { payloadAccess } from "@/utils/payload-access"
 import { CollectionConfig } from "payload"
+import { clearCacheHook, clearCacheOnDeleteHook } from "../hooks"
 import { slugField } from "../slug-field"
 
 export const Blog: CollectionConfig = {
@@ -8,9 +9,13 @@ export const Blog: CollectionConfig = {
       singular: "Blog Post",
       plural: "Blog Posts",
    },
-   access: blogPayloadAccess(),
+   access: payloadAccess({ isPublic: true }),
    admin: {
       useAsTitle: "title",
+   },
+   hooks: {
+      afterChange: [clearCacheHook],
+      afterDelete: [clearCacheOnDeleteHook],
    },
    fields: [
       slugField,

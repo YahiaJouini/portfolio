@@ -1,6 +1,7 @@
 "use client"
 
 import ImageLoader from "@/components/global/ImageLoader"
+import { useLocale } from "@/hooks/useLocale"
 import { Blog } from "@/payload-types"
 import { customConverters } from "@/utils/richtext"
 import { RichText } from "@payloadcms/richtext-lexical/react"
@@ -9,7 +10,6 @@ import { t } from "../../t"
 import { ActiveBlogSection } from "../types"
 import RightSection from "./RightSection"
 import TocMobile from "./TocMobile"
-import { useLocale } from "@/hooks/useLocale"
 
 const KeepReading = lazy(() => import("./KeepReading"))
 
@@ -100,16 +100,12 @@ export default function Content({ data }: Props) {
 
    return (
       <div className="flex w-full flex-col gap-12">
-         <div
-            ref={heroRef}
-            id="hero"
-            className="mb-8 flex flex-col gap-6 text-center md:mb-12"
-         >
+         <div ref={heroRef} id="hero" className="flex flex-col gap-6 lg:mb-2">
             <div className="mx-auto max-w-3xl space-y-2">
-               <h1 className="text-2xl leading-tight font-bold sm:text-3xl md:text-4xl">
+               <h1 className="text-center text-2xl leading-tight font-bold sm:text-3xl md:text-4xl">
                   {data.title}
                </h1>
-               <p className="text-text-secondary mx-auto text-base leading-relaxed md:text-lg">
+               <p className="text-text-secondary mx-auto text-center text-base leading-relaxed md:text-lg">
                   {data.description}
                </p>
             </div>
@@ -129,6 +125,7 @@ export default function Content({ data }: Props) {
          <div className="flex gap-10">
             <div className="w-full lg:w-2/3">
                <TocMobile
+                  tags={data.tags}
                   sections={data.sections}
                   activeSection={activeSection}
                />

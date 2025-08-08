@@ -30,12 +30,12 @@ export default async function page({ params }: LocaleParams) {
 
    return (
       <div>
-         <div className="mx-auto mb-12 max-w-3xl text-center">
+         <div className="mx-auto mb-12 max-w-3xl">
             <h1
                dangerouslySetInnerHTML={{ __html: t[locale].title }}
-               className="text-text-primary mb-6 text-4xl leading-tight font-bold md:text-5xl"
+               className="text-text-primary mb-6 text-center text-4xl leading-tight font-bold md:text-5xl"
             />
-            <p className="text-text-secondary md:text-lg">
+            <p className="text-text-secondary text-center md:text-lg">
                {t[locale].description}
             </p>
          </div>

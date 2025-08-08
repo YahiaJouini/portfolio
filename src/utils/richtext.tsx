@@ -1,4 +1,5 @@
 import ImageLoader from "@/components/global/ImageLoader"
+import Seperator from "@/components/global/Seperator"
 import { Link } from "@/i18n/navigation"
 import { JSXConvertersFunction } from "@payloadcms/richtext-lexical/react"
 
@@ -19,7 +20,7 @@ export const customConverters: JSXConvertersFunction = ({
             )
          case "h2":
             return (
-               <h2 className="mb-2 text-xl leading-7 font-semibold sm:mb-3 sm:text-2xl sm:leading-8 lg:text-[22px] lg:leading-9 2xl:mb-3 2xl:text-2xl 2xl:leading-11">
+               <h2 className="mb-2 text-xl leading-7 font-semibold sm:mb-3 sm:text-2xl sm:leading-8 lg:text-[22px] lg:leading-9 2xl:mb-3 2xl:text-[26px] 2xl:leading-11">
                   {children}
                </h2>
             )
@@ -113,7 +114,7 @@ export const customConverters: JSXConvertersFunction = ({
    },
 
    horizontalrule: () => (
-      <hr className="border-border-default my-6 border-t sm:my-8 lg:my-7 2xl:my-8" />
+      <Seperator className="my-6 sm:my-8 lg:my-7" />
    ),
 
    code: ({ node, nodesToJSX }) => {

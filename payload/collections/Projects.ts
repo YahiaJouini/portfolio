@@ -1,7 +1,11 @@
 import { summaryKeys } from "@/messages/seperate/project-related"
-import { projectPayloadAccess } from "@/utils/payload-access"
+import { payloadAccess } from "@/utils/payload-access"
 import { CollectionConfig } from "payload"
-import { populateProjectHook } from "../hooks"
+import {
+   clearCacheHook,
+   clearCacheOnDeleteHook,
+   populateProjectHook,
+} from "../hooks"
 import { slugField } from "../slug-field"
 
 export const Projects: CollectionConfig = {
@@ -15,9 +19,11 @@ export const Projects: CollectionConfig = {
       useAsTitle: "title",
       description: "Manage your projects, including details and media.",
    },
-   access: projectPayloadAccess(),
+   access: payloadAccess({ isPublic: true }),
    hooks: {
       beforeChange: [populateProjectHook],
+      afterChange: [clearCacheHook],
+      afterDelete: [clearCacheOnDeleteHook],
    },
    fields: [
       slugField,

@@ -1,6 +1,14 @@
 import { fetchRepoMeta } from "@/graphql/github-repo"
-import { Project } from "@/payload-types"
-import { CollectionBeforeChangeHook } from "payload"
+import { Blog, Project } from "@/payload-types"
+import { BlogService } from "@/services/blog"
+import { ProjectService } from "@/services/project"
+import { validLocale } from "@/utils/validate-locale"
+import { revalidatePath } from "next/cache"
+import {
+   CollectionAfterChangeHook,
+   CollectionAfterDeleteHook,
+   CollectionBeforeChangeHook,
+} from "payload"
 
 export const populateProjectHook: CollectionBeforeChangeHook<Project> = async ({
    data,
@@ -37,4 +45,51 @@ export const populateProjectHook: CollectionBeforeChangeHook<Project> = async ({
       }
    }
    return data
+}
+
+export const clearCacheHook: CollectionAfterChangeHook<
+   Project | Blog
+> = async ({ doc, operation, req, collection }) => {
+   if ((operation === "create" || operation === "update") && doc?.slug) {
+      const collectionSlug = collection.slug
+      const locale = req.locale
+      try {
+         if (collectionSlug === "projects") {
+            ProjectService.clearProjectsListCache()
+            ProjectService.clearProjectCache({
+               slug: doc.slug,
+               locale:
+                  validLocale(locale) && locale !== "all" ? locale : undefined,
+            })
+            revalidatePath("/projects", "page")
+         } else if (collectionSlug === "blog") {
+            BlogService.clearCache()
+            revalidatePath("/blogs", "page")
+         }
+         // because blogs and services both are displayed on home page
+         revalidatePath("/", "page")
+         console.log(`✅ ${collectionSlug} caches cleared successfully`)
+      } catch (err) {
+         console.error(`Failed to clear ${collectionSlug} caches:`, err)
+      }
+   }
+}
+
+export const clearCacheOnDeleteHook: CollectionAfterDeleteHook<
+   Project | Blog
+> = async ({ collection }) => {
+   const collectionSlug = collection.slug
+   try {
+      if (collectionSlug === "projects") {
+         ProjectService.clearProjectsListCache()
+         revalidatePath("/projects", "page")
+      } else if (collectionSlug === "blog") {
+         BlogService.clearCache()
+         revalidatePath("/blogs", "page")
+      }
+      revalidatePath("/", "page")
+      console.log(`✅ ${collectionSlug} caches cleared successfully`)
+   } catch (err) {
+      console.error(`Failed to clear ${collectionSlug} caches:`, err)
+   }
 }

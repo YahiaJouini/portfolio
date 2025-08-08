@@ -33,7 +33,7 @@ const RightSectionSkeleton = () => (
       </div>
 
       {/* Separator */}
-      <Seperator />
+      <Seperator className="mb-4" />
 
       {/* Summary Section */}
       <div>
@@ -53,7 +53,7 @@ const RightSectionSkeleton = () => (
       </div>
 
       {/* Separator */}
-      <Seperator />
+      <Seperator className="mb-4" />
 
       {/* Languages Section */}
       <div>
@@ -86,7 +86,7 @@ const ContentSkeleton = () => (
          <ParagraphSkeleton lines={6} />
       </div>
 
-      <Seperator />
+      <Seperator className="mb-4" />
 
       <div className="space-y-3">
          <Skeleton className="h-7 w-2/3" />
@@ -94,13 +94,13 @@ const ContentSkeleton = () => (
          <UnorderedListSkeleton items={6} />
       </div>
 
-      <Seperator />
+      <Seperator className="mb-4" />
 
       <div className="space-y-3">
          <TitleSkeleton />
          <ParagraphSkeleton lines={6} />
       </div>
-      <Seperator />
+      <Seperator className="mb-4" />
 
       <div className="space-y-3">
          <TitleSkeleton />

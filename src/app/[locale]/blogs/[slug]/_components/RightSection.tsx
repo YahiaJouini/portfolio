@@ -1,14 +1,14 @@
 import Seperator from "@/components/global/Seperator"
-import Tag from "@/components/global/Tag"
+import { useLocale } from "@/hooks/useLocale"
 import { cn } from "@/lib/utils"
 import { Blog } from "@/payload-types"
 import { fade } from "@/utils/animations"
 import { scrollToSection } from "@/utils/scroll-to"
 import { AnimatePresence, motion } from "framer-motion"
 import React from "react"
-import { ActiveBlogSection } from "../types"
-import { useLocale } from "@/hooks/useLocale"
 import { t } from "../../t"
+import { ActiveBlogSection } from "../types"
+import TagsSection from "./TagsSection"
 
 type Props = {
    ref: React.RefObject<HTMLDivElement | null>
@@ -30,17 +30,7 @@ export default function RightSection({
    const locale = useLocale()
    return (
       <div className="relative hidden w-[250px] shrink-0 md:block md:w-[280px] lg:w-[320px] xl:w-[350px]">
-         <div className="mb-3 w-full md:mb-4 lg:mb-6">
-            <h4 className="mb-2 text-sm font-semibold md:text-base lg:text-lg">
-               {t[locale].tags}{" "}
-            </h4>
-            <Seperator />
-            <div className="flex flex-wrap gap-1 md:gap-1.5 lg:gap-2">
-               {tags.map(({ tag, id }) => (
-                  <Tag text={tag} key={id} />
-               ))}
-            </div>
-         </div>
+         <TagsSection locale={locale} tags={tags} />
          <div className="w-full" ref={ref}>
             <AnimatePresence mode="wait">
                {!hideToc && (
@@ -58,7 +48,7 @@ export default function RightSection({
                      <h4 className="mb-2 text-sm font-semibold md:text-base lg:text-lg">
                         {t[locale].tableOfContents}
                      </h4>
-                     <Seperator />
+                     <Seperator className="mb-3" />
                      <div className="space-y-1 md:space-y-1.5 lg:space-y-2">
                         {sections.map((section) => (
                            <button
