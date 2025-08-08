@@ -152,6 +152,7 @@ export const Projects: CollectionConfig = {
          admin: {
             readOnly: true,
             description: "Auto-populated from GitHub repository",
+            position: "sidebar",
          },
       },
       {

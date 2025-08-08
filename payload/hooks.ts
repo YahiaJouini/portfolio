@@ -30,7 +30,7 @@ export const populateProjectHook: CollectionBeforeChangeHook<Project> = async ({
             }))
          }
          data.public = !repoMeta.isPrivate
-         data.createdAt = repoMeta.createdAt
+         data.createdAt = data?.createdAt ?? repoMeta.createdAt
       } catch (err) {
          console.error(`failed to repo meta project ${data.slug}:`, err)
          return data
