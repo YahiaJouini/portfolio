@@ -23,7 +23,7 @@ const t = {
 
 export default async function ProjectVisibility({ isPublic, locale }: Props) {
    return (
-      <div className="border-accent-border text-accent-icon rounded-full border px-[5px] py-[3px] text-xs leading-none font-semibold">
+      <div className="border-accent-border text-accent-icon rounded-full border px-[5px] py-[3px] text-xs leading-none font-semibold shrink-0">
          {isPublic ? t[locale].public : t[locale].private}
       </div>
    )
