@@ -6,20 +6,6 @@ export const customConverters: JSXConvertersFunction = ({
    defaultConverters,
 }) => ({
    ...defaultConverters,
-   link: ({ node, nodesToJSX }) => {
-      const children = nodesToJSX({ nodes: node.children })
-      const href = node.fields.url
-      return (
-         <Link
-            href={href ?? ""}
-            className="text-text-link hover:underline"
-            target="_blank"
-            rel="noopener noreferrer"
-         >
-            {children}
-         </Link>
-      )
-   },
    heading: ({ node, nodesToJSX }) => {
       const Tag = node.tag
       const children = nodesToJSX({ nodes: node.children })
@@ -78,7 +64,20 @@ export const customConverters: JSXConvertersFunction = ({
          </p>
       )
    },
-
+   link: ({ node, nodesToJSX }) => {
+      const children = nodesToJSX({ nodes: node.children })
+      const href = node.fields.url
+      return (
+         <Link
+            href={href ?? ""}
+            className="text-text-link hover:underline"
+            target="_blank"
+            rel="noopener noreferrer"
+         >
+            {children}
+         </Link>
+      )
+   },
    list: ({ node, nodesToJSX }) => {
       const children = nodesToJSX({ nodes: node.children })
       if (node.listType === "number") {

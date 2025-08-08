@@ -119,7 +119,7 @@ export default function Content({ data }: Props) {
                      src={data.thumbnail.url}
                      alt={data.thumbnail.alt}
                      fill
-                     className="object-cover"
+                     className="object-fit"
                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
                   />
                </div>

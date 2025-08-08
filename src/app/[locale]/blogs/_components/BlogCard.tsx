@@ -35,7 +35,7 @@ export function BlogCard({ locale, data }: Props) {
                   src={data.thumbnail.url}
                   alt={data.thumbnail.alt}
                   fill
-                  className="w-full object-cover"
+                  className="w-full object-fit"
                />
                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
             </div>
