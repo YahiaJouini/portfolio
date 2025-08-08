@@ -1,45 +1,47 @@
-import { contactSchema } from "@/schemas/contact"
-import { RESEND_API_KEY } from "@/utils/env"
-import { NextRequest, NextResponse } from "next/server"
 import { Resend } from "resend"
 
-const resend = new Resend(RESEND_API_KEY)
+const resend = new Resend(process.env.RESEND_API_KEY)
 
-export async function POST(req: NextRequest) {
+export async function POST(req: Request) {
    try {
-      const body = await req.json()
-      const { name, email, message } = contactSchema().parse(body)
+      const { name, email, message } = await req.json()
 
-      const { error } = await resend.emails.send({
-         from: "Portfolio Contact Form <onboarding@resend.dev>",
+      const { error: sendError } = await resend.emails.send({
+         from: "Portfolio Contact <no-reply@yahiajouini.dev>",
          to: "jouiniyahya117@gmail.com",
-         subject: `New portfolio message from ${name}`,
-         replyTo: email,
+         subject: `📩 New Contact Form Submission from ${name}`,
          html: `
-            <div style="font-family: Arial, sans-serif; line-height: 1.5; padding: 20px;">
-            <h3>New Contact Message</h3>
+            <h2>New Message from Portfolio</h2>
             <p><strong>Name:</strong> ${name}</p>
-            <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+            <p><strong>Email:</strong> ${email}</p>
             <p><strong>Message:</strong></p>
-            <div style="background: #f5f5f5; padding: 8px; border-radius: 5px; white-space: pre-wrap;">
-              ${message}
-            </div>
-          </div>
+            <p>${message}</p>
       `,
       })
+      console.log(sendError)
+      if (sendError) throw new Error("Email sending failed")
 
-      if (error) {
-         console.log(error)
-         return NextResponse.json({ message: error.message }, { status: 400 })
-      }
-      return NextResponse.json(
-         { message: "Message sent successfully" },
-         { status: 200 },
-      )
-   } catch {
-      return NextResponse.json(
-         { message: "Internal server error" },
-         { status: 500 },
+      const { error: clientError } = await resend.emails.send({
+         from: "Yahia Jouini <no-reply@yahiajouini.dev>",
+         to: email,
+         subject: "Thanks for reaching out! 🙌",
+         html: `
+            <p>Hi ${name},</p>
+            <p>Thanks for contacting me via my portfolio website.</p>
+            <p>I’ve received your message and will get back to you as soon as possible.</p>
+            <p>Best regards,<br><strong>Yahia Jouini</strong></p>
+      `,
+      })
+      console.log(clientError)
+      if (clientError) throw new Error("Confirmation email sending failed")
+
+      return new Response(JSON.stringify({ success: true }), { status: 200 })
+   } catch (error: any) {
+      return new Response(
+         JSON.stringify({ error: error?.message ?? "Email sending failed" }),
+         {
+            status: 500,
+         },
       )
    }
 }
