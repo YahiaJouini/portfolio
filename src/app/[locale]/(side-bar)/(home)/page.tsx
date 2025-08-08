@@ -12,5 +12,5 @@ export default async function page({ params }: LocaleParams) {
    )
 }
 
-export const revalidate = 3600
+export const revalidate = 3600 * 24 // 1 day
 export const dynamic = "force-static"
