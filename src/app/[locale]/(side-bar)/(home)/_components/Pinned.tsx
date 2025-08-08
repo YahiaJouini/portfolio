@@ -35,7 +35,7 @@ export default async function Pinned({ locale }: { locale: Locale }) {
                   <PinnedCard
                      locale={locale}
                      key={blog.id}
-                     data={blog}
+                     data={{ ...blog, public: true }}
                      page="blogs"
                   />
                )

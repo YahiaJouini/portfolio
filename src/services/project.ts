@@ -120,7 +120,7 @@ export class ProjectService {
          select: fields as any,
          depth: 1,
          // sort by pinned so don't have to fetch homepage data while still caching all projects
-         sort: ["pinned", "-createdAt"],
+         sort: ["-pinned", "-createdAt"],
       })
       return data
    }

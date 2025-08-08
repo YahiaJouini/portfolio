@@ -1,11 +1,25 @@
 import ImageLoader from "@/components/global/ImageLoader"
+import { Link } from "@/i18n/navigation"
 import { JSXConvertersFunction } from "@payloadcms/richtext-lexical/react"
 
 export const customConverters: JSXConvertersFunction = ({
    defaultConverters,
 }) => ({
    ...defaultConverters,
-
+   link: ({ node, nodesToJSX }) => {
+      const children = nodesToJSX({ nodes: node.children })
+      const href = node.fields.url
+      return (
+         <Link
+            href={href ?? ""}
+            className="text-text-link hover:underline"
+            target="_blank"
+            rel="noopener noreferrer"
+         >
+            {children}
+         </Link>
+      )
+   },
    heading: ({ node, nodesToJSX }) => {
       const Tag = node.tag
       const children = nodesToJSX({ nodes: node.children })
@@ -133,7 +147,7 @@ export const customConverters: JSXConvertersFunction = ({
          // Inline code
          if (node.format & 16) {
             content = (
-               <code className="mx-1 rounded bg-gray-200 px-1.5 py-0.5 font-mono text-xs text-pink-600 sm:px-2 sm:py-1 sm:text-sm lg:text-[13px] 2xl:mx-1 2xl:px-2 2xl:py-1 2xl:text-sm">
+               <code className="bg-secondary mx-1 rounded px-1.5 py-0.5 font-mono text-xs text-pink-400 sm:px-2 sm:py-1 sm:text-sm lg:text-[13px] 2xl:mx-1 2xl:px-2 2xl:py-1 2xl:text-sm dark:text-pink-600">
                   {content}
                </code>
             )
