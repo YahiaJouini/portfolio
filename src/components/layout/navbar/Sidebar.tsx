@@ -65,7 +65,7 @@ export default function Sidebar({ pages }: { pages: NavBar["items"] }) {
                      exit="exit"
                      className="relative flex flex-col gap-6"
                   >
-                     <SheetClose className="absolute top-0 right-2 z-10">
+                     <SheetClose className="absolute top-0 right-2 z-10 rtl:right-auto rtl:left-2">
                         <X className="text-text-secondary hover:text-text-primary h-6 w-6" />
                      </SheetClose>
                      <div className="max-sm:hidden">

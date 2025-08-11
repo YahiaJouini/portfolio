@@ -34,8 +34,8 @@ export default function Search({
    const secondaryInput = content.placeholder.secondaryInput.split("/")
    return (
       <Dialog open={open} onOpenChange={setOpen}>
-         <DialogTrigger className="btn-secondary icon border-border-default text-accent-icon hover:bg-hover-2 flex h-8 w-8 cursor-pointer items-center justify-center rounded-sm border pr-3 pl-2 text-[13px] transition-colors max-sm:hidden sm:w-[200px] sm:justify-start md:w-[260px]">
-            <SearchIcon className="mr-1 h-4 w-4" />
+         <DialogTrigger className="btn-secondary icon border-border-default text-accent-icon hover:bg-hover-2 flex h-8 w-8 cursor-pointer items-center justify-center gap-1 rounded-sm border pr-3 pl-2 text-[13px] transition-colors max-sm:hidden sm:w-[200px] sm:justify-start md:w-[260px]">
+            <SearchIcon className="h-4 w-4" />
             <div className="flex items-center gap-1">
                {secondaryInput[0]}
                <AntiSlash />
