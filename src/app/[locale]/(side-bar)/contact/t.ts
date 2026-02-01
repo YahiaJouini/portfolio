@@ -1,4 +1,4 @@
-import { ContactPage } from "@/messages/types";
+import { ContactPage } from "@/messages/types"
 
 export const t = {
    en: {

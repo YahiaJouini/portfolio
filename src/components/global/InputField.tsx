@@ -72,7 +72,7 @@ const InputField = (props: InputFieldProps) => {
             <FormControl>{handleDisplay()}</FormControl>
 
             {props.hasError && (
-               <FormMessage className="ltr:-mt-1 rtl:-mr-1 text-sm">
+               <FormMessage className="text-sm ltr:-mt-1 rtl:-mr-1">
                   This field has an error
                </FormMessage>
             )}

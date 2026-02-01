@@ -34,11 +34,12 @@ export async function generatePageMetadata({
       robots: {
          index: !noIndex,
          follow: !noIndex,
+         noimageindex: true,
          googleBot: {
             index: !noIndex,
             follow: !noIndex,
             "max-video-preview": -1,
-            "max-image-preview": "large",
+            "max-image-preview": "none",
             "max-snippet": -1,
          },
       },
@@ -116,14 +117,6 @@ export async function generateRootMetadata(locale: Locale): Promise<Metadata> {
          siteName,
          locale,
          type: "website",
-         images: [
-            {
-               url: "/og-image.webp",
-               width: 1388,
-               height: 728,
-               alt: siteName,
-            },
-         ],
       },
 
       twitter: {
@@ -133,11 +126,12 @@ export async function generateRootMetadata(locale: Locale): Promise<Metadata> {
       robots: {
          index: true,
          follow: true,
+         noimageindex: true,
          googleBot: {
             index: true,
             follow: true,
             "max-video-preview": -1,
-            "max-image-preview": "large",
+            "max-image-preview": "none",
             "max-snippet": -1,
          },
       },

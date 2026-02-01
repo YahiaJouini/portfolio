@@ -113,9 +113,7 @@ export const customConverters: JSXConvertersFunction = ({
       )
    },
 
-   horizontalrule: () => (
-      <Seperator className="my-6 sm:my-8 lg:my-7" />
-   ),
+   horizontalrule: () => <Seperator className="my-6 sm:my-8 lg:my-7" />,
 
    code: ({ node, nodesToJSX }) => {
       const children = nodesToJSX({ nodes: node.children })

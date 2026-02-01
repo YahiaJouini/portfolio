@@ -5,7 +5,7 @@ export default function PinnedLoader() {
       <div>
          <Skeleton className="mt-8 mb-2 h-5 w-24" />
          <div className="mt-2 grid w-full grid-cols-2 gap-4 max-md:hidden">
-            {[...Array(6)].map((_,index) => (
+            {[...Array(6)].map((_, index) => (
                <div
                   key={index}
                   className="border-border-default flex min-h-[125px] flex-col justify-between rounded-md border p-4"

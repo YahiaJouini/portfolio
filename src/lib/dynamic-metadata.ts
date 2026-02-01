@@ -1,7 +1,6 @@
 import { Page } from "@/messages/types/shared"
 import { DynamicMetaData, Locale } from "@/types"
 import { buildLocalizedUrl } from "@/utils/build-url"
-import { BASE_URL } from "@/utils/env"
 import { Metadata } from "next"
 import { languageAlternates } from "./language-alternates"
 
@@ -45,7 +44,7 @@ export function generateDynamicMetadata<T extends DynamicMetaData>({
             typeof image !== "number" && {
                images: [
                   {
-                     url: image.url ?? `${BASE_URL}/og-image.webp`,
+                     url: image.url ?? "",
                      width: String(image.width),
                      height: String(image.height),
                      alt: image.alt,
