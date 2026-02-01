@@ -4,7 +4,7 @@ import ImageLoader from "@/components/global/ImageLoader"
 import { profileImage } from "@/messages/global"
 import { layout as layoutMessages } from "@/messages/seperate/layout"
 import type { Profile } from "@/messages/types"
-import { Locale, LocaleParams } from "@/types"
+import { Locale } from "@/types"
 import { getTranslation } from "@/utils/get-translation"
 import type React from "react"
 
@@ -13,9 +13,9 @@ export default async function Layout({
    params,
 }: Readonly<{
    children: React.ReactNode
-   params: LocaleParams["params"]
+   params: Promise<{ locale: string }>
 }>) {
-   const { locale } = await params
+   const { locale } = (await params) as { locale: Locale }
    return (
       <div className="mx-auto flex flex-col gap-4 sm:gap-6 md:flex-row md:items-start md:justify-between md:gap-8">
          <SideBar locale={locale} />

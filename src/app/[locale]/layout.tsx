@@ -6,7 +6,7 @@ import { generateRootMetadata } from "@/lib/metadata"
 import { cn } from "@/lib/utils"
 import QueryProvider from "@/providers/ReactQuery"
 import ThemeProvider from "@/providers/Theme"
-import { LocaleParams } from "@/types"
+import { Locale } from "@/types"
 import { NextIntlClientProvider, hasLocale } from "next-intl"
 import { notFound } from "next/navigation"
 import NextTopLoader from "nextjs-toploader"
@@ -20,8 +20,12 @@ export async function generateStaticParams() {
    return SUPPORTED_LOCALES.map((locale) => ({ locale }))
 }
 
-export async function generateMetadata({ params }: LocaleParams) {
-   const { locale } = await params
+export async function generateMetadata({
+   params,
+}: {
+   params: Promise<{ locale: string }>
+}) {
+   const { locale } = (await params) as { locale: Locale }
    return generateRootMetadata(locale)
 }
 
@@ -30,9 +34,9 @@ export default async function RootLayout({
    params,
 }: {
    children: React.ReactNode
-   params: LocaleParams["params"]
+   params: Promise<{ locale: string }>
 }) {
-   const { locale } = await params
+   const { locale } = (await params) as { locale: Locale }
    if (!hasLocale(routing.locales, locale)) notFound()
    setRequestLocale(locale)
 
