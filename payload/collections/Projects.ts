@@ -84,7 +84,7 @@ export const Projects: CollectionConfig = {
          },
       },
 
-      // === (Auto-populated using the hook) ===
+      // auto populated
       {
          name: "primaryLanguage",
          type: "text",
@@ -169,7 +169,7 @@ export const Projects: CollectionConfig = {
             description: "Auto-populated from GitHub repository (can change)",
          },
       },
-      // === (end Auto-populated) ===
+      // end auto populated
       {
          name: "roles",
          type: "array",
