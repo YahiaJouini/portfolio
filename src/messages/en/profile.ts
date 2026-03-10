@@ -2,8 +2,8 @@ import { fullName } from "../global"
 import { Profile } from "../types"
 
 export default {
-   fullName: fullName.en,
-   job: "Full-Stack Developer",
-   description:
-      "Full-stack developer with a sharp eye for clean architecture and a passion for solving real problems. From building web apps to scraping data and automating workflows, I focus on delivering smart, efficient solutions.",
+  fullName: fullName.en,
+  job: "Software Developer",
+  description:
+    "Software developer with a strong interest in how systems work under the hood, from low-level programming to backend architecture. I care about clean logic, solid structure, and building software that is technically sound and well thought out.",
 } satisfies Profile
