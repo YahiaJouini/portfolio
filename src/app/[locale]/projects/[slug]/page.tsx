@@ -8,7 +8,7 @@ import { Locale } from "@/types"
 import { readableISO } from "@/utils/format-date"
 import { customConverters } from "@/utils/richtext"
 import { RichText } from "@payloadcms/richtext-lexical/react"
-import { ExternalLink } from "lucide-react"
+import { ExternalLink, Github } from "lucide-react"
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { SearchParams } from "nuqs"
@@ -62,7 +62,7 @@ export default async function page({ params, searchParams }: Props) {
       <div className="mx-auto w-full">
          <div className="border-border-default mb-6 flex flex-col gap-4 border-b pb-6">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-               <div className="flex items-start gap-3">
+               <div className="flex w-full items-start gap-3">
                   <div className="ring-accent-border relative h-10 w-10 flex-shrink-0 rounded-full ring-2">
                      <ImageLoader
                         src={profileImage.src}
@@ -72,7 +72,7 @@ export default async function page({ params, searchParams }: Props) {
                      />
                   </div>
                   <div className="flex flex-col">
-                     <h1 className="text-text-primary text-xl font-bold sm:max-w-[80%] sm:text-2xl md:text-3xl">
+                     <h1 className="text-text-primary text-xl font-bold sm:text-2xl md:text-3xl">
                         {project.title}
                      </h1>
                      <div className="mt-1 flex items-center gap-3">
@@ -90,33 +90,67 @@ export default async function page({ params, searchParams }: Props) {
                   </div>
                </div>
 
-               {/* desktop visit button */}
-               {project.demoUrl && (
-                  <Link
-                     aria-label="View demo"
-                     target="_blank"
-                     rel="noopener noreferrer"
-                     href={project.demoUrl}
-                     className="bg-btn-blue hover:bg-btn-blue-hover text-tag-hover-text hidden items-center gap-2 rounded-md px-4 py-2 font-medium shadow-lg transition-all duration-200 hover:text-white hover:shadow-xl sm:flex"
-                  >
-                     <ExternalLink className="h-4 w-4" />
-                     <span>{resolvedTranslation.visit}</span>
-                  </Link>
+               {/* desktop header actions */}
+               {(project.demoUrl || project.public === true) && (
+                  <div className="hidden sm:flex sm:items-center sm:gap-2">
+                     {project.public === true && (
+                        <Link
+                           aria-label="View source code"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           href={project.githubUrl}
+                           className="border-border-default bg-secondary text-text-primary hover:bg-tertiary flex items-center gap-2 rounded-md border px-4 py-2 font-medium shadow-sm transition-all duration-200 hover:shadow-md"
+                        >
+                           <Github className="h-4 w-4" />
+                           <span>GitHub</span>
+                        </Link>
+                     )}
+
+                     {project.demoUrl && (
+                        <Link
+                           aria-label="View demo"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           href={project.demoUrl}
+                           className="bg-btn-blue hover:bg-btn-blue-hover text-tag-hover-text border-border-default flex items-center gap-2 rounded-md px-4 py-2 font-medium shadow-sm transition-all duration-200 hover:text-white hover:shadow-md"
+                        >
+                           <ExternalLink className="h-4 w-4" />
+                           <span>{resolvedTranslation.visit}</span>
+                        </Link>
+                     )}
+                  </div>
                )}
             </div>
 
-            {/* mobile visit button */}
-            {project.demoUrl && (
-               <Link
-                  aria-label="View demo"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href={project.demoUrl}
-                  className="bg-btn-blue hover:bg-btn-blue-hover flex w-full items-center justify-center gap-2 rounded-md px-4 py-2 font-medium shadow-lg transition-all duration-200 hover:text-white sm:hidden"
-               >
-                  <ExternalLink className="h-4 w-4" />
-                  <span>{resolvedTranslation.visit}</span>
-               </Link>
+            {/* mobile header actions */}
+            {(project.demoUrl || project.public === true) && (
+               <div className="flex w-full flex-col gap-2 sm:hidden">
+                  {project.public === true && (
+                     <Link
+                        aria-label="View source code"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href={project.githubUrl}
+                        className="border-border-default bg-secondary text-text-primary hover:bg-tertiary flex w-full items-center justify-center gap-2 rounded-md border px-4 py-2 font-medium shadow-sm transition-all duration-200 hover:shadow-md"
+                     >
+                        <Github className="h-4 w-4" />
+                        <span>GitHub</span>
+                     </Link>
+                  )}
+
+                  {project.demoUrl && (
+                     <Link
+                        aria-label="View demo"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href={project.demoUrl}
+                        className="bg-btn-blue hover:bg-btn-blue-hover text-tag-hover-text border-border-default flex w-full items-center justify-center gap-2 rounded-md px-4 py-2 font-medium shadow-sm transition-all duration-200 hover:text-white hover:shadow-md"
+                     >
+                        <ExternalLink className="h-4 w-4" />
+                        <span>{resolvedTranslation.visit}</span>
+                     </Link>
+                  )}
+               </div>
             )}
          </div>
 

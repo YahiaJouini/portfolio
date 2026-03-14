@@ -7,7 +7,7 @@ export default function Summary() {
          fill="currentColor"
          strokeWidth="0"
          viewBox="0 0 512 512"
-         className="text-[#3fb950]"
+         className="shrink-0 text-[#3fb950]"
          height="19"
          width="19"
          xmlns="http://www.w3.org/2000/svg"
