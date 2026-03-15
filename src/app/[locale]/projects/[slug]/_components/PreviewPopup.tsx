@@ -28,6 +28,7 @@ export default function PreviewPopup({
 
    const mediaWidth = image.width || (isVideo ? 1920 : 0)
    const mediaHeight = image.height || (isVideo ? 1080 : 0)
+   const isPortrait = mediaWidth > 0 && mediaHeight > 0 && mediaHeight > mediaWidth
 
    const getDesktopDimensions = () => {
       if (!mediaWidth || !mediaHeight || viewportSize.width === 0) {
@@ -52,13 +53,16 @@ export default function PreviewPopup({
    if (isVideo) {
       return (
          <Dialog>
-            <DialogTrigger className="relative aspect-video w-full overflow-hidden rounded-lg">
+            <DialogTrigger className="relative aspect-video w-full overflow-hidden rounded-lg bg-tertiary">
                <video
                   src={image.url}
                   muted
                   playsInline
                   preload="metadata"
-                  className="h-full w-full object-cover"
+                  className={cn(
+                     "h-full w-full",
+                     isPortrait ? "object-contain" : "object-cover",
+                  )}
                />
                <div className="absolute inset-0 flex items-center justify-center bg-black/20">
                   <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/90 shadow-lg">
@@ -116,12 +120,12 @@ export default function PreviewPopup({
 
    return (
       <Dialog>
-         <DialogTrigger className="relative aspect-video w-full overflow-hidden rounded-lg">
+         <DialogTrigger className="relative aspect-video w-full overflow-hidden rounded-lg bg-tertiary">
             <ImageLoader
                src={image.url}
                alt={image.alt}
                fill
-               className="object-cover"
+               className={isPortrait ? "object-contain" : "object-cover"}
                sizes="100vw"
             />
          </DialogTrigger>
