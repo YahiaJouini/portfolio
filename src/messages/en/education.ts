@@ -15,7 +15,7 @@ export default [
       fieldOfStudy: "Software Development (Accelerated Bootcamp)",
       institution: "Coding Dojo",
       startDate: "2023-09",
-      endDate: "2024-02",
+      endDate: "2024-01",
       description:
          "Completed an intensive online software development bootcamp focused on fullstack web technologies, clean code principles, and agile workflows. Gained hands-on experience building real-world apps under tight deadlines.",
       certification: {

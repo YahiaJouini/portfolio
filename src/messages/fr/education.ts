@@ -15,7 +15,7 @@ export default [
       fieldOfStudy: "Développement logiciel (Bootcamp intensif)",
       institution: "Coding Dojo",
       startDate: "2023-09",
-      endDate: "2024-02",
+      endDate: "2024-01",
       description:
          "Formation en ligne intensive en développement web fullstack, avec un accent sur le code propre et les méthodes agiles. Réalisation de projets concrets dans des délais courts, favorisant une forte expérience pratique.",
       certification: {
