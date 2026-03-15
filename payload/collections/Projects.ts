@@ -14,6 +14,7 @@ export const Projects: CollectionConfig = {
       singular: "Project",
       plural: "Projects",
    },
+   defaultSort: "-pinned",
    admin: {
       defaultColumns: ["title", "slug", "createdAt"],
       useAsTitle: "title",
