@@ -2,7 +2,7 @@ import { Locale } from "@/types"
 import { createLoader, parseAsStringLiteral } from "nuqs/server"
 
 type Item = {
-   key: "readme" | "screenshots"
+   key: "readme" | "preview"
    values: Record<Locale, string>
 }
 export const displaySections: Item[] = [
@@ -15,11 +15,11 @@ export const displaySections: Item[] = [
       },
    },
    {
-      key: "screenshots",
+      key: "preview",
       values: {
-         en: "ScreenShots",
-         fr: "Captures d'écran",
-         ar: "لقطات الشاشة",
+         en: "Preview",
+         fr: "Aperçu",
+         ar: "معاينة",
       },
    },
 ] as const

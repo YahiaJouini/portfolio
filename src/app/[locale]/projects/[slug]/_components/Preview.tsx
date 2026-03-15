@@ -3,8 +3,8 @@ import { Project } from "@/payload-types"
 import { ViewportSize } from "@/types"
 import { lazy, useEffect, useState } from "react"
 
-const ScreenShotPopup = lazy(() => import("./ScreenShotPopup"))
-export default function ScreenShots({ images }: { images: Project["images"] }) {
+const PreviewPopup = lazy(() => import("./PreviewPopup"))
+export default function Preview({ images }: { images: Project["images"] }) {
    const [viewportSize, setViewportSize] = useState<ViewportSize>({
       width: 0,
       height: 0,
@@ -24,7 +24,7 @@ export default function ScreenShots({ images }: { images: Project["images"] }) {
    return (
       <div className="w-full space-y-6">
          {images.map((image) => (
-            <ScreenShotPopup
+            <PreviewPopup
                viewportSize={viewportSize}
                media={image}
                key={image.id}

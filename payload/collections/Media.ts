@@ -6,7 +6,7 @@ export const Media: CollectionConfig = {
    access: payloadAccess({ isPublic: true }),
    upload: {
       staticDir: "media",
-      mimeTypes: ["image/*", "image/gif"],
+      mimeTypes: ["image/*", "image/gif", "video/*"],
    },
    fields: [
       {

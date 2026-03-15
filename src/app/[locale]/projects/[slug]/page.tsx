@@ -14,7 +14,7 @@ import { notFound } from "next/navigation"
 import { SearchParams } from "nuqs"
 import DisplaySection from "./_components/DisplaySection"
 import RightSection from "./_components/RightSection"
-import ScreenShots from "./_components/ScreenShots"
+import Preview from "./_components/Preview"
 import { loadSearchParams } from "./project-filters"
 import { t } from "./t"
 
@@ -168,7 +168,7 @@ export default async function page({ params, searchParams }: Props) {
                            />
                         </div>
                      ) : (
-                        <ScreenShots images={project.images} />
+                        <Preview images={project.images} />
                      )}
                   </div>
                </div>
