@@ -68,7 +68,7 @@ export default async function RootLayout({
                      />
                      <QueryProvider>
                         <Navbar locale={locale} />
-                        <main className="mx-auto w-[92%] flex-1 flex-grow overflow-x-hidden md:w-[95%] xl:max-w-[1250px]">
+                        <main className="mx-auto w-[92%] flex-1 flex-grow overflow-x-hidden xl:max-w-[1250px]">
                            {children}
                         </main>
                         <Footer />
