@@ -127,7 +127,7 @@ export default function PreviewPopup({
                alt={image.alt}
                fill
                className={isPortrait ? "object-contain" : "object-cover"}
-               sizes="100vw"
+               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
          </DialogTrigger>
          <DialogContent
@@ -163,7 +163,7 @@ export default function PreviewPopup({
                   alt={image.alt}
                   fill
                   className="object-contain"
-                  sizes="100vw"
+                  sizes="(max-width: 768px) 95vw, 70vw"
                />
             </div>
          </DialogContent>

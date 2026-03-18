@@ -13,7 +13,7 @@ export default [
       jobTitle: "مطور Fullstack (تعاون مدفوع)",
       company: "Aftercode Tunisia",
       location: "عن بُعد",
-      startDate: "2024-01",
+      startDate: "2024-02",
       endDate: "2025-07",
       description:
          "بعد انتهاء فترة التدريب، عُرضت عليّ فرصة تعاون مدفوع كمطور، حيث شاركت في تطوير مشاريع كاملة شملت تصميم البنية الخلفية (Express، Drizzle ORM، PostgreSQL)، وبناء الواجهات الأمامية (Next.js، Framer Motion)، إلى جانب دمج خدمات خارجية. ساهمت في تسليم مواقع إلكترونية جاهزة وقابلة للتوسّع، وشاركت في تخطيط المنتج إلى جانب الفريق الأساسي.",
@@ -22,8 +22,8 @@ export default [
       jobTitle: "مطور واجهات أمامية (متدرب)",
       company: "Aftercode Tunisia",
       location: "عن بُعد",
-      startDate: "2023-12",
-      endDate: "2024-01",
+      startDate: "2024-01",
+      endDate: "2024-02",
       description:
          "انضممت إلى Aftercode كمتدرب في مجال الواجهات الأمامية، وساهمت في كتابة كود فعلي يدخل في الإنتاج. ركّزت على تنفيذ مكونات الواجهة (UI Components)، ربط واجهات الاستخدام مع واجهات برمجية (API Integrations)، والعمل ضمن بيئة حديثة تعتمد على Next.js وTailwind CSS.",
    },

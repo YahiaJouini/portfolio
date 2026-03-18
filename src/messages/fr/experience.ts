@@ -13,7 +13,7 @@ export default [
       jobTitle: "Développeur Fullstack (Collaboration rémunérée)",
       company: "Aftercode Tunisia",
       location: "Télétravail",
-      startDate: "2024-01",
+      startDate: "2024-02",
       endDate: "2025-07",
       description:
          "Suite à mon stage, j’ai été recruté en tant que développeur fullstack dans le cadre d'une collaboration rémunérée. J’ai travaillé sur des projets complets, en concevant l’architecture backend (Express, Drizzle ORM, PostgreSQL), en développant des interfaces frontend (Next.js, Framer Motion) et en intégrant des services externes. J’ai livré des sites web fonctionnels et évolutifs, tout en participant à la planification produit avec l’équipe principale.",
@@ -22,8 +22,8 @@ export default [
       jobTitle: "Développeur Frontend (Stagiaire)",
       company: "Aftercode Tunisia",
       location: "Télétravail",
-      startDate: "2023-12",
-      endDate: "2024-01",
+      startDate: "2024-01",
+      endDate: "2024-02",
       description:
          "Intégré chez Aftercode en tant que stagiaire frontend, j’ai contribué à du code en production réel. Mon travail s’est concentré sur l’implémentation de composants UI, l’intégration d’API, et le développement dans un environnement moderne basé sur Next.js et Tailwind CSS.",
    },

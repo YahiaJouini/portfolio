@@ -13,7 +13,7 @@ export default [
       jobTitle: "Fullstack Developer (Paid Collaboration)",
       company: "Aftercode Tunisia",
       location: "Remote",
-      startDate: "2024-01",
+      startDate: "2024-02",
       endDate: "2025-07",
       description:
          "After the internship, I was offered a paid collaboration role where I worked on fullstack projects—designing backend architecture (Express, Drizzle ORM, PostgreSQL), building frontend UIs (Next.js, Framer Motion), and integrating third-party services. Delivered fully functional, scalable websites and contributed to product planning alongside the core team.",
@@ -22,8 +22,8 @@ export default [
       jobTitle: "Frontend Developer (Intern)",
       company: "Aftercode Tunisia",
       location: "Remote",
-      startDate: "2023-12",
-      endDate: "2024-01",
+      startDate: "2024-01",
+      endDate: "2024-02",
       description:
          "Joined Aftercode as an intern where I contributed to real production code as a frontend developer. Focused on implementing UI components, handling API integrations, and working in a modern Nextjs + Tailwind stack.",
    },

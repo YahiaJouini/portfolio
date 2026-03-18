@@ -3,6 +3,10 @@ import createNextIntlPlugin from "next-intl/plugin"
 
 const nextConfig: NextConfig = {
    compress: false,
+   // release load off the server
+   images: {
+      unoptimized: true,
+   },
    async headers() {
       return [
          {
