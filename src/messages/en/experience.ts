@@ -2,12 +2,12 @@ import { Experience } from "../types"
 
 export default [
    {
-      jobTitle: "Freelance Web Developer",
-      company: "Self-employed",
-      location: "Remote",
-      startDate: "2025-07",
+      jobTitle: "Software Engineering Intern",
+      company: "Sofrecom",
+      location: "On-site",
+      startDate: "2026-02",
       description:
-         "Currently working as a freelancer with a focus on fullstack web apps. Taking on projects involving backend APIs, responsive UI design, and DevOps pipelines. Responsible for delivering end-to-end solutions to clients while managing timelines, communication, and deployment.",
+         "Working on an AI-driven platform for career progression with a focus on backend development, data modeling, and application logic. Contributing to the design of services that process, store, and expose structured data to support platform features, while also building web-based interfaces connected to these systems. My work involves structuring data flows, implementing core business logic, and supporting reliable integration between backend components and the user-facing application.",
    },
    {
       jobTitle: "Fullstack Developer (Paid Collaboration)",
@@ -16,7 +16,7 @@ export default [
       startDate: "2024-02",
       endDate: "2025-07",
       description:
-         "After the internship, I was offered a paid collaboration role where I worked on fullstack projects—designing backend architecture (Express, Drizzle ORM, PostgreSQL), building frontend UIs (Next.js, Framer Motion), and integrating third-party services. Delivered fully functional, scalable websites and contributed to product planning alongside the core team.",
+         "After the internship, I was offered a paid collaboration role where I continued working on real software projects with the team. Contributed to backend architecture, feature implementation, database-backed functionality, and frontend development, while taking part in the technical design and delivery of client-facing systems.",
    },
    {
       jobTitle: "Frontend Developer (Intern)",
