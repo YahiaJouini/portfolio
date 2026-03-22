@@ -4,6 +4,7 @@ export default [
    {
       jobTitle: "Software Engineering Intern",
       company: "Sofrecom",
+      companyUrl: "https://www.sofrecom.com",
       location: "On-site",
       startDate: "2026-02",
       description:
@@ -12,6 +13,7 @@ export default [
    {
       jobTitle: "Fullstack Developer (Paid Collaboration)",
       company: "Aftercode Tunisia",
+      companyUrl: "https://www.aftercode.tn",
       location: "Remote",
       startDate: "2024-02",
       endDate: "2025-07",
@@ -21,6 +23,7 @@ export default [
    {
       jobTitle: "Frontend Developer (Intern)",
       company: "Aftercode Tunisia",
+      companyUrl: "https://www.aftercode.tn",
       location: "Remote",
       startDate: "2024-01",
       endDate: "2024-02",

@@ -4,6 +4,7 @@ export default [
    {
       jobTitle: "متدرب هندسة برمجيات",
       company: "Sofrecom",
+      companyUrl: "https://www.sofrecom.com",
       location: "حضوري",
       startDate: "2026-02",
       description:
@@ -12,6 +13,7 @@ export default [
    {
       jobTitle: "مطوّر Fullstack (تعاون مدفوع)",
       company: "Aftercode Tunisia",
+      companyUrl: "https://www.aftercode.tn",
       location: "عن بُعد",
       startDate: "2024-02",
       endDate: "2025-07",
@@ -21,6 +23,7 @@ export default [
    {
       jobTitle: "متدرب Frontend Developer",
       company: "Aftercode Tunisia",
+      companyUrl: "https://www.aftercode.tn",
       location: "عن بُعد",
       startDate: "2024-01",
       endDate: "2024-02",

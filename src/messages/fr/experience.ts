@@ -4,6 +4,7 @@ export default [
    {
       jobTitle: "Stagiaire en ingénierie logicielle",
       company: "Sofrecom",
+      companyUrl: "https://www.sofrecom.com",
       location: "Sur site",
       startDate: "2026-02",
       description:
@@ -12,6 +13,7 @@ export default [
    {
       jobTitle: "Développeur Fullstack (collaboration rémunérée)",
       company: "Aftercode Tunisia",
+      companyUrl: "https://www.aftercode.tn",
       location: "À distance",
       startDate: "2024-02",
       endDate: "2025-07",
@@ -21,6 +23,7 @@ export default [
    {
       jobTitle: "Stagiaire Frontend Developer",
       company: "Aftercode Tunisia",
+      companyUrl: "https://www.aftercode.tn",
       location: "À distance",
       startDate: "2024-01",
       endDate: "2024-02",

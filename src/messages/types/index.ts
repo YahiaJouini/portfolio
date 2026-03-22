@@ -57,6 +57,7 @@ export type Education = Journey & {
    degree: string
    fieldOfStudy: string
    institution: string
+   institutionUrl?: string
    mention?: string
    certification?: {
       href: string
@@ -67,6 +68,7 @@ export type Education = Journey & {
 export type Experience = Journey & {
    jobTitle: string
    company: string
+   companyUrl?: string
    location?: string
 }
 

@@ -2,18 +2,20 @@ import { Education } from "../types"
 
 export default [
    {
-      degree: "Diploma (in progress)",
+      degree: "National Diploma (in progress)",
       fieldOfStudy: "Information Technology",
       institution:
          "Higher Institute of Technological Studies of Rades (ISET Rades)",
+      institutionUrl: "https://www.isetr.rnu.tn",
       startDate: "2023-09",
       description:
-         "Pursuing a 3-year university-level diploma focused on networking, databases, and software engineering. Expected graduation: June 2026.",
+         "Pursuing a 3-year higher education diploma focused on networking, databases, and software engineering. Expected graduation: July 2026.",
    },
    {
       degree: "Certificate",
       fieldOfStudy: "Software Development (Accelerated Bootcamp)",
       institution: "Coding Dojo",
+      institutionUrl: "https://www.codingdojo.com",
       startDate: "2023-09",
       endDate: "2024-01",
       description:
@@ -32,6 +34,6 @@ export default [
       endDate: "2023-06",
       mention: "Excellent",
       description:
-         "Graduated with the highest honors (mention: Excellent) in Computer Science, gaining a solid foundation in algorithms, logic, and mathematics.",
+         "Graduated with highest honors in Computer Science, with a strong foundation in mathematics, physics, algorithms, and programming."
    },
 ] satisfies Array<Education>

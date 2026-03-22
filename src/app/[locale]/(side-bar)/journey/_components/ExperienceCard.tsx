@@ -1,3 +1,4 @@
+import { Link } from "@/i18n/navigation"
 import { Experience } from "@/messages/types"
 import { formatDateRange } from "@/utils/format-date"
 import { Calendar, MapPin } from "lucide-react"
@@ -28,7 +29,19 @@ export default function ExperienceCard({
                   )}
                </div>
                <p className="text-text-link mb-1 text-base font-medium md:text-lg">
-                  {experience.company}
+                  {experience.companyUrl ? (
+                     <Link
+                        href={experience.companyUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        prefetch={false}
+                        className="hover:underline"
+                     >
+                        {experience.company}
+                     </Link>
+                  ) : (
+                     experience.company
+                  )}
                </p>
                {experience.location && (
                   <div className="text-text-secondary flex items-center gap-0.5 rtl:flex-row-reverse rtl:justify-end">

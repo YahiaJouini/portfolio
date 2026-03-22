@@ -37,7 +37,19 @@ export default function EducationCard({
                      },
                   )}
                >
-                  {education.institution}
+                  {education.institutionUrl ? (
+                     <Link
+                        href={education.institutionUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        prefetch={false}
+                        className="hover:underline"
+                     >
+                        {education.institution}
+                     </Link>
+                  ) : (
+                     education.institution
+                  )}
                </p>
                <div className="flex flex-col gap-1 md:flex-row md:items-center md:gap-2">
                   <p className="text-text-secondary text-sm md:text-base">
