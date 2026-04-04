@@ -34,6 +34,6 @@ export default [
       endDate: "2023-06",
       mention: "Excellent",
       description:
-         "Graduated with highest honors in Computer Science, with a strong foundation in mathematics, physics, algorithms, and programming."
+         "Graduated with highest honors in Computer Science, with a strong foundation in mathematics, physics, algorithms, and programming.",
    },
 ] satisfies Array<Education>

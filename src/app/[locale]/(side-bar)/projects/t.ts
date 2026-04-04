@@ -8,6 +8,8 @@ export const t = {
       noProjectsFoundDescription:
          "Try adjusting your filters or check back later.",
       visit: "Visit",
+      previous: "Previous",
+      next: "Next",
    },
    fr: {
       grid: "Grille",
@@ -16,6 +18,8 @@ export const t = {
       noProjectsFoundDescription:
          "Essayez de modifier vos filtres ou réessayez plus tard.",
       visit: "Voir le projet",
+      previous: "Précédent",
+      next: "Suivant",
    },
    ar: {
       grid: "شبكة",
@@ -23,5 +27,7 @@ export const t = {
       noProjectsFound: "لا توجد مشاريع.",
       noProjectsFoundDescription: "حاول تعديل عوامل التصفية أو جرّب لاحقًا.",
       visit: "عرض المشروع",
+      previous: "السابق",
+      next: "التالي",
    },
 } satisfies MergedTranslations

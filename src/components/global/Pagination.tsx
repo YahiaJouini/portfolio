@@ -16,11 +16,15 @@ type Props = {
    hasNextPage: boolean
    hasPrevPage: boolean
    totalPages: number
+   previousLabel?: string
+   nextLabel?: string
 }
 export default function Pagination({
    totalPages,
    hasNextPage,
    hasPrevPage,
+   previousLabel,
+   nextLabel,
 }: Props) {
    const [currentPage, setCurrentPage] = useQueryState("page", {
       ...parseAsInteger.withDefault(1),
@@ -44,6 +48,7 @@ export default function Pagination({
             <PaginationContent>
                <PaginationItem>
                   <PaginationPrevious
+                     label={previousLabel}
                      onClick={() => handlePageChange(currentPage - 1)}
                      className={
                         !hasPrevPage
@@ -73,6 +78,7 @@ export default function Pagination({
 
                <PaginationItem>
                   <PaginationNext
+                     label={nextLabel}
                      onClick={() => handlePageChange(currentPage + 1)}
                      className={
                         !hasNextPage

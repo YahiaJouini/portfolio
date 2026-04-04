@@ -14,7 +14,7 @@
       --extra: #d1d5da80;
 
       /* === Borders === */
-      --border-default: #d1d9e0;
+      --border-default: #c6ced6;
 
       /* === Text === */
       --text-primary: #1f2328;
@@ -84,7 +84,7 @@
       --extra: #57606a;
 
       /* === Borders === */
-      --border-default: #2f353d;
+      --border-default: #3a4047;
 
       /* === Text === */
       --text-primary: #f0f6fc;
@@ -280,4 +280,11 @@ html[dir="rtl"] *[style*="text-align: center"],
 html[dir="rtl"] *[class*="text-center"],
 html[dir="rtl"] *[class*="align-center"] {
    text-align: center;
+}
+
+/* Compensate for Windows 125% display scaling on medium/small laptop screens */
+@media screen and (min-width: 1024px) and (max-width: 1440px) {
+   html {
+      zoom: 0.85;
+   }
 }

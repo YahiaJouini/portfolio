@@ -72,7 +72,11 @@ export default async function Page({ searchParams, params }: Props) {
                </div>
             )}
 
-            <Pagination {...pagination} />
+            <Pagination
+               {...pagination}
+               previousLabel={t[locale].previous}
+               nextLabel={t[locale].next}
+            />
          </div>
       </div>
    )

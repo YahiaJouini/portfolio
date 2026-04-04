@@ -34,6 +34,6 @@ export default [
       endDate: "2023-06",
       mention: "Excellent",
       description:
-         "Diplômé avec la mention Excellent en informatique, avec de solides bases en mathématiques, physique, algorithmique et programmation."
+         "Diplômé avec la mention Excellent en informatique, avec de solides bases en mathématiques, physique, algorithmique et programmation.",
    },
 ] satisfies Array<Education>
